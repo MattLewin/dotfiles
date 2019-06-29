@@ -54,3 +54,7 @@ if [ -e "$HOME/.truemotion" ]; then
         export ARTIFACTORY_PASSWORD=$(grep password ~/.netrc | cut -d ' ' -f2)
     fi
 fi
+
+# ML: 2019-06-29
+# Prevent homebrew-file from doing anything with App Store apps
+export HOMEBREW_BREWFILE_APPSTORE=0
