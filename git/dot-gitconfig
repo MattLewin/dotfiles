@@ -1,0 +1,66 @@
+[filter "media"]
+	required = true
+	clean = git media clean %f
+	smudge = git media smudge %f
+[user]
+	name = Matt Lewin
+	useConfigOnly = true
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/Matt/.gitignore_global
+	autocrlf = input
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[difftool "changed-lines-only"]
+	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' \"$LOCAL\" \"$REMOTE\"
+	trustExitCode = true
+[push]
+	default = current
+	followTags = true
+[commit]
+	template = /Users/Matt/.stCommitMsg
+[diff]
+	renameLimit = 15000
+[alias]
+	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
+	patch = !git --no-pager diff --no-color
+	patch = !git --no-pager diff --no-color $@
+	patch = git --no-pager diff --no-color
+	patch = !git --no-pager diff --no-color
+[remote]
+	pushdefault = origin
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[gitflow "branch"]
+	master = master
+	develop = develop
+[gitflow "prefix"]
+	feature = feature/
+	release = release/
+	bugfix = bugfix/
+	hotfix = hotfix/
+	support = support/
+	versiontag =
+[color]
+	ui = true
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse

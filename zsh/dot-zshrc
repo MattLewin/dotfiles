@@ -1,0 +1,332 @@
+# ML: 2018-09-07; 2019-06-29: move to ~/.zsh
+if [ -d ${HOME}/.zsh ]; then
+    DOT_ZSH=${HOME}/.zsh
+else
+    echo "${HOME}/.zsh directory doesn't exist. WTF?" 1>&2
+    echo "*** good luck making the rest of this .zshrc work ***" 1>&2
+fi
+
+# ML: 2015-10-08 
+# ML: Load custom paths before anything else gets going
+#
+if [ -n "${DOT_ZSH}/systeminfo.sh" ]; then
+    # Set OS, DIST, DistroBasedOn, PSEUDONAME, REV, KERNEL, MACH where available
+    source ${DOT_ZSH}/systeminfo.sh
+else
+    KERNEL="$(uname -r)"
+    MACH="$(uname -m)"
+
+    case "$OSTYPE" in
+        darwin*)
+            OS="mac"
+            ;;
+
+        linux*)
+            OS="linux"
+            ;;
+
+        *)
+            OS="** UNKNOWN **"
+            ;;
+    esac
+
+    declare -xlr KERNEL MACH OS
+fi
+
+# Path to your oh-my-zsh installation.
+export ZSH=$HOME/.oh-my-zsh
+
+
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+#DISABLE_UPDATE_PROMPT=true
+
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
+
+# Uncomment the following line to disable bi-weekly auto-update checks.
+# DISABLE_AUTO_UPDATE="true"
+
+# Uncomment the following line to change how often to auto-update (in days).
+# export UPDATE_ZSH_DAYS=13
+
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
+
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
+
+# Uncomment the following line to disable command auto-correction.
+# DISABLE_CORRECTION="true"
+
+# Uncomment the following line to display red dots whilst waiting for completion.
+# COMPLETION_WAITING_DOTS="true"
+
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+HIST_STAMPS="yyyy-mm-dd"
+
+# Would you like to use another custom folder than $ZSH/custom?
+ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
+
+# Set name of the theme to load.
+# Look in ~/.oh-my-zsh/themes/
+# Optionally, if you set this to "random", it'll load a random theme each
+# time that oh-my-zsh is loaded.
+#ZSH_THEME="robbyrussell"
+if [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
+    ZSH_THEME="spaceship"  # https://github.com/denysdovhan/spaceship-prompt
+    SPACESHIP_DIR_TRUNC_REPO=false
+else
+    ZSH_THEME="theunraveler"
+    PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
+fi
+# ML: 2019-01-22: A quick function to easily remove plugins from the list
+remove_plugins () {
+    while [ -n "$1" ]
+    do
+        local plugin_to_remove=$1
+        plugins=${plugins/$plugin_to_remove/}; shift
+    done
+    plugins=${plugins//[[:space:]][[:space:]]/}
+}
+
+# Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
+# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+#plugins=(brew gem git mosh osx per-directory-history perl python rbenv ruby osx tmux web-search)
+#plugins=(brew bundler colored-man fasd gem git history mosh osx perl python ruby sublime tmux vi-mode web-search)
+plugins=(
+    colored-man-pages
+    colorize
+    emoji
+    fasd
+    git
+    git-auto-fetch
+    git-flow-avh
+    gitignore
+    history
+    httpie
+    man
+    shrink-path
+    swiftpm
+    systemadmin
+    themes
+    z
+    zsh-navigation-tools
+    zsh_reload
+)
+
+# ML: 2018-08-21: Include plugins if their corresponding binaries exist
+binary_plugins=(
+    adb
+    aws
+    bower
+    bundler
+    docker
+    gem
+    go
+    gradle
+    heroku
+    mosh
+    mvn
+    nmap
+    node
+    pass
+    perl
+    pip
+    pod
+    pyenv
+    python
+    rbenv
+    ruby
+    swiftenv
+    terraform
+    tmux
+    vagrant
+    virtualenv
+    yarn
+)
+
+for binary in "${binary_plugins[@]}"
+do
+    type "${binary}" >/dev/null 2>&1 && plugins+=("${binary}")
+done
+
+# ML: 2018-08-21: Include plugins if their corresponding dot-config directories exist
+config_plugins=(
+    npm
+    nvm
+)
+
+for config_dir in "${config_plugins[@]}"
+do
+    test -d "$HOME/.${config_dir}" && plugins+=(${config_dir})
+done
+
+# ML: 2018-08-30: Add plugins if an associated binary exists
+#     The associative array key and values are <binary> <plugin name>
+#     Note that the assoc. array syntax [key]=value only works on *some*
+#     versions of ZSH. Why? I don't know.
+typeset -A associated_plugins
+associated_plugins+=(
+    rustc rust
+    virtualenvwrapper.sh virtualenvwrapper
+    xcode-select xcode
+)
+
+for binary plugin in ${(kv)associated_plugins}
+do
+    type ${binary} >/dev/null 2>&1 && plugins+=( ${plugin} )
+done
+
+typeset -A macOS_app_plugins
+macOS_app_plugins+=(
+    Bwana bwana
+)
+
+# ML: 2018-08-09: Add OS and distribution-specific plugins
+case "$OS" in
+    mac)
+        plugins+=(dash iterm2 osx)
+        type brew >/dev/null 2>&1 && plugins+=(brew)
+        export SWIFTENV_ROOT=/usr/local/var/swiftenv
+
+        for app plugin in ${(kv)macOS_app_plugins}
+        do
+            [ -d "/Applications/${app}.app" ] && plugins+=( ${plugin} )
+            [ -d "~/Applications/${app}.app" ] && plugins+=( ${plugin} )
+        done
+        ;;
+
+    linux)
+        type systemctl >/dev/null 2>&1 && plugins+=(systemd)
+
+        case "$DIST" in
+            "centos linux")
+                plugins+=(yum)
+                ;;
+            debian)
+                plugins+=(debian)
+                ;;
+            suse)
+                plugins+=(suse)
+                ;;
+            ubuntu)
+                plugins+=(ubuntu)
+                ;;
+        esac
+        ;;
+esac
+
+# Add 'thefuck' plugin only if we are using better than python3.4
+type thefuck >/dev/null 2>&1 && type python3 >/dev/null 2>&1 && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
+
+
+#
+# Grab the custom plugins using:
+# git clone <repo URL> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/<plugin name>
+#
+custom_plugins=(
+zsh-completions # https://github.com/zsh-users/zsh-completions
+# NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
+    zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting.git
+)
+
+for plugin in "${custom_plugins[@]}"
+do
+    [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/${plugin} ] && plugins+=(${plugin})
+done
+
+source $ZSH/oh-my-zsh.sh
+
+# User configuration
+
+# export MANPATH="/usr/local/man:$MANPATH"
+
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
+
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
+# else
+#   export EDITOR='mvim'
+# fi
+
+# Compilation flags
+# export ARCHFLAGS="-arch x86_64"
+
+# ssh
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+iterm2_print_user_vars() {
+    iterm2_set_user_var shortHostname "$(hostname -s)"
+}
+
+# ML: 2016-08-28
+# ML: 2018-08-09: Updated to use `shrink_path`
+# PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
+
+######
+# Remember, aliases and variables are set in ~/.oh-my-zsh/custom
+######
+
+# added by travis gem
+[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
+
+# ML: 2017-05-22
+# Remove all duplicate entries in PATH
+if [ -n "$PATH" ]; then
+    old_PATH=$PATH:; unset PATH;
+    while [ -n "$old_PATH" ]; do
+        x=${old_PATH%%:*}       # the first remaining entry
+        case $PATH: in
+            *:"$x":*) ;;          # already there
+            *) PATH=$PATH:$x;;    # not there yet
+        esac
+        old_PATH=${old_PATH#*:}
+    done
+    PATH=${PATH#:}
+    unset old_PATH x
+fi
+
+# ML: 2018-02-28
+# Config for google cloud SDK
+if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/' ]; then
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
+    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+fi
+
+# ML: 2018-09-07: Unalias 'ag' (from ubuntu plugin) so we can easily use the_silver_searcher
+unalias ag >/dev/null 2>&1
+
+# ML: 2019-05-24: Add less default options
+LESS="--tabs=4 -RFX"
+
+# ML: 2019-06-29
+to_be_sourced=(
+    paths.zsh
+    aliases.zsh
+    variables.zsh
+)
+
+for file in "${to_be_sourced[@]}"
+do
+    source "${DOT_ZSH}/${file}"
+done
+
+# ML: 2019-06-29: use homebrew-file
+if [ -f $(brew --prefix)/etc/brew-wrap ];then
+  source $(brew --prefix)/etc/brew-wrap
+fi
