@@ -1,0 +1,4 @@
+# Because .config contains the configuration for many programs, some of which include certs, passwords, token,
+# etc., we default to excluding everything from it. We can then force add anything we explicitly want
+# under source control.
+dot-config
