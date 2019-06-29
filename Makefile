@@ -15,4 +15,4 @@ stow:
 	$(INSTALL_SCRIPTS_DIR)/install-stow.sh
 
 dotfiles:
-	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" $(STOW_PACKAGES)
+	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
