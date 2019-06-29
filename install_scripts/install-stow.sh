@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -o nounset
 
 curl -fsSL http://ftpmirror.gnu.org/stow/stow-2.3.0.tar.gz | tar xzf -

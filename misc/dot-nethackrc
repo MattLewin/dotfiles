@@ -1,0 +1,1 @@
+OPTIONS=catname:Tigger,dogname:Darwin,horsename:Silver,number_pad:2,pettype:dog,!autopickup,autoquiver,checkpoint,lit_corridor,hilite_pet,color,rest_on_space,showexp,showrace,pushweapon,standout,time,toptenwin,extmenu

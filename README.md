@@ -2,7 +2,7 @@
 macOS and UNIX configuration files
 
 ## Installation
-clone the repo
+clone the repo and all submodules
 `make`
 
 This will install [oh-my-zsh](https://ohmyz.sh), [Homebrew](https://brew.sh), [Homebrew-file](https://homebrew-file.readthedocs.io/en/latest/index.html), and [GNU stow](https://www.gnu.org/software/stow/). It will then use `stow` to link all your dot files into your home directory.

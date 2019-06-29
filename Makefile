@@ -1,7 +1,9 @@
 
 INSTALL_SCRIPTS_DIR=install_scripts
 STOW=/usr/local/bin/stow
-STOW_PACKAGES=git vim zsh
+STOW_PACKAGES=bash git lldb misc tmux vim zsh
+
+all: oh-my-zsh homebrew-file stow dotfiles
 
 homebrew-file:
 	$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh

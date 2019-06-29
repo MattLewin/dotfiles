@@ -1,0 +1,97 @@
+### 2011-01-12 The following has been commented out because I have evolved. ###
+#PATH="/usr/local/bin:${PATH}"
+#
+#if [ -d ${HOME}/bin ]; then
+#	PATH="${HOME}/bin:${PATH}"
+#fi
+#
+#if [ -d ${HOME}/man ]; then
+#	MANPATH="${HOME}/man:${MANPATH}"
+#fi
+#
+#PATH=".:${PATH}"
+#
+## make ls behave the way I want
+#alias ls='ls ${LSOPTIONS}'
+#
+## colorize ls and make it show file-type characters
+#LSOPTIONS="-F -G"
+#
+## I like having 1000 commands in my history
+#HISTFILESIZE=1000
+#HISTSIZE=1000
+#
+## Put username@hostname into window title
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+#export PS1='[\!:\w] '
+#
+#test -r /sw/bin/init.sh && . /sw/bin/init.sh
+#
+### END 2011-01-12 bulk comment out
+
+# make ls behave the way I want
+alias ls='ls ${LSOPTIONS}'
+
+# colorize ls and make it show file-type characters
+LSOPTIONS="-F -G"
+
+# Put username@hostname into window title
+#PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME}\007"'
+PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
+export PS1='[\!:\w] '
+
+# set up ssh for peak hosts
+ssh_peak()
+{
+	local phost
+	phost=$1
+
+	if [ -z "$phost" ]; then
+		echo "Usage:"
+		echo "	sshpeak <hostname>"
+		return 1
+	fi
+
+	SSH_ADD_PATH=`type -p ssh-add`
+	`${SSH_ADD_PATH} -l >/dev/null 2>/dev/null`
+	if [ "$?" = "2" ]; then
+		echo "It seems like your agent isn't loaded."
+		echo "Perhaps you want to try saying 'sshagent' before you go any further"
+		return 1
+	fi
+
+	/usr/bin/ssh ${1}.peakwebhosting.com
+}
+alias sshpeak='ssh_peak'
+
+#if [ "`uname`" = "Darwin" ]; then
+#	# Allow common applications to be launched from the command-line
+#	OPEN=/usr/bin/open
+#	APPDIR=/Applications
+#	UTILDIR=${APPDIR}/Utilities
+#	DEVAPPS=/Developer/Applications
+#
+#	alias itunes="${OPEN} ${APPDIR}/iTunes.app"
+#	alias safari="${OPEN} ${APPDIR}/Safari.app"
+#	alias sshagent="${OPEN} \"${UTILDIR}/SSHKeychain.app\""
+#	alias startx="${OPEN} ${UTILDIR}/X11.app"
+#	alias textedit="${OPEN} ${APPDIR}/TextEdit.app"
+#	alias xcode="${OPEN} ${DEVAPPS}/Xcode.app"
+#
+#	unset OPEN APPDIR UTILDIR DEVAPPS
+#
+#	# Modify ps-like aliases
+#	alias psall="ps ax"
+#	alias top="top -o cpu"
+#
+#	OPENMAN_PATH=`type -p openman`
+#
+#	if [ -n "${OPENMAN_PATH}" ]; then
+#		alias om="${OPENMAN_PATH}"
+#	fi
+#
+#	unset OPENMAN_PATH
+#fi
+#
+## Aliases on all platforms
+#alias h='history'

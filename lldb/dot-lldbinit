@@ -1,0 +1,4 @@
+#command script import /usr/local/opt/chisel/libexec/fblldb.py
+
+#command script import ~/src/dotfiles/lldb/LLDB/lldb_commands
+command script import ~/src/dotfiles/lldb/LLDB/lldb_commands/dslldb.py

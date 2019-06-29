@@ -1,3 +1,30 @@
 [submodule "oh-my-zsh/custom/themes/spaceship-prompt"]
 	path = oh-my-zsh/custom/themes/spaceship-prompt
 	url = https://github.com/denysdovhan/spaceship-prompt.git
+[submodule "lldb/LLDB"]
+	path = lldb/LLDB
+	url = https://github.com/DerekSelander/LLDB.git
+[submodule "tmux/dot-tmux/plugins/tmux-continuum"]
+	path = tmux/dot-tmux/plugins/tmux-continuum
+	url = https://github.com/tmux-plugins/tmux-continuum.git
+[submodule "tmux/dot-tmux/plugins/tmux-copycat"]
+	path = tmux/dot-tmux/plugins/tmux-copycat
+	url = https://github.com/tmux-plugins/tmux-copycat.git
+[submodule "tmux/dot-tmux/plugins/tmux-open"]
+	path = tmux/dot-tmux/plugins/tmux-open
+	url = https://github.com/tmux-plugins/tmux-open.git
+[submodule "tmux/dot-tmux/plugins/tmux-pain-control"]
+	path = tmux/dot-tmux/plugins/tmux-pain-control
+	url = https://github.com/tmux-plugins/tmux-pain-control.git
+[submodule "tmux/dot-tmux/plugins/tmux-resurrect"]
+	path = tmux/dot-tmux/plugins/tmux-resurrect
+	url = https://github.com/tmux-plugins/tmux-resurrect.git
+[submodule "tmux/dot-tmux/plugins/tmux-sensible"]
+	path = tmux/dot-tmux/plugins/tmux-sensible
+	url = https://github.com/tmux-plugins/tmux-sensible.git
+[submodule "tmux/dot-tmux/plugins/tmux-yank"]
+	path = tmux/dot-tmux/plugins/tmux-yank
+	url = https://github.com/tmux-plugins/tmux-yank.git
+[submodule "tmux/dot-tmux/plugins/tpm"]
+	path = tmux/dot-tmux/plugins/tpm
+	url = https://github.com/tmux-plugins/tpm.git
