@@ -74,7 +74,6 @@ brew harfbuzz
 brew hicolor-icon-theme
 brew hidapi
 brew highlight
-brew howdoi
 brew htop
 brew httpie
 brew hub
@@ -149,7 +148,6 @@ brew maven
 brew mcrypt
 brew mhash
 brew mockserver
-brew mosh
 brew mpfr
 brew mtr
 brew mysql
@@ -279,7 +277,6 @@ tap rcmdnk/file
 brew brew-file
 
 # Other Cask applications
-cask bwana
 cask font-hack-nerd-font
 cask font-mononoki-nerd-font
 cask graphiql
