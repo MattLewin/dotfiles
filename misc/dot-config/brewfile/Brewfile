@@ -1,11 +1,10 @@
+file ./${HOST}.Brewfile
 
 # tap repositories and their packages
 
 tap homebrew/core
 brew adns
-brew angband --with-cocoa
 brew aom
-brew app-engine-java
 brew apr
 brew apr-util
 brew argon2
@@ -35,9 +34,6 @@ brew discount
 brew docbook
 brew dos2unix
 brew eigen
-brew elixir
-brew emacs
-brew erlang
 brew exercism
 brew ffmpeg
 brew flac
@@ -96,7 +92,7 @@ brew jpeg
 brew jq
 brew jruby
 brew json-c
-brew jupyter --with-qtconsole
+brew jupyter
 brew lame
 brew leptonica
 brew libao
@@ -159,19 +155,17 @@ brew mpfr
 brew mtr
 brew mysql
 brew ncurses
-brew nethack
 brew netpbm
 brew nettle
 brew nghttp2
 brew ninja
-brew nmap --with-pygtk
+brew nmap
 brew node
 brew npth
 brew numpy
 brew oniguruma
 brew openblas
 brew opencore-amr
-brew opencv
 brew openexr
 brew openjpeg
 brew openldap
@@ -180,16 +174,6 @@ brew openssl@1.1
 brew opus
 brew opusfile
 brew p11-kit
-brew pandoc
-brew pango
-brew pass
-brew pcre
-brew pcre2
-brew perl
-brew php
-brew phpmyadmin
-brew phpunit
-brew pinentry
 brew pinfo
 brew pixman
 brew pkg-config
@@ -218,7 +202,6 @@ brew shared-mime-info
 brew shellcheck
 brew shfmt
 brew sip
-brew slashem
 brew snappy
 brew source-highlight
 brew sourcekitten
@@ -228,7 +211,6 @@ brew speedtest-cli
 brew speex
 brew sphinx-doc
 brew sqlite
-brew sshfs
 brew swaks
 brew swift-protobuf
 brew swiftformat
@@ -276,11 +258,7 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
-cask google-cloud-sdk
 cask java
-cask mactex
-cask osxfuse
-cask virtualbox
 cask wwdc
 
 tap caskroom/fonts
@@ -308,6 +286,3 @@ cask gitkraken
 cask graphiql
 cask macdown
 cask ngrok
-cask vagrant
-cask virtualbox-extension-pack
-cask xquartz

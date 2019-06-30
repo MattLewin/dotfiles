@@ -1,0 +1,27 @@
+brew angband
+brew app-engine-java
+brew elixir
+brew erlang
+brew nethack
+brew opencv
+brew pandoc
+brew pango
+brew pass
+brew pcre
+brew pcre2
+brew perl
+brew php
+brew phpmyadmin
+brew phpunit
+brew pinentry
+brew slashem
+brew sshfs
+
+tap homebrew/cask
+cask google-cloud-sdk
+cask mactex
+cask osxfuse
+cask vagrant
+cask virtualbox
+cask virtualbox-extension-pack
+cask xquartz
