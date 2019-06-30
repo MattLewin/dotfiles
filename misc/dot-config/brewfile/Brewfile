@@ -276,7 +276,6 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
-cask fork
 cask google-cloud-sdk
 cask java
 cask mactex
