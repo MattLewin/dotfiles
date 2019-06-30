@@ -179,6 +179,12 @@ brew openssl@1.1
 brew opus
 brew opusfile
 brew p11-kit
+brew pandoc
+brew pango
+brew pcre
+brew pcre2
+brew perl
+brew pinentry
 brew pinfo
 brew pixman
 brew pkg-config

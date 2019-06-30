@@ -1,6 +1,9 @@
 
 # tap repositories and their packages
 
+tap adoptopenjdk/openjdk
+cask adoptopenjdk8
+
 tap heroku/brew
 brew heroku-node
 
@@ -11,8 +14,3 @@ brew plantuml
 
 # Other Cask applications
 cask charles
-
-tap adoptopenjdk/openjdk
-cask adoptopenjdk8
-
-
