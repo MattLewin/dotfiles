@@ -4,6 +4,7 @@
 tap homebrew/core
 brew adns
 brew aom
+brew appledoc
 brew apr
 brew apr-util
 brew argon2
@@ -54,6 +55,7 @@ brew giflib
 brew git
 brew git-flow-avh
 brew git-lfs
+brew git-quick-stats
 brew git-secret
 brew glib
 brew glog
@@ -65,6 +67,7 @@ brew go
 brew gobject-introspection
 brew gradle
 brew graphite2
+brew graphviz
 brew greed
 brew gsasl
 brew gtk+
@@ -91,6 +94,7 @@ brew jq
 brew jruby
 brew json-c
 brew jupyter
+brew kotlin
 brew lame
 brew leptonica
 brew libao
@@ -109,6 +113,7 @@ brew libiconv
 brew libidn
 brew libidn2
 brew libksba
+brew libmaxminddb
 brew libmetalink
 brew libmpc
 brew libogg
@@ -118,9 +123,11 @@ brew libpq
 brew libressl
 brew librsvg
 brew libsamplerate
+brew libsmi
 brew libsndfile
 brew libsodium
 brew libsoxr
+brew libssh
 brew libssh2
 brew libtasn1
 brew libtiff
@@ -136,6 +143,7 @@ brew libyaml
 brew libyubikey
 brew libzip
 brew little-cms2
+brew llvm
 brew lua
 brew lzo
 brew m4
@@ -171,6 +179,12 @@ brew openssl@1.1
 brew opus
 brew opusfile
 brew p11-kit
+brew pandoc
+brew pango
+brew pcre
+brew pcre2
+brew perl
+brew pinentry
 brew pinfo
 brew pixman
 brew pkg-config
@@ -185,9 +199,8 @@ brew python
 brew python@2
 brew qrencode
 brew qt
+brew rbenv
 brew readline
-brew rebar3
-brew redis
 brew ripgrep
 brew rpl
 brew rtmpdump
@@ -239,6 +252,7 @@ brew wget
 brew wxmac
 brew x264
 brew x265
+brew xctool
 brew xvid
 brew xz
 brew yarn
@@ -250,22 +264,31 @@ brew zsh
 brew zsh-completions
 
 tap homebrew/cask-versions
+cask adoptopenjdk8
 
 tap homebrew/services
 
 tap homebrew/cask
-cask anaconda
+cask adoptopenjdk
+cask fastlane
 cask gitkraken
-cask java
+cask graphiql
+cask jupyter-notebook-ql
+cask macdown
 cask ngrok
+cask wwdc
+
+tap adoptopenjdk/openjdk
 
 tap caskroom/fonts
 cask font-fira-code
-cask font-monoid-nerd-font
-cask font-powerline-symbols
+cask font-hack-nerd-font
+cask font-mononoki-nerd-font
 
 tap ether-cli/tap
 brew ether
+
+tap heroku/brew
 
 tap ibm-swift/kitura
 brew kitura
@@ -277,11 +300,16 @@ tap rcmdnk/file
 brew brew-file
 
 # Other Cask applications
-cask font-hack-nerd-font
-cask font-mononoki-nerd-font
-cask graphiql
-cask macdown
-cask wwdc
+cask anaconda
+cask font-firacode-nerd-font
+cask font-monoid-nerd-font
+cask font-powerline-symbols
+cask google-cloud-sdk
+cask java
+cask jupyter-notebook-viewer
+cask miniconda
+cask postman
+cask zenmap
 
 # Additional files
-file ./.Brewfile
+file .Brewfile

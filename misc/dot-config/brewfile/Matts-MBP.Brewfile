@@ -25,3 +25,15 @@ cask vagrant
 cask virtualbox
 cask virtualbox-extension-pack
 cask xquartz
+brew rebar3
+brew gdb
+brew lua
+brew lua@5.1
+brew luarocks
+brew php
+brew redis
+brew imagemagick@6
+brew wireshark
+brew lua@5.1
+brew luarocks
+cask wireshark
