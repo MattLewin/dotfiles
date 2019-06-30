@@ -1,4 +1,3 @@
-file ./${HOST}.Brewfile
 
 # tap repositories and their packages
 
@@ -258,8 +257,9 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
+cask gitkraken
 cask java
-cask wwdc
+cask ngrok
 
 tap caskroom/fonts
 cask font-fira-code
@@ -282,7 +282,9 @@ brew brew-file
 cask bwana
 cask font-hack-nerd-font
 cask font-mononoki-nerd-font
-cask gitkraken
 cask graphiql
 cask macdown
-cask ngrok
+cask wwdc
+
+# Additional files
+file ./.Brewfile
