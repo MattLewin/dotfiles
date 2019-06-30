@@ -231,6 +231,7 @@ brew sqlite
 brew sshfs
 brew swaks
 brew swift-protobuf
+brew swiftenv
 brew swiftformat
 brew swiftlint
 brew swig
