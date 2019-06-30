@@ -179,12 +179,6 @@ brew openssl@1.1
 brew opus
 brew opusfile
 brew p11-kit
-brew pandoc
-brew pango
-brew pcre
-brew pcre2
-brew perl
-brew pinentry
 brew pinfo
 brew pixman
 brew pkg-config
@@ -264,7 +258,6 @@ brew zsh
 brew zsh-completions
 
 tap homebrew/cask-versions
-cask adoptopenjdk8
 
 tap homebrew/services
 
@@ -272,11 +265,11 @@ tap homebrew/cask
 cask adoptopenjdk
 cask fastlane
 cask gitkraken
-cask graphiql
-cask jupyter-notebook-ql
-cask macdown
-cask ngrok
-cask wwdc
+cask java
+cask jupyter-notebook-viewer
+cask miniconda
+cask postman
+cask zenmap
 
 tap adoptopenjdk/openjdk
 
@@ -304,12 +297,11 @@ cask anaconda
 cask font-firacode-nerd-font
 cask font-monoid-nerd-font
 cask font-powerline-symbols
-cask google-cloud-sdk
-cask java
-cask jupyter-notebook-viewer
-cask miniconda
-cask postman
-cask zenmap
+cask graphiql
+cask jupyter-notebook-ql
+cask macdown
+cask ngrok
+cask wwdc
 
 # Additional files
 file .Brewfile

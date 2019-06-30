@@ -11,3 +11,8 @@ brew plantuml
 
 # Other Cask applications
 cask charles
+
+tap adoptopenjdk/openjdk
+cask adoptopenjdk8
+
+

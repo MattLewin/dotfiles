@@ -1,7 +1,20 @@
+
+# tap repositories and their packages
+
+tap homebrew/cask
+cask google-cloud-sdk
+cask osxfuse
+cask virtualbox
+cask wireshark
+
+# Other Homebrew packages
 brew angband
 brew app-engine-java
 brew elixir
 brew erlang
+brew gdb
+brew lua@5.1
+brew luarocks
 brew nethack
 brew opencv
 brew pandoc
@@ -14,26 +27,14 @@ brew php
 brew phpmyadmin
 brew phpunit
 brew pinentry
+brew rebar3
+brew redis
 brew slashem
 brew sshfs
+brew wireshark
 
-tap homebrew/cask
-cask google-cloud-sdk
+# Other Cask applications
 cask mactex
-cask osxfuse
 cask vagrant
-cask virtualbox
 cask virtualbox-extension-pack
 cask xquartz
-brew rebar3
-brew gdb
-brew lua
-brew lua@5.1
-brew luarocks
-brew php
-brew redis
-brew imagemagick@6
-brew wireshark
-brew lua@5.1
-brew luarocks
-cask wireshark
