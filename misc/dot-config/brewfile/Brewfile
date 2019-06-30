@@ -231,7 +231,6 @@ brew sqlite
 brew sshfs
 brew swaks
 brew swift-protobuf
-brew swiftenv
 brew swiftformat
 brew swiftlint
 brew swig
@@ -295,6 +294,9 @@ brew ether
 
 tap ibm-swift/kitura
 brew kitura
+
+tap kylef/formulae
+brew swiftenv
 
 tap rcmdnk/file
 brew brew-file
