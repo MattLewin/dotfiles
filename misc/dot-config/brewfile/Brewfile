@@ -199,6 +199,7 @@ brew python
 brew python@2
 brew qrencode
 brew qt
+brew rbenv
 brew readline
 brew ripgrep
 brew rpl
