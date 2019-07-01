@@ -200,6 +200,7 @@ brew python@2
 brew qrencode
 brew qt
 brew rbenv
+brew rbenv-gemset
 brew readline
 brew ripgrep
 brew rpl

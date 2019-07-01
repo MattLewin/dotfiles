@@ -116,6 +116,7 @@ plugins=(
     history
     httpie
     man
+    rbenv
     shrink-path
     swiftpm
     systemadmin
