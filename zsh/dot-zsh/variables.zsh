@@ -4,7 +4,7 @@ test -d "/usr/local/etc/xml/catalog" && export XML_CATALOG_FILES=/usr/local/etc/
 
 # ML: 2015-11-10
 # Use a token to authenticate against GitHub when using Homebrew to avoid rate limiting
-export HOMEBREW_GITHUB_API_TOKEN="65c01656e4e3ebd548a42534175329df1b83bc70"
+test -e "./api_tokens.zsh" && source "./api_tokens.zsh"
 
 # ML: 2015-11-29
 # Set 'ls' to display size in KB rather than 512-byte blocks
