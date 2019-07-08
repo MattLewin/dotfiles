@@ -54,6 +54,7 @@ brew ghostscript
 brew giflib
 brew git
 brew git-flow-avh
+brew git-imerge
 brew git-lfs
 brew git-quick-stats
 brew git-secret
