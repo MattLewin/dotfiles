@@ -216,6 +216,18 @@ function git.io() {
 }
 
 #
+# ML: 2019-07-15
+# A function to display the tmux window number
+func tmux_winidx_circled() {
+    local winidx=$(tmux display-message -p '#I')
+    if (( winidx > 20 )); then
+        echo "($winidx)"
+    else
+        echo "${circled_digits:$winidx:1}"
+    fi
+}
+
+#
 # TrueMotion Aliases
 #
 if [ "$(hostname)" = "bos075" ]; then

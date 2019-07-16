@@ -58,3 +58,8 @@ fi
 # ML: 2019-06-29
 # Prevent homebrew-file from doing anything with App Store apps
 export HOMEBREW_BREWFILE_APPSTORE=0
+
+# ML: 2019-07-15
+# Circled numbers for pretty displays
+circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
+# circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
