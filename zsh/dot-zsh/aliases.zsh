@@ -1,13 +1,48 @@
-# ML: 2015-10-08
-# ML: Moved the stuff below from ~/.zshrc when I realized it should be here in .../custom
-# ML: Contains aliases and functions (2018-01-05)
-
-# Aliases I have added
-alias mp='man-preview'
-alias nslookup6='nslookup -querytype=AAAA'
+#
+# Normal aliases (i.e., only work as $0)
+#
+alias agrep='alias | grep'
+alias dirs='builtin dirs -v'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
+alias gitignored='git ls-files --others -i --exclude-standard'
+alias l='ls -lFh'       # List files as a long list, show size, type, human-readable
+alias lS='ls -1FSsh'    # List files showing only size and name sorted by size
+alias la='ls -lAFh'     # List almost all files as a long list show size, type, human-readable
+alias lart='ls -1Fcart' # List all files sorted in reverse of create/modification time (oldest first)
+alias ldot='ls -ld .*'  # List dot files as a long list
+alias ll='ls -l'        # List files as a long list
+alias lr='ls -tRFh'     # List files recursively sorted by date, show type, human-readable
+alias lrt='ls -1Fcrt'   # List files sorted in reverse of create/modification time(oldest first)
+alias lt='ls -ltFh'     # List files as a long list sorted by date, show type, human-readable
+alias mp='man-preview'
+alias mpa='man-preview-all'
+alias nslookup6='nslookup -querytype=AAAA'
+alias passgen='pass generate -nc'
 
+#
+# Global aliases
+#  These aliases are expanded in any position in the command line, meaning you
+#  can use them even at the end of the command you’ve typed
+#
+alias -g CA="2>&1 | cat -A"
+alias -g G='| grep'
+alias -g H='| head'
+alias -g L="| less"
+alias -g LL="2>&1 | less"
+alias -g NE="2> /dev/null"
+alias -g NUL="> /dev/null 2>&1"
+alias -g T='| tail'
+
+#
+# Conditional aliases
+#
+test -x /usr/local/bin/howdoi && alias howdoi='/usr/local/bin/howdoi -c -n 3'
+test -x /usr/local/bin/htop && alias top='/usr/local/bin/htop'
+
+#
+# Functions
+#
 function man-preview-all() {
 
     if [[ -z "$@" ]]; then
@@ -31,9 +66,6 @@ function man-preview-all() {
     fi
 }
 
-alias mpa='man-preview-all'
-
-# ML: 2015-03-24
 function ls-absolute() {
 
     # Note: This is not a well-written function. It properly handles no arguments and one, file specification, argument.
@@ -48,11 +80,6 @@ function ls-absolute() {
     fi
 }
 
-# ML: 2016-02-07
-alias agrep='alias | grep'
-
-# ML: 2016-03-15
-alias gitignored='git ls-files --others -i --exclude-standard'
 
 # ML: 2017-05-01
 # ML: 2018-02-08 (updated for iTerm)
@@ -99,12 +126,7 @@ esac
 #   alias man='/usr/local/bin/pinfo -m'
 #fi
 
-test -x /usr/local/bin/htop && alias top='/usr/local/bin/htop'
 
-# ML: 2017-11-05
-alias dirs='builtin dirs -v'
-
-# ML: 2017-12-27
 # Add aliases for all existing JetBrains apps
 # ML: 2018-06-20: commented out because JetBrains Toolbox creates its own launch scripts for each app
 # if [ -e "$HOME/Applications/JetBrains Toolbox/" ]; then
@@ -153,29 +175,13 @@ function gemdiff() {
     install_all_gems
 }
 
-# ML: 2018-02-09
-test -x /usr/local/bin/howdoi && alias howdoi='/usr/local/bin/howdoi -c -n 3'
-
-# ML: 2018-03-27
-alias passgen='pass generate -nc'
-
-# ML: 2018-04-19
-# allow easily switching between Java versions
 case "$OS" in
     mac)
-        # ML: 2015-02-08
         test -d "/Applications/SourceTree.app" && alias sourcetree='open -a /Applications/SourceTree.app'
-
-        # ML: 2015-03-23
         test -d "/Applications/VLC.app" && alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
+        alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; say DNS cache flushed' # For use after editing /etc/hosts
 
-        # ML: 2016-11-09
-        # For use after editing /etc/hosts
-        alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; say DNS cache flushed'
-
-        # ML: 2017-04-01
-        alias brewup='brew upgrade && brew cleanup'
-
+        # allow easily switching between Java versions
         JAVA_VERSIONS=({5..20})
         for ver in $JAVA_VERSIONS; do
             if ((${ver} < 9)) ; then
