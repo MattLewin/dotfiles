@@ -280,8 +280,6 @@ cask miniconda
 cask postman
 cask zenmap
 
-tap adoptopenjdk/openjdk
-
 tap caskroom/fonts
 cask font-fira-code
 cask font-hack-nerd-font
