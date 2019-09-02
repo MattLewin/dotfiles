@@ -179,6 +179,7 @@ done
 #     versions of ZSH. Why? I don't know.
 typeset -A associated_plugins
 associated_plugins+=(
+    rg ripgrep
     rustc rust
     virtualenvwrapper.sh virtualenvwrapper
     xcode-select xcode
