@@ -81,6 +81,16 @@ function ls-absolute() {
 }
 
 
+# Output alphabetized plugins list
+function plugins() {
+    tmp_plugins=(${(o)plugins}) # sort plugins
+    OLD_IFS=$IFS
+    IFS=$'\n'
+    print "${tmp_plugins[*]}" # print each array entry on a single line
+    IFS=$OLD_IFS
+    unset tmp_plugins
+}
+
 # ML: 2017-05-01
 # ML: 2018-02-08 (updated for iTerm)
 # open man pages in a new window
