@@ -91,6 +91,69 @@ function plugins() {
     unset tmp_plugins
 }
 
+# ML: 2018-01-05
+# A few tools to ease gem installation between ruby versions
+function gemdiff() {
+    if [ $# != 2 ]; then
+        print -u 2 "gemdiff old_version new_version"
+        return 1
+    fi
+
+    function install_all_gems() {
+        local next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
+        while [ -n "$next_gem" ]
+        do
+            print "Installing ${next_gem}"
+            local install_cmd="gem install ${next_gem} --document rdoc"
+            eval ${install_cmd}
+            next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
+        done
+    }
+
+    local old=$1
+    local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
+    local new=$2
+    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
+
+    rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
+    gem list | cut -f 1 -d ' ' > ${old_gemlist}
+
+    if [ ! -f ${old_gemlist} ]; then
+        print -u 2 "Unable to generate ${old_gemlist}"
+        return 3
+    fi
+
+    rvm use ${new} || (print -u 2 "Unable to switch to ruby version ${new}"; return 1)
+    print "Installing gems from ${old} to ${new}"
+    install_all_gems
+}
+
+#
+# ML: 2019-02-14
+# git.io "GitHub URL"
+#
+# Shorten GitHub url, example:
+#   https://github.com/nvogel/dotzsh    >   https://git.io/8nU25w
+# source: https://github.com/nvogel/dotzsh
+# documentation: https://github.com/blog/985-git-io-github-url-shortener
+#
+function git.io() {
+    emulate -L zsh
+    curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
+}
+
+#
+# ML: 2019-07-15
+# A function to display the tmux window number
+func tmux_winidx_circled() {
+    local winidx=$(tmux display-message -p '#I')
+    if (( winidx > 20 )); then
+        echo "($winidx)"
+    else
+        echo "${circled_digits:$winidx:1}"
+    fi
+}
+
 # ML: 2017-05-01
 # ML: 2018-02-08 (updated for iTerm)
 # open man pages in a new window
@@ -148,43 +211,6 @@ esac
 #     unset JBAPP
 # fi
 
-# ML: 2018-01-05
-# A few tools to ease gem installation between ruby versions
-function gemdiff() {
-    if [ $# != 2 ]; then
-        print -u 2 "gemdiff old_version new_version"
-        return 1
-    fi
-
-    function install_all_gems() {
-        local next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-        while [ -n "$next_gem" ]
-        do
-            print "Installing ${next_gem}"
-            local install_cmd="gem install ${next_gem} --document rdoc"
-            eval ${install_cmd}
-            next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-        done
-    }
-
-    local old=$1
-    local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
-    local new=$2
-    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
-
-    rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
-    gem list | cut -f 1 -d ' ' > ${old_gemlist}
-
-    if [ ! -f ${old_gemlist} ]; then
-        print -u 2 "Unable to generate ${old_gemlist}"
-        return 3
-    fi
-
-    rvm use ${new} || (print -u 2 "Unable to switch to ruby version ${new}"; return 1)
-    print "Installing gems from ${old} to ${new}"
-    install_all_gems
-}
-
 case "$OS" in
     mac)
         test -d "/Applications/SourceTree.app" && alias sourcetree='open -a /Applications/SourceTree.app'
@@ -216,32 +242,6 @@ case "$OS" in
 
     *) # No idea what platorm we are on
 esac
-
-#
-# ML: 2019-02-14
-# git.io "GitHub URL"
-#
-# Shorten GitHub url, example:
-#   https://github.com/nvogel/dotzsh    >   https://git.io/8nU25w
-# source: https://github.com/nvogel/dotzsh
-# documentation: https://github.com/blog/985-git-io-github-url-shortener
-#
-function git.io() {
-    emulate -L zsh
-    curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
-}
-
-#
-# ML: 2019-07-15
-# A function to display the tmux window number
-func tmux_winidx_circled() {
-    local winidx=$(tmux display-message -p '#I')
-    if (( winidx > 20 )); then
-        echo "($winidx)"
-    else
-        echo "${circled_digits:$winidx:1}"
-    fi
-}
 
 #
 # TrueMotion Aliases
