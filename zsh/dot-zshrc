@@ -77,6 +77,9 @@ HIST_STAMPS="yyyy-mm-dd"
 # Would you like to use another custom folder than $ZSH/custom?
 ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 
+# reduce key timeout to make switching between VI modes more fluid
+KEYTIMEOUT=10
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -85,6 +88,8 @@ ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 if [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
     ZSH_THEME="spaceship"  # https://github.com/denysdovhan/spaceship-prompt
     SPACESHIP_DIR_TRUNC_REPO=false
+    SPACESHIP_VI_MODE_COLOR=none   # ensure the vi mode indicator is visible
+    export RPS1="%{$reset_color%}" # suppress '<<<' from vi-mode plugin
 else
     ZSH_THEME="theunraveler"
     PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
@@ -121,6 +126,7 @@ plugins=(
     swiftpm
     systemadmin
     themes
+    vi-mode
     z
     zsh-navigation-tools
     zsh_reload
