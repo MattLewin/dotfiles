@@ -198,6 +198,7 @@ brew pygobject
 brew pygtk
 brew pyqt
 brew python
+brew python3
 brew python@2
 brew qrencode
 brew qt
@@ -298,6 +299,8 @@ brew swiftenv
 
 tap rcmdnk/file
 brew brew-file
+
+# Other Homebrew packages
 
 # Other Cask applications
 cask anaconda
