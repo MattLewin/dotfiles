@@ -3,7 +3,7 @@ INSTALL_SCRIPTS_DIR=install_scripts
 STOW=/usr/local/bin/stow
 STOW_PACKAGES=bash git lldb misc tmux vim zsh
 
-all: oh-my-zsh homebrew-file stow dotfiles
+all: oh-my-zsh homebrew-file stow dotfiles tex
 
 homebrew-file:
 	$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh
@@ -18,3 +18,6 @@ dotfiles:
 	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
 	@# work around a weird bug in brewfile
 	@(cd misc/dot-config/brewfile && ln -sf ${HOST}.Brewfile .Brewfile)
+
+tex: 
+	$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
