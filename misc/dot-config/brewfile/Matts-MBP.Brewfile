@@ -28,7 +28,6 @@ brew sshfs
 brew wireshark
 
 # Other Cask applications
-cask mactex
 cask vagrant
 cask virtualbox-extension-pack
 cask xquartz

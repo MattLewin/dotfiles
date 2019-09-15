@@ -308,6 +308,7 @@ cask font-powerline-symbols
 cask graphiql
 cask jupyter-notebook-ql
 cask macdown
+cask mactex
 cask ngrok
 cask wwdc
 
