@@ -33,6 +33,7 @@ brew diff-so-fancy
 brew discount
 brew docbook
 brew dos2unix
+brew doxygen
 brew eigen
 brew exercism
 brew ffmpeg
@@ -198,7 +199,6 @@ brew pygobject
 brew pygtk
 brew pyqt
 brew python
-brew python3
 brew python@2
 brew qrencode
 brew qt
@@ -299,8 +299,6 @@ brew swiftenv
 
 tap rcmdnk/file
 brew brew-file
-
-# Other Homebrew packages
 
 # Other Cask applications
 cask anaconda
