@@ -13,6 +13,7 @@ brew app-engine-java
 brew elixir
 brew erlang
 brew gdb
+brew llvm
 brew lua@5.1
 brew luarocks
 brew nethack
