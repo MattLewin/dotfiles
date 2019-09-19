@@ -276,7 +276,6 @@ cask anaconda
 cask gitkraken
 cask java
 cask jupyter-notebook-viewer
-cask mactex
 cask ngrok
 cask wwdc
 
