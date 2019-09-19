@@ -279,8 +279,6 @@ cask jupyter-notebook-viewer
 cask ngrok
 cask wwdc
 
-tap adoptopenjdk/openjdk
-
 tap caskroom/fonts
 cask font-fira-code
 cask font-hack-nerd-font
