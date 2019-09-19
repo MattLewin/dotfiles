@@ -3,6 +3,7 @@
 #
 alias agrep='alias | grep'
 alias dirs='builtin dirs -v'
+alias gcue='git config user.email'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
 alias gitignored='git ls-files --others -i --exclude-standard'
