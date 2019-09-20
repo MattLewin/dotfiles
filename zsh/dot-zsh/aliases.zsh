@@ -34,6 +34,7 @@ alias -g LL="2>&1 | less"
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g T='| tail'
+alias -g VI='| vi -'
 
 #
 # Conditional aliases
