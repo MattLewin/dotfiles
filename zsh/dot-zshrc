@@ -139,6 +139,7 @@ binary_plugins=(
     bower
     bundler
     docker
+    gcloud
     gem
     go
     gradle
