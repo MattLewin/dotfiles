@@ -276,8 +276,8 @@ cask anaconda
 cask gitkraken
 cask java
 cask jupyter-notebook-viewer
-cask ngrok
-cask wwdc
+cask miniconda
+cask zenmap
 
 tap caskroom/fonts
 cask font-fira-code
@@ -306,9 +306,8 @@ cask font-powerline-symbols
 cask graphiql
 cask jupyter-notebook-ql
 cask macdown
-cask miniconda
-cask postman
-cask zenmap
+cask ngrok
+cask wwdc
 
 # Additional files
 file .Brewfile

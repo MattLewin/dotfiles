@@ -10,3 +10,4 @@ brew plantuml
 
 # Other Cask applications
 cask charles
+cask postman
