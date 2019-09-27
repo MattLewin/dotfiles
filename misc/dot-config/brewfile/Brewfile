@@ -22,6 +22,7 @@ brew brotli
 brew c-ares
 brew cairo
 brew carthage
+brew cataclysm
 brew chisel
 brew cmake
 brew coreutils
@@ -118,6 +119,7 @@ brew libidn2
 brew libksba
 brew libmaxminddb
 brew libmetalink
+brew libmodplug
 brew libmpc
 brew libogg
 brew libomp
@@ -211,6 +213,9 @@ brew rubberband
 brew ruby
 brew ruby-build
 brew sdl2
+brew sdl2_image
+brew sdl2_mixer
+brew sdl2_ttf
 brew shared-mime-info
 brew shellcheck
 brew shfmt
@@ -275,12 +280,10 @@ tap homebrew/cask
 cask anaconda
 cask graphiql
 cask java
-cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
 cask macdown
 cask miniconda
-cask ngrok
-cask wwdc
+cask postman
 cask zenmap
 
 tap caskroom/fonts
@@ -308,9 +311,11 @@ cask font-firacode-nerd-font
 cask font-monoid-nerd-font
 cask font-powerline-symbols
 cask java
+cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
 cask miniconda
-cask postman
+cask ngrok
+cask wwdc
 cask zenmap
 
 # Additional files
