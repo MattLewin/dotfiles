@@ -273,10 +273,14 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
-cask gitkraken
+cask graphiql
 cask java
+cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
+cask macdown
 cask miniconda
+cask ngrok
+cask wwdc
 cask zenmap
 
 tap caskroom/fonts
@@ -303,11 +307,11 @@ cask fastlane
 cask font-firacode-nerd-font
 cask font-monoid-nerd-font
 cask font-powerline-symbols
-cask graphiql
-cask jupyter-notebook-ql
-cask macdown
-cask ngrok
-cask wwdc
+cask java
+cask jupyter-notebook-viewer
+cask miniconda
+cask postman
+cask zenmap
 
 # Additional files
 file .Brewfile

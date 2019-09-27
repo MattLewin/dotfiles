@@ -3,9 +3,9 @@
 
 tap homebrew/cask
 cask google-cloud-sdk
-cask vagrant
-cask virtualbox-extension-pack
-cask xquartz
+cask osxfuse
+cask virtualbox
+cask wireshark
 
 # Other Homebrew packages
 brew angband
@@ -30,6 +30,6 @@ brew wireshark
 
 # Other Cask applications
 cask mactex
-cask osxfuse
-cask virtualbox
-cask wireshark
+cask vagrant
+cask virtualbox-extension-pack
+cask xquartz
