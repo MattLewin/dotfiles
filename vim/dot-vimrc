@@ -99,7 +99,7 @@ highlight GitGutterChangeDelete ctermfg=yellow ctermbg=NONE
 let g:lightline = {
   \     'active': {
   \         'left': [['mode', 'paste' ], ['readonly', 'filename', 'modified']],
-  \         'right': [['lineinfo'], ['percent'], ['gitbranch', 'fileformat', 'fileencoding']]
+  \         'right': [['lineinfo'], ['percent'], ['gitbranch', 'filetype', 'fileformat', 'fileencoding']]
   \     },
   \     'component_function': {
   \         'gitbranch': 'gitbranch#name'
