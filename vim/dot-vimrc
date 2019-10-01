@@ -58,6 +58,7 @@ set splitright
 " Filetype associations "
 
 au BufNewFile,BufRead *.fish set ft=fish
+au BufNewFile,BufRead *.md setlocal textwidth=120
 
 " Bindings "
 
