@@ -247,6 +247,8 @@ case "$OS" in
     *) # No idea what platorm we are on
 esac
 
+unalias gl
+
 #
 # TrueMotion Aliases
 #
