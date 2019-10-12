@@ -151,7 +151,6 @@ brew little-cms2
 brew lua
 brew lzo
 brew m4
-brew macvim
 brew mad
 brew mailutils
 brew make
