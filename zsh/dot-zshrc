@@ -126,6 +126,7 @@ plugins=(
     swiftpm
     systemadmin
     themes
+    timer
     vi-mode
     z
     zsh-navigation-tools
