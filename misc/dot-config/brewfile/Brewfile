@@ -97,7 +97,6 @@ brew jpeg
 brew jq
 brew jruby
 brew json-c
-brew jupyter
 brew kotlin
 brew lame
 brew leptonica
@@ -177,7 +176,6 @@ brew opencore-amr
 brew openexr
 brew openjpeg
 brew openldap
-brew openssl
 brew openssl@1.1
 brew opus
 brew opusfile
@@ -193,6 +191,7 @@ brew pixman
 brew pkg-config
 brew postgresql
 brew protobuf
+brew protobuf@3.7
 brew pth
 brew py2cairo
 brew pygobject
@@ -303,6 +302,10 @@ brew swiftenv
 
 tap rcmdnk/file
 brew brew-file
+
+# Other Homebrew packages
+brew jupyter
+brew openssl
 
 # Other Cask applications
 cask fastlane
