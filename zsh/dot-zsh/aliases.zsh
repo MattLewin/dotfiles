@@ -254,7 +254,7 @@ unalias gl
 #
 if [ "$(hostname)" = "bos075" ]; then
     function tmo_repo_install() {
-        bundle install --path ${HOME}/.bundle
+        bundle install
         git submodule update --init --recursive
         [ -e "Podfile" ] && bundle exec pod install $@
     }
