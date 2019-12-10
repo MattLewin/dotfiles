@@ -118,6 +118,7 @@ plugins=(
     git-auto-fetch
     git-flow-avh
     gitignore
+    gradle-completion
     history
     httpie
     man

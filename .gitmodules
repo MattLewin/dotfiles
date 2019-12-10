@@ -28,3 +28,6 @@
 [submodule "tmux/dot-tmux/plugins/tpm"]
 	path = tmux/dot-tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
+[submodule "oh-my-zsh/custom/plugins/gradle-completion"]
+	path = oh-my-zsh/custom/plugins/gradle-completion
+	url = git://github.com/gradle/gradle-completion
