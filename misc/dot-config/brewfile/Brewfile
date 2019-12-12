@@ -3,6 +3,7 @@
 
 tap homebrew/core
 brew adns
+brew ant
 brew aom
 brew appledoc
 brew apr
@@ -291,6 +292,9 @@ cask font-mononoki-nerd-font
 
 tap ether-cli/tap
 brew ether
+
+tap facebook/fb
+brew buck
 
 tap heroku/brew
 
