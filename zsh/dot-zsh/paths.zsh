@@ -14,13 +14,6 @@ if [ -d /usr/local/sbin ]; then
 	export PATH=$PATH:/usr/local/sbin
 fi
 
-# ML: 2015-10-08
-#     As of El Capitan (OS X 10.11), /usr/local/bin magically disappeared from my PATH
-#
-if [ -d /usr/local/bin ]; then
-	export PATH=/usr/local/bin:$PATH
-fi
-
 # So did /usr/sbin
 if [ -d /usr/sbin ]; then
 	export PATH=$PATH:/usr/sbin
