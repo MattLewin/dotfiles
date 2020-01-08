@@ -253,6 +253,12 @@ unalias gl
 # TrueMotion Aliases
 #
 if [ "$(hostname)" = "bos075" ]; then
+    alias gitemailunsetglobal='git config --global --unset user.email'
+
+    function gitemailset() {
+        git config "$1" user.email 'matt.lewin@gotruemotion.com'
+    }
+
     function tmo_repo_install() {
         bundle install
         git submodule update --init --recursive
