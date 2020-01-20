@@ -90,7 +90,7 @@ function plugins() {
     tmp_plugins=(${(o)plugins}) # sort plugins
     OLD_IFS=$IFS
     IFS=$'\n'
-    print "${tmp_plugins[*]}" # print each array entry on a single line
+    print -c ${tmp_plugins} # display plugin list in columns
     IFS=$OLD_IFS
     unset tmp_plugins
 }
