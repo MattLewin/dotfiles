@@ -338,6 +338,6 @@ do
 done
 
 # ML: 2019-06-29: use homebrew-file
-if (whence brew) && [ -f $(brew --prefix)/etc/brew-wrap ];then
+if ( whence brew  >/dev/null 2>&1 ) && [ -f $(brew --prefix)/etc/brew-wrap ];then
   source $(brew --prefix)/etc/brew-wrap
 fi
