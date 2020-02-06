@@ -16,6 +16,8 @@ test -d "$HOME/src/go" && export GOPATH="$HOME/src/go"
 # ML: 2017-05-31
 test -d "/usr/local/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:/usr/local/opt/erlang/lib/erlang/man
 
+test -d "${HOME}/Library/Android/sdk" && export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
+
 # ML: 2018-02-07
 # Use for local heroku apps (at least)
 export DATABASE_URL=postgres://$(whoami)
@@ -40,9 +42,6 @@ esac
 # ML: 2018-03-19
 # Configuration settings for 'pass'
 test -x "/usr/local/bin/pass" && export PASSWORD_STORE_GENERATED_LENGTH=14
-
-# ML: 2018-05-07
-test -d "$HOME/Library/Android/sdk/platform-tools" && export PATH="$PATH:$HOME/Library/Android/sdk/platform-tools"
 
 # ML: 2018-11-20
 # Configuration for bitrise at TrueMotion

@@ -41,4 +41,4 @@ test -d "${HOME}/.cargo/bin" && export PATH=${PATH}:${HOME}/.cargo/bin
 test -d "${HOME}/.fastlane/bin" && export PATH=${PATH}:${HOME}/.fastlane/bin
 
 # ML: 2018-11-09
-test -d "${HOME}/Library/Android/sdk" && export PATH=${PATH}:${HOME}/Library/Android/sdk/platform-tools
+test -d "${HOME}/Library/Android/sdk/platform-tools" && export PATH=${PATH}:${HOME}/Library/Android/sdk/platform-tools
