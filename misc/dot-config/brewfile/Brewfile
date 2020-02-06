@@ -160,6 +160,7 @@ brew mcrypt
 brew mhash
 brew mockserver
 brew mpfr
+brew msgpack-tools
 brew mtr
 brew mysql
 brew ncurses
@@ -195,8 +196,6 @@ brew protobuf
 brew protobuf@3.7
 brew pth
 brew py2cairo
-brew pygobject
-brew pygtk
 brew pyqt
 brew python
 brew python@2
@@ -234,6 +233,7 @@ brew swiftformat
 brew swiftlint
 brew swig
 brew tbb
+brew tcl-tk
 brew tcptrace
 brew telnet
 brew terraform
@@ -277,18 +277,29 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
+cask fastlane
 cask graphiql
 cask java
+cask java
+cask jupyter-notebook-ql
+cask jupyter-notebook-viewer
 cask jupyter-notebook-viewer
 cask macdown
 cask miniconda
+cask miniconda
+cask ngrok
 cask postman
+cask wwdc
+cask zenmap
 cask zenmap
 
 tap caskroom/fonts
 cask font-fira-code
+cask font-firacode-nerd-font
 cask font-hack-nerd-font
+cask font-monoid-nerd-font
 cask font-mononoki-nerd-font
+cask font-powerline-symbols
 
 tap ether-cli/tap
 brew ether
@@ -310,19 +321,8 @@ brew brew-file
 # Other Homebrew packages
 brew jupyter
 brew openssl
-
-# Other Cask applications
-cask fastlane
-cask font-firacode-nerd-font
-cask font-monoid-nerd-font
-cask font-powerline-symbols
-cask java
-cask jupyter-notebook-ql
-cask jupyter-notebook-viewer
-cask miniconda
-cask ngrok
-cask wwdc
-cask zenmap
+brew pygobject
+brew pygtk
 
 # Additional files
 file .Brewfile
