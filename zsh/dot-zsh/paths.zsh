@@ -1,44 +1,42 @@
-# ML: 2015-10-08
-# ML: Moved the stuff below from ~/.zshrc when I realized it should be here in .../custom
-#
+append_paths=(
+    "${HOME}/bin"
+    /usr/local/bin
+    /usr/local/sbin
+    /sbin
+    "${HOME}/src/go/bin"
+    "${HOME}/.cargo/bin"
+    "${HOME}/.fastlane/bin"
+    "${HOME}/Library/Android/sdk/platform-tools"
+)
 
-# echo "Setting Matt's custom paths in $0"
+for new_path in "${append_paths[@]}"
+do
+    test -d "${new_path}" && PATH=${PATH}:${new_path}
+done
 
-# ML: 2014-12-05
-if [ -d $HOME/bin ]; then
-	export PATH=$PATH:$HOME/bin
-fi
+prepend_paths=(
+    "${HOME}/swift/usr/bin"
+)
 
-# ML: 2015-01-11
-if [ -d /usr/local/sbin ]; then
-	export PATH=$PATH:/usr/local/sbin
-fi
+for new_path in "${prepend_paths[@]}"
+do
+    test -d "${new_path}" && PATH="${new_path}":${PATH}
+done
 
-# So did /usr/sbin
-if [ -d /usr/sbin ]; then
-	export PATH=$PATH:/usr/sbin
-fi
+export PATH
 
-# ML: 2015-10-23
-# And /sbin
-# What a pain in the butt
-if [ -d /sbin ]; then
-	export PATH=$PATH:/sbin
-fi
-
-# ML: 2017-05-22
-if [ -d $HOME/src/go/bin ]; then
-	export PATH=$PATH:$HOME/src/go/bin
-fi
-
-# ML: 2018-08-29
-test -d "${HOME}/swift" && export PATH=${HOME}/swift/usr/bin:${PATH}
-
-# ML: 2018-08-30
-test -d "${HOME}/.cargo/bin" && export PATH=${PATH}:${HOME}/.cargo/bin
-
-# ML: 2018-11-07
-test -d "${HOME}/.fastlane/bin" && export PATH=${PATH}:${HOME}/.fastlane/bin
-
-# ML: 2018-11-09
-test -d "${HOME}/Library/Android/sdk/platform-tools" && export PATH=${PATH}:${HOME}/Library/Android/sdk/platform-tools
+function remove_duplicate_paths() {
+    if [ -n "$PATH" ]; then
+        old_PATH=$PATH:; unset PATH;
+        while [ -n "$old_PATH" ]; do
+            x=${old_PATH%%:*}       # the first remaining entry
+            case $PATH: in
+                *:"$x":*) ;;          # already there
+                *) PATH=$PATH:$x;;    # not there yet
+            esac
+            old_PATH=${old_PATH#*:}
+        done
+        PATH=${PATH#:}
+        unset old_PATH x
+    fi
+}

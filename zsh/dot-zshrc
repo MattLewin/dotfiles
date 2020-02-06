@@ -296,22 +296,6 @@ iterm2_print_user_vars() {
 # added by travis gem
 [ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
 
-# ML: 2017-05-22
-# Remove all duplicate entries in PATH
-if [ -n "$PATH" ]; then
-    old_PATH=$PATH:; unset PATH;
-    while [ -n "$old_PATH" ]; do
-        x=${old_PATH%%:*}       # the first remaining entry
-        case $PATH: in
-            *:"$x":*) ;;          # already there
-            *) PATH=$PATH:$x;;    # not there yet
-        esac
-        old_PATH=${old_PATH#*:}
-    done
-    PATH=${PATH#:}
-    unset old_PATH x
-fi
-
 # ML: 2018-02-28
 # Config for google cloud SDK
 if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/' ]; then
@@ -336,6 +320,9 @@ for file in "${to_be_sourced[@]}"
 do
     source "${DOT_ZSH}/${file}"
 done
+
+# paths.zsh defines the function below
+remove_duplicate_paths
 
 # ML: 2019-06-29: use homebrew-file
 if ( whence brew  >/dev/null 2>&1 ) && [ -f $(brew --prefix)/etc/brew-wrap ];then
