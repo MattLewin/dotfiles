@@ -148,6 +148,7 @@ brew libyaml
 brew libyubikey
 brew libzip
 brew little-cms2
+brew llvm
 brew lua
 brew lzo
 brew m4
