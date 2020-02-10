@@ -34,6 +34,7 @@ brew dep
 brew diff-so-fancy
 brew discount
 brew docbook
+brew docker
 brew dos2unix
 brew doxygen
 brew eigen
@@ -277,6 +278,7 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
+cask docker
 cask fastlane
 cask graphiql
 cask java
