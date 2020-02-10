@@ -199,7 +199,6 @@ brew pth
 brew py2cairo
 brew pyqt
 brew python
-brew python@2
 brew qrencode
 brew qt
 brew rbenv
@@ -290,6 +289,7 @@ cask miniconda
 cask miniconda
 cask ngrok
 cask postman
+cask visual-studio-code
 cask wwdc
 cask zenmap
 cask zenmap
@@ -324,6 +324,7 @@ brew jupyter
 brew openssl
 brew pygobject
 brew pygtk
+brew python@2
 
 # Additional files
 file .Brewfile
