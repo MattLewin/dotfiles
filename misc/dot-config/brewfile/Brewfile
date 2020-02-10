@@ -54,6 +54,7 @@ brew gdk-pixbuf
 brew geoip
 brew gettext
 brew gflags
+brew gh
 brew ghostscript
 brew giflib
 brew git
@@ -309,6 +310,8 @@ brew ether
 
 tap facebook/fb
 brew buck
+
+tap github/gh
 
 tap heroku/brew
 
