@@ -3,10 +3,13 @@
 #
 alias agrep='alias | grep'
 alias dirs='builtin dirs -v'
+alias fd='find . -type d -name'
+alias ff='find . -type f -name'
 alias gcue='git config user.email'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
 alias gitignored='git ls-files --others -i --exclude-standard'
+alias hgrep='fc -il 0 | grep'
 alias l='ls -lFh'       # List files as a long list, show size, type, human-readable
 alias lS='ls -1FSsh'    # List files showing only size and name sorted by size
 alias la='ls -lAFh'     # List almost all files as a long list show size, type, human-readable
@@ -37,6 +40,33 @@ alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g T='| tail'
 alias -g VI='| vi -'
+
+#
+# Suffix aliases
+#  These aliases are triggered by extensions.
+#  Ex.: alias -s cpp=vim
+#       will cause `$ foo.cpp` to open foo.cpp in vim
+autoload -Uz is-at-least
+if is-at-least 4.2.0; then
+  if [[ -n "$BROWSER" ]]; then
+    _browser_fts=(htm html de org net com at cx nl se dk)
+    for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
+  fi
+
+  if [[ -n "$EDITOR" ]]; then
+    _editor_fts=(c cc cpp cxx h hh txt TXT)
+    for ft in $_editor_fts; do alias -s $ft=$EDITOR; done
+  fi
+
+  if [[ -n "$XIVIEWER" ]]; then
+    _image_fts=(jpg jpeg png gif mng tiff tif xpm)
+    for ft in $_image_fts; do alias -s $ft=$XIVIEWER; done
+  fi
+
+  #list whats inside packed file
+  alias -s zip="unzip -l"
+  alias -s tar="tar tf"
+fi
 
 #
 # Conditional aliases
