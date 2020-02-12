@@ -23,7 +23,7 @@ alias mp='man-preview'
 alias mpa='man-preview-all'
 alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
-alias pbc='pbcopy < '
+alias pbc='clipcopy'
 
 #
 # Global aliases

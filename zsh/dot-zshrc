@@ -113,6 +113,10 @@ remove_plugins () {
 plugins=(
     colored-man-pages
     colorize
+    copybuffer
+    copydir
+    copyfile
+    dotenv
     emoji
     fasd
     git
@@ -144,7 +148,6 @@ binary_plugins=(
     docker
     gcloud
     gem
-    go
     gradle
     heroku
     mosh
@@ -189,8 +192,10 @@ done
 #     versions of ZSH. Why? I don't know.
 typeset -A associated_plugins
 associated_plugins+=(
+    go golang
     rg ripgrep
     rustc rust
+    terminal-notifier bgnotify
     virtualenvwrapper.sh virtualenvwrapper
     xcode-select xcode
 )
