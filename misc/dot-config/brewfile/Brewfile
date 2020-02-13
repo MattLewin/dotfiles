@@ -54,7 +54,6 @@ brew gdk-pixbuf
 brew geoip
 brew gettext
 brew gflags
-brew gh
 brew ghostscript
 brew giflib
 brew git
@@ -100,6 +99,7 @@ brew jpeg
 brew jq
 brew jruby
 brew json-c
+brew jupyterlab
 brew kotlin
 brew lame
 brew leptonica
@@ -201,6 +201,7 @@ brew pth
 brew py2cairo
 brew pyqt
 brew python
+brew python@2
 brew qrencode
 brew qt
 brew rbenv
@@ -313,6 +314,7 @@ tap facebook/fb
 brew buck
 
 tap github/gh
+brew gh
 
 tap heroku/brew
 
@@ -330,7 +332,6 @@ brew jupyter
 brew openssl
 brew pygobject
 brew pygtk
-brew python@2
 
 # Additional files
 file .Brewfile
