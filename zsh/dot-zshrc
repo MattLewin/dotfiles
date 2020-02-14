@@ -146,6 +146,7 @@ binary_plugins=(
     bower
     bundler
     docker
+    fzf
     gcloud
     gem
     gradle
@@ -192,6 +193,7 @@ done
 #     versions of ZSH. Why? I don't know.
 typeset -A associated_plugins
 associated_plugins+=(
+    fzf zsh-interactive-cd
     go golang
     rg ripgrep
     rustc rust
