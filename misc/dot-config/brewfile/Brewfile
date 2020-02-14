@@ -47,6 +47,7 @@ brew freetds
 brew freetype
 brew frei0r
 brew fribidi
+brew fzf
 brew gawk
 brew gcc
 brew gd
@@ -335,4 +336,4 @@ brew pygobject
 brew pygtk
 
 # Additional files
-file ./${HOST}.Brewfile
+file .Brewfile
