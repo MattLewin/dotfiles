@@ -24,6 +24,7 @@ brew c-ares
 brew cairo
 brew carthage
 brew cataclysm
+brew ceres-solver
 brew chisel
 brew cmake
 brew coreutils
@@ -54,6 +55,7 @@ brew gdk-pixbuf
 brew geoip
 brew gettext
 brew gflags
+brew gh
 brew ghostscript
 brew giflib
 brew git
@@ -143,6 +145,7 @@ brew libu2f-host
 brew libunistring
 brew libusb
 brew libusb-compat
+brew libvidstab
 brew libvorbis
 brew libvpx
 brew libxml2
@@ -160,6 +163,7 @@ brew make
 brew mas
 brew maven
 brew mcrypt
+brew metis
 brew mhash
 brew mockserver
 brew mpfr
@@ -179,6 +183,7 @@ brew oniguruma
 brew openblas
 brew opencore-amr
 brew openexr
+brew openjdk
 brew openjpeg
 brew openldap
 brew openssl@1.1
@@ -201,7 +206,7 @@ brew pth
 brew py2cairo
 brew pyqt
 brew python
-brew python@2
+brew python@3.8
 brew qrencode
 brew qt
 brew rbenv
@@ -230,6 +235,7 @@ brew speedtest-cli
 brew speex
 brew sphinx-doc
 brew sqlite
+brew suite-sparse
 brew swaks
 brew swift-protobuf
 brew swiftformat
@@ -285,18 +291,14 @@ cask docker
 cask fastlane
 cask graphiql
 cask java
-cask java
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
-cask jupyter-notebook-viewer
 cask macdown
-cask miniconda
 cask miniconda
 cask ngrok
 cask postman
 cask visual-studio-code
 cask wwdc
-cask zenmap
 cask zenmap
 
 tap caskroom/fonts
@@ -314,7 +316,6 @@ tap facebook/fb
 brew buck
 
 tap github/gh
-brew gh
 
 tap heroku/brew
 
@@ -334,4 +335,4 @@ brew pygobject
 brew pygtk
 
 # Additional files
-file .Brewfile
+file ./${HOST}.Brewfile
