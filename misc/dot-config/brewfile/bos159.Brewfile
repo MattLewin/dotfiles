@@ -1,3 +1,4 @@
+brew firebase-cli
 
 # tap repositories and their packages
 
