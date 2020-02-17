@@ -29,8 +29,8 @@ alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
 alias pbc='clipcopy'
 alias ping="${GRC} ping -c 5"
-alias show.external.ip='dig -3 +short myip.opendns.com @resolver1.opendns.com'
-alias traceroute="$(whence grc) traceroute"
+alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias traceroute="${GRC} traceroute"
 
 #
 # Global aliases
