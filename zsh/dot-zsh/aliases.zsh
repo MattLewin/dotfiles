@@ -1,29 +1,36 @@
 #
+# Commands for prepending to aliases if they exist
+GRC="$(whence grc || echo 'noglob')"
+
+#
 # Normal aliases (i.e., only work as $0)
 #
 alias agrep='alias | grep'
 alias dirs='builtin dirs -v'
-alias fd='find . -type d -name'
-alias ff='find . -type f -name'
 alias gcue='git config user.email'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
 alias gitignored='git ls-files --others -i --exclude-standard'
 alias hgrep='fc -il 0 | grep'
-alias l='ls -lFh'       # List files as a long list, show size, type, human-readable
-alias lS='ls -1FSsh'    # List files showing only size and name sorted by size
-alias la='ls -lAFh'     # List almost all files as a long list show size, type, human-readable
-alias lart='ls -1Fcart' # List all files sorted in reverse of create/modification time (oldest first)
-alias ldot='ls -ld .*'  # List dot files as a long list
-alias ll='ls -l'        # List files as a long list
-alias lr='ls -tRFh'     # List files recursively sorted by date, show type, human-readable
-alias lrt='ls -1Fcrt'   # List files sorted in reverse of create/modification time(oldest first)
-alias lt='ls -ltFh'     # List files as a long list sorted by date, show type, human-readable
+# shellcheck disable=SC2142
+alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0" ] && cols="80"; printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"; done }; _hr' # <HR/> for shells
+alias l="${GRC} ls -lFh"       # List files as a long list, show size, type, human-readable
+alias lS="${GRC} ls -1FSsh"    # List files showing only size and name sorted by size
+alias la="${GRC} ls -lAFh"     # List almost all files as a long list show size, type, human-readable
+alias lart="${GRC} ls -1Fcart" # List all files sorted in reverse of create/modification time (oldest first)
+alias ldot="${GRC} ls -ld .*"  # List dot files as a long list
+alias ll="${GRC} ls -l"        # List files as a long list
+alias lr="${GRC} ls -tRFh"     # List files recursively sorted by date, show type, human-readable
+alias lrt="${GRC} ls -1Fcrt"   # List files sorted in reverse of create/modification time(oldest first)
+alias lt="${GRC} ls -ltFh"     # List files as a long list sorted by date, show type, human-readable
 alias mp='man-preview'
 alias mpa='man-preview-all'
 alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
 alias pbc='clipcopy'
+alias ping="${GRC} ping -c 5"
+alias show.external.ip='dig -3 +short myip.opendns.com @resolver1.opendns.com'
+alias traceroute="$(whence grc) traceroute"
 
 #
 # Global aliases
@@ -69,10 +76,24 @@ if is-at-least 4.2.0; then
 fi
 
 #
+# If fzf is installed, load all related aliases and functions
+#
+whence fzf NUL && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
+
+#
 # Conditional aliases
 #
-test -x /usr/local/bin/howdoi && alias howdoi='/usr/local/bin/howdoi -c -n 3'
-test -x /usr/local/bin/htop && alias top='/usr/local/bin/htop'
+if whence -p fd NUL; then
+    alias find='fd'
+    alias find.d='fd . --type directory'
+    alias find.f='fd . --type file'
+else
+    alias find.d='find . -type d -name'
+    alias find.f='find . -type f -name'
+fi
+
+whence howdoi NUL && alias howdoi='/usr/local/bin/howdoi -c -n 3'
+whence htop NUL && alias top='/usr/local/bin/htop'
 
 #
 # Functions
@@ -99,6 +120,21 @@ function man-preview-all() {
         open -a Preview "${output_file}"
     fi
 }
+
+if whence lazygit NUL
+then
+    function lg()
+    {
+        export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
+
+        lazygit "$@"
+
+        if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
+                cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+                rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+        fi
+    }
+fi
 
 function ls-absolute() {
 
