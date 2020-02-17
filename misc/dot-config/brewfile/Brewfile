@@ -2,6 +2,7 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew ack
 brew adns
 brew ant
 brew aom
@@ -40,6 +41,7 @@ brew dos2unix
 brew doxygen
 brew eigen
 brew exercism
+brew fd
 brew ffmpeg
 brew flac
 brew fontconfig
@@ -77,6 +79,7 @@ brew gobject-introspection
 brew gradle
 brew graphite2
 brew graphviz
+brew grc
 brew greed
 brew gsasl
 brew gtk+
@@ -105,6 +108,7 @@ brew json-c
 brew jupyterlab
 brew kotlin
 brew lame
+brew lazygit
 brew leptonica
 brew libao
 brew libass
