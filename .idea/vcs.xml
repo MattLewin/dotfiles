@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/lldb/LLDB" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/plugins/gradle-completion" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/themes/spaceship-prompt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/themes/spaceship-prompt/modules/shunit2" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tmux-copycat" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tmux-pain-control" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tmux-sensible" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tmux-yank" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tpm" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tpm/lib/tmux-test" vcs="Git" />
+  </component>
+</project>
