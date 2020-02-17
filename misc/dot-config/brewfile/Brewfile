@@ -265,6 +265,7 @@ brew unixodbc
 brew unnethack
 brew utf8proc
 brew watch
+brew watchman
 brew webp
 brew wget
 brew wxmac
