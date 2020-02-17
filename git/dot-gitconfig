@@ -34,6 +34,7 @@
 	patch = !git --no-pager diff --no-color $@
 	patch = git --no-pager diff --no-color
 	patch = !git --no-pager diff --no-color
+	lazy = !lazygit
 [remote]
 	pushdefault = origin
 [filter "lfs"]
@@ -67,3 +68,28 @@
 	whitespace = red reverse
 [branch]
 	autoSetupMerge = always
+[fetch]
+	prune = true
+[remote "origin"]
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[stash]
+	showPatch = true
+
+# rewrites of repo paths
+[url "git@github.com:"]
+  insteadOf = "https://github.com/"
+  pushInsteadOf = "github:"
+  pushInsteadOf = "git://github.com/"
+  pushInsteadOf = "https://github.com/"
+
+[url "git://github.com/"]
+  insteadOf = "github:"
+
+[url "git@gist.github.com:"]
+  pushInsteadOf = "gist:"
+  pushInsteadOf = "git://gist.github.com/"
+
+[url "git://gist.github.com/"]
+  insteadOf = "gist:"
+
+
