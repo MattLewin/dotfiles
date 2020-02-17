@@ -79,7 +79,7 @@ test -x /usr/local/bin/htop && alias top='/usr/local/bin/htop'
 #
 function man-preview-all() {
 
-    if [[ -z "$@" ]]; then
+    if [[ $# = 0 ]]; then
         echo "No man page specified"
         return 1
     fi
@@ -108,7 +108,7 @@ function ls-absolute() {
         # Show everything
         /bin/ls -d -1 $PWD/**/*
     else
-        for fn in $@; do
+        for fn in "$@"; do
             /bin/ls -d -1 $PWD/$fn
         done
     fi
@@ -179,7 +179,7 @@ function git.io() {
 #
 # ML: 2019-07-15
 # A function to display the tmux window number
-func tmux_winidx_circled() {
+function tmux_winidx_circled() {
     local winidx=$(tmux display-message -p '#I')
     if (( winidx > 20 )); then
         echo "($winidx)"
@@ -260,13 +260,14 @@ case "$OS" in
                 ver_str=$ver
             fi
             cmd="/usr/libexec/java_home -v$ver_str"
-            if eval $cmd >/dev/null 2>&1; then
-                export JAVA_${ver}_HOME=$(eval $cmd)
+            if eval $cmd NUL; then
+                export JAVA_${ver}_HOME="$(eval "${cmd}")"
                 alias java${ver}="export JAVA_HOME=\$JAVA_${ver}_HOME"
             fi
         done
         unset JAVA_VERSIONS
         # default to java8 if it exists
+        # shellcheck disable=SC2153
         test -n "$JAVA_8_HOME" && export JAVA_HOME=$JAVA_8_HOME
         ;;
 
@@ -292,6 +293,6 @@ if [ "$(hostname)" = "bos159" ]; then
     function tmo_repo_install() {
         bundle install
         git submodule update --init --recursive
-        [ -e "Podfile" ] && bundle exec pod install $@
+        [ -e "Podfile" ] && bundle exec pod install "$@"
     }
 fi
