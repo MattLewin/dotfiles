@@ -1,7 +1,7 @@
 HOST=$(shell hostname -s)
 INSTALL_SCRIPTS_DIR=install_scripts
 STOW=/usr/local/bin/stow
-STOW_PACKAGES=bash git lldb misc tmux vim zsh
+STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
 
 all: oh-my-zsh homebrew-file stow dotfiles tex
 
