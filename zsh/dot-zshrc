@@ -123,7 +123,6 @@ plugins=(
     git-auto-fetch
     git-flow-avh
     gitignore
-    gradle-completion
     history
     httpie
     jump
@@ -262,8 +261,10 @@ type thefuck >/dev/null 2>&1 && type python3 >/dev/null 2>&1 && test `python3 -c
 # git clone <repo URL> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/<plugin name>
 #
 custom_plugins=(
-zsh-completions # https://github.com/zsh-users/zsh-completions
-# NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
+    conda-zsh-completion
+    gradle-completion
+    zsh-completions # https://github.com/zsh-users/zsh-completions
+    # NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
     zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting.git
 )
 
@@ -272,7 +273,6 @@ do
     [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/${plugin} ] && plugins+=(${plugin})
 done
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -325,6 +325,24 @@ unalias ag >/dev/null 2>&1
 # ML: 2019-05-24: Add less default options
 LESS="--tabs=4 -RFX"
 
+# conda initialize
+__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
+    elif [ -d "/usr/local/anaconda3/bin" ]; then
+        export PATH="/usr/local/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+
+source $ZSH/oh-my-zsh.sh
+
+
+######## source oh-my-zsh above here #######
+#
 # ML: 2019-06-29
 to_be_sourced=(
     paths.zsh
@@ -345,15 +363,6 @@ if ( whence brew  >/dev/null 2>&1 ) && [ -f $(brew --prefix)/etc/brew-wrap ];the
   source $(brew --prefix)/etc/brew-wrap
 fi
 
-# conda initialize
-__conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-    elif [ -d "/usr/local/anaconda3/bin" ]; then
-        export PATH="/usr/local/anaconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
+# compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
+# end of the rc file
+autoload -U compinit && compinit

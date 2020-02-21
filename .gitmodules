@@ -31,3 +31,6 @@
 [submodule "oh-my-zsh/custom/plugins/gradle-completion"]
 	path = oh-my-zsh/custom/plugins/gradle-completion
 	url = git://github.com/gradle/gradle-completion
+[submodule "oh-my-zsh/custom/plugins/conda-zsh-completion"]
+	path = oh-my-zsh/custom/plugins/conda-zsh-completion
+	url = https://github.com/esc/conda-zsh-completion.git
