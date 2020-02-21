@@ -1,4 +1,3 @@
-brew firebase-cli
 
 # tap repositories and their packages
 
@@ -7,6 +6,7 @@ brew heroku-node
 
 # Other Homebrew packages
 brew bitrise
+brew firebase-cli
 brew plantuml
 
 # Other Cask applications
