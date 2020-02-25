@@ -342,4 +342,4 @@ brew pygobject
 brew pygtk
 
 # Additional files
-file .Brewfile
+file $HOSTNAME.Brewfile
