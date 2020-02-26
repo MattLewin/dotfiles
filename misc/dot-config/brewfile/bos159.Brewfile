@@ -7,6 +7,7 @@ brew heroku-node
 # Other Homebrew packages
 brew bitrise
 brew firebase-cli
+brew jfrog-cli-go
 brew plantuml
 
 # Other Cask applications

@@ -150,6 +150,7 @@ binary_plugins=(
     gem
     gradle
     heroku
+    jfrog
     mosh
     mvn
     nmap
