@@ -107,6 +107,7 @@ brew jruby
 brew json-c
 brew jupyterlab
 brew kotlin
+brew ktlint
 brew lame
 brew lazygit
 brew leptonica
