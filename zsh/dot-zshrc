@@ -36,7 +36,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
-EDITOR="vim"
+export EDITOR="vim"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
