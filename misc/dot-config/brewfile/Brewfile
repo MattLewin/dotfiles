@@ -41,6 +41,7 @@ brew dos2unix
 brew doxygen
 brew eigen
 brew exercism
+brew exiftool
 brew fd
 brew ffmpeg
 brew flac
@@ -62,6 +63,7 @@ brew gh
 brew ghostscript
 brew giflib
 brew git
+brew git-crypt
 brew git-flow-avh
 brew git-imerge
 brew git-lfs
@@ -276,6 +278,7 @@ brew wget
 brew wxmac
 brew x264
 brew x265
+brew xcodegen
 brew xctool
 brew xvid
 brew xz
@@ -343,4 +346,4 @@ brew pygobject
 brew pygtk
 
 # Additional files
-file ${HOSTNAME}.Brewfile
+file bos159.Brewfile
