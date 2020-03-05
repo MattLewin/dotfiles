@@ -320,6 +320,9 @@ unalias gl
 # TrueMotion Aliases
 #
 if [ "$(hostname)" = "bos159" ]; then
+
+    unset JAVA_HOME
+
     alias gitemailunsetglobal='git config --global --unset user.email'
 
     function gitemailset() {
