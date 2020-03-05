@@ -346,4 +346,4 @@ brew pygobject
 brew pygtk
 
 # Additional files
-file bos159.Brewfile
+file .Brewfile
