@@ -364,6 +364,8 @@ if ( whence brew  >/dev/null 2>&1 ) && [ -f $(brew --prefix)/etc/brew-wrap ];the
   source $(brew --prefix)/etc/brew-wrap
 fi
 
+whence -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
 autoload -U compinit && compinit
