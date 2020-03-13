@@ -84,9 +84,9 @@ whence fzf NUL && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
 # Conditional aliases
 #
 if whence -p fd NUL; then
-    alias find='fd'
-    alias find.d='fd . --type directory'
-    alias find.f='fd . --type file'
+    alias find='fd --no-ignore'
+    alias find.d='fd --no-ignore --type directory'
+    alias find.f='fd --no-ignore --type file'
 else
     alias find.d='find . -type d -name'
     alias find.f='find . -type f -name'
