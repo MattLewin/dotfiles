@@ -212,6 +212,7 @@ brew protobuf
 brew protobuf@3.7
 brew pth
 brew py2cairo
+brew pylint
 brew pyqt
 brew python
 brew python@3.8
