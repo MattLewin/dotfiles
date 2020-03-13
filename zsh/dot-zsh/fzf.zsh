@@ -43,7 +43,7 @@ then
 		    tr : '\n' |
 		    ack --color --color-match=bright_blue '[/]')
 
-	    if type fzf >/dev/null 2>&1; then
+	    if whence fzf >/dev/null 2>&1; then
 		    $(echo "$list" |
 			    fzf --ansi --no-sort --reverse --cycle --height=90%)
 	    else

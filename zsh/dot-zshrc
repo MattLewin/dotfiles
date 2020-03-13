@@ -173,7 +173,7 @@ binary_plugins=(
 
 for binary in "${binary_plugins[@]}"
 do
-    type "${binary}" >/dev/null 2>&1 && plugins+=("${binary}")
+    whence "${binary}" >/dev/null 2>&1 && plugins+=("${binary}")
 done
 
 # ML: 2018-08-21: Include plugins if their corresponding dot-config directories exist
@@ -204,7 +204,7 @@ associated_plugins+=(
 
 for binary plugin in ${(kv)associated_plugins}
 do
-    type ${binary} >/dev/null 2>&1 && plugins+=( ${plugin} )
+    whence ${binary} >/dev/null 2>&1 && plugins+=( ${plugin} )
 done
 
 typeset -A macOS_app_plugins
@@ -216,7 +216,7 @@ macOS_app_plugins+=(
 case "$OS" in
     mac)
         plugins+=(dash iterm2 osx)
-        type brew >/dev/null 2>&1 && plugins+=(brew)
+        whence brew >/dev/null 2>&1 && plugins+=(brew)
         export SWIFTENV_ROOT=/usr/local/var/swiftenv
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
@@ -234,7 +234,7 @@ case "$OS" in
         ;;
 
     linux)
-        type systemctl >/dev/null 2>&1 && plugins+=(systemd)
+        whence systemctl >/dev/null 2>&1 && plugins+=(systemd)
 
         case "$DIST" in
             "centos linux")
@@ -254,7 +254,7 @@ case "$OS" in
 esac
 
 # Add 'thefuck' plugin only if we are using better than python3.4
-type thefuck >/dev/null 2>&1 && type python3 >/dev/null 2>&1 && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
+whence thefuck >/dev/null 2>&1 && whence python3 >/dev/null 2>&1 && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
 
 
 #
