@@ -197,6 +197,7 @@ associated_plugins+=(
     go golang
     rg ripgrep
     rustc rust
+    task taskwarrior
     terminal-notifier bgnotify
     virtualenvwrapper.sh virtualenvwrapper
     xcode-select xcode

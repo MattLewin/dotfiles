@@ -251,6 +251,7 @@ brew swift-protobuf
 brew swiftformat
 brew swiftlint
 brew swig
+brew task
 brew tbb
 brew tcl-tk
 brew tcptrace
