@@ -36,3 +36,7 @@ Sessionx.vim
 *~
 tags
 [._]*.un~
+
+# certs and keys
+*.pem
+id_*
