@@ -4,6 +4,9 @@ STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
 
 all: oh-my-zsh homebrew-file stow dotfiles tex
 
+dotfiles:
+	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
+
 homebrew-file:
 	$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh
 
@@ -12,9 +15,6 @@ oh-my-zsh:
 
 stow:
 	$(INSTALL_SCRIPTS_DIR)/install-stow.sh
-
-dotfiles:
-	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
 
 tex:
 	$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
