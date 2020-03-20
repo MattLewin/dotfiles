@@ -307,6 +307,7 @@ cask iterm2
 cask java
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
+cask lunchy
 cask macdown
 cask miniconda
 cask ngrok
