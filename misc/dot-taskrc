@@ -34,3 +34,5 @@ taskd.key=~/.task/freecinc_193907c1.key.pem
 taskd.certificate=~/.task/freecinc_193907c1.cert.pem
 taskd.ca=~/.task/freecinc_193907c1.ca.pem
 taskd.credentials=FreeCinc/freecinc_193907c1/86245979-dabe-48f8-9762-0021d0e29fe8
+context.home=+home
+context.work=+pr_review or +dev_testing or +mgmt or +ticket or +work or -home

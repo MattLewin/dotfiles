@@ -252,6 +252,7 @@ brew swiftformat
 brew swiftlint
 brew swig
 brew task
+brew tasksh
 brew tbb
 brew tcl-tk
 brew tcptrace
