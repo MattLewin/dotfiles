@@ -29,10 +29,17 @@ data.location=~/.task
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/solarized-light-256.theme
 #include /usr/local/Cellar/task/2.5.1/share/doc/task/rc/no-color.theme
 
-taskd.server=freecinc.com:53589
-taskd.key=~/.task/freecinc_193907c1.key.pem
-taskd.certificate=~/.task/freecinc_193907c1.cert.pem
-taskd.ca=~/.task/freecinc_193907c1.ca.pem
-taskd.credentials=FreeCinc/freecinc_193907c1/86245979-dabe-48f8-9762-0021d0e29fe8
+#taskd.server=freecinc.com:53589
+#taskd.key=~/.task/freecinc_193907c1.key.pem
+#taskd.certificate=~/.task/freecinc_193907c1.cert.pem
+#taskd.ca=~/.task/freecinc_193907c1.ca.pem
+#taskd.credentials=FreeCinc/freecinc_193907c1/86245979-dabe-48f8-9762-0021d0e29fe8
+taskd.certificate=~/.task/private.certificate.pem
+taskd.key=~/.task/private.key.pem
+taskd.ca=~/.task/ca.cert.pem
+taskd.server=taskwarrior.inthe.am:53589
+taskd.credentials=inthe_am/matt7990eab941bd4e30/058d4c7b-c19c-4298-9a78-6baf66f6de72
+taskd.trust=ignore hostname
+
 context.home=+home
 context.work=+pr_review or +dev_testing or +mgmt or +ticket or +work or -home
