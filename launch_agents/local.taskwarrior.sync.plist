@@ -16,6 +16,6 @@
 	<key>StandardOutPath</key>
 	<string>/tmp/local.taskwarrior.sync.stdout</string>
 	<key>StartInterval</key>
-	<integer>3600</integer>
+	<integer>900</integer>
 </dict>
 </plist>
