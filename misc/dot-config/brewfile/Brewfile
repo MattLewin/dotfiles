@@ -18,6 +18,7 @@ brew automake
 brew awscli
 brew bash
 brew bats
+brew bdw-gc
 brew boost
 brew brew-php-switcher
 brew brotli
@@ -275,6 +276,7 @@ brew unbound
 brew unixodbc
 brew unnethack
 brew utf8proc
+brew w3m
 brew watch
 brew watchman
 brew webp
