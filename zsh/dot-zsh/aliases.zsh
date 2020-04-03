@@ -73,6 +73,36 @@ if is-at-least 4.2.0; then
   #list whats inside packed file
   alias -s zip="unzip -l"
   alias -s tar="tar tf"
+
+  # display markdown files
+  if whence pandoc NUL; then
+    PANDOC_BIN="$(whence pandoc)"
+    if whence w3m NUL; then
+      TEXT_BROWSER='w3m -T text/html'
+      PANDOC_CMD="${PANDOC_BIN}"
+    elif whence lynx NUL; then
+      TEXT_BROWSER='lynx -stdin'
+      PANDOC_CMD="${PANDOC_BIN}"
+    elif [[ -n "${PAGER}" ]]; then
+      TEXT_BROWSER=${PAGER}
+      PANDOC_CMD="${PANDOC_BIN} -t plain"
+    else
+      TEXT_BROWSER='less'
+      PANDOC_CMD="${PANDOC_BIN} -t plain"
+    fi
+
+    function display_markdown_file() {
+      if [[ $# != 1 ]]; then
+        print "$0 <markdown file>"
+        return 1
+      fi
+
+      eval "${PANDOC_CMD} '$(pwd)/${1}' | ${TEXT_BROWSER}"
+    }
+
+    alias -s md="display_markdown_file"
+    alias -s MD="display_markdown_file"
+  fi
 fi
 
 #
