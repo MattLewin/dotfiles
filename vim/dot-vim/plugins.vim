@@ -23,6 +23,7 @@ Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-surround'
 Plug 'vim-syntastic/syntastic'
 Plug 'w0rp/ale'
+Plug 'z0mbix/vim-shfmt', { 'for': 'sh' }
 
 " deoplete.nvim (auto-completion)
 "

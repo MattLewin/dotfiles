@@ -109,3 +109,4 @@ let g:lightline = {
 
 let g:javascript_plugin_flow = 1
 let NERDTreeShowHidden = 1
+" let g:shfmt_extra_args = '-i 2'
