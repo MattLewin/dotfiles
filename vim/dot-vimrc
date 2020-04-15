@@ -17,6 +17,10 @@ if has('mac')
     set clipboard=unnamed
 endif
 
+" Enable modelines
+set modeline
+set modelines=3
+
 " Appearance "
 
 syntax enable
@@ -54,11 +58,6 @@ set incsearch
 
 set splitbelow
 set splitright
-
-" Filetype associations "
-
-au BufNewFile,BufRead *.fish set ft=fish
-au BufNewFile,BufRead *.md setlocal textwidth=120
 
 " Bindings "
 
