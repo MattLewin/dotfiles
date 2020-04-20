@@ -190,6 +190,7 @@ brew node
 brew npth
 brew numpy
 brew oniguruma
+brew openapi-generator
 brew openblas
 brew opencore-amr
 brew openexr
