@@ -141,12 +141,11 @@ function man-preview-all() {
         return 1
     fi
 
-    local man_pdf_path="${MAN_PDF_PATH}"
-    if [[ -z "$man_pdf_path" ]]; then
-        MAN_PDF_PATH='${HOME}/Dropbox/Documents/Matt/Development/Man Pages'
+    if [[ -z "${MAN_PDF_PATH}" ]]; then
+        MAN_PDF_PATH="${HOME}/Dropbox/Documents/Matt/Development/Man Pages"
     fi
 
-    local output_file="${MAN_PDF_PATH}/$@"
+    output_file="${MAN_PDF_PATH}/$1"
 
     man -a -t "$@" > "${output_file}"
 
@@ -166,7 +165,7 @@ then
         lazygit "$@"
 
         if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-                cd "$(cat $LAZYGIT_NEW_DIR_FILE)"
+                cd "$(cat $LAZYGIT_NEW_DIR_FILE)" || return
                 rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
         fi
     }
@@ -178,10 +177,10 @@ function ls-absolute() {
     #       It'll barf on switches, extra file specifications, and anything else you throw on the command-line
     if [[ -z "$1" ]]; then
         # Show everything
-        /bin/ls -d -1 $PWD/**/*
+        /bin/ls -d -1 "${PWD}"/**/*
     else
         for fn in "$@"; do
-            /bin/ls -d -1 $PWD/$fn
+            /bin/ls -d -1 "${PWD}"/"${fn}"
         done
     fi
 }
@@ -189,12 +188,10 @@ function ls-absolute() {
 
 # Output alphabetized plugins list
 function plugins() {
-    tmp_plugins=(${(o)plugins}) # sort plugins
     OLD_IFS=$IFS
     IFS=$'\n'
-    print -c ${tmp_plugins} # display plugin list in columns
+    print -c ${(o)plugins} # display sorted plugin list in columns
     IFS=$OLD_IFS
-    unset tmp_plugins
 }
 
 # ML: 2018-01-05
@@ -219,7 +216,7 @@ function gemdiff() {
     local old=$1
     local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
     local new=$2
-    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
+#    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
 
     rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
     gem list | cut -f 1 -d ' ' > ${old_gemlist}
