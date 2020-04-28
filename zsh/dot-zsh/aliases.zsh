@@ -363,8 +363,9 @@ if [ "$(hostname)" = "bos159" ]; then
     }
 
     function tmo_repo_install() {
-        bundle install
-        git submodule update --init --recursive
-        [ -e "Podfile" ] && bundle exec pod install "$@"
+        [ -e 'Gemfile' ] && bundle install
+        [ -e '.gitmodules' ] && git submodule update --init --recursive
+        [ -e 'project.yml' ] && bundle exec fastlane updateProject # xcodegen projects
+        [ -e 'Podfile' ] && bundle exec pod install "$@"
     }
 fi
