@@ -81,6 +81,7 @@ brew gnutls
 brew go
 brew gobject-introspection
 brew gradle
+brew grafana
 brew graphite2
 brew graphviz
 brew grc
