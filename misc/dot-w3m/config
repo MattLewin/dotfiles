@@ -1,0 +1,148 @@
+confirm_qq false                        	# Confirm when quitting with q
+
+# accept_bad_cookie <number>              	# Action to be taken on invalid cookie
+# accept_cookie <bool>                    	# Accept cookies
+# accept_encoding <string>                	# Accept-Encoding header
+# accept_language <string>                	# Accept-Language header
+# accept_media <string>                   	# Accept header
+# active_color <color>                    	# Color of currently active link
+# active_style <bool>                     	# Enable coloring of active link
+# alt_entity <bool>                       	# Use ASCII equivalents to display entities
+# anchor_color <color>                    	# Color of anchor
+# argv_is_url <bool>                      	# Treat argument without scheme as URL
+# auto_detect <number>                    	# Automatic charset detect when loading
+# auto_uncompress <bool>                  	# Uncompress compressed data automatically when downloading
+# basic_color <color>                     	# Color of normal character
+# bg_color <color>                        	# Color of background
+# bgextviewer <bool>                      	# Run external viewer in the background
+# cgi_bin <string>                        	# Directory corresponding to /cgi-bin
+# clear_buffer <bool>                     	# Free memory of undisplayed buffers
+# close_tab_back <bool>                   	# Close tab if buffer is last when back
+# color <bool>                            	# Display with color
+# cookie_accept_domains <string>          	# Domains to accept cookies from
+# cookie_avoid_wrong_number_of_dots <string>	# Domains to avoid [wrong number of dots]
+# cookie_reject_domains <string>          	# Domains to reject cookies from
+# decode_cte <bool>                       	# Decode Content-Transfer-Encoding when saving
+# decode_url <bool>                       	# Display decoded URL
+# default_url <number>                    	# Default value for open-URL command
+# dictcommand <string>                    	# URL of dictionary lookup command
+# dirlist_cmd <string>                    	# URL of directory listing command
+# disable_secret_security_check <bool>    	# Disable secret file security check
+# display_borders <bool>                  	# Display table borders, ignore value of BORDER
+# display_charset <charset>               	# Display charset
+# display_image <bool>                    	# Display inline images
+# display_ins_del <number>                	# Display INS, DEL, S and STRIKE element
+# display_lineinfo <bool>                 	# Display current line number
+# display_link <bool>                     	# Display link URL automatically
+# display_link_number <bool>              	# Display link numbers
+# dns_order <number>                      	# Order of name resolution
+# document_charset <charset>              	# Default document charset
+# document_root <string>                  	# Directory corresponding to / (document root)
+# east_asian_width <bool>                 	# Use double width for some Unicode characters
+# editor <string>                         	# Editor
+# emacs_like_lineedit <bool>              	# Enable Emacs-style line editing
+# ext_dirlist <bool>                      	# Use external program for directory listing
+# ext_halfdump <bool>                     	# Output halfdump with display charset
+# extbrowser2 <string>                    	# 2nd external browser
+# extbrowser3 <string>                    	# 3rd external browser
+# extbrowser4 <string>                    	# 4th external browser
+# extbrowser5 <string>                    	# 5th external browser
+# extbrowser6 <string>                    	# 6th external browser
+# extbrowser7 <string>                    	# 7th external browser
+# extbrowser8 <string>                    	# 8th external browser
+# extbrowser9 <string>                    	# 9th external browser
+# extbrowser <string>                     	# External browser
+# fix_width_conv <bool>                   	# Fix character width when conversion
+# fixed_wheel_scroll_count <number>       	# (B only)Scroll by # lines
+# fold_line <bool>                        	# Fold lines of plain text file
+# fold_textarea <bool>                    	# Fold lines in TEXTAREA
+# follow_locale <bool>                    	# System charset follows locale(LC_CTYPE)
+# follow_redirection <number>             	# Number of redirections to follow
+# form_color <color>                      	# Color of form
+# frame <bool>                            	# Render frames automatically
+# ftp_proxy <string>                      	# URL of FTP proxy host
+# ftppass_hostnamegen <bool>              	# Generate domain part of password for FTP
+# ftppasswd <string>                      	# Password for anonymous FTP (your mail address)
+# gb18030_as_ucs <bool>                   	# Treat 4 bytes char. of GB18030 as Unicode
+# graphic_char <number>                   	# Character type for border of table and menu
+# history <number>                        	# Number of remembered URL
+# http_proxy <string>                     	# URL of HTTP proxy host
+# https_proxy <string>                    	# URL of HTTPS proxy host
+# ignore_null_img_alt <bool>              	# Display link name for images lacking ALT
+# ignorecase_search <bool>                	# Search case-insensitively
+# image_color <color>                     	# Color of image link
+# indent_incr <number>                    	# Indent for HTML rendering
+# index_file <string>                     	# Index file for directories
+# keymap_file <string>                    	# keymap file
+# label_topline <bool>                    	# Move cursor to top line when going to label
+# mailcap <string>                        	# List of mailcap files
+# mailer <string>                         	# Mailer
+# mailto_options <number>                 	# How to call Mailer for mailto URLs with options
+# mark <bool>                             	# Enable mark operations
+# mark_all_pages <bool>                   	# Treat URL-like strings as links in all pages
+# mark_color <color>                      	# Color of mark
+# max_news <number>                       	# Number of news messages
+# meta_refresh <bool>                     	# Enable processing of meta-refresh tag
+# mime_types <string>                     	# List of mime.types files
+# multicol <bool>                         	# Display file names in multi-column format
+# nextpage_topline <bool>                 	# Move cursor to top line when moving to next page
+# nntpmode <string>                       	# Mode of news server
+# nntpserver <string>                     	# News server
+# no_cache <bool>                         	# Disable cache
+# no_proxy <string>                       	# Domains to be accessed directly (no proxy)
+# no_referer <bool>                       	# Suppress `Referer:' header
+# noproxy_netaddr <bool>                  	# Check noproxy by network address
+# open_tab_blank <bool>                   	# Open link on new tab if target is _blank or _new
+# open_tab_dl_list <bool>                 	# Open download list panel on new tab
+# pagerline <number>                      	# Number of remembered lines when used as a pager
+# passwd_file <string>                    	# Password file
+# personal_document_root <string>         	# Directory corresponding to /~user
+# pixel_per_char <number>                 	# Number of pixels per character (4.0...32.0)
+# pre_conv <bool>                         	# Charset conversion when loading
+# pre_form_file <string>                  	# File for setting form on loading
+# preserve_timestamp <bool>               	# Preserve timestamp when saving
+# pseudo_inlines <bool>                   	# Display pseudo-ALTs for inline images with no ALT or TITLE string
+# relative_wheel_scroll <number>          	# Behavior of wheel scroll speed
+# relative_wheel_scroll_ratio <number>    	# (A only)Scroll by # (%) of screen
+# retry_http <bool>                       	# Prepend http:// to URL automatically
+# reverse_mouse <bool>                    	# Scroll in reverse direction of mouse drag
+# save_hist <bool>                        	# Save URL history
+# search_conv <bool>                      	# Adjust search string for document charset
+# show_cookie <bool>                      	# Print a message when receiving a cookie
+# show_lnum <bool>                        	# Show line numbers
+# show_srch_str <bool>                    	# Show search string
+# simple_preserve_space <bool>            	# Simple Preserve space
+# siteconf_file <string>                  	# File for preferences for each site
+# ssl_ca_file <path>                      	# File consisting of PEM encoded certificates of CAs
+# ssl_ca_path <path>                      	# Path to directory for PEM encoded certificates of CAs
+# ssl_cert_file <path>                    	# PEM encoded certificate file of client
+# ssl_forbid_method <string>              	# List of forbidden SSL methods (2: SSLv2, 3: SSLv3, t: TLSv1.0, 5: TLSv1.1)
+# ssl_key_file <path>                     	# PEM encoded private key file of client
+# ssl_verify_server <bool>                	# Perform SSL server verification
+# strict_iso2022 <bool>                   	# Strict ISO-2022-JP/KR/CN
+# system_charset <charset>                	# System charset
+# tabstop <number>                        	# Tab width in characters
+# target_self <bool>                      	# Use _self as default target
+# ucs_conv <bool>                         	# Charset conversion using Unicode map
+# urimethodmap <string>                   	# List of urimethodmap files
+# use_combining <bool>                    	# Use combining characters
+# use_cookie <bool>                       	# Enable cookie processing
+# use_dictcommand <bool>                  	# Enable dictionary lookup through CGI
+# use_gb12345_map <bool>                  	# Use GB 12345 Unicode map instead of GB 2312's
+# use_history <bool>                      	# Use URL history
+# use_jisc6226 <bool>                     	# Use JIS C 6226:1978 for ISO-2022-JP
+# use_jisx0201 <bool>                     	# Use JIS X 0201 Roman for ISO-2022-JP
+# use_jisx0201k <bool>                    	# Use JIS X 0201 Katakana
+# use_jisx0212 <bool>                     	# Use JIS X 0212:1990 (Supplemental Kanji)
+# use_jisx0213 <bool>                     	# Use JIS X 0213:2000 (2000JIS)
+# use_language_tag <bool>                 	# Use Unicode language tags
+# use_lessopen <bool>                     	# Use LESSOPEN
+# use_mouse <bool>                        	# Enable mouse
+# use_proxy <bool>                        	# Use proxy
+# use_wide <bool>                         	# Use multi column characters
+# user_agent <string>                     	# User-Agent identification string
+# vi_prec_num <bool>                      	# Enable vi-like numeric prefix
+# view_unseenobject <bool>                	# Display unseen objects (e.g. bgimage tag)
+# visited_anchor <bool>                   	# Use visited link color
+# visited_color <color>                   	# Color of visited link
+# wrap_search <bool>                      	# Wrap search
