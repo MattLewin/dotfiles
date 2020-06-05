@@ -6,7 +6,7 @@ else
     echo "*** good luck making the rest of this .zshrc work ***" 1>&2
 fi
 
-# ML: 2015-10-08 
+# ML: 2015-10-08
 # ML: Load custom paths before anything else gets going
 #
 if [ -n "${DOT_ZSH}/systeminfo.sh" ]; then
@@ -126,13 +126,13 @@ plugins=(
     gitignore
     history
     httpie
-    jump
     man
     shrink-path
     swiftpm
     systemadmin
     themes
     vi-mode
+    wd
     z
     zsh-navigation-tools
     zsh_reload
