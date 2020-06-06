@@ -1,4 +1,5 @@
 .idea/**/ZeppelinRemoteNotebooks/
+.idea/**/aws.xml
 .idea/**/contentModel.xml
 .idea/**/dataSources.ids
 .idea/**/dataSources.local.xml
