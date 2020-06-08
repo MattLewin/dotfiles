@@ -368,6 +368,12 @@ fi
 
 whence -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 
+if ( whence fortune NUL && whence cowsay NUL ); then
+  COWS=(/usr/local/share/cowsay/cows/*.cow)
+  RAND_COW=$(($RANDOM % $( ls /usr/local/share/cowsay/cows/*.cow | wc -l )))
+  fortune | cowsay -f ${COWS[$RAND_COW]}
+fi
+
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
 autoload -U compinit && compinit
