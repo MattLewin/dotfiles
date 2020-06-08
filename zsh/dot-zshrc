@@ -193,6 +193,7 @@ done
 #     versions of ZSH. Why? I don't know.
 typeset -A associated_plugins
 associated_plugins+=(
+    fortune chucknorris
     fzf zsh-interactive-cd
     go golang
     rg ripgrep

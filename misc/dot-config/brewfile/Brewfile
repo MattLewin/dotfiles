@@ -48,6 +48,7 @@ brew fd
 brew ffmpeg
 brew flac
 brew fontconfig
+brew fortune
 brew freetds
 brew freetype
 brew frei0r
@@ -306,7 +307,6 @@ tap homebrew/services
 tap homebrew/cask
 cask anaconda
 cask docker
-cask fastlane
 cask graphiql
 cask iterm2
 cask java
@@ -328,6 +328,9 @@ cask font-hack-nerd-font
 cask font-monoid-nerd-font
 cask font-mononoki-nerd-font
 cask font-powerline-symbols
+
+tap cowsay-org/cowsay
+brew cowsay-apj
 
 tap ether-cli/tap
 brew ether
@@ -353,6 +356,9 @@ brew jupyter
 brew openssl
 brew pygobject
 brew pygtk
+
+# Other Cask applications
+cask fastlane
 
 # Additional files
 file .Brewfile
