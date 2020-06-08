@@ -347,6 +347,18 @@ case "$OS" in
     *) # No idea what platorm we are on
 esac
 
+if ( whence fortune NUL && whence cowsay NUL ); then
+  COWS=(/usr/local/share/cowsay/cows/*.cow)
+
+  function cowrandom() {
+    count=$( ls /usr/local/share/cowsay/cows/*.cow | wc -l )
+    RAND_COW=$(( $RANDOM % $count ))
+    fortune | cowsay -f ${COWS[$RAND_COW]}
+  }
+
+  cowrandom
+fi
+
 unalias gl
 
 #
