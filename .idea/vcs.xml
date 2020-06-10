@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/lldb/LLDB" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/plugins/conda-zsh-completion" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/plugins/gradle-completion" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/themes/spaceship-prompt" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/oh-my-zsh/custom/themes/spaceship-prompt/modules/shunit2" vcs="Git" />
@@ -12,5 +13,33 @@
     <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tmux-yank" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tpm" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/tmux/dot-tmux/plugins/tpm/lib/tmux-test" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/pack/plugins/start/kotlin-vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/ale" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/editorconfig-vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/editorconfig-vim/tests/core/tests" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/editorconfig-vim/tests/plugin/spec/plugin_tests" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/emmet-vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/emmet-vim/docs" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/fzf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/fzf.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/goyo.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/gruvbox" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/lightline.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/nerdtree" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/swift.vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/syntastic" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/typescript-vim" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-colors-pencil" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-easymotion" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-eunuch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-fish" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-gitbranch" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-gitgutter" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-javascript" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-multiple-cursors" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-plist" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-shfmt" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-surround" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/vim/dot-vim/plugged/vim-trailing-whitespace" vcs="Git" />
   </component>
 </project>
