@@ -38,6 +38,7 @@ brew diff-so-fancy
 brew direnv
 brew discount
 brew docbook
+brew docbook-xsl
 brew docker
 brew dos2unix
 brew doxygen
@@ -133,6 +134,7 @@ brew libiconv
 brew libidn
 brew libidn2
 brew libksba
+brew liblqr
 brew libmaxminddb
 brew libmetalink
 brew libmodplug
@@ -289,6 +291,7 @@ brew x264
 brew x265
 brew xcodegen
 brew xctool
+brew xmlto
 brew xvid
 brew xz
 brew yarn
