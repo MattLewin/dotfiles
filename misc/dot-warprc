@@ -13,6 +13,7 @@ pod-specs:~/src/TrueMotion/pod-specs
 sensor-engine-android:~/src/TrueMotion/sensor-engine-android
 sensor-engine-ios:~/src/TrueMotion/sensor-engine-ios
 snapshot-ios:~/src/TrueMotion/snapshot-ios
+src:~/src
 testmotion-android:~/src/TrueMotion/testmotion-android
 testmotion-ios:~/src/TrueMotion/testmotion-ios
 truemotion-docs:~/src/TrueMotion/truemotion-docs
