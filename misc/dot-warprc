@@ -1,6 +1,7 @@
 ConsumerCrash-iOS:~/src/TrueMotion/ConsumerCrash-iOS
 DerivedData:~/Library/Developer/Xcode/DerivedData
 Downloads:~/Downloads
+Third-Party:~/src/Third-Party
 accelerator-android:~/src/TrueMotion/accelerator-android
 datamodel:~/src/TrueMotion/datamodel/datamodel
 dotfiles:~/src/dotfiles
@@ -12,6 +13,8 @@ plugins:~/.oh-my-zsh/plugins
 pod-specs:~/src/TrueMotion/pod-specs
 sensor-engine-android:~/src/TrueMotion/sensor-engine-android
 sensor-engine-ios:~/src/TrueMotion/sensor-engine-ios
+snapshot-android-pgr-shared:~/src/TrueMotion/snapshot-android-pgr-shared
+snapshot-ios-pgr-shared:~/src/TrueMotion/snapshot-ios-pgr-shared
 snapshot-ios:~/src/TrueMotion/snapshot-ios
 src:~/src
 testmotion-android:~/src/TrueMotion/testmotion-android
