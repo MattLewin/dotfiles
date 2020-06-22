@@ -309,6 +309,7 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
+cask cmake
 cask docker
 cask graphiql
 cask iterm2
@@ -326,7 +327,6 @@ cask zenmap
 
 tap caskroom/fonts
 cask font-fira-code
-cask font-firacode-nerd-font
 cask font-hack-nerd-font
 cask font-monoid-nerd-font
 cask font-mononoki-nerd-font
@@ -362,6 +362,7 @@ brew pygtk
 
 # Other Cask applications
 cask fastlane
+cask font-firacode-nerd-font
 
 # Additional files
 file .Brewfile
