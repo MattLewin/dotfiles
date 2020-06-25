@@ -5,6 +5,7 @@ Third-Party:~/src/Third-Party
 accelerator-android:~/src/TrueMotion/accelerator-android
 datamodel:~/src/TrueMotion/datamodel/datamodel
 dotfiles:~/src/dotfiles
+internal-shared-code-mobile:~/src/TrueMotion/internal-shared-code-mobile
 kit-ios:~/src/TrueMotion/kit-ios
 mobile-core-android:~/src/TrueMotion/mobile-core-android
 mobile-core-ios:~/src/TrueMotion/mobile-core-ios
