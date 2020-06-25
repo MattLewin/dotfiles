@@ -225,8 +225,6 @@ brew python
 brew python@3.8
 brew qrencode
 brew qt
-brew rbenv
-brew rbenv-gemset
 brew readline
 brew ripgrep
 brew rpl
@@ -333,7 +331,6 @@ cask font-mononoki-nerd-font
 cask font-powerline-symbols
 
 tap cowsay-org/cowsay
-brew cowsay-apj
 
 tap ether-cli/tap
 brew ether
@@ -355,6 +352,7 @@ tap rcmdnk/file
 brew brew-file
 
 # Other Homebrew packages
+brew cowsay-apj
 brew jupyter
 brew openssl
 brew pygobject
