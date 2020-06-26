@@ -30,10 +30,7 @@
 [alias]
 	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
     #clone-branches2 = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | $xargs -L1 -I{} git branch -t $( echo {} | sed 's:^remotes/[^/]*/:: ) {}"
-	patch = !git --no-pager diff --no-color
-	patch = !git --no-pager diff --no-color $@
-	patch = git --no-pager diff --no-color
-	patch = !git --no-pager diff --no-color
+    patch = !git --no-pager diff --no-color --no-prefix $@
 	lazy = !lazygit
 [remote]
 	pushdefault = origin
