@@ -36,6 +36,12 @@ set laststatus=2
 
 set background=dark
 
+" Buffers "
+
+set autoread
+set autowrite
+set hidden
+
 " File behaviour "
 
 set expandtab
