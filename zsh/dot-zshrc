@@ -125,7 +125,6 @@ plugins=(
     git-flow-avh
     gitignore
     history
-    httpie
     man
     shrink-path
     swiftpm
@@ -197,6 +196,7 @@ associated_plugins+=(
     fortune chucknorris
     fzf zsh-interactive-cd
     go golang
+    http httpie
     rg ripgrep
     rustc rust
     task taskwarrior
