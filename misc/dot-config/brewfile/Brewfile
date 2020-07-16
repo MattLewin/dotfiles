@@ -221,7 +221,6 @@ brew pth
 brew py2cairo
 brew pylint
 brew pyqt
-brew python
 brew python@3.8
 brew qrencode
 brew qt
@@ -320,6 +319,7 @@ cask macdown
 cask miniconda
 cask ngrok
 cask postman
+cask qlmarkdown
 cask visual-studio-code
 cask wwdc
 cask zenmap
@@ -358,6 +358,7 @@ brew jupyter
 brew openssl
 brew pygobject
 brew pygtk
+brew python
 
 # Other Cask applications
 cask fastlane
