@@ -29,4 +29,3 @@ brew rebar3
 brew redis
 brew slashem
 brew sshfs
-brew wireshark

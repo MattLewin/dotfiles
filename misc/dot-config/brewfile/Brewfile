@@ -39,7 +39,6 @@ brew direnv
 brew discount
 brew docbook
 brew docbook-xsl
-brew docker
 brew dos2unix
 brew doxygen
 brew eigen
@@ -216,7 +215,6 @@ brew pixman
 brew pkg-config
 brew postgresql
 brew protobuf
-brew protobuf@3.7
 brew pth
 brew py2cairo
 brew pylint
@@ -244,7 +242,6 @@ brew snappy
 brew source-highlight
 brew sourcekitten
 brew sox
-brew spdylay
 brew speedtest-cli
 brew speex
 brew sphinx-doc
@@ -306,7 +303,6 @@ cask adoptopenjdk8
 tap homebrew/services
 
 tap homebrew/cask
-cask anaconda
 cask cmake
 cask docker
 cask graphiql
@@ -314,7 +310,6 @@ cask iterm2
 cask java
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
-cask lunchy
 cask macdown
 cask miniconda
 cask ngrok
@@ -323,13 +318,6 @@ cask qlmarkdown
 cask visual-studio-code
 cask wwdc
 cask zenmap
-
-tap caskroom/fonts
-cask font-fira-code
-cask font-hack-nerd-font
-cask font-monoid-nerd-font
-cask font-mononoki-nerd-font
-cask font-powerline-symbols
 
 tap cowsay-org/cowsay
 
@@ -356,13 +344,17 @@ brew brew-file
 brew cowsay-apj
 brew jupyter
 brew openssl
-brew pygobject
-brew pygtk
 brew python
 
 # Other Cask applications
 cask fastlane
+cask font-fira-code
 cask font-firacode-nerd-font
+cask font-hack-nerd-font
+cask font-monoid-nerd-font
+cask font-mononoki-nerd-font
+cask font-powerline-symbols
+cask lunchy
 
 # Additional files
 file .Brewfile
