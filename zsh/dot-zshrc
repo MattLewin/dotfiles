@@ -81,6 +81,17 @@ ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 # reduce key timeout to make switching between VI modes more fluid
 KEYTIMEOUT=10
 
+
+# Load additional zsh modules
+zsh_modules=(
+    system
+)
+
+for module in $zsh_modules
+do
+    zmodload "zsh/${module}"
+done
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -372,3 +383,5 @@ whence -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
 autoload -U compinit && compinit
+
+# vim:ft=zsh

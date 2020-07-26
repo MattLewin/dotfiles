@@ -30,6 +30,7 @@ alias passgen='pass generate -nc'
 alias pbc='clipcopy'
 alias ping="${GRC} ping -c 5"
 alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
+alias stat='zstat -s'
 alias traceroute="${GRC} traceroute"
 
 #
