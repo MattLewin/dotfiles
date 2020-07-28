@@ -37,3 +37,6 @@
 [submodule "vim/dot-vim/pack/plugins/start/kotlin-vim"]
 	path = vim/dot-vim/pack/plugins/start/kotlin-vim
 	url = https://github.com/udalov/kotlin-vim.git
+[submodule "oh-my-zsh/custom/plugins/zsh-autosuggestions"]
+	path = oh-my-zsh/custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions.git

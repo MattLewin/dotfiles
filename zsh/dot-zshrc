@@ -144,6 +144,7 @@ plugins=(
     vi-mode
     wd
     z
+    zsh-autosuggestions
     zsh-navigation-tools
     zsh_reload
 )
