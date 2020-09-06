@@ -148,7 +148,6 @@ plugins=(
     vi-mode
     wd
     z
-    zsh-autosuggestions
     zsh-navigation-tools
     zsh_reload
 )
@@ -283,7 +282,7 @@ whence thefuck >/dev/null 2>&1 && whence python3 >/dev/null 2>&1 && test `python
 custom_plugins=(
     conda-zsh-completion
     gradle-completion
-    zsh-completions # https://github.com/zsh-users/zsh-completions
+    zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions.git
     # NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
     zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting.git
 )
@@ -293,6 +292,11 @@ do
     [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/${plugin} ] && plugins+=(${plugin})
 done
 
+# If zsh-autosuggestions plugin exists, then set its search strategy to 'completion'
+if (($plugins[(Ie)zsh-autosuggestions])); then
+    ZSH_AUTOSUGGEST_STRATEGY=(completion)
+    ZSH_AUTOSUGGEST_USE_ASYNC=true
+fi
 
 # User configuration
 
