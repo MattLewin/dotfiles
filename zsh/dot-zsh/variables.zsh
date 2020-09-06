@@ -10,8 +10,8 @@ test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
 # Set 'ls' to display size in KB rather than 512-byte blocks
 export BLOCKSIZE=1024
 
-# ML: 2017-05-20
-test -d "$HOME/src/go" && export GOPATH="$HOME/src/go"
+test -d "$HOME/.go" && export GOPATH="$HOME/.go"
+$installed_apps[brew] && whence go >/dev/null 2>&1 && export GOROOT="$(brew --prefix golang)/libexec"
 
 # ML: 2017-05-31
 test -d "/usr/local/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:/usr/local/opt/erlang/lib/erlang/man

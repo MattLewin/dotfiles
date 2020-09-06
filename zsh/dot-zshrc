@@ -81,6 +81,10 @@ ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 # reduce key timeout to make switching between VI modes more fluid
 KEYTIMEOUT=10
 
+# keep track of installed apps for conditional configuration
+declare -A installed_apps
+
+whence brew >/dev/null 2>&1 && installed_apps[brew]=true
 
 # Load additional zsh modules
 zsh_modules=(

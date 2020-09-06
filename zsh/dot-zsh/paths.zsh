@@ -3,7 +3,7 @@ append_paths=(
     /usr/local/bin
     /usr/local/sbin
     /sbin
-    "${HOME}/src/go/bin"
+    "${HOME}/.go/bin"
     "${HOME}/.cargo/bin"
     "${HOME}/.fastlane/bin"
     "${HOME}/Library/Android/sdk/platform-tools"
