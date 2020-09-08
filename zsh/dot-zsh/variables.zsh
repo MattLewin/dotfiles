@@ -10,9 +10,6 @@ test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
 # Set 'ls' to display size in KB rather than 512-byte blocks
 export BLOCKSIZE=1024
 
-test -d "$HOME/.go" && export GOPATH="$HOME/.go"
-$installed_apps[brew] && whence go >/dev/null 2>&1 && export GOROOT="$(brew --prefix golang)/libexec"
-
 # ML: 2017-05-31
 test -d "/usr/local/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:/usr/local/opt/erlang/lib/erlang/man
 
@@ -39,10 +36,6 @@ case "$LC_TERM_PROGRAM" in
         ;;
 esac
 
-# ML: 2018-03-19
-# Configuration settings for 'pass'
-test -x "/usr/local/bin/pass" && export PASSWORD_STORE_GENERATED_LENGTH=14
-
 # ML: 2018-11-20
 # Configuration for bitrise at TrueMotion
 if [ -e "$HOME/.truemotion" ]; then
@@ -62,3 +55,11 @@ export HOMEBREW_BREWFILE_APPSTORE=0
 # Circled numbers for pretty displays
 circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
 # circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
+
+[ ${commands[pass]} ] && export PASSWORD_STORE_GENERATED_LENGTH=14
+
+if [ ${commands[go]} ]; then
+  test -d "$HOME/.go" && export GOPATH="$HOME/.go"
+  [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
+fi
+

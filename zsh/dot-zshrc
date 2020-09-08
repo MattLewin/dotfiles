@@ -81,11 +81,6 @@ ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 # reduce key timeout to make switching between VI modes more fluid
 KEYTIMEOUT=10
 
-# keep track of installed apps for conditional configuration
-declare -A installed_apps
-
-whence brew >/dev/null 2>&1 && installed_apps[brew]=true
-
 # Load additional zsh modules
 zsh_modules=(
     system
@@ -157,6 +152,7 @@ binary_plugins=(
     adb
     aws
     bower
+    brew
     bundler
     docker
     fzf
@@ -187,7 +183,7 @@ binary_plugins=(
 
 for binary in "${binary_plugins[@]}"
 do
-    whence "${binary}" >/dev/null 2>&1 && plugins+=("${binary}")
+    [ ${commands[$binary]} ] && plugins+=("${binary}")
 done
 
 # ML: 2018-08-21: Include plugins if their corresponding dot-config directories exist
@@ -222,7 +218,7 @@ associated_plugins+=(
 
 for binary plugin in ${(kv)associated_plugins}
 do
-    whence ${binary} >/dev/null 2>&1 && plugins+=( ${plugin} )
+    [ ${commands[$binary]} ] && plugins+=( ${plugin} )
 done
 
 typeset -A macOS_app_plugins
@@ -234,7 +230,6 @@ macOS_app_plugins+=(
 case "$OS" in
     mac)
         plugins+=(dash iterm2 osx)
-        whence brew >/dev/null 2>&1 && plugins+=(brew)
         export SWIFTENV_ROOT=/usr/local/var/swiftenv
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
@@ -252,7 +247,7 @@ case "$OS" in
         ;;
 
     linux)
-        whence systemctl >/dev/null 2>&1 && plugins+=(systemd)
+        [ ${commands[systemctl]} ] && plugins+=(systemd)
 
         case "$DIST" in
             "centos linux")
@@ -272,8 +267,7 @@ case "$OS" in
 esac
 
 # Add 'thefuck' plugin only if we are using better than python3.4
-whence thefuck >/dev/null 2>&1 && whence python3 >/dev/null 2>&1 && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
-
+[ ${commands[thefuck]} ] && [ ${commands[python3]} ] && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
 
 #
 # Grab the custom plugins using:
@@ -383,11 +377,11 @@ done
 remove_duplicate_paths
 
 # ML: 2019-06-29: use homebrew-file
-if ( whence brew  >/dev/null 2>&1 ) && [ -f $(brew --prefix)/etc/brew-wrap ];then
+if ( [ ${commands[brew]} ] ) && [ -f $(brew --prefix)/etc/brew-wrap ];then
   source $(brew --prefix)/etc/brew-wrap
 fi
 
-whence -v direnv >/dev/null 2>&1 && eval "$(direnv hook zsh)"
+[ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
 
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
