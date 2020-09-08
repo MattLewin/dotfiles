@@ -1,8 +1,12 @@
 
 # tap repositories and their packages
 
+tap homebrew/cask-versions
+cask firefox-developer-edition
+
 tap homebrew/cask
 cask google-cloud-sdk
+cask libreoffice
 cask mactex
 cask osxfuse
 cask vagrant
