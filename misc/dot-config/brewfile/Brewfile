@@ -308,7 +308,6 @@ cask cmake
 cask docker
 cask graphiql
 cask iterm2
-cask java
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
 cask macdown
