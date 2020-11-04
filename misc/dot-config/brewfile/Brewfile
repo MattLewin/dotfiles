@@ -344,6 +344,9 @@ brew swiftenv
 tap rcmdnk/file
 brew brew-file
 
+# Other Homebrew packages
+brew python
+
 # Other Cask applications
 cask fastlane
 cask font-fira-code
