@@ -55,10 +55,19 @@ then
       # pip list just the installed packages without its dependencies
       pip_list=$(pip list --not-required)
 
+      printf "%s\n%s\n" " -- pip list --" "$pip_list" |
+        ack --color --color-match=bright_blue --passthru '^[^ ]+' |
+        fzf --ansi --reverse --cycle \
+          --preview-window=70% \
+          --preview=" echo {} | cut -d \" \" -f 1 | xargs pip show " |
+        xargs
+    }
+
+    function pip3list() {
       # pip3 list just the installed packages without its dependencies
       pip3_list=$(pip3 list --not-required)
 
-      printf "%s\n%s\n\n%s\n%s\n" " -- pip list --" "$pip_list" " -- pip3 list --" "$pip3_list" |
+      printf "%s\n%s\n" " -- pip3 list --" "$pip3_list" |
         ack --color --color-match=bright_blue --passthru '^[^ ]+' |
         fzf --ansi --reverse --cycle \
           --preview-window=70% \
