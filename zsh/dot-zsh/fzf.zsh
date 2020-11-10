@@ -4,7 +4,7 @@
 function aliases() {
 	command=$(alias |
 		ack --color --color-match=bright_blue --passthru '^[^=]+' |
-		fzf-tmux --cycle --ansi --reverse --height=90% --query="$1" --multi --select-1 --exit-0 --tac |
+		fzf-tmux --ansi --reverse --cycle --height=90% --query="$1" --multi --select-1 --exit-0 |
 		cut -d "=" -f 1)
 	echo $command
 }
