@@ -39,14 +39,15 @@ brew direnv
 brew discount
 brew docbook
 brew docbook-xsl
+brew docker
 brew dos2unix
 brew doxygen
 brew eigen
 brew exercism
 brew exiftool
+brew fastlane
 brew fd
 brew ffmpeg
-brew fish
 brew flac
 brew fontconfig
 brew fortune
@@ -169,6 +170,7 @@ brew libzip
 brew little-cms2
 brew llvm
 brew lua
+brew lunchy
 brew lzo
 brew m4
 brew mad
@@ -254,7 +256,6 @@ brew swiftformat
 brew swiftlint
 brew swig
 brew task
-brew tasksh
 brew tbb
 brew tcl-tk
 brew tcptrace
@@ -298,12 +299,15 @@ brew zlib
 brew zsh
 brew zsh-completions
 
+tap homebrew/bundle
+
 tap homebrew/cask-versions
 cask adoptopenjdk8
 
 tap homebrew/services
 
 tap homebrew/cask
+cask anaconda
 cask cmake
 cask docker
 cask graphiql
@@ -311,15 +315,15 @@ cask iterm2
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
 cask macdown
+cask mactex
 cask miniconda
 cask ngrok
-cask postman
-cask qlmarkdown
 cask visual-studio-code
 cask wwdc
 cask zenmap
 
 tap cowsay-org/cowsay
+brew cowsay-apj
 
 tap ether-cli/tap
 brew ether
@@ -341,9 +345,6 @@ tap rcmdnk/file
 brew brew-file
 
 # Other Homebrew packages
-brew cowsay-apj
-brew jupyter
-brew openssl
 brew python
 
 # Other Cask applications
@@ -357,4 +358,4 @@ cask font-powerline-symbols
 cask lunchy
 
 # Additional files
-file .Brewfile
+file $HOSTNAME.Brewfile
