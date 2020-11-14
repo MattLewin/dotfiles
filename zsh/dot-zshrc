@@ -383,6 +383,9 @@ fi
 
 [ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
 
+# setup the OCaml package manager
+test -r /Users/Matt/.opam/opam-init/init.zsh && . /Users/Matt/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
 autoload -U compinit && compinit
