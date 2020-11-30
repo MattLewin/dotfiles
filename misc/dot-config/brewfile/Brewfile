@@ -261,8 +261,6 @@ brew tcl-tk
 brew tcptrace
 brew telnet
 brew terminal-notifier
-brew terraform
-brew terraform-docs
 brew tesseract
 brew the_silver_searcher
 brew thefuck

@@ -35,3 +35,5 @@ brew rebar3
 brew redis
 brew slashem
 brew sshfs
+brew terraform
+brew terraform-docs
