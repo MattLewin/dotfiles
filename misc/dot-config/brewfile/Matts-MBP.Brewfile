@@ -6,7 +6,6 @@ cask firefox-developer-edition
 
 tap homebrew/cask
 cask google-cloud-sdk
-cask libreoffice
 cask mactex
 cask osxfuse
 cask vagrant
@@ -21,9 +20,12 @@ brew app-engine-java
 brew elixir
 brew erlang
 brew gdb
+brew gpatch
 brew lua@5.1
 brew luarocks
 brew nethack
+brew ocaml
+brew opam
 brew opencv
 brew pass
 brew php
