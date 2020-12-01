@@ -19,6 +19,7 @@ sensor-engine-ios:~/src/TrueMotion/sensor-engine-ios
 snapshot-android-pgr-shared:~/src/TrueMotion/snapshot-android-pgr-shared
 snapshot-ios-pgr-shared:~/src/TrueMotion/snapshot-ios-pgr-shared
 snapshot-ios:~/src/TrueMotion/snapshot-ios
+src.TrueMotion:~/src/TrueMotion
 src:~/src
 testmotion-android:~/src/TrueMotion/testmotion-android
 testmotion-ios:~/src/TrueMotion/testmotion-ios
