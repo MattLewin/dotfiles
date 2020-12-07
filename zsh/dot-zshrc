@@ -244,6 +244,12 @@ case "$OS" in
             [ -d "/Applications/${app}.app" ] && plugins+=( ${plugin} )
             [ -d "~/Applications/${app}.app" ] && plugins+=( ${plugin} )
         done
+
+        HB_CNF_HANDLER="$(brew --prefix)/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+        if [ -f "$HB_CNF_HANDLER" ]; then
+            source "$HB_CNF_HANDLER";
+            plugins+=(command-not-found)
+        fi
         ;;
 
     linux)

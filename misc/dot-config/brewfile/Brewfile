@@ -31,7 +31,6 @@ brew chisel
 brew cmake
 brew coreutils
 brew cscope
-brew curl-openssl
 brew dbus
 brew dep
 brew diff-so-fancy
@@ -170,6 +169,7 @@ brew libzip
 brew little-cms2
 brew llvm
 brew lua
+brew luarocks
 brew lunchy
 brew lzo
 brew m4
@@ -276,6 +276,7 @@ brew unbound
 brew unixodbc
 brew unnethack
 brew utf8proc
+brew vim
 brew w3m
 brew watch
 brew watchman
@@ -301,6 +302,8 @@ tap homebrew/bundle
 
 tap homebrew/cask-versions
 cask adoptopenjdk8
+
+tap homebrew/command-not-found
 
 tap homebrew/services
 
@@ -343,6 +346,7 @@ tap rcmdnk/file
 brew brew-file
 
 # Other Homebrew packages
+brew curl-openssl
 brew python
 
 # Other Cask applications
