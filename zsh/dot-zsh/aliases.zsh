@@ -1,6 +1,3 @@
-#
-# Commands for prepending to aliases if they exist
-GRC="$(whence grc || echo 'noglob')"
 
 #
 # Normal aliases (i.e., only work as $0)
@@ -14,24 +11,23 @@ alias gitignored='git ls-files --others -i --exclude-standard'
 alias hgrep='fc -il 0 | grep'
 # shellcheck disable=SC2142
 alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0" ] && cols="80"; printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"; done }; _hr' # <HR/> for shells
-alias l="${GRC} ls -lFh"       # List files as a long list, show size, type, human-readable
-alias lS="${GRC} ls -1FSsh"    # List files showing only size and name sorted by size
-alias la="${GRC} ls -lAFh"     # List almost all files as a long list show size, type, human-readable
-alias lart="${GRC} ls -1Fcart" # List all files sorted in reverse of create/modification time (oldest first)
-alias ldot="${GRC} ls -ld .*"  # List dot files as a long list
-alias ll="${GRC} ls -l"        # List files as a long list
-alias lr="${GRC} ls -tRFh"     # List files recursively sorted by date, show type, human-readable
-alias lrt="${GRC} ls -1Fcrt"   # List files sorted in reverse of create/modification time(oldest first)
-alias lt="${GRC} ls -ltFh"     # List files as a long list sorted by date, show type, human-readable
+alias l="ls -lFh"       # List files as a long list, show size, type, human-readable
+alias lS="ls -1FSsh"    # List files showing only size and name sorted by size
+alias la="ls -lAFh"     # List almost all files as a long list show size, type, human-readable
+alias lart="ls -1Fcart" # List all files sorted in reverse of create/modification time (oldest first)
+alias ldot="ls -ld .*"  # List dot files as a long list
+alias ll="ls -l"        # List files as a long list
+alias lr="ls -tRFh"     # List files recursively sorted by date, show type, human-readable
+alias lrt="ls -1Fcrt"   # List files sorted in reverse of create/modification time(oldest first)
+alias lt="ls -ltFh"     # List files as a long list sorted by date, show type, human-readable
 alias mp='man-preview'
 alias mpa='man-preview-all'
 alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
 alias pbc='clipcopy'
-alias ping="${GRC} ping -c 5"
+alias ping="ping -c 5"
 alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias stat='zstat -s'
-alias traceroute="${GRC} traceroute"
 
 #
 # Global aliases
@@ -40,7 +36,7 @@ alias traceroute="${GRC} traceroute"
 #
 alias -g CA="2>&1 | cat -A"
 alias -g G='| grep'
-alias -g GVIM='| gvim -'
+${+commands[gvim]} && alias -g GVIM='| gvim -'
 alias -g H='| head'
 alias -g L="| less"
 alias -g LL="2>&1 | less"
@@ -194,6 +190,24 @@ function plugins() {
     print -c ${(o)plugins} # display sorted plugin list in columns
     IFS=$OLD_IFS
 }
+
+# Colorize certain commands with grc
+if (( ${+commands[grc]} )); then
+    cmds_to_colorize=(
+        ls
+    )
+
+    # Set alias for supported commands
+    for cmd in $cmds_to_colorize; do
+        if (( $+commands[$cmd] )); then
+            eval "function $cmd {
+            grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
+        }"
+        fi
+    done
+
+    unset cmds_to_colorize cmd
+fi
 
 # ML: 2018-01-05
 # A few tools to ease gem installation between ruby versions
