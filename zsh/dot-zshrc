@@ -159,6 +159,7 @@ binary_plugins=(
     gcloud
     gem
     gradle
+    grc
     heroku
     jfrog
     mosh
