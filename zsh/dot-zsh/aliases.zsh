@@ -36,7 +36,7 @@ alias stat='zstat -s'
 #
 alias -g CA="2>&1 | cat -A"
 alias -g G='| grep'
-${+commands[gvim]} && alias -g GVIM='| gvim -'
+${commands[gvim]} && alias -g GVIM='| gvim -'
 alias -g H='| head'
 alias -g L="| less"
 alias -g LL="2>&1 | less"
