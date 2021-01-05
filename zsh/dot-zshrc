@@ -130,6 +130,7 @@ plugins=(
     emoji
     fasd
     frontend-search
+    genpass
     git
     git-auto-fetch
     git-flow-avh

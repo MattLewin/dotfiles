@@ -16,6 +16,7 @@ done
 
 prepend_paths=(
     "${HOME}/swift/usr/bin"
+    "/usr/local/opt/coreutils/libexec/gnubin"
 )
 
 for new_path in "${prepend_paths[@]}"
