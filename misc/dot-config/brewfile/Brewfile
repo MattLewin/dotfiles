@@ -329,9 +329,6 @@ brew cowsay-apj
 tap ether-cli/tap
 brew ether
 
-tap facebook/fb
-brew buck
-
 tap github/gh
 
 tap heroku/brew
