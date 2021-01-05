@@ -141,6 +141,7 @@ plugins=(
     swiftpm
     systemadmin
     themes
+    universalarchive
     vi-mode
     wd
     z
