@@ -11,6 +11,8 @@
 	excludesfile = /Users/Matt/.gitignore_global
 	autocrlf = input
 	pager = diff-so-fancy | less --tabs=4 -RFX
+[interactive]
+	diffFilter = diff-so-fancy --patch
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
 	path = 
@@ -57,12 +59,13 @@
 	newNormal = green bold
 	newHighlight = green bold 22
 [color "diff"]
-	meta = yellow
+	meta = 11
 	frag = magenta bold
 	commit = yellow bold
 	old = red bold
 	new = green bold
 	whitespace = red reverse
+	func = 146 bold
 [branch]
 	autoSetupMerge = always
 [fetch]
