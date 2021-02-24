@@ -31,6 +31,7 @@ brew chisel
 brew cmake
 brew coreutils
 brew cscope
+brew curl
 brew dbus
 brew dep
 brew diff-so-fancy
@@ -233,6 +234,7 @@ brew rtmpdump
 brew rubberband
 brew ruby
 brew ruby-build
+brew ruby@2.7
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
@@ -294,6 +296,7 @@ brew yarn
 brew ykman
 brew ykpers
 brew zeromq
+brew zimg
 brew zlib
 brew zsh
 brew zsh-completions
@@ -319,6 +322,7 @@ cask macdown
 cask mactex
 cask miniconda
 cask ngrok
+cask notion
 cask visual-studio-code
 cask wwdc
 cask zenmap
@@ -341,10 +345,6 @@ brew swiftenv
 
 tap rcmdnk/file
 brew brew-file
-
-# Other Homebrew packages
-brew curl-openssl
-brew python
 
 # Other Cask applications
 cask fastlane
