@@ -57,9 +57,3 @@ circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
 # circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
 
 [ ${commands[pass]} ] && export PASSWORD_STORE_GENERATED_LENGTH=14
-
-if [ ${commands[go]} ]; then
-  test -d "$HOME/.go" && export GOPATH="$HOME/.go"
-  [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
-fi
-

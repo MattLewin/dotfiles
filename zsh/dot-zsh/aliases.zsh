@@ -377,6 +377,18 @@ fi
 unalias gl
 
 #
+# 'brew --prefix golang' is very slow, so let's only do it if/when we use go
+# 
+if [ ${commands[go]} ]; then
+  function go() {
+    test -d "$HOME/.go" && export GOPATH="$HOME/.go"
+    [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
+    unfunction go
+    $( ${commands[go]} ) $*
+  }
+fi
+
+#
 # TrueMotion Aliases
 #
 if [ "$(hostname)" = "bos159" ]; then
