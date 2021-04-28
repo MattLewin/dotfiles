@@ -52,54 +52,54 @@ alias -g VI='| vi -'
 #       will cause `$ foo.cpp` to open foo.cpp in vim
 autoload -Uz is-at-least
 if is-at-least 4.2.0; then
-  if [[ -n "$BROWSER" ]]; then
-    _browser_fts=(htm html de org net com at cx nl se dk)
-    for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
-  fi
-
-  if [[ -n "$EDITOR" ]]; then
-    _editor_fts=(c cc cpp cxx h hh txt TXT)
-    for ft in $_editor_fts; do alias -s $ft=$EDITOR; done
-  fi
-
-  if [[ -n "$XIVIEWER" ]]; then
-    _image_fts=(jpg jpeg png gif mng tiff tif xpm)
-    for ft in $_image_fts; do alias -s $ft=$XIVIEWER; done
-  fi
-
-  #list whats inside packed file
-  alias -s zip="unzip -l"
-  alias -s tar="tar tf"
-
-  # display markdown files
-  if whence pandoc NUL; then
-    PANDOC_BIN="$(whence pandoc)"
-    if whence w3m NUL; then
-      TEXT_BROWSER='w3m -T text/html'
-      PANDOC_CMD="${PANDOC_BIN}"
-    elif whence lynx NUL; then
-      TEXT_BROWSER='lynx -stdin'
-      PANDOC_CMD="${PANDOC_BIN}"
-    elif [[ -n "${PAGER}" ]]; then
-      TEXT_BROWSER=${PAGER}
-      PANDOC_CMD="${PANDOC_BIN} -t plain"
-    else
-      TEXT_BROWSER='less'
-      PANDOC_CMD="${PANDOC_BIN} -t plain"
+    if [[ -n "$BROWSER" ]]; then
+        _browser_fts=(htm html de org net com at cx nl se dk)
+        for ft in $_browser_fts; do alias -s $ft=$BROWSER; done
     fi
 
-    function display_markdown_file() {
-      if [[ $# != 1 ]]; then
-        print "$0 <markdown file>"
-        return 1
-      fi
+    if [[ -n "$EDITOR" ]]; then
+        _editor_fts=(c cc cpp cxx h hh txt TXT)
+        for ft in $_editor_fts; do alias -s $ft=$EDITOR; done
+    fi
 
-      eval "${PANDOC_CMD} '$(pwd)/${1}' | ${TEXT_BROWSER}"
-    }
+    if [[ -n "$XIVIEWER" ]]; then
+        _image_fts=(jpg jpeg png gif mng tiff tif xpm)
+        for ft in $_image_fts; do alias -s $ft=$XIVIEWER; done
+    fi
 
-    alias -s md="display_markdown_file"
-    alias -s MD="display_markdown_file"
-  fi
+    #list whats inside packed file
+    alias -s zip="unzip -l"
+    alias -s tar="tar tf"
+
+    # display markdown files
+    if whence pandoc NUL; then
+        PANDOC_BIN="$(whence pandoc)"
+        if whence w3m NUL; then
+            TEXT_BROWSER='w3m -T text/html'
+            PANDOC_CMD="${PANDOC_BIN}"
+        elif whence lynx NUL; then
+            TEXT_BROWSER='lynx -stdin'
+            PANDOC_CMD="${PANDOC_BIN}"
+        elif [[ -n "${PAGER}" ]]; then
+            TEXT_BROWSER=${PAGER}
+            PANDOC_CMD="${PANDOC_BIN} -t plain"
+        else
+            TEXT_BROWSER='less'
+            PANDOC_CMD="${PANDOC_BIN} -t plain"
+        fi
+
+        function display_markdown_file() {
+            if [[ $# != 1 ]]; then
+                print "$0 <markdown file>"
+                return 1
+            fi
+
+            eval "${PANDOC_CMD} '$(pwd)/${1}' | ${TEXT_BROWSER}"
+        }
+
+        alias -s md="display_markdown_file"
+        alias -s MD="display_markdown_file"
+    fi
 fi
 
 #
@@ -132,7 +132,6 @@ fi
 # Functions
 #
 function man-preview-all() {
-
     if [[ $# = 0 ]]; then
         echo "No man page specified"
         return 1
@@ -158,12 +157,10 @@ then
     function lg()
     {
         export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-
         lazygit "$@"
-
         if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-                cd "$(cat $LAZYGIT_NEW_DIR_FILE)" || return
-                rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
+            cd "$(cat $LAZYGIT_NEW_DIR_FILE)" || return
+            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
         fi
     }
 fi
@@ -194,15 +191,15 @@ function plugins() {
 # Colorize certain commands with grc
 if (( ${+commands[grc]} )); then
     cmds_to_colorize=(
-        ls
+            ls
     )
 
     # Set alias for supported commands
     for cmd in $cmds_to_colorize; do
         if (( $+commands[$cmd] )); then
             eval "function $cmd {
-            grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
-        }"
+                grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
+            }"
         fi
     done
 
@@ -363,15 +360,15 @@ case "$OS" in
 esac
 
 if ( whence fortune NUL && whence cowsay NUL ); then
-  COWS=(/usr/local/share/cowsay/cows/*.cow)
+    COWS=(/usr/local/share/cowsay/cows/*.cow)
 
-  function cowrandom() {
-    count=$( ls /usr/local/share/cowsay/cows/*.cow | wc -l )
-    RAND_COW=$(( $RANDOM % $count ))
-    fortune | cowsay -f ${COWS[$RAND_COW]}
-  }
+    function cowrandom() {
+        count=$( ls /usr/local/share/cowsay/cows/*.cow | wc -l )
+        RAND_COW=$(( $RANDOM % $count ))
+        fortune | cowsay -f ${COWS[$RAND_COW]}
+    }
 
-  cowrandom
+    cowrandom
 fi
 
 unalias gl
@@ -380,12 +377,12 @@ unalias gl
 # 'brew --prefix golang' is very slow, so let's only do it if/when we use go
 # 
 if [ ${commands[go]} ]; then
-  function go() {
-    test -d "$HOME/.go" && export GOPATH="$HOME/.go"
-    [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
-    unfunction go
-    $( ${commands[go]} ) $*
-  }
+    function go() {
+        test -d "$HOME/.go" && export GOPATH="$HOME/.go"
+        [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
+        unfunction go
+        $( ${commands[go]} ) $*
+    }
 fi
 
 #

@@ -2,20 +2,20 @@
 
 # fuzzy list all aliases
 function aliases() {
-	command=$(alias |
-		ack --color --color-match=bright_blue --passthru '^[^=]+' |
-		fzf-tmux --ansi --reverse --cycle --height=90% --query="$1" --multi --select-1 --exit-0 |
-		cut -d "=" -f 1)
-	echo $command
+    command=$(alias |
+        ack --color --color-match=bright_blue --passthru '^[^=]+' |
+        fzf-tmux --ansi --reverse --cycle --height=90% --query="$1" --multi --select-1 --exit-0 |
+        cut -d "=" -f 1)
+    echo $command
 }
 
 # fuzzy list all commands with manual
 function cmd() {
-	compgen -ca |
-		sort --unique |
-		grep --invert-match '^_' | # Remove all hidden commands that start with '_'
-		fzf --ansi --reverse --cycle --height=90% --preview='man {}' --preview-window=right:75%
-	# Only use `man {}` for preview since using `{} -h` may result in invoking the command
+    compgen -ca |
+        sort --unique |
+        grep --invert-match '^_' | # Remove all hidden commands that start with '_'
+        fzf --ansi --reverse --cycle --height=90% --preview='man {}' --preview-window=right:75%
+    # Only use `man {}` for preview since using `{} -h` may result in invoking the command
 }
 
 if whence ack NUL
@@ -39,16 +39,16 @@ then
 
     unalias path
     function path() {
-	    list=$(echo $PATH |
-		    tr : '\n' |
-		    ack --color --color-match=bright_blue '[/]')
+        list=$(echo $PATH |
+            tr : '\n' |
+            ack --color --color-match=bright_blue '[/]')
 
-	    if whence fzf >/dev/null 2>&1; then
-		    $(echo "$list" |
-			    fzf --ansi --no-sort --reverse --cycle --height=90%)
-	    else
-		    echo "$list"
-	    fi
+        if whence fzf >/dev/null 2>&1; then
+            $(echo "$list" |
+                fzf --ansi --no-sort --reverse --cycle --height=90%)
+        else
+            echo "$list"
+        fi
     }
 
     function piplist() {
@@ -78,4 +78,3 @@ then
     # Overwrite env with colorized output
     alias env="noglob env | sort --unique | ack --color --color-match=bright_blue --passthru '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
 fi
-
