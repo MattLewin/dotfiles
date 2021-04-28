@@ -1,3 +1,15 @@
+# ## BEGIN: Code to profile zsh startup (sibling code exists at the end of this file)
+# zmodload zsh/datetime
+# setopt PROMPT_SUBST
+# PS4='+$EPOCHREALTIME %N:%i> '
+
+# logfile=$(mktemp zsh_profile.XXXXXXXX)
+# echo "Logging to $logfile"
+# exec 3>&2 2>$logfile
+
+# setopt XTRACE
+# ## END: Code to profile zsh startup
+
 # ML: 2018-09-07; 2019-06-29: move to ~/.zsh
 if [ -d ${HOME}/.zsh ]; then
     DOT_ZSH=${HOME}/.zsh
@@ -398,5 +410,10 @@ test -r /Users/Matt/.opam/opam-init/init.zsh && . /Users/Matt/.opam/opam-init/in
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
 autoload -U compinit && compinit
+
+# ## BEGIN: Code to profile zsh startup (sibling code exists at the top of this file)
+# unsetopt XTRACE
+# exec 2>&3 3>&-
+# ## END: Code to profile zsh startup
 
 # vim:ft=zsh
