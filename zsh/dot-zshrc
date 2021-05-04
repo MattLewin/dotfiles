@@ -172,6 +172,7 @@ binary_plugins=(
     fzf
     gcloud
     gem
+    gh
     gradle
     grc
     heroku
