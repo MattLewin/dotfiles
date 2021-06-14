@@ -18,7 +18,6 @@ brew plantuml
 brew python@3.9
 brew rav1e
 brew rbenv-gemset
-brew ruby@2.5
 brew srt
 brew zstd
 
