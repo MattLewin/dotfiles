@@ -38,6 +38,8 @@ Sessionx.vim
 tags
 [._]*.un~
 
+com.googlecode.iterm2.plist
+
 # certs and keys
 *.pem
 id_*
