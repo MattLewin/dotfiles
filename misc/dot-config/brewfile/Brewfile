@@ -302,7 +302,6 @@ brew watch
 brew watchman
 brew webp
 brew wget
-brew wxmac
 brew x264
 brew x265
 brew xcodegen
