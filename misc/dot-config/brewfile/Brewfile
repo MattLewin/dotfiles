@@ -32,13 +32,13 @@ brew cmake
 brew coreutils
 brew cscope
 brew curl
+brew dav1d
 brew dbus
 brew diff-so-fancy
 brew direnv
 brew discount
 brew docbook
 brew docbook-xsl
-brew docker
 brew dos2unix
 brew double-conversion
 brew doxygen
@@ -52,7 +52,6 @@ brew flac
 brew fmt
 brew folly
 brew fontconfig
-brew fortune
 brew freetds
 brew freetype
 brew frei0r
@@ -76,6 +75,8 @@ brew git-imerge
 brew git-lfs
 brew git-quick-stats
 brew git-secret
+brew gl2ps
+brew glew
 brew glib
 brew glog
 brew gmp
@@ -86,7 +87,6 @@ brew gnutls
 brew go
 brew gobject-introspection
 brew gradle
-brew grafana
 brew graphite2
 brew graphviz
 brew grc
@@ -94,8 +94,10 @@ brew greed
 brew gsasl
 brew gtk+
 brew gts
+brew guile
 brew h2
 brew harfbuzz
+brew hdf5
 brew hicolor-icon-theme
 brew hidapi
 brew highlight
@@ -116,8 +118,10 @@ brew jpeg
 brew jq
 brew jruby
 brew json-c
+brew jsoncpp
 brew jupyterlab
 brew kotlin
+brew krb5
 brew ktlint
 brew lame
 brew lazygit
@@ -182,10 +186,8 @@ brew libzip
 brew little-cms2
 brew llvm
 brew lua
-brew luarocks
 brew lunchy
 brew lz4
-brew lzip
 brew lzo
 brew m4
 brew mad
@@ -203,6 +205,7 @@ brew msgpack-tools
 brew mtr
 brew mysql
 brew ncurses
+brew netcdf
 brew netpbm
 brew nettle
 brew nghttp2
@@ -236,12 +239,16 @@ brew pkg-config
 brew postgresql
 brew protobuf
 brew pth
+brew pugixml
 brew pylint
 brew pyqt
+brew pyqt@5
 brew python@3.8
+brew python@3.9
 brew qrencode
 brew qt
 brew qt@5
+brew rav1e
 brew rbenv
 brew readline
 brew ripgrep
@@ -250,7 +257,6 @@ brew rtmpdump
 brew rubberband
 brew ruby
 brew ruby-build
-brew ruby@2.6
 brew ruby@2.7
 brew sdl2
 brew sdl2_image
@@ -269,13 +275,15 @@ brew speedtest-cli
 brew speex
 brew sphinx-doc
 brew sqlite
+brew srt
 brew suite-sparse
-brew swaks
 brew swift-protobuf
 brew swiftformat
 brew swiftlint
 brew swig
+brew szip
 brew task
+brew tasksh
 brew tbb
 brew tcl-tk
 brew tcptrace
@@ -295,13 +303,16 @@ brew ttyrec
 brew unbound
 brew unixodbc
 brew unnethack
+brew utf8cpp
 brew utf8proc
 brew vim
+brew vtk
 brew w3m
 brew watch
 brew watchman
 brew webp
 brew wget
+brew wxmac
 brew x264
 brew x265
 brew xcodegen
@@ -317,6 +328,7 @@ brew zimg
 brew zlib
 brew zsh
 brew zsh-completions
+brew zstd
 
 tap homebrew/bundle
 
@@ -328,24 +340,24 @@ tap homebrew/command-not-found
 tap homebrew/services
 
 tap homebrew/cask
+cask adoptopenjdk
 cask anaconda
-cask cmake
 cask docker
 cask graphiql
 cask iterm2
 cask jupyter-notebook-ql
 cask jupyter-notebook-viewer
 cask macdown
-cask mactex
 cask miniconda
 cask ngrok
 cask notion
+cask postman
+cask qlmarkdown
 cask visual-studio-code
 cask wwdc
 cask zenmap
 
 tap cowsay-org/cowsay
-brew cowsay-apj
 
 tap ether-cli/tap
 brew ether
@@ -363,8 +375,10 @@ brew swiftenv
 tap rcmdnk/file
 brew brew-file
 
+tap teamookla/speedtest
+brew speedtest
+
 # Other Cask applications
-cask fastlane
 cask font-fira-code
 cask font-firacode-nerd-font
 cask font-hack-nerd-font

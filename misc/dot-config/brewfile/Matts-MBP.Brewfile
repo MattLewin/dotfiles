@@ -16,12 +16,10 @@ cask xquartz
 
 # Other Homebrew packages
 brew angband
-brew app-engine-java
 brew elixir
 brew erlang
 brew gdb
 brew gpatch
-brew lua@5.1
 brew luarocks
 brew nethack
 brew ocaml
@@ -34,6 +32,5 @@ brew phpunit
 brew rebar3
 brew redis
 brew slashem
-brew sshfs
 brew terraform
 brew terraform-docs
