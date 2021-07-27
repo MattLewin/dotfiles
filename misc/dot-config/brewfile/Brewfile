@@ -352,7 +352,6 @@ cask miniconda
 cask ngrok
 cask notion
 cask postman
-cask qlmarkdown
 cask visual-studio-code
 cask wwdc
 cask zenmap
