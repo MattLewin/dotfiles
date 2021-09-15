@@ -239,6 +239,7 @@ brew pixman
 brew pkg-config
 brew postgresql
 brew protobuf
+brew pstree
 brew pth
 brew pugixml
 brew pylint
