@@ -120,7 +120,6 @@ brew jq
 brew jruby
 brew json-c
 brew jsoncpp
-brew jupyterlab
 brew kotlin
 brew krb5
 brew ktlint
@@ -347,8 +346,6 @@ cask anaconda
 cask docker
 cask graphiql
 cask iterm2
-cask jupyter-notebook-ql
-cask jupyter-notebook-viewer
 cask macdown
 cask miniconda
 cask ngrok
