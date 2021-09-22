@@ -148,6 +148,7 @@ plugins=(
     git-flow-avh
     gitignore
     history
+    jsontools
     man
     shrink-path
     swiftpm
