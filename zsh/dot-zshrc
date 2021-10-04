@@ -159,7 +159,6 @@ plugins=(
     wd
     z
     zsh-navigation-tools
-    zsh_reload
 )
 
 # ML: 2018-08-21: Include plugins if their corresponding binaries exist
