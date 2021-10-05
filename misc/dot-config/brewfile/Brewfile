@@ -17,6 +17,7 @@ brew autoconf
 brew automake
 brew awscli
 brew bash
+brew bash-completion
 brew bdw-gc
 brew berkeley-db
 brew boost
@@ -105,6 +106,7 @@ brew highlight
 brew htop
 brew httpie
 brew hub
+brew hunspell
 brew icu4c
 brew imagemagick
 brew imath
@@ -313,7 +315,7 @@ brew watch
 brew watchman
 brew webp
 brew wget
-brew wxmac
+brew wxwidgets
 brew x264
 brew x265
 brew xcodegen
