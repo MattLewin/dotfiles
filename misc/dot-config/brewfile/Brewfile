@@ -204,6 +204,7 @@ brew mcrypt
 brew metis
 brew mhash
 brew mockserver
+brew mosh
 brew mpdecimal
 brew mpfr
 brew mpg123
@@ -250,9 +251,9 @@ brew pugixml
 brew pylint
 brew pyqt
 brew pyqt@5
+brew python@3.10
 brew python@3.8
 brew python@3.9
-brew python@3.10
 brew qrencode
 brew qt
 brew qt@5
