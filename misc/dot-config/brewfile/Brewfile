@@ -24,6 +24,7 @@ brew boost
 brew brew-php-switcher
 brew brotli
 brew c-ares
+brew ca-certificates
 brew cairo
 brew carthage
 brew cataclysm
@@ -150,6 +151,7 @@ brew libmaxminddb
 brew libmetalink
 brew libmodplug
 brew libmpc
+brew libnghttp2
 brew libogg
 brew libomp
 brew libpng
@@ -192,6 +194,7 @@ brew lunchy
 brew lz4
 brew lzo
 brew m4
+brew macos-term-size
 brew mad
 brew mailutils
 brew make
@@ -203,6 +206,7 @@ brew mhash
 brew mockserver
 brew mpdecimal
 brew mpfr
+brew mpg123
 brew msgpack-tools
 brew mtr
 brew mysql
@@ -248,6 +252,7 @@ brew pyqt
 brew pyqt@5
 brew python@3.8
 brew python@3.9
+brew python@3.10
 brew qrencode
 brew qt
 brew qt@5
