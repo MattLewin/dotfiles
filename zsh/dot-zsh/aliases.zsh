@@ -381,7 +381,7 @@ if [ ${commands[go]} ]; then
         test -d "$HOME/.go" && export GOPATH="$HOME/.go"
         [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
         unfunction go
-        $( ${commands[go]} ) $*
+        ${commands[go]} $*
     }
 fi
 
