@@ -12,7 +12,6 @@ cask vagrant
 cask virtualbox
 cask virtualbox-extension-pack
 cask wireshark
-cask xquartz
 
 # Other Homebrew packages
 brew angband
