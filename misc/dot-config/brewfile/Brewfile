@@ -97,7 +97,6 @@ brew greed
 brew gsasl
 brew gtk+
 brew gts
-brew guile
 brew h2
 brew harfbuzz
 brew hdf5
@@ -124,7 +123,6 @@ brew jruby
 brew json-c
 brew jsoncpp
 brew kotlin
-brew krb5
 brew ktlint
 brew lame
 brew lazygit
@@ -284,7 +282,6 @@ brew speedtest-cli
 brew speex
 brew sphinx-doc
 brew sqlite
-brew srt
 brew suite-sparse
 brew swift-protobuf
 brew swiftformat
@@ -337,19 +334,17 @@ brew zimg
 brew zlib
 brew zsh
 brew zsh-completions
-brew zstd
 
 tap homebrew/bundle
 
 tap homebrew/cask-versions
-cask adoptopenjdk8
+cask temurin8
 
 tap homebrew/command-not-found
 
 tap homebrew/services
 
 tap homebrew/cask
-cask adoptopenjdk
 cask anaconda
 cask docker
 cask graphiql
@@ -358,7 +353,7 @@ cask macdown
 cask miniconda
 cask ngrok
 cask notion
-cask postman
+cask temurin
 cask visual-studio-code
 cask wwdc
 cask zenmap
