@@ -8,7 +8,7 @@
 [credential]
 	helper = osxkeychain
 [core]
-	excludesfile = /Users/Matt/.gitignore_global
+	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	pager = diff-so-fancy | less --tabs=4 -RFX
 [interactive]
@@ -26,7 +26,7 @@
 	default = current
 	followTags = true
 [commit]
-	template = /Users/Matt/.stCommitMsg
+	template = ~/.stCommitMsg
 [diff]
 	renameLimit = 15000
 [alias]

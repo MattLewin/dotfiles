@@ -1,5 +1,7 @@
 append_paths=(
     "${HOME}/bin"
+    "${BREW_PREFIX}/bin"
+    "${BREW_PREFIX}/sbin"
     /usr/local/bin
     /usr/local/sbin
     /sbin
@@ -16,7 +18,7 @@ done
 
 prepend_paths=(
     "${HOME}/swift/usr/bin"
-    "/usr/local/opt/coreutils/libexec/gnubin"
+    "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
 )
 
 for new_path in "${prepend_paths[@]}"

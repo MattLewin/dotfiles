@@ -103,6 +103,8 @@ do
     zmodload "zsh/${module}"
 done
 
+test "${commands[brew]}" && BREW_PREFIX="$(${commands[brew]} --prefix)"
+#
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -246,7 +248,7 @@ macOS_app_plugins+=(
 case "$OS" in
     mac)
         plugins+=(dash iterm2 osx)
-        export SWIFTENV_ROOT=/usr/local/var/swiftenv
+        export SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
         # are never upgraded. Below, we link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
@@ -353,9 +355,9 @@ iterm2_print_user_vars() {
 
 # ML: 2018-02-28
 # Config for google cloud SDK
-if [ -d '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/' ]; then
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc'
-    source '/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc'
+if [ -d "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/" ]; then
+    source "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+    source "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 fi
 
 # ML: 2018-09-07: Unalias 'ag' (from ubuntu plugin) so we can easily use the_silver_searcher
@@ -365,16 +367,17 @@ unalias ag >/dev/null 2>&1
 LESS="--tabs=4 -RFX"
 
 # conda initialize
-if [ -d '/usr/local/anaconda3/' ]; then 
+if [ -d "${BREW_PREFIX}/anaconda3/" ]; then
+    CONDA_PREFIX="${BREW_PREFIX}/anaconda3"
     function conda_init() {
-        __conda_setup="$('/usr/local/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        __conda_setup="$('${CONDA_PREFIX}/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
         if [ $? -eq 0 ]; then
             eval "$__conda_setup"
         else
-            if [ -f "/usr/local/anaconda3/etc/profile.d/conda.sh" ]; then
-                . "/usr/local/anaconda3/etc/profile.d/conda.sh"
-            elif [ -d "/usr/local/anaconda3/bin" ]; then
-                export PATH="/usr/local/anaconda3/bin:$PATH"
+            if [ -f "${CONDA_PREFIX}/etc/profile.d/conda.sh" ]; then
+                . "${CONDA_PREFIX}/etc/profile.d/conda.sh"
+            elif [ -d "${CONDA_PREFIX}/bin" ]; then
+                export PATH="${CONDA_PREFIX}/bin:$PATH"
             fi
         fi
         unset __conda_setup
@@ -410,7 +413,7 @@ fi
 [ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
 
 # setup the OCaml package manager
-test -r /Users/Matt/.opam/opam-init/init.zsh && . /Users/Matt/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
