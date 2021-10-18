@@ -119,8 +119,8 @@ else
     alias find.f='find . -type f -name'
 fi
 
-whence howdoi NUL && alias howdoi='/usr/local/bin/howdoi -c -n 3'
-whence htop NUL && alias top='/usr/local/bin/htop'
+whence howdoi NUL && alias howdoi="$(whence howdoi) -c -n 3"
+whence htop NUL && alias top="$(whence htop)"
 
 if whence task NUL; then
     alias tchome='task context home'
@@ -360,10 +360,10 @@ case "$OS" in
 esac
 
 if ( whence fortune NUL && whence cowsay NUL ); then
-    COWS=(/usr/local/share/cowsay/cows/*.cow)
+    COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
 
     function cowrandom() {
-        count=$( ls /usr/local/share/cowsay/cows/*.cow | wc -l )
+        count=$( ls $(brew --prefix)/share/cowsay/cows/*.cow | wc -l )
         RAND_COW=$(( $RANDOM % $count ))
         fortune | cowsay -f ${COWS[$RAND_COW]}
     }

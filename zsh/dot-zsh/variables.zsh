@@ -1,6 +1,6 @@
 # ML: 2014-11-20
 # To tell 'xmllint' where to find AsciiDoc's catalog files, I (apparently) have to do the following...
-test -d "/usr/local/etc/xml/catalog" && export XML_CATALOG_FILES=/usr/local/etc/xml/catalog
+test -d "${BREW_PREFIX}/etc/xml/catalog" && export XML_CATALOG_FILES="${BREW_PREFIX}/etc/xml/catalog"
 
 # ML: 2015-11-10
 # Use a token to authenticate against GitHub when using Homebrew to avoid rate limiting
@@ -11,7 +11,7 @@ test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
 export BLOCKSIZE=1024
 
 # ML: 2017-05-31
-test -d "/usr/local/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:/usr/local/opt/erlang/lib/erlang/man
+test -d "${BREW_PREFIX}/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:${BREW_PREFIX}/opt/erlang/lib/erlang/man
 
 test -d "${HOME}/Library/Android/sdk" && export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 

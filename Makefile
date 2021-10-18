@@ -1,11 +1,10 @@
 INSTALL_SCRIPTS_DIR=install_scripts
-STOW=/usr/local/bin/stow
 STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
 
 all: oh-my-zsh homebrew-file stow dotfiles launch-agents tex
 
 dotfiles:
-	$(STOW) --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
+	stow --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
 
 homebrew-file:
 	$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh
