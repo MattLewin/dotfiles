@@ -261,11 +261,13 @@ function git.io() {
 # ML: 2019-07-15
 # A function to display the tmux window number
 function tmux_winidx_circled() {
-    local winidx=$(tmux display-message -p '#I')
-    if (( winidx > 20 )); then
-        echo "($winidx)"
-    else
-        echo "${circled_digits:$winidx:1}"
+    if tmux info &> /dev/null; then
+        local winidx=$(tmux display-message -p '#I')
+        if (( winidx > 20 )); then
+            echo "($winidx)"
+        else
+            echo "${circled_digits:$winidx:1}"
+        fi
     fi
 }
 
