@@ -247,7 +247,7 @@ macOS_app_plugins+=(
 # ML: 2018-08-09: Add OS and distribution-specific plugins
 case "$OS" in
     mac)
-        plugins+=(dash iterm2 osx)
+        plugins+=(dash iterm2 macos)
         export SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
