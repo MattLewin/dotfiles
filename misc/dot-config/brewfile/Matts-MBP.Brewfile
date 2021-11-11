@@ -7,9 +7,6 @@ cask firefox-developer-edition
 tap homebrew/cask
 cask mactex
 cask osxfuse
-cask vagrant
-cask virtualbox
-cask virtualbox-extension-pack
 cask wireshark
 
 # Other Homebrew packages

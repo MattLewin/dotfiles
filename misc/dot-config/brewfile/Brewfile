@@ -30,7 +30,9 @@ brew carthage
 brew cataclysm
 brew ceres-solver
 brew chisel
+brew cjson
 brew cmake
+brew cmocka
 brew coreutils
 brew cscope
 brew curl
@@ -97,6 +99,7 @@ brew greed
 brew gsasl
 brew gtk+
 brew gts
+brew guile
 brew h2
 brew harfbuzz
 brew hdf5
@@ -118,11 +121,13 @@ brew jasper
 brew jbig2dec
 brew jemalloc
 brew jpeg
+brew jpeg-xl
 brew jq
 brew jruby
 brew json-c
 brew jsoncpp
 brew kotlin
+brew krb5
 brew ktlint
 brew lame
 brew lazygit
@@ -157,6 +162,7 @@ brew libpq
 brew libproxy
 brew libpthread-stubs
 brew libressl
+brew librist
 brew librsvg
 brew libsamplerate
 brew libsmi
@@ -173,6 +179,7 @@ brew libusb
 brew libusb-compat
 brew libuv
 brew libvidstab
+brew libvmaf
 brew libvorbis
 brew libvpx
 brew libx11
@@ -198,7 +205,9 @@ brew mailutils
 brew make
 brew mas
 brew maven
+brew mbedtls
 brew mcrypt
+brew md4c
 brew metis
 brew mhash
 brew mockserver
@@ -282,6 +291,7 @@ brew speedtest-cli
 brew speex
 brew sphinx-doc
 brew sqlite
+brew srt
 brew suite-sparse
 brew swift-protobuf
 brew swiftformat
@@ -334,6 +344,7 @@ brew zimg
 brew zlib
 brew zsh
 brew zsh-completions
+brew zstd
 
 tap homebrew/bundle
 
@@ -353,6 +364,7 @@ cask macdown
 cask miniconda
 cask ngrok
 cask notion
+cask postman
 cask temurin
 cask visual-studio-code
 cask wwdc
@@ -381,11 +393,12 @@ brew speedtest
 
 # Other Cask applications
 cask font-fira-code
-cask font-fira-code-nerd-font
+cask font-firacode-nerd-font
 cask font-hack-nerd-font
 cask font-monoid-nerd-font
 cask font-mononoki-nerd-font
 cask font-powerline-symbols
+cask lunchy
 
 # Additional files
 file $HOSTNAME.Brewfile
