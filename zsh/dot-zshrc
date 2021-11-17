@@ -222,6 +222,7 @@ done
 typeset -A associated_plugins
 associated_plugins+=(
     base64 encode64
+    code vscode
     fortune chucknorris
     fzf zsh-interactive-cd
     go golang
