@@ -19,6 +19,7 @@ done
 prepend_paths=(
     "${HOME}/swift/usr/bin"
     "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
+    "${BREW_PREFIX}/opt/python/libexec/bin"
 )
 
 for new_path in "${prepend_paths[@]}"
