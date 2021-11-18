@@ -316,6 +316,10 @@ if (($plugins[(Ie)zsh-autosuggestions])); then
     ZSH_AUTOSUGGEST_USE_ASYNC=true
 fi
 
+if (($plugins[(Ie)nvm])); then
+    NVM_AUTOLOAD=1      # load the version of node specified in ./.nvmrc
+fi
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
