@@ -107,6 +107,7 @@ brew hicolor-icon-theme
 brew hidapi
 brew highlight
 brew htop
+brew httpd
 brew httpie
 brew hub
 brew hunspell
@@ -250,6 +251,7 @@ brew pinentry
 brew pinfo
 brew pixman
 brew pkg-config
+brew plantuml
 brew postgresql
 brew protobuf
 brew pstree
@@ -259,6 +261,7 @@ brew pylint
 brew pyqt
 brew pyqt@5
 brew python@3.10
+brew python@3.7
 brew python@3.8
 brew python@3.9
 brew qrencode
@@ -292,6 +295,7 @@ brew speex
 brew sphinx-doc
 brew sqlite
 brew srt
+brew stow
 brew suite-sparse
 brew swift-protobuf
 brew swiftformat
