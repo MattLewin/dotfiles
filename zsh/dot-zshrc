@@ -171,6 +171,7 @@ binary_plugins=(
     brew
     bundler
     docker
+    docker-compose
     fzf
     gcloud
     gem
