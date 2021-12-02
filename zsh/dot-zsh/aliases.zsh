@@ -373,11 +373,11 @@ if ( whence fortune NUL && whence cowsay NUL ); then
     cowrandom
 fi
 
-unalias gl
+alias gl NUL && unalias gl
 
 #
 # 'brew --prefix golang' is very slow, so let's only do it if/when we use go
-# 
+#
 if [ ${commands[go]} ]; then
     function go() {
         test -d "$HOME/.go" && export GOPATH="$HOME/.go"

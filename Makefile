@@ -1,22 +1,41 @@
-INSTALL_SCRIPTS_DIR=install_scripts
 STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
+INSTALL_SCRIPTS_DIR=install_scripts
+ALL=oh-my-zsh homebrew-file dotfiles launch-agents tex
 
-all: oh-my-zsh homebrew-file stow dotfiles launch-agents tex
+STOW := $(or $(shell command -v stow), stow)
+UNAME := $(shell uname)
 
-dotfiles:
+.PHONY: $(ALL)
+
+all: $(ALL)
+
+dotfiles: | $(STOW)
+	@echo --- Creating dot files ---
 	stow --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
 
 homebrew-file:
-	$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh
+	@echo --- Installing Homebrew and homebrew-file ---
+	@$(INSTALL_SCRIPTS_DIR)/install-homebrew-file.sh
 
 launch-agents:
-	${INSTALL_SCRIPTS_DIR}/install-launch-agents.sh
+	@echo --- Installing custom launch agents ---
+	@${INSTALL_SCRIPTS_DIR}/install-launch-agents.sh
 
 oh-my-zsh:
-	$(INSTALL_SCRIPTS_DIR)/install-oh-my-zsh.sh
-
-stow:
-	$(INSTALL_SCRIPTS_DIR)/install-stow.sh
+	@echo --- Installing Oh My Zsh ---
+	@$(INSTALL_SCRIPTS_DIR)/install-oh-my-zsh.sh
 
 tex:
-	$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
+	@echo --- Installing custom LaTex paths ---
+	@$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
+
+stow:
+	@echo --- Installing stow ---
+ifeq ($(UNAME), Darwin)
+	brew install stow
+else ifeq ($(UNAME), Linux)
+	sudo apt-get install stow
+else
+	$(error Can't install stow, because WTF O.S. are you on?)
+endif
+

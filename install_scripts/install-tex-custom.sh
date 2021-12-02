@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+echo "We are no longer installing LaTex"
+exit 0
+
 set -o errexit
 set -o nounset
 

@@ -1,13 +1,11 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 set -o errexit
 set -o nounset
 
 AGENTS_DIR="$(pwd)/launch_agents"
 LIBRARY_LAUNCHAGENTS="${HOME}/Library/LaunchAgents"
 
-echo "Installing launch agents"
-
-for fq_agent in "${AGENTS_DIR}"/*.plist
+for fq_agent in "${AGENTS_DIR}/*.plist"(N.)
 do
     agent="$(basename -s .plist ${fq_agent})"
     echo "Installing launch agent: ${fq_agent}"
