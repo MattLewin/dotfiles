@@ -1,12 +1,3 @@
-if command -v brew >/dev/null 2>&1
-then
-    BREW_PREFIX="$(brew --prefix)"
-elif [ -d "/usr/local/Homebrew" ]
-then
-    BREW_PREFIX="/usr/local"
-elif [ -d "/opt/homebrew" ]
-then
-    BREW_PREFIX="/opt/homebrew"
-fi
-
-test -n "${BREW_PREFIX}" && eval "$( ${BREW_PREFIX}/bin/brew shellenv)"
+#
+# NOTE: .zprofile is run *before* .zshrc on all login shells.
+#
