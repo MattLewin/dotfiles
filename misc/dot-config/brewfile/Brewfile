@@ -353,6 +353,14 @@ brew zstd
 
 tap homebrew/bundle
 
+tap homebrew/cask-fonts
+cask font-fira-code
+cask font-fira-code-nerd-font
+cask font-hack-nerd-font
+cask font-monoid-nerd-font
+cask font-mononoki-nerd-font
+cask font-powerline-symbols
+
 tap homebrew/cask-versions
 cask temurin8
 
@@ -383,6 +391,8 @@ brew ether
 tap github/gh
 
 tap heroku/brew
+brew heroku
+brew heroku-node
 
 tap ibm-swift/kitura
 brew kitura
@@ -397,24 +407,7 @@ tap teamookla/speedtest
 brew speedtest
 
 # Other Cask applications
-cask font-fira-code
-cask font-fira-code-nerd-font
-cask font-hack-nerd-font
-cask font-monoid-nerd-font
-cask font-mononoki-nerd-font
-cask font-powerline-symbols
-
-# App Store applications
-appstore 1333542190  1Password 7  (7.9.1)
-appstore 640199958   Developer    (9.3.1)
-appstore 682658836   GarageBand   (10.4.4)
-appstore 408981434   iMovie       (10.3.1)
-appstore 409183694   Keynote      (11.2)
-appstore 409203825   Numbers      (11.2)
-appstore 409201541   Pages        (11.2)
-appstore 803453959   Slack        (4.22.1)
-appstore 899247664   TestFlight   (3.2.1)
-appstore 497799835   Xcode        (13.1)
+cask lunchy
 
 # Additional files
 file $HOSTNAME.Brewfile
