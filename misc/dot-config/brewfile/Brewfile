@@ -404,10 +404,6 @@ tap rcmdnk/file
 brew brew-file
 
 tap teamookla/speedtest
-brew speedtest
-
-# Other Cask applications
-cask lunchy
 
 # Additional files
 file $HOSTNAME.Brewfile
