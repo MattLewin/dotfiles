@@ -4,19 +4,3 @@
 if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
     source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 fi
-
-if [[ -n "${HOMEBREW_PREFIX}" ]]; then
-    BREW_PREFIX="${HOMEBREW_PREFIX}"
-else
-    if command -v brew >/dev/null 2>&1; then
-        BREW_PREFIX="$(brew --prefix)"
-    elif [ -d "/usr/local/Homebrew" ]; then
-        BREW_PREFIX="/usr/local"
-    elif [ -d "/opt/homebrew" ]; then
-        BREW_PREFIX="/opt/homebrew"
-    fi
-fi
-
-if [[ -n "${BREW_PREFIX}" ]]; then
-    eval "$(${BREW_PREFIX}/bin/brew shellenv)"
-fi
