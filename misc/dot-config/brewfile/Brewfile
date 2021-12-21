@@ -103,6 +103,7 @@ brew guile
 brew h2
 brew harfbuzz
 brew hdf5
+brew helm
 brew hicolor-icon-theme
 brew hidapi
 brew highlight
@@ -130,6 +131,7 @@ brew jsoncpp
 brew kotlin
 brew krb5
 brew ktlint
+brew kubernetes-cli
 brew lame
 brew lazygit
 brew leptonica
@@ -211,6 +213,7 @@ brew mcrypt
 brew md4c
 brew metis
 brew mhash
+brew minikube
 brew mockserver
 brew mosh
 brew mpdecimal
