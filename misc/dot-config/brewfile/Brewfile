@@ -10,6 +10,7 @@ brew apr
 brew apr-util
 brew argon2
 brew asciidoc
+brew asdf
 brew aspell
 brew assimp
 brew atk
