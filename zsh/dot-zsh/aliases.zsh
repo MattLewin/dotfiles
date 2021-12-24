@@ -4,9 +4,11 @@
 #
 alias agrep='alias | grep'
 alias dirs='builtin dirs -v'
+alias dirsc='builtin dirs -c'
 alias gcue='git config user.email'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
+alias gitchanged='git fetch --all && git diff ...origin'
 alias gitignored='git ls-files --others -i --exclude-standard'
 alias hgrep='fc -il 0 | grep'
 # shellcheck disable=SC2142
