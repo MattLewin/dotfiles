@@ -403,6 +403,9 @@ if [ -d "${BREW_PREFIX}/anaconda3/" ]; then
         unset __conda_setup
         unfunction conda_init
     }
+
+    # I was lazy loading conda, but it's annoying with direnv and my shell is slow to load anyway, so...
+    conda_init
 fi
 
 source $ZSH/oh-my-zsh.sh
