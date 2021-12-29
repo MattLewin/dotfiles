@@ -147,7 +147,6 @@ plugins=(
     genpass
     git
     git-auto-fetch
-    git-flow-avh
     gitignore
     history
     jsontools
@@ -295,6 +294,20 @@ esac
 
 # Add 'thefuck' plugin only if we are using better than python3.4
 [ ${commands[thefuck]} ] && [ ${commands[python3]} ] && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
+
+# Include plugins if their corresponding homebrew keg or cask is installed
+homebrew_plugins=(
+    git-flow
+    git-flow-avh
+)
+
+for homebrew_plugin in "${homebrew_plugins[@]}"
+do
+    if brew ls --versions "${homebrew_plugin}" >/dev/null 2>&1
+    then
+        plugins+=(${homebrew_plugin})
+    fi
+done
 
 #
 # Grab the custom plugins using:
