@@ -300,6 +300,7 @@ brew speex
 brew sphinx-doc
 brew sqlite
 brew srt
+brew starship
 brew stow
 brew suite-sparse
 brew swift-protobuf
