@@ -254,9 +254,9 @@ case "$OS" in
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
         # are never upgraded. Below, we link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
-        if command -v ruby-build >/dev/null 2>&1 && brew --prefix openssl@1.1 >/dev/null 2>&1
+        if command -v ruby-build >/dev/null 2>&1 && [ -e "${BREW_PREFIX}/opt/openssl@1.1" ]
         then
-            export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+            export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
         fi
 
         for app plugin in ${(kv)macOS_app_plugins}
@@ -265,7 +265,7 @@ case "$OS" in
             [ -d "~/Applications/${app}.app" ] && plugins+=( ${plugin} )
         done
 
-        HB_CNF_HANDLER="$(brew --prefix)/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
+        HB_CNF_HANDLER="${BREW_PREFIX}/Homebrew/Library/Taps/homebrew/homebrew-command-not-found/handler.sh"
         if [ -f "$HB_CNF_HANDLER" ]; then
             source "$HB_CNF_HANDLER";
             plugins+=(command-not-found)
@@ -303,7 +303,7 @@ homebrew_plugins=(
 
 for homebrew_plugin in "${homebrew_plugins[@]}"
 do
-    if brew ls --versions "${homebrew_plugin}" >/dev/null 2>&1
+    if [ -d "${BREW_PREFIX}/opt/${homebrew_plugin}" ] || [ -d "${BREW_PREFIX}/Caskroom/${homebrew_plugin}" ]
     then
         plugins+=(${homebrew_plugin})
     fi
@@ -429,8 +429,8 @@ done
 remove_duplicate_paths
 
 # ML: 2019-06-29: use homebrew-file
-if ( [ ${commands[brew]} ] ) && [ -f $(brew --prefix)/etc/brew-wrap ];then
-  source $(brew --prefix)/etc/brew-wrap
+if ( [ ${commands[brew]} ] ) && [ -f ${BREW_PREFIX}/etc/brew-wrap ];then
+  source ${BREW_PREFIX}/etc/brew-wrap
 fi
 
 [ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
