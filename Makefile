@@ -1,6 +1,6 @@
 STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
 INSTALL_SCRIPTS_DIR=install_scripts
-ALL=oh-my-zsh homebrew-file dotfiles launch-agents tex rust
+ALL=oh-my-zsh homebrew-file dotfiles rust launch-agents tex
 
 STOW := $(or $(shell command -v stow), stow)
 UNAME := $(shell uname)
@@ -25,9 +25,9 @@ oh-my-zsh:
 	@echo --- Installing Oh My Zsh ---
 	@$(INSTALL_SCRIPTS_DIR)/install-oh-my-zsh.sh
 
-tex:
-	@echo --- Installing custom LaTex paths ---
-	@$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
+rust:
+	@echo --- Installing Rust ---
+	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --quiet -y --no-modify-path >/dev/null 2>&1
 
 stow:
 	@echo --- Installing stow ---
@@ -39,6 +39,6 @@ else
 	$(error Can't install stow, because WTF O.S. are you on?)
 endif
 
-rust:
-	@echo --- Installing Rust ---
-	@curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- --quiet -y --no-modify-path >/dev/null 2>&1
+tex:
+	@echo --- Installing custom LaTex paths ---
+	@$(INSTALL_SCRIPTS_DIR)/install-tex-custom.sh
