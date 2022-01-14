@@ -30,7 +30,7 @@ else
 
     case "$OSTYPE" in
         darwin*)
-            OS="mac"
+            OS="darwin"
             ;;
 
         linux*)
@@ -250,7 +250,7 @@ macOS_app_plugins+=(
 
 # ML: 2018-08-09: Add OS and distribution-specific plugins
 case "$OS" in
-    mac)
+    darwin)
         plugins+=(dash iterm2 macos)
         export SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
 

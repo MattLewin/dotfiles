@@ -1,30 +1,27 @@
-#!/bin/bash
-
-lowercase() {
-    echo "$1" | sed "y/ABCDEFGHIJKLMNOPQRSTUVWXYZ/abcdefghijklmnopqrstuvwxyz/"
-}
+#!/usr/bin/env zsh
 
 ####################################################################
 # Get System Info
 ####################################################################
 _getsysteminfo() {
-    OS=$(lowercase "$(uname)")
-    KERNEL=$(uname -r)
-    MACH=$(uname -m)
+    # typeset -l forces the envionment variable to be lowercase
+    typeset -xl OS=$(uname -s) # operating system name (NOTE: the -x is required or it will not export later)
+    KERNEL=$(uname -r) # operating system kernel version
+    MACH=$(uname -m) # machine hardware name
+    ARCH=$(uname -p 2>/dev/null || uname -m) # processor type or machine hardware name, if uname -p is unavailable
 
     if [ "${OS}" = "windowsnt" ]; then
         OS=windows
     elif [ "${OS}" = "darwin" ]; then
-        OS=mac
+        OS_STR=$(uname -v) # operating system version string
     else
         OS=$(uname)
-        if [ "${OS}" = "SunOS" ]; then
-            OS=Solaris
-            ARCH=$(uname -p)
-            OSSTR="${OS} (${ARCH} $(uname -v))"
-        elif [ "${OS}" = "AIX" ]; then
-            OSSTR="${OS} $(oslevel) ($(oslevel -r))"
-        elif [ "${OS}" = "Linux" ]; then
+        if [ "${OS}" = "sunos" ]; then
+            OS=solaris
+            OS_STR="${OS} (${ARCH} $(uname -v))"
+        elif [ "${OS}" = "aix" ]; then
+            OS_STR="${OS} $(oslevel) ($(oslevel -r))"
+        elif [ "${OS}" = "linux" ]; then
             if [ -f /etc/redhat-release ]; then
                 DistroBasedOn='RedHat'
                 DIST=$(cat /etc/redhat-release | sed 's/\ release.*//')
@@ -49,11 +46,12 @@ _getsysteminfo() {
             if [ -f /etc/UnitedLinux-release ]; then
                 DIST="${DIST}[$(cat /etc/UnitedLinux-release | tr "\n" ' ' | sed 's/VERSION.*//')]"
             fi
-
         fi
     fi
 
-    declare -xlr ARCH DIST DistroBasedOn KERNEL MACH OS OSSTR PSEUDONAME REV
+    # `typeset -gxlr` exports the variables as read-only and lowercase in the global context
+    typeset -gxlr ARCH DIST DistroBasedOn KERNEL MACH OS PSEUDONAME REV
+    typeset -gxr OS_STR # We want to preserve the case of the OS string
 }
 
 _getsysteminfo
