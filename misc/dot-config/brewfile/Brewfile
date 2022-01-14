@@ -282,7 +282,6 @@ brew rubberband
 brew ruby
 brew ruby-build
 brew ruby@2.7
-brew rust
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
