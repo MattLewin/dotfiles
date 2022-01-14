@@ -137,6 +137,7 @@ brew lame
 brew lazygit
 brew leptonica
 brew libao
+brew libarchive
 brew libass
 brew libassuan
 brew libb2
