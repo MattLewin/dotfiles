@@ -45,16 +45,8 @@ else
     declare -xlr KERNEL MACH OS
 fi
 
-# Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
-
 export EDITOR="vim"
-
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-#DISABLE_UPDATE_PROMPT=true
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -75,7 +67,7 @@ export EDITOR="vim"
 # DISABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -104,12 +96,8 @@ do
 done
 
 test "${commands[brew]}" && BREW_PREFIX="$(${commands[brew]} --prefix)"
-#
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+
+# Setup theme
 if [ -e "${BREW_PREFIX}/opt/starship" ]; then
     USE_STARSHIP="true"
 elif [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
