@@ -28,6 +28,7 @@ alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
+alias plugins='print -c ${(o)plugins}' # Output alphabetized plugins list
 alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias stat='zstat -s'
 
@@ -179,15 +180,6 @@ function ls-absolute() {
             /bin/ls -d -1 "${PWD}"/"${fn}"
         done
     fi
-}
-
-
-# Output alphabetized plugins list
-function plugins() {
-    OLD_IFS=$IFS
-    IFS=$'\n'
-    print -c ${(o)plugins} # display sorted plugin list in columns
-    IFS=$OLD_IFS
 }
 
 # Colorize certain commands with grc
