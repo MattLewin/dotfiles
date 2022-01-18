@@ -180,8 +180,10 @@ binary_plugins=(
     gh
     gradle
     grc
+    helm
     heroku
     jfrog
+    kubectl
     mosh
     mvn
     nmap
