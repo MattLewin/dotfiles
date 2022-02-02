@@ -202,9 +202,6 @@ do
     source "${DOT_ZSH}/${file}"
 done
 
-# paths.zsh defines the function below
-remove_duplicate_paths
-
 # ML: 2019-06-29: use homebrew-file
 if ( [ ${commands[brew]} ] ) && [ -f ${BREW_PREFIX}/etc/brew-wrap ];then
   source ${BREW_PREFIX}/etc/brew-wrap
@@ -212,8 +209,8 @@ fi
 
 [ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
 
-# setup the OCaml package manager
-test -r ${HOME}/.opam/opam-init/init.zsh && . ${HOME}/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# paths.zsh defines the function below
+remove_duplicate_paths
 
 if ${USE_STARSHIP}; then
     unset USE_STARSHIP

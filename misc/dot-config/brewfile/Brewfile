@@ -10,7 +10,6 @@ brew apr
 brew apr-util
 brew argon2
 brew asciidoc
-brew asdf
 brew aspell
 brew assimp
 brew atk
@@ -142,11 +141,13 @@ brew libass
 brew libassuan
 brew libb2
 brew libbluray
+brew libcbor
 brew libcroco
 brew libde265
 brew libev
 brew libevent
 brew libffi
+brew libfido2
 brew libgcrypt
 brew libgpg-error
 brew libheif
@@ -395,17 +396,9 @@ tap cowsay-org/cowsay
 tap ether-cli/tap
 brew ether
 
-tap github/gh
-
 tap heroku/brew
 brew heroku
 brew heroku-node
-
-tap ibm-swift/kitura
-brew kitura
-
-tap kylef/formulae
-brew swiftenv
 
 tap rcmdnk/file
 brew brew-file

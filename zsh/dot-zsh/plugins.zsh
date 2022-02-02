@@ -63,7 +63,6 @@ binary_plugins=(
     python
     rbenv
     ruby
-    swiftenv
     terraform
     tmux
     vagrant
@@ -121,7 +120,11 @@ macOS_app_plugins+=(
 case "$OS" in
     darwin)
         plugins+=(dash iterm2 macos)
-        export SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
+        if [ ${commands[swiftenv]} ]
+        then
+            plugins+=(swiftenv)
+            declare -xr SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
+        fi
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
         # are never upgraded. Below, we link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)

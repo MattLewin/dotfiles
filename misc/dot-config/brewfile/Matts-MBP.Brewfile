@@ -16,7 +16,6 @@ brew gdb
 brew gpatch
 brew luarocks
 brew nethack
-brew ocaml
 brew opam
 brew opencv
 brew pass
