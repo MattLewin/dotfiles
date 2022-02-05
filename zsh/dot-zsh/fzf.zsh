@@ -37,7 +37,7 @@ then
         fzf --ansi --reverse
     }
 
-    unalias path
+    unalias path NUL
     function path() {
         list=$(echo $PATH |
             tr : '\n' |

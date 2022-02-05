@@ -110,7 +110,16 @@ else
     PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
 fi
 
-source "${DOT_ZSH}/plugins.zsh" # we shall just assume this file exists and works
+source_before_omz=(
+    # NOTE: order matters here
+    paths.zsh
+    plugins.zsh
+)
+
+for file in "${source_before_omz[@]}"
+do
+    source "${DOT_ZSH}/${file}"
+done
 
 # User configuration
 
@@ -187,17 +196,16 @@ fi
 
 source $ZSH/oh-my-zsh.sh
 
-
 ######## source oh-my-zsh above here #######
 #
 # ML: 2019-06-29
-to_be_sourced=(
-    paths.zsh
+source_after_omz=(
+    # NOTE: order matters here
     aliases.zsh
     variables.zsh
 )
 
-for file in "${to_be_sourced[@]}"
+for file in "${source_after_omz[@]}"
 do
     source "${DOT_ZSH}/${file}"
 done
