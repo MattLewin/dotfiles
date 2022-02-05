@@ -18,7 +18,7 @@ function cmd() {
     # Only use `man {}` for preview since using `{} -h` may result in invoking the command
 }
 
-if whence ack NUL
+if [ ${commands[ack]} ]
 then
     function brewlist() {
       result=$(brew list --versions |
@@ -39,15 +39,13 @@ then
 
     unalias path NUL
     function path() {
-        list=$(echo $PATH |
-            tr : '\n' |
-            ack --color --color-match=bright_blue '[/]')
+        local list=$(print -rl -- ${(s/:/)PATH} | ack --color --color-match=bright_blue '[/]')
 
-        if whence fzf >/dev/null 2>&1; then
-            $(echo "$list" |
+        if [ ${commands[fzf]} ]; then
+            $(print "$list" |
                 fzf --ansi --no-sort --reverse --cycle --height=90%)
         else
-            echo "$list"
+            print "$list"
         fi
     }
 

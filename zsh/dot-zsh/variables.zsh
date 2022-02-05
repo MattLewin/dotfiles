@@ -1,14 +1,13 @@
-# ML: 2014-11-20
+
+export LESS="--tabs=4 -RFX" # tab breaks of size 4, output ANSI codes, don't clear screen
+
 # To tell 'xmllint' where to find AsciiDoc's catalog files, I (apparently) have to do the following...
 test -d "${BREW_PREFIX}/etc/xml/catalog" && export XML_CATALOG_FILES="${BREW_PREFIX}/etc/xml/catalog"
 
-# ML: 2015-11-10
 # Use a token to authenticate against GitHub when using Homebrew to avoid rate limiting
 test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
 
-# ML: 2015-11-29
-# Set 'ls' to display size in KB rather than 512-byte blocks
-export BLOCKSIZE=1024
+export BLOCKSIZE=1024 # Set 'ls' to display size in KB rather than 512-byte blocks
 
 # ML: 2017-05-31
 test -d "${BREW_PREFIX}/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:${BREW_PREFIX}/opt/erlang/lib/erlang/man

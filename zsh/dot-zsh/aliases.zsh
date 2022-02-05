@@ -75,12 +75,12 @@ if is-at-least 4.2.0; then
     alias -s tar="tar tf"
 
     # display markdown files
-    if whence pandoc NUL; then
-        PANDOC_BIN="$(whence pandoc)"
-        if whence w3m NUL; then
+    if [ ${commands[pandoc]} ]; then
+        PANDOC_BIN="${commands[pandoc]}"
+        if [ ${commands[w3m]} ]; then
             TEXT_BROWSER='w3m -T text/html'
             PANDOC_CMD="${PANDOC_BIN}"
-        elif whence lynx NUL; then
+        elif [ ${commands[lynx]} ]; then
             TEXT_BROWSER='lynx -stdin'
             PANDOC_CMD="${PANDOC_BIN}"
         elif [[ -n "${PAGER}" ]]; then
@@ -108,12 +108,12 @@ fi
 #
 # If fzf is installed, load all related aliases and functions
 #
-whence fzf NUL && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
+[ ${commands[fzf]} ] && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
 
 #
 # Conditional aliases
 #
-if whence -p fd NUL; then
+if [ ${commands[fd]} ]; then
     alias find='fd --no-ignore'
     alias find.d='fd --no-ignore --type directory'
     alias find.f='fd --no-ignore --type file'
@@ -122,14 +122,12 @@ else
     alias find.f='find . -type f -name'
 fi
 
-whence -p howdoi NUL && alias howdoi="$(whence -p howdoi) -c -n 3"
-whence htop NUL && alias top="$(whence htop)"
+[ ${commands[howdoi]} ] && alias howdoi="${commands[howdoi]} -c -n 3"
+[ ${commands[htop]} ] && alias top="${commands[htop]}"
 
-if whence -p python3 NUL; then
-    alias python='python3'
-fi
+[ ${commands[python3]} ] && alias python="${commands[python3]}"
 
-if whence task NUL; then
+if [ ${commands[task]} ]; then
     alias tchome='task context home'
     alias tcnone='task context none'
     alias tcwork='task context work'
@@ -159,7 +157,7 @@ function man-preview-all() {
     fi
 }
 
-if whence lazygit NUL
+if [ ${commands[lazygit]} ]
 then
     function lg()
     {
@@ -359,7 +357,7 @@ case "$OS" in
     *) # No idea what platorm we are on
 esac
 
-if ( whence fortune NUL && whence cowsay NUL ); then
+if ( [ ${commands[fortune]} ] && [ ${commands[cowsay]} ] ); then
     COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
 
     function cowrandom() {
@@ -371,7 +369,10 @@ if ( whence fortune NUL && whence cowsay NUL ); then
     cowrandom
 fi
 
-alias gl NUL && unalias gl
+#
+# Remove aliases I don't want to use
+#
+unalias gl NUL # Unalias 'git pull' from git plugin
 
 #
 # 'brew --prefix golang' is very slow, so let's only do it if/when we use go
