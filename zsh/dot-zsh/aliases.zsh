@@ -122,7 +122,7 @@ else
     alias find.f='find . -type f -name'
 fi
 
-whence howdoi NUL && alias howdoi="$(whence howdoi) -c -n 3"
+whence -p howdoi NUL && alias howdoi="$(whence -p howdoi) -c -n 3"
 whence htop NUL && alias top="$(whence htop)"
 
 if whence -p python3 NUL; then
