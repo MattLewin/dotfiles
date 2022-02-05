@@ -125,6 +125,10 @@ fi
 whence howdoi NUL && alias howdoi="$(whence howdoi) -c -n 3"
 whence htop NUL && alias top="$(whence htop)"
 
+if whence -p python3 NUL; then
+    alias python='python3'
+fi
+
 if whence task NUL; then
     alias tchome='task context home'
     alias tcnone='task context none'
