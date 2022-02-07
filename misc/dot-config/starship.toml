@@ -1,0 +1,5 @@
+[gcloud]
+symbol = "g☁️  "
+
+[username]
+format = "[$user]($style) on "
