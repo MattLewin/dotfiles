@@ -128,6 +128,7 @@ brew jq
 brew jruby
 brew json-c
 brew jsoncpp
+brew juju
 brew kotlin
 brew krb5
 brew ktlint
@@ -383,6 +384,7 @@ cask graphiql
 cask iterm2
 cask macdown
 cask miniconda
+cask multipass
 cask ngrok
 cask notion
 cask postman

@@ -50,7 +50,9 @@ binary_plugins=(
     helm
     heroku
     jfrog
+    juju
     kubectl
+    multipass
     mosh
     mvn
     nmap
