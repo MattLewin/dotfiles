@@ -50,8 +50,11 @@ brew eigen
 brew exercism
 brew exiftool
 brew fastlane
+brew fb303
+brew fbthrift
 brew fd
 brew ffmpeg
+brew fizz
 brew flac
 brew fmt
 brew folly
@@ -338,6 +341,7 @@ brew virtualenv
 brew virtualenvwrapper
 brew vtk
 brew w3m
+brew wangle
 brew watch
 brew watchman
 brew webp
