@@ -327,7 +327,6 @@ brew theora
 brew tidy-html5
 brew tinyproxy
 brew tmux
-brew trash
 brew tree
 brew ttfautohint
 brew ttyrec
@@ -413,4 +412,5 @@ tap teamookla/speedtest
 
 # Additional files
 file $HOSTNAME.Brewfile
+file Brewfile.$PLATFORM
 file Brewfile.$PLATFORM.$HOSTTYPE
