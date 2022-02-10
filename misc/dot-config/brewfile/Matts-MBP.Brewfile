@@ -4,10 +4,6 @@
 tap homebrew/cask-versions
 cask firefox-developer-edition
 
-tap homebrew/cask
-cask mactex
-cask wireshark
-
 # Other Homebrew packages
 brew angband
 brew elixir
@@ -26,3 +22,4 @@ brew redis
 brew slashem
 brew terraform
 brew terraform-docs
+brew unnethack

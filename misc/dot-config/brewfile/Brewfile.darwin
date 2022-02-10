@@ -1,1 +1,27 @@
+brew carthage
+brew chisel
+brew libiconv
+brew lunchy
+brew macos-term-size
 brew macos-trash
+brew mas
+brew qt@5
+brew sourcekitten
+brew swiftformat
+brew swiftlint
+brew telnet
+brew terminal-notifier
+brew xcodegen
+
+tap homebrew/cask
+cask docker
+cask graphiql
+cask iterm2
+cask mactex
+cask multipass
+cask notion
+cask postman
+cask visual-studio-code
+cask wireshark
+cask wwdc
+cask zenmap

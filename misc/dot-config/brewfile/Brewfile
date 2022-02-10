@@ -26,10 +26,8 @@ brew brotli
 brew c-ares
 brew ca-certificates
 brew cairo
-brew carthage
 brew cataclysm
 brew ceres-solver
-brew chisel
 brew cjson
 brew cmake
 brew cmocka
@@ -155,7 +153,6 @@ brew libfido2
 brew libgcrypt
 brew libgpg-error
 brew libheif
-brew libiconv
 brew libidn
 brew libidn2
 brew libksba
@@ -205,15 +202,12 @@ brew libzip
 brew little-cms2
 brew llvm
 brew lua
-brew lunchy
 brew lz4
 brew lzo
 brew m4
-brew macos-term-size
 brew mad
 brew mailutils
 brew make
-brew mas
 brew maven
 brew mbedtls
 brew mcrypt
@@ -276,7 +270,6 @@ brew python@3.8
 brew python@3.9
 brew qrencode
 brew qt
-brew qt@5
 brew rav1e
 brew rbenv
 brew readline
@@ -298,7 +291,6 @@ brew sip
 brew six
 brew snappy
 brew source-highlight
-brew sourcekitten
 brew sox
 brew speedtest-cli
 brew speex
@@ -309,8 +301,6 @@ brew starship
 brew stow
 brew suite-sparse
 brew swift-protobuf
-brew swiftformat
-brew swiftlint
 brew swig
 brew szip
 brew task
@@ -318,8 +308,6 @@ brew tasksh
 brew tbb
 brew tcl-tk
 brew tcptrace
-brew telnet
-brew terminal-notifier
 brew tesseract
 brew the_silver_searcher
 brew thefuck
@@ -332,7 +320,6 @@ brew ttfautohint
 brew ttyrec
 brew unbound
 brew unixodbc
-brew unnethack
 brew utf8cpp
 brew utf8proc
 brew vim
@@ -348,7 +335,6 @@ brew wget
 brew wxwidgets
 brew x264
 brew x265
-brew xcodegen
 brew xmlto
 brew xorgproto
 brew xvid
@@ -382,19 +368,9 @@ tap homebrew/services
 
 tap homebrew/cask
 cask anaconda
-cask docker
-cask graphiql
-cask iterm2
-cask macdown
 cask miniconda
-cask multipass
 cask ngrok
-cask notion
-cask postman
 cask temurin
-cask visual-studio-code
-cask wwdc
-cask zenmap
 
 tap cowsay-org/cowsay
 
