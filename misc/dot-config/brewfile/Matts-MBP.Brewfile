@@ -17,7 +17,6 @@ brew gpatch
 brew luarocks
 brew nethack
 brew opam
-brew opencv
 brew pass
 brew php
 brew phpmyadmin
