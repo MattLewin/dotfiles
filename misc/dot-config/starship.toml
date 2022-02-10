@@ -1,5 +1,11 @@
 [gcloud]
 symbol = "g☁️  "
 
+[hostname]
+format = "[$hostname]($style) "
+
+[localip]
+format = "[\\($localipv4\\)]($style) in "
+
 [username]
 format = "[$user]($style) on "
