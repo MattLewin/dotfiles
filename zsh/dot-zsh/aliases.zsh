@@ -253,6 +253,11 @@ function git.io() {
     curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
 }
 
+# clone of the old DOS 'pause' command
+function pause() {
+    read -s -k "?Press any key to continue..."$'\n'
+}
+
 #
 # ML: 2019-07-15
 # A function to display the tmux window number
