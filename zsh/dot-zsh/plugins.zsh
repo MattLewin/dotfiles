@@ -7,8 +7,8 @@ plugins=(
     colored-man-pages
     colorize
     copybuffer
-    copydir
     copyfile
+    copypath
     dotenv
     emoji
     fasd
