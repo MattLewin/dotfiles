@@ -141,6 +141,7 @@ brew libao
 brew libarchive
 brew libass
 brew libassuan
+brew libavif
 brew libb2
 brew libbluray
 brew libcbor
@@ -159,6 +160,7 @@ brew libksba
 brew liblqr
 brew libmaxminddb
 brew libmetalink
+brew libmng
 brew libmodplug
 brew libmpc
 brew libnghttp2
