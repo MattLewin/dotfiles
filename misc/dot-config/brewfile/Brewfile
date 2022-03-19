@@ -80,8 +80,6 @@ brew git-imerge
 brew git-lfs
 brew git-quick-stats
 brew git-secret
-brew gl2ps
-brew glew
 brew glib
 brew glog
 brew gmp
@@ -127,7 +125,6 @@ brew jpeg-xl
 brew jq
 brew jruby
 brew json-c
-brew jsoncpp
 brew juju
 brew kotlin
 brew krb5
@@ -261,10 +258,8 @@ brew postgresql
 brew protobuf
 brew pstree
 brew pth
-brew pugixml
 brew pylint
 brew pyqt
-brew pyqt@5
 brew python@3.10
 brew python@3.8
 brew python@3.9
@@ -319,7 +314,6 @@ brew ttfautohint
 brew ttyrec
 brew unbound
 brew unixodbc
-brew utf8cpp
 brew utf8proc
 brew vim
 brew virtualenv

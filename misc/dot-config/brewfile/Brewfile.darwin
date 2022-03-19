@@ -21,7 +21,6 @@ brew lunchy
 brew macos-term-size
 brew macos-trash
 brew mas
-brew qt@5
 brew sourcekitten
 brew swiftformat
 brew swiftlint
