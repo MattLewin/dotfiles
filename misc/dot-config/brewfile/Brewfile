@@ -103,7 +103,6 @@ brew gts
 brew guile
 brew h2
 brew harfbuzz
-brew hdf5
 brew helm
 brew hicolor-icon-theme
 brew hidapi
@@ -226,7 +225,6 @@ brew msgpack-tools
 brew mtr
 brew mysql
 brew ncurses
-brew netcdf
 brew netpbm
 brew nettle
 brew nghttp2
@@ -304,7 +302,6 @@ brew stow
 brew suite-sparse
 brew swift-protobuf
 brew swig
-brew szip
 brew task
 brew tasksh
 brew tbb
@@ -327,7 +324,6 @@ brew utf8proc
 brew vim
 brew virtualenv
 brew virtualenvwrapper
-brew vtk
 brew w3m
 brew wangle
 brew watch
