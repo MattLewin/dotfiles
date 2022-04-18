@@ -14,9 +14,6 @@ brew luarocks
 brew nethack
 brew opam
 brew pass
-brew php
-brew phpmyadmin
-brew phpunit
 brew rebar3
 brew redis
 brew slashem

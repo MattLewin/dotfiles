@@ -166,6 +166,7 @@ brew libpng
 brew libpq
 brew libproxy
 brew libpthread-stubs
+brew libraw
 brew libressl
 brew librist
 brew librsvg
