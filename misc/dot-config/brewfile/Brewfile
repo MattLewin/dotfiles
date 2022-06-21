@@ -370,10 +370,6 @@ tap cowsay-org/cowsay
 tap ether-cli/tap
 brew ether
 
-tap heroku/brew
-brew heroku
-brew heroku-node
-
 tap rcmdnk/file
 brew brew-file
 
