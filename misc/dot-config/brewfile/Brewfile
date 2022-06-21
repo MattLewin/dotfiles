@@ -80,6 +80,8 @@ brew git-imerge
 brew git-lfs
 brew git-quick-stats
 brew git-secret
+brew gl2ps
+brew glew
 brew glib
 brew glog
 brew gmp
@@ -101,6 +103,7 @@ brew gts
 brew guile
 brew h2
 brew harfbuzz
+brew hdf5
 brew helm
 brew hicolor-icon-theme
 brew hidapi
@@ -125,6 +128,7 @@ brew jpeg-xl
 brew jq
 brew jruby
 brew json-c
+brew jsoncpp
 brew juju
 brew kotlin
 brew krb5
@@ -133,6 +137,7 @@ brew kubernetes-cli
 brew lame
 brew lazygit
 brew leptonica
+brew libaec
 brew libao
 brew libarchive
 brew libass
@@ -223,6 +228,7 @@ brew msgpack-tools
 brew mtr
 brew mysql
 brew ncurses
+brew netcdf
 brew netpbm
 brew nettle
 brew nghttp2
@@ -259,13 +265,16 @@ brew postgresql
 brew protobuf
 brew pstree
 brew pth
+brew pugixml
 brew pylint
 brew pyqt
+brew pyqt@5
 brew python@3.10
 brew python@3.8
 brew python@3.9
 brew qrencode
 brew qt
+brew qt@5
 brew rav1e
 brew rbenv
 brew readline
@@ -315,10 +324,12 @@ brew ttfautohint
 brew ttyrec
 brew unbound
 brew unixodbc
+brew utf8cpp
 brew utf8proc
 brew vim
 brew virtualenv
 brew virtualenvwrapper
+brew vtk
 brew w3m
 brew wangle
 brew watch
@@ -374,6 +385,9 @@ tap rcmdnk/file
 brew brew-file
 
 tap teamookla/speedtest
+
+# Other Homebrew packages
+brew szip
 
 # Additional files
 file $HOSTNAME.Brewfile
