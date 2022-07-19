@@ -18,7 +18,7 @@ function cmd() {
     # Only use `man {}` for preview since using `{} -h` may result in invoking the command
 }
 
-if [ ${commands[ack]} ]
+if ( [ ${commands[ack]} ] && [ "${BREW_PREFIX}" != "" ] )
 then
     function brewlist() {
       result=$(brew list --versions |

@@ -122,7 +122,7 @@ macOS_app_plugins+=(
 case "$OS" in
     darwin)
         plugins+=(dash iterm2 macos)
-        if [ ${commands[swiftenv]} ]
+        if ( [ ${commands[swiftenv]} ] && [ "${BREW_PREFIX}" != "" ] )
         then
             plugins+=(swiftenv)
             declare -xr SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
@@ -130,7 +130,7 @@ case "$OS" in
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
         # are never upgraded. Below, we link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
-        if command -v ruby-build >/dev/null 2>&1 && [ -e "${BREW_PREFIX}/opt/openssl@1.1" ]
+        if ( [ ${commands[ruby-build]} ] && [ -e "${BREW_PREFIX}/opt/openssl@1.1" ] )
         then
             export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
         fi

@@ -362,34 +362,36 @@ case "$OS" in
     *) # No idea what platorm we are on
 esac
 
-if ( [ ${commands[fortune]} ] && [ ${commands[cowsay]} ] ); then
-    COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
+if [ "${BREW_PREFIX}" != "" ]; then
+    if ( [ ${commands[fortune]} ] && [ ${commands[cowsay]} ] ); then
+        COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
 
-    function cowrandom() {
-        count=$( ls $(brew --prefix)/share/cowsay/cows/*.cow | wc -l )
-        RAND_COW=$(( $RANDOM % $count ))
-        fortune | cowsay -f ${COWS[$RAND_COW]}
-    }
+        function cowrandom() {
+            count=$( ls $(brew --prefix)/share/cowsay/cows/*.cow | wc -l )
+            RAND_COW=$(( $RANDOM % $count ))
+            fortune | cowsay -f ${COWS[$RAND_COW]}
+        }
 
-    cowrandom
+        cowrandom
+    fi
+
+    #
+    # 'brew --prefix golang' is very slow, so let's only do it if/when we use go
+    #
+    if [ ${commands[go]} ]; then
+        function go() {
+            test -d "$HOME/.go" && export GOPATH="$HOME/.go"
+            [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
+            unfunction go
+            ${commands[go]} $*
+        }
+    fi
 fi
 
 #
 # Remove aliases I don't want to use
 #
 unalias gl NUL # Unalias 'git pull' from git plugin
-
-#
-# 'brew --prefix golang' is very slow, so let's only do it if/when we use go
-#
-if [ ${commands[go]} ]; then
-    function go() {
-        test -d "$HOME/.go" && export GOPATH="$HOME/.go"
-        [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
-        unfunction go
-        ${commands[go]} $*
-    }
-fi
 
 #
 # TrueMotion Aliases

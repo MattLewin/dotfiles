@@ -1,7 +1,13 @@
-append_paths=(
-    "${HOME}/bin"
-    "${BREW_PREFIX}/bin"
-    "${BREW_PREFIX}/sbin"
+append_paths=()
+
+if [ "${BREW_PREFIX}" != "" ]; then
+    append_paths+=(
+        "${BREW_PREFIX}/bin"
+        "${BREW_PREFIX}/sbin"
+    )
+fi
+
+append_paths+=(
     /usr/local/bin
     /usr/local/sbin
     /sbin
@@ -17,6 +23,7 @@ do
 done
 
 prepend_paths=(
+    "${HOME}/bin"
     "${HOME}/swift/usr/bin"
     "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
 )
