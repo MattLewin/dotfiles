@@ -123,6 +123,7 @@ brew jasper
 brew jbig2dec
 brew jemalloc
 brew jpeg
+brew jpeg-turbo
 brew jpeg-xl
 brew jq
 brew jruby
@@ -384,9 +385,6 @@ tap rcmdnk/file
 brew brew-file
 
 tap teamookla/speedtest
-
-# Other Homebrew packages
-brew szip
 
 # Additional files
 file $HOSTNAME.Brewfile
