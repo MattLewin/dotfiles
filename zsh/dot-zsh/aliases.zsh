@@ -386,6 +386,8 @@ if [ "${BREW_PREFIX}" != "" ]; then
             ${commands[go]} $*
         }
     fi
+
+    alias brewoutdated='print -c $( brew outdated | cut -f1 -d" ")'
 fi
 
 #
