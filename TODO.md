@@ -5,3 +5,4 @@
 - similar to above, if a submodule checksum has been updated, trigger `git submodule update`
 - clone all submodules upon initial install instead of relying upon the cloner to do it
 - replace `brew file` with Homebrew's `brew bundle`
+- move AWS credentials and API tokens into secure GitHub storage?
