@@ -1,6 +1,6 @@
 STOW_PACKAGES=bash conda git lldb misc tmux vim zsh
 INSTALL_SCRIPTS_DIR=install_scripts
-ALL=oh-my-zsh homebrew-file dotfiles rust launch-agents tex
+ALL=oh-my-zsh homebrew-file dotfiles rust launch-agents
 
 STOW := $(or $(shell command -v stow), stow)
 UNAME := $(shell uname)
