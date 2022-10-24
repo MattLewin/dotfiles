@@ -40,9 +40,11 @@ brew direnv
 brew discount
 brew docbook
 brew docbook-xsl
+brew docutils
 brew dos2unix
 brew double-conversion
 brew doxygen
+brew edencommon
 brew eigen
 brew exercism
 brew exiftool
@@ -107,11 +109,13 @@ brew helm
 brew hicolor-icon-theme
 brew hidapi
 brew highlight
+brew highway
 brew htop
 brew httpd
 brew httpie
 brew hub
 brew hunspell
+brew hwloc
 brew icu4c
 brew imagemagick
 brew imath
@@ -158,6 +162,7 @@ brew libheif
 brew libidn
 brew libidn2
 brew libksba
+brew liblinear
 brew liblqr
 brew libmaxminddb
 brew libmetalink
@@ -206,6 +211,7 @@ brew libzip
 brew little-cms2
 brew llvm
 brew lua
+brew lua@5.3
 brew lz4
 brew lzo
 brew m4
@@ -244,6 +250,7 @@ brew opencore-amr
 brew openexr
 brew openjdk
 brew openjdk@11
+brew openjdk@17
 brew openjpeg
 brew openldap
 brew openssl@1.1
@@ -261,11 +268,12 @@ brew pinfo
 brew pixman
 brew pkg-config
 brew plantuml
-brew postgresql
+brew postgresql@14
 brew protobuf
 brew pstree
 brew pth
 brew pugixml
+brew pygments
 brew pylint
 brew pyqt
 brew pyqt@5
@@ -346,6 +354,7 @@ brew xz
 brew yarn
 brew ykman
 brew ykpers
+brew z3
 brew zeromq
 brew zimg
 brew zlib
