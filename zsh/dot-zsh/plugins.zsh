@@ -100,6 +100,7 @@ associated_plugins+=(
     fzf zsh-interactive-cd
     go golang
     http httpie
+    pip3 pip
     rg ripgrep
     rustc rust
     task taskwarrior
