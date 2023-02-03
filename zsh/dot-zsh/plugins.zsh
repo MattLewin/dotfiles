@@ -11,7 +11,6 @@ plugins=(
     copypath
     dotenv
     emoji
-    fasd
     frontend-search
     genpass
     git
@@ -41,6 +40,7 @@ binary_plugins=(
     bundler
     docker
     docker-compose
+    fasd
     fzf
     gcloud
     gem
