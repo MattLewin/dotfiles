@@ -47,7 +47,7 @@ binary_plugins=(
     gh
     gradle
     grc
-    helm
+    # helm ## the helm plugin overwrites the 'h' alias for 'history'
     heroku
     jfrog
     juju
