@@ -49,7 +49,6 @@ brew edencommon
 brew eigen
 brew exercism
 brew exiftool
-brew fastlane
 brew fb303
 brew fbthrift
 brew fd
@@ -303,7 +302,6 @@ brew rubberband
 brew ruby
 brew ruby-build
 brew ruby@2.7
-brew ruby@3.1
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
