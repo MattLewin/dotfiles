@@ -99,7 +99,6 @@ brew graphite2
 brew graphviz
 brew grc
 brew greed
-brew groff
 brew gsasl
 brew gtk+
 brew gts
@@ -117,7 +116,6 @@ brew httpd
 brew httpie
 brew hub
 brew hunspell
-brew hwloc
 brew icu4c
 brew imagemagick
 brew imath
@@ -255,7 +253,6 @@ brew opencore-amr
 brew openexr
 brew openjdk
 brew openjdk@11
-brew openjdk@17
 brew openjpeg
 brew openldap
 brew openssl@1.1
@@ -288,7 +285,6 @@ brew python-typing-extensions
 brew python@3.10
 brew python@3.11
 brew python@3.8
-brew python@3.9
 brew qrencode
 brew qt
 brew qt@5
@@ -405,6 +401,10 @@ tap rcmdnk/file
 brew brew-file
 
 tap teamookla/speedtest
+
+# Other Homebrew packages
+brew cffi
+brew pycparser
 
 # Additional files
 file $HOSTNAME.Brewfile
