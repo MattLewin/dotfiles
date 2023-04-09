@@ -9,6 +9,7 @@ brew aom
 brew apr
 brew apr-util
 brew argon2
+brew aribb24
 brew asciidoc
 brew aspell
 brew assimp
@@ -55,6 +56,7 @@ brew fd
 brew ffmpeg
 brew fizz
 brew flac
+brew fluid-synth
 brew fmt
 brew folly
 brew fontconfig
@@ -98,6 +100,7 @@ brew graphite2
 brew graphviz
 brew grc
 brew greed
+brew groff
 brew gsasl
 brew gtk+
 brew gts
@@ -122,6 +125,7 @@ brew imath
 brew iperf3
 brew ipython
 brew isl
+brew isort
 brew jansson
 brew jasper
 brew jbig2dec
@@ -190,6 +194,7 @@ brew libssh2
 brew libtasn1
 brew libtiff
 brew libtool
+brew libunibreak
 brew libunistring
 brew libusb
 brew libusb-compat
@@ -204,6 +209,7 @@ brew libxcb
 brew libxdmcp
 brew libxext
 brew libxml2
+brew libxmp
 brew libxrender
 brew libyaml
 brew libyubikey
@@ -268,16 +274,20 @@ brew pinfo
 brew pixman
 brew pkg-config
 brew plantuml
+brew portaudio
 brew postgresql@14
 brew protobuf
 brew pstree
+brew psutils
 brew pth
 brew pugixml
 brew pygments
 brew pylint
 brew pyqt
 brew pyqt@5
+brew python-typing-extensions
 brew python@3.10
+brew python@3.11
 brew python@3.8
 brew python@3.9
 brew qrencode
@@ -293,6 +303,7 @@ brew rubberband
 brew ruby
 brew ruby-build
 brew ruby@2.7
+brew ruby@3.1
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
@@ -313,6 +324,7 @@ brew srt
 brew starship
 brew stow
 brew suite-sparse
+brew svt-av1
 brew swift-protobuf
 brew swig
 brew task
@@ -330,6 +342,7 @@ brew tmux
 brew tree
 brew ttfautohint
 brew ttyrec
+brew uchardet
 brew unbound
 brew unixodbc
 brew utf8cpp
@@ -362,6 +375,12 @@ brew zsh
 brew zsh-completions
 brew zstd
 
+tap homebrew/cask
+cask anaconda
+cask miniconda
+cask ngrok
+cask temurin
+
 tap homebrew/bundle
 
 tap homebrew/cask-fonts
@@ -378,12 +397,6 @@ cask temurin8
 tap homebrew/command-not-found
 
 tap homebrew/services
-
-tap homebrew/cask
-cask anaconda
-cask miniconda
-cask ngrok
-cask temurin
 
 tap cowsay-org/cowsay
 
