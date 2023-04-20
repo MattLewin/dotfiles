@@ -189,6 +189,8 @@ function ls-absolute() {
 if (( ${+commands[grc]} )); then
     cmds_to_colorize=(
             ls
+            ping
+            ping6
     )
 
     # Set alias for supported commands
