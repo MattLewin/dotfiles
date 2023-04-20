@@ -28,6 +28,7 @@ alias nslookup6='nslookup -querytype=AAAA'
 alias passgen='pass generate -nc'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
+alias ping6="ping6 -c 5"
 alias plugins='print -c ${(o)plugins}' # Output alphabetized plugins list
 alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias stat='zstat -s'
