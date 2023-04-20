@@ -188,6 +188,7 @@ function ls-absolute() {
 # Colorize certain commands with grc
 if (( ${+commands[grc]} )); then
     cmds_to_colorize=(
+            dig
             ls
             ping
             ping6
