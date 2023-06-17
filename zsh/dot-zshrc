@@ -159,6 +159,7 @@ if ( [ ${commands[brew]} ] ) && [ -f ${BREW_PREFIX}/etc/brew-wrap ];then
 fi
 
 [ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
+[ ${commands[ngrok]} ] && eval "$(ngrok completion)"
 
 # paths.zsh defines the function below
 remove_duplicate_paths
