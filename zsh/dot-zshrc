@@ -71,7 +71,7 @@ done
 test "${commands[brew]}" && BREW_PREFIX="$(${commands[brew]} --prefix)"
 
 # Setup theme
-if [ -e "${BREW_PREFIX}/opt/starship" ]; then
+if (( $+commands[starship] )); then
     USE_STARSHIP="true"
 elif [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
     ZSH_THEME="spaceship"  # https://github.com/denysdovhan/spaceship-prompt

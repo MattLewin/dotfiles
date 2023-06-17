@@ -253,6 +253,7 @@ brew opencore-amr
 brew openexr
 brew openjdk
 brew openjdk@11
+brew openjdk@17
 brew openjpeg
 brew openldap
 brew openssl@1.1
@@ -404,6 +405,7 @@ tap teamookla/speedtest
 
 # Other Homebrew packages
 brew cffi
+brew libpaper
 brew pycparser
 
 # Additional files
