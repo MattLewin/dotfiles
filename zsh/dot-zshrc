@@ -162,7 +162,7 @@ fi
 [ ${commands[ngrok]} ] && eval "$(ngrok completion)"
 
 # paths.zsh defines the function below
-remove_duplicate_paths
+[ ${functions[remove_duplicate_paths]} ] && remove_duplicate_paths
 
 if ${USE_STARSHIP}; then
     unset USE_STARSHIP
