@@ -1,20 +1,5 @@
 
-# tap repositories and their packages
-
-tap homebrew/cask
-cask docker
-cask graphiql
-cask iterm2
-cask multipass
-cask notion
-cask postman
-cask visual-studio-code
-cask wireshark
-cask wwdc
-cask zenmap
-
 # Other Homebrew packages
-brew carthage
 brew chisel
 brew libiconv
 brew lunchy
@@ -27,3 +12,13 @@ brew swiftlint
 brew telnet
 brew terminal-notifier
 brew xcodegen
+
+# Other Cask applications
+cask docker
+cask iterm2
+cask multipass
+cask postman
+cask visual-studio-code
+cask wireshark
+cask wwdc
+cask zenmap

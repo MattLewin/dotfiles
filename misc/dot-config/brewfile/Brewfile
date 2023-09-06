@@ -2,13 +2,12 @@
 # tap repositories and their packages
 
 tap homebrew/core
+brew abseil
 brew ack
 brew adns
-brew ant
 brew aom
 brew apr
 brew apr-util
-brew argon2
 brew aribb24
 brew asciidoc
 brew aspell
@@ -28,6 +27,7 @@ brew ca-certificates
 brew cairo
 brew cataclysm
 brew ceres-solver
+brew cffi
 brew cjson
 brew cmake
 brew cmocka
@@ -44,10 +44,8 @@ brew docbook-xsl
 brew docutils
 brew dos2unix
 brew double-conversion
-brew doxygen
 brew edencommon
 brew eigen
-brew exercism
 brew exiftool
 brew fb303
 brew fbthrift
@@ -91,10 +89,7 @@ brew gnu-getopt
 brew gnu-sed
 brew gnupg
 brew gnutls
-brew go
 brew gobject-introspection
-brew gradle
-brew gradle-completion
 brew graphite2
 brew graphviz
 brew grc
@@ -114,13 +109,11 @@ brew highway
 brew htop
 brew httpd
 brew httpie
-brew hub
 brew hunspell
 brew icu4c
 brew imagemagick
 brew imath
 brew iperf3
-brew ipython
 brew isl
 brew isort
 brew jansson
@@ -131,13 +124,11 @@ brew jpeg
 brew jpeg-turbo
 brew jpeg-xl
 brew jq
-brew jruby
 brew json-c
 brew jsoncpp
 brew juju
-brew kotlin
+brew keyring
 brew krb5
-brew ktlint
 brew kubernetes-cli
 brew lame
 brew lazygit
@@ -173,6 +164,7 @@ brew libmpc
 brew libnghttp2
 brew libogg
 brew libomp
+brew libpaper
 brew libpng
 brew libpq
 brew libproxy
@@ -221,15 +213,12 @@ brew m4
 brew mad
 brew mailutils
 brew make
-brew maven
 brew mbedtls
-brew mcrypt
 brew md4c
 brew metis
 brew mhash
 brew minikube
 brew mockserver
-brew mosh
 brew mpdecimal
 brew mpfr
 brew mpg123
@@ -253,7 +242,6 @@ brew opencore-amr
 brew openexr
 brew openjdk
 brew openjdk@11
-brew openjdk@17
 brew openjpeg
 brew openldap
 brew openssl@1.1
@@ -274,31 +262,28 @@ brew plantuml
 brew portaudio
 brew postgresql@14
 brew protobuf
+brew protobuf@21
 brew pstree
 brew psutils
 brew pth
 brew pugixml
+brew pycparser
 brew pygments
 brew pylint
-brew pyqt
-brew pyqt@5
+brew python-certifi
+brew python-cryptography
+brew python-packaging
 brew python-typing-extensions
 brew python@3.10
 brew python@3.11
-brew python@3.8
 brew qrencode
-brew qt
-brew qt@5
 brew rav1e
-brew rbenv
 brew readline
 brew ripgrep
 brew rpl
 brew rtmpdump
 brew rubberband
 brew ruby
-brew ruby-build
-brew ruby@2.7
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
@@ -323,9 +308,7 @@ brew svt-av1
 brew swift-protobuf
 brew swig
 brew task
-brew tasksh
 brew tbb
-brew tcl-tk
 brew tcptrace
 brew tesseract
 brew the_silver_searcher
@@ -343,9 +326,6 @@ brew unixodbc
 brew utf8cpp
 brew utf8proc
 brew vim
-brew virtualenv
-brew virtualenvwrapper
-brew vtk
 brew w3m
 brew wangle
 brew watch
@@ -371,10 +351,9 @@ brew zsh-completions
 brew zstd
 
 tap homebrew/cask
-cask anaconda
-cask miniconda
+cask blender
 cask ngrok
-cask temurin
+cask obs
 
 tap homebrew/bundle
 
@@ -387,7 +366,6 @@ cask font-mononoki-nerd-font
 cask font-powerline-symbols
 
 tap homebrew/cask-versions
-cask temurin8
 
 tap homebrew/command-not-found
 
@@ -402,11 +380,6 @@ tap rcmdnk/file
 brew brew-file
 
 tap teamookla/speedtest
-
-# Other Homebrew packages
-brew cffi
-brew libpaper
-brew pycparser
 
 # Additional files
 file $HOSTNAME.Brewfile
