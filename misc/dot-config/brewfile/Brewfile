@@ -22,6 +22,7 @@ brew bdw-gc
 brew berkeley-db
 brew boost
 brew brotli
+brew buf
 brew c-ares
 brew ca-certificates
 brew cairo
@@ -89,6 +90,7 @@ brew gnu-getopt
 brew gnu-sed
 brew gnupg
 brew gnutls
+brew go
 brew gobject-introspection
 brew graphite2
 brew graphviz
@@ -109,6 +111,7 @@ brew highway
 brew htop
 brew httpd
 brew httpie
+brew hugo
 brew hunspell
 brew icu4c
 brew imagemagick
@@ -373,11 +376,17 @@ tap homebrew/services
 
 tap cowsay-org/cowsay
 
+tap dart-lang/dart
+brew dart
+
 tap ether-cli/tap
 brew ether
 
 tap rcmdnk/file
 brew brew-file
+
+tap sass/sass
+brew sass
 
 tap teamookla/speedtest
 
