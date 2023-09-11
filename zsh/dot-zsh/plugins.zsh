@@ -191,7 +191,6 @@ done
 # git clone <repo URL> ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/<plugin name>
 #
 custom_plugins=(
-    conda-zsh-completion
     zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions.git
     # NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
     zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting.git
