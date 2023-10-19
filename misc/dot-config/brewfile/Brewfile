@@ -45,6 +45,7 @@ brew docbook-xsl
 brew docutils
 brew dos2unix
 brew double-conversion
+brew duktape
 brew edencommon
 brew eigen
 brew exiftool
@@ -277,8 +278,8 @@ brew python-certifi
 brew python-cryptography
 brew python-packaging
 brew python-typing-extensions
-brew python@3.10
 brew python@3.11
+brew python@3.12
 brew qrencode
 brew rav1e
 brew readline
