@@ -87,5 +87,5 @@ function ih() {
     fc_command="fc -ln -${1:-1000}"
   fi
 
-  eval "${fc_command}" | sort -u | fzf --reverse --cycle --height=90%
+  eval "${fc_command}" | sort -u | ack --color --color-match=bright_blue --passthru '^[^ ]+' | fzf --reverse --cycle --height=90% --ansi
 }
