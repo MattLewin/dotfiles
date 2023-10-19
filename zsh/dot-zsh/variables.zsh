@@ -56,3 +56,5 @@ circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
 # circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
 
 [ ${commands[pass]} ] && export PASSWORD_STORE_GENERATED_LENGTH=14
+
+[ ${commands[fzf]} ] && export FZF_DEFAULT_OPTS='--bind=ctrl-f:page-down,ctrl-b:page-up'
