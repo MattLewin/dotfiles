@@ -30,49 +30,49 @@ then
       # Proceed if a module is selected
       [[ -n "$result" ]] && brew info $result
     }
-
-    function gemlist() {
-      gem list |
-        ack --color --color-match=bright_blue --passthru '^[^ ]+' |
-        fzf --ansi --reverse
-    }
-
-    unalias path NUL
-    function path() {
-        local list=$(print -rl -- ${(s/:/)PATH} | ack --color --color-match=bright_blue '[/]')
-
-        if [ ${commands[fzf]} ]; then
-            $(print "$list" |
-                fzf --ansi --no-sort --reverse --cycle --height=90%)
-        else
-            print "$list"
-        fi
-    }
-
-    function piplist() {
-      # pip list just the installed packages without its dependencies
-      pip_list=$(pip list --not-required)
-
-      printf "%s\n%s\n" " -- pip list --" "$pip_list" |
-        ack --color --color-match=bright_blue --passthru '^[^ ]+' |
-        fzf --ansi --reverse --cycle \
-          --preview-window=70% \
-          --preview=" echo {} | cut -d \" \" -f 1 | xargs pip show " |
-        xargs
-    }
-
-    function pip3list() {
-      # pip3 list just the installed packages without its dependencies
-      pip3_list=$(pip3 list --not-required)
-
-      printf "%s\n%s\n" " -- pip3 list --" "$pip3_list" |
-        ack --color --color-match=bright_blue --passthru '^[^ ]+' |
-        fzf --ansi --reverse --cycle \
-          --preview-window=70% \
-          --preview=" echo {} | cut -d \" \" -f 1 | xargs pip3 show " |
-        xargs
-    }
-
-    # Overwrite env with colorized output
-    alias env="noglob env | sort --unique | ack --color --color-match=bright_blue --passthru '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
 fi
+
+function gemlist() {
+  gem list |
+    ack --color --color-match=bright_blue --passthru '^[^ ]+' |
+    fzf --ansi --reverse
+}
+
+unalias path NUL
+function path() {
+    local list=$(print -rl -- ${(s/:/)PATH} | ack --color --color-match=bright_blue '[/]')
+
+    if [ ${commands[fzf]} ]; then
+        $(print "$list" |
+            fzf --ansi --no-sort --reverse --cycle --height=90%)
+    else
+        print "$list"
+    fi
+}
+
+function piplist() {
+  # pip list just the installed packages without its dependencies
+  pip_list=$(pip list --not-required)
+
+  printf "%s\n%s\n" " -- pip list --" "$pip_list" |
+    ack --color --color-match=bright_blue --passthru '^[^ ]+' |
+    fzf --ansi --reverse --cycle \
+      --preview-window=70% \
+      --preview=" echo {} | cut -d \" \" -f 1 | xargs pip show " |
+    xargs
+}
+
+function pip3list() {
+  # pip3 list just the installed packages without its dependencies
+  pip3_list=$(pip3 list --not-required)
+
+  printf "%s\n%s\n" " -- pip3 list --" "$pip3_list" |
+    ack --color --color-match=bright_blue --passthru '^[^ ]+' |
+    fzf --ansi --reverse --cycle \
+      --preview-window=70% \
+      --preview=" echo {} | cut -d \" \" -f 1 | xargs pip3 show " |
+    xargs
+}
+
+# Overwrite env with colorized output
+alias env="noglob env | sort --unique | ack --color --color-match=bright_blue --passthru '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
