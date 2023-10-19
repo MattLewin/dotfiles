@@ -76,3 +76,16 @@ function pip3list() {
 
 # Overwrite env with colorized output
 alias env="noglob env | sort --unique | ack --color --color-match=bright_blue --passthru '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
+
+# Interactive history
+function ih() {
+  local fc_command='fc -ln -1000'
+  if (( $# > 1 ))
+  then
+    fc_command="fc $@"
+  else
+    fc_command="fc -ln -${1:-1000}"
+  fi
+
+  eval "${fc_command}" | sort -u | fzf --reverse --cycle --height=90%
+}
