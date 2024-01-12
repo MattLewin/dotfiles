@@ -185,6 +185,15 @@ function ls-absolute() {
     fi
 }
 
+function random() {
+    if [[ $# != 1 ]]; then
+        print '"random <max_value>" : print a random integer between 1 and max_value (inclusive)'
+        return 1
+    fi
+
+    print $((1 + $(od -A n -t d -N1 /dev/random) % $1))
+}
+
 # Colorize certain commands with grc
 if (( ${+commands[grc]} )); then
     cmds_to_colorize=(
