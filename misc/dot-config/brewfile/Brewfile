@@ -42,6 +42,8 @@ brew direnv
 brew discount
 brew docbook
 brew docbook-xsl
+brew docker
+brew docker-completion
 brew docutils
 brew dos2unix
 brew double-conversion
@@ -162,6 +164,7 @@ brew liblinear
 brew liblqr
 brew libmaxminddb
 brew libmetalink
+brew libmicrohttpd
 brew libmng
 brew libmodplug
 brew libmpc
@@ -275,8 +278,12 @@ brew pycparser
 brew pygments
 brew pylint
 brew python-certifi
+brew python-click
 brew python-cryptography
+brew python-markupsafe
 brew python-packaging
+brew python-setuptools
+brew python-tabulate
 brew python-typing-extensions
 brew python@3.11
 brew python@3.12
@@ -358,6 +365,7 @@ tap homebrew/cask
 cask blender
 cask ngrok
 cask obs
+cask vlc
 
 tap homebrew/bundle
 

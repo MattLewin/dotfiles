@@ -1,2 +1,3 @@
 editor: vim
 git_protocol: ssh
+version: "1"
