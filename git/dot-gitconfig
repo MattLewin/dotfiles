@@ -5,6 +5,7 @@
 [user]
 	name = Matt Lewin
 	useConfigOnly = true
+	signingkey = ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDDh9NvtZ393GsUJTDt4hVxHfIqBpukTrbQMdAh/Oho/WNadW5LGNB05qOY0fNLjrQlgW0aUMjDOS9ungCCR0fi4l4iOtJL/u/pGCe0HKipJQpRZu/p1mJC93mDZy1xCLt3oD1pqXFwnGwTgO7KOXg53dqsrAe7TWffNNMIkohCLjNU8UMN/w4NrikPS+qOe8X1klcYDEoNpoTLnrNlF6hhoVxvwF3Bd/OGGUuSqKYKtCsMkr0cn6L+OpqE43em2B58LpHgHAC2EHlyJGO3oYeyYo/1mbTG2EOffywEo/WNggWJupSWKYtESqXLWp3y/OQLkqoPTI1UQxRbbsoScPcBsFZp74sPrqNDdP/XSNCDTUh2YmQDkIJWCvrMU2jAcVtoWCY32D3in53b9RVqYw8MQOPzBZ5/s7IsBGMBedldyh9IQfN+8S7Oz1djZK1BdWiyS0B2oFeOotGArUnKSCYXkcEGcnJosnUrcJIA/Mfy5xmbjV4btA6Mwsqkpuk7cEoIHbm4b/kK5qduHn5kF2/EFKBIndwO9iE6O9rO1TvxTKkwhYVCgMf5TMCtnARnxB3/dXprrCC3Jadmh1HCPV8yBstHQ8bKnDdTY4b0GPLgeL6agb7k75egGeR2SaJca+LJ9xgtfEcw+UMeNfMefqxr9L5XvE2U/FwrdPBqwYKs8Q==
 [credential]
 	helper = osxkeychain
 [core]
@@ -21,6 +22,7 @@
 	followTags = true
 [commit]
 	template = ~/.stCommitMsg
+	gpgsign = true
 [diff]
 	renameLimit = 15000
 [alias]
@@ -87,3 +89,7 @@
 	rebase = false
 [init]
 	defaultBranch = develop
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
