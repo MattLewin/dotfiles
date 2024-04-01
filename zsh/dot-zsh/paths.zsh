@@ -14,6 +14,7 @@ append_paths+=(
     "${HOME}/.go/bin"
     "${HOME}/.cargo/bin"
     "${HOME}/.fastlane/bin"
+    "${HOME}/Content Creation/bin"
     "${HOME}/Library/Android/sdk/platform-tools"
 )
 
