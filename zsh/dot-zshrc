@@ -74,7 +74,7 @@ test "${commands[brew]}" && BREW_PREFIX="$(${commands[brew]} --prefix)"
 if (( $+commands[starship] )); then
     USE_STARSHIP="true"
 elif [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
-    ZSH_THEME="spaceship"  # https://github.com/denysdovhan/spaceship-prompt
+    ZSH_THEME="spaceship"  # https://github.com/spaceship-prompt/spaceship-prompt
     SPACESHIP_DIR_TRUNC_REPO=false
     SPACESHIP_VI_MODE_COLOR=none   # ensure the vi mode indicator is visible
     export RPS1="%{$reset_color%}" # suppress '<<<' from vi-mode plugin
