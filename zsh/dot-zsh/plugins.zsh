@@ -66,6 +66,7 @@ binary_plugins=(
     rbenv
     ruby
     terraform
+    tldr
     tmux
     vagrant
     virtualenv
