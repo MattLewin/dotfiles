@@ -4,6 +4,7 @@
 
 # Plugins to always load
 plugins=(
+    aliases
     colored-man-pages
     colorize
     copybuffer

@@ -2,7 +2,6 @@
 #
 # Normal aliases (i.e., only work as $0)
 #
-alias agrep='alias | grep'
 alias dirs='builtin dirs -v'
 alias dirsc='builtin dirs -c'
 alias gcue='git config user.email'
