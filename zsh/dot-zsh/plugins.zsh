@@ -33,7 +33,6 @@ plugins=(
 
 # ML: 2018-08-21: Include plugins if their corresponding binaries exist
 binary_plugins=(
-    adb
     asdf
     aws
     bower
@@ -103,7 +102,6 @@ associated_plugins+=(
     go golang
     http httpie
     pip3 pip
-    rg ripgrep
     rustc rust
     task taskwarrior
     terminal-notifier bgnotify
