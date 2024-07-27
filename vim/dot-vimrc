@@ -118,3 +118,15 @@ let g:lightline = {
 let g:javascript_plugin_flow = 1
 let NERDTreeShowHidden = 1
 let g:shfmt_extra_args = '-i 4'
+
+"
+" Prevent vim from tracking cursor location in git commit messages
+"
+
+augroup gitCommitMsg
+    au!
+    autocmd BufReadPost COMMIT_EDITMSG
+        \ if line("'\"") > 0 && line("'\"") <= line("$") |
+        \   execute 'normal! g`"' |
+        \ endif
+augroup END
