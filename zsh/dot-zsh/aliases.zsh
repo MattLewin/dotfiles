@@ -375,6 +375,10 @@ case "$OS" in
 esac
 
 if [ "${BREW_PREFIX}" != "" ]; then
+
+    alias brewoutdated='print -c $( brew outdated | cut -f1 -d" ")'
+    alias brewuses='brew uses --installed --recursive'
+
     if ( [ ${commands[fortune]} ] && [ ${commands[cowsay]} ] ); then
         COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
 
@@ -398,8 +402,6 @@ if [ "${BREW_PREFIX}" != "" ]; then
             ${commands[go]} $*
         }
     fi
-
-    alias brewoutdated='print -c $( brew outdated | cut -f1 -d" ")'
 fi
 
 #
