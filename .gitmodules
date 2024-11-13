@@ -5,23 +5,14 @@
 	path = lldb/LLDB
 	url = https://github.com/DerekSelander/LLDB.git
 	branch = master
-[submodule "tmux/dot-tmux/plugins/tmux-continuum"]
-	path = tmux/dot-tmux/plugins/tmux-continuum
-	url = https://github.com/tmux-plugins/tmux-continuum.git
 [submodule "tmux/dot-tmux/plugins/tmux-copycat"]
 	path = tmux/dot-tmux/plugins/tmux-copycat
 	url = https://github.com/tmux-plugins/tmux-copycat.git
 	branch = master
-[submodule "tmux/dot-tmux/plugins/tmux-open"]
-	path = tmux/dot-tmux/plugins/tmux-open
-	url = https://github.com/tmux-plugins/tmux-open.git
 [submodule "tmux/dot-tmux/plugins/tmux-pain-control"]
 	path = tmux/dot-tmux/plugins/tmux-pain-control
 	url = https://github.com/tmux-plugins/tmux-pain-control.git
 	branch = master
-[submodule "tmux/dot-tmux/plugins/tmux-resurrect"]
-	path = tmux/dot-tmux/plugins/tmux-resurrect
-	url = https://github.com/tmux-plugins/tmux-resurrect.git
 [submodule "tmux/dot-tmux/plugins/tmux-sensible"]
 	path = tmux/dot-tmux/plugins/tmux-sensible
 	url = https://github.com/tmux-plugins/tmux-sensible.git
@@ -34,20 +25,3 @@
 	path = tmux/dot-tmux/plugins/tpm
 	url = https://github.com/tmux-plugins/tpm.git
 	branch = master
-[submodule "oh-my-zsh/custom/plugins/gradle-completion"]
-	path = oh-my-zsh/custom/plugins/gradle-completion
-	url = git://github.com/gradle/gradle-completion
-[submodule "oh-my-zsh/custom/plugins/conda-zsh-completion"]
-	path = oh-my-zsh/custom/plugins/conda-zsh-completion
-	url = https://github.com/esc/conda-zsh-completion.git
-	branch = master
-[submodule "vim/dot-vim/pack/plugins/start/kotlin-vim"]
-	path = vim/dot-vim/pack/plugins/start/kotlin-vim
-	url = https://github.com/udalov/kotlin-vim.git
-	branch = master
-[submodule "oh-my-zsh/custom/plugins/zsh-autosuggestions"]
-	path = oh-my-zsh/custom/plugins/zsh-autosuggestions
-	url = https://github.com/zsh-users/zsh-autosuggestions.git
-[submodule "oh-my-zsh/custom/plugins/zsh-syntax-highlighting"]
-	path = oh-my-zsh/custom/plugins/zsh-syntax-highlighting
-	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
