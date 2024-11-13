@@ -169,9 +169,30 @@ if ${USE_STARSHIP}; then
     eval "$(starship init zsh)"
 fi
 
+# additional zsh completions installed with brew
+if [ -d "${BREW_PREFIX}/share/zsh-completions" ]
+then
+    FPATH=${BREW_PREFIX}/share/zsh-completions:${FPATH}
+fi
+
+# include zsh extensions installed as brew packages
+homebrew_extensions=(
+    zsh-autosuggestions
+    zsh-syntax-highlighting # I believe this must be last so that it can properly highlight all completions
+)
+
+for homebrew_extension in "${homebrew_extensions[@]}"
+do
+    if [ -d "${BREW_PREFIX}/share/${homebrew_extension}" ]
+    then
+        source "${BREW_PREFIX}/share/${homebrew_extension}/${homebrew_extension}.zsh"
+    fi
+done
+
+
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
-autoload -U compinit && compinit
+autoload -Uz compinit && compinit
 
 # ## BEGIN: Code to profile zsh startup (sibling code exists at the top of this file)
 # unsetopt XTRACE

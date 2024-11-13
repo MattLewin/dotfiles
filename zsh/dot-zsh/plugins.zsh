@@ -192,9 +192,6 @@ done
 #
 custom_plugins=(
     clean_subtitles # One I wrote myself to support a subtitle clean up script I use for my content
-    zsh-autosuggestions # https://github.com/zsh-users/zsh-autosuggestions.git
-    # NOTE: zsh-syntax-highlighting must be the last plugin in the list of *all* plugins
-    zsh-syntax-highlighting # https://github.com/zsh-users/zsh-syntax-highlighting.git
 )
 
 for plugin in "${custom_plugins[@]}"
