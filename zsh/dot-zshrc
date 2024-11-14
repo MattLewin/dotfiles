@@ -137,6 +137,12 @@ if [ -d "${BREW_PREFIX}/anaconda3/" ]; then
     conda_init
 fi
 
+# additional zsh completions installed with brew
+if [ -d "${BREW_PREFIX}/share/zsh-completions" ]
+then
+    fpath+=${BREW_PREFIX}/share/zsh-completions
+fi
+
 source $ZSH/oh-my-zsh.sh
 
 ######## source oh-my-zsh above here #######
@@ -167,12 +173,6 @@ fi
 if ${USE_STARSHIP}; then
     unset USE_STARSHIP
     eval "$(starship init zsh)"
-fi
-
-# additional zsh completions installed with brew
-if [ -d "${BREW_PREFIX}/share/zsh-completions" ]
-then
-    FPATH=${BREW_PREFIX}/share/zsh-completions:${FPATH}
 fi
 
 # include zsh extensions installed as brew packages

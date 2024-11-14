@@ -199,12 +199,6 @@ do
     [ -d ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/${plugin} ] && plugins+=(${plugin})
 done
 
-# If zsh-autosuggestions plugin exists, then set its search strategy to 'completion'
-if (($plugins[(Ie)zsh-autosuggestions])); then
-    ZSH_AUTOSUGGEST_STRATEGY=(completion)
-    ZSH_AUTOSUGGEST_USE_ASYNC=true
-fi
-
 if (($plugins[(Ie)nvm])); then
     NVM_AUTOLOAD=1      # load the version of node specified in ./.nvmrc
 fi
