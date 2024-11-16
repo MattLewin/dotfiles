@@ -189,6 +189,8 @@ do
     fi
 done
 
+# If zsh-autosuggestions is installed, exclude certain matches
+[[ -n "$ZSH_AUTOSUGGEST_STRATEGY" ]] && ZSH_AUTOSUGGEST_HISTORY_IGNORE="gcmsg*"
 
 # compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
 # end of the rc file
