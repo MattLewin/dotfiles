@@ -395,27 +395,6 @@ fi
 #
 unalias gl NUL # Unalias 'git pull' from git plugin
 
-# Colorize certain commands with grc
-if (( ${+commands[grc]} )); then
-    cmds_to_colorize=(
-            dig
-            ls
-            ping
-            ping6
-    )
-
-    # Set alias for supported commands
-    for cmd in $cmds_to_colorize; do
-        if (( $+commands[$cmd] )); then
-            eval "function $cmd {
-                grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
-            }"
-        fi
-    done
-
-    unset cmds_to_colorize cmd
-fi
-
 #
 # TrueMotion Aliases
 #
