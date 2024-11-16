@@ -193,27 +193,6 @@ function random() {
     print $((1 + $(od -A n -t d -N1 /dev/random) % $1))
 }
 
-# Colorize certain commands with grc
-if (( ${+commands[grc]} )); then
-    cmds_to_colorize=(
-            dig
-            ls
-            ping
-            ping6
-    )
-
-    # Set alias for supported commands
-    for cmd in $cmds_to_colorize; do
-        if (( $+commands[$cmd] )); then
-            eval "function $cmd {
-                grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
-            }"
-        fi
-    done
-
-    unset cmds_to_colorize cmd
-fi
-
 # ML: 2018-01-05
 # A few tools to ease gem installation between ruby versions
 function gemdiff() {
@@ -408,6 +387,27 @@ fi
 # Remove aliases I don't want to use
 #
 unalias gl NUL # Unalias 'git pull' from git plugin
+
+# Colorize certain commands with grc
+if (( ${+commands[grc]} )); then
+    cmds_to_colorize=(
+            dig
+            ls
+            ping
+            ping6
+    )
+
+    # Set alias for supported commands
+    for cmd in $cmds_to_colorize; do
+        if (( $+commands[$cmd] )); then
+            eval "function $cmd {
+                grc --colour=auto \"${commands[$cmd]}\" \"\$@\"
+            }"
+        fi
+    done
+
+    unset cmds_to_colorize cmd
+fi
 
 #
 # TrueMotion Aliases
