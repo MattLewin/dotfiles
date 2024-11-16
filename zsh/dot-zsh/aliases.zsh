@@ -136,6 +136,13 @@ fi
 #
 # Functions
 #
+
+if [ ${commands[ag]} ]; then
+    function agsubtitles() {
+        ag "$*" --file-search-regex="clean-Subtitle"
+    }
+fi
+
 function man-preview-all() {
     if [[ $# = 0 ]]; then
         echo "No man page specified"
