@@ -4,6 +4,9 @@
 #
 alias dirs='builtin dirs -v'
 alias dirsc='builtin dirs -c'
+alias ffmpeg='ffmpeg -hide_banner'
+alias ffplay='ffplay -hide_banner'
+alias ffprobe='ffprobe -hide_banner'
 alias gcue='git config user.email'
 alias gdgui='git difftool --no-prompt'
 alias gfi='git flow init --global --defaults'
