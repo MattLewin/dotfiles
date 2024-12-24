@@ -205,40 +205,43 @@ function random() {
 
 # ML: 2018-01-05
 # A few tools to ease gem installation between ruby versions
-function gemdiff() {
-    if [ $# != 2 ]; then
-        print -u 2 "gemdiff old_version new_version"
-        return 1
-    fi
+if [ ${commands[rvm]} ]
+then
+    function gemdiff() {
+        if [ $# != 2 ]; then
+            print -u 2 "gemdiff old_version new_version"
+            return 1
+        fi
 
-    function install_all_gems() {
-        local next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-        while [ -n "$next_gem" ]
-        do
-            print "Installing ${next_gem}"
-            local install_cmd="gem install ${next_gem} --document rdoc"
-            eval ${install_cmd}
-            next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-        done
+        function install_all_gems() {
+            local next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
+            while [ -n "$next_gem" ]
+            do
+                print "Installing ${next_gem}"
+                local install_cmd="gem install ${next_gem} --document rdoc"
+                eval ${install_cmd}
+                next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
+            done
+        }
+
+        local old=$1
+        local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
+        local new=$2
+    #    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
+
+        rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
+        gem list | cut -f 1 -d ' ' > ${old_gemlist}
+
+        if [ ! -f ${old_gemlist} ]; then
+            print -u 2 "Unable to generate ${old_gemlist}"
+            return 3
+        fi
+
+        rvm use ${new} || (print -u 2 "Unable to switch to ruby version ${new}"; return 1)
+        print "Installing gems from ${old} to ${new}"
+        install_all_gems
     }
-
-    local old=$1
-    local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
-    local new=$2
-#    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
-
-    rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
-    gem list | cut -f 1 -d ' ' > ${old_gemlist}
-
-    if [ ! -f ${old_gemlist} ]; then
-        print -u 2 "Unable to generate ${old_gemlist}"
-        return 3
-    fi
-
-    rvm use ${new} || (print -u 2 "Unable to switch to ruby version ${new}"; return 1)
-    print "Installing gems from ${old} to ${new}"
-    install_all_gems
-}
+fi
 
 #
 # ML: 2019-02-14
