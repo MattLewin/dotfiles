@@ -146,6 +146,37 @@ if [ ${commands[ag]} ]; then
     }
 fi
 
+# Calculate the complement of a hex color
+function complement_color() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: complement_color <hex_color_code>"
+    echo "Example: complement_color 33A1C9"
+    return 1
+  fi
+
+  # Get the input color and strip '#' if present
+  local input_hex=${1#"#"}
+
+  # Ensure it's a valid hex code
+  if [[ ! "$input_hex" =~ ^[0-9a-fA-F]{6}$ ]]; then
+    echo "Error: Invalid hex color code. Must be in the form #RRGGBB or RRGGBB."
+    return 1
+  fi
+
+  # Convert hex to decimal RGB
+  local red=$((16#$input_hex[1,2]))
+  local green=$((16#$input_hex[3,4]))
+  local blue=$((16#$input_hex[5,6]))
+
+  # Calculate the complement
+  local comp_red=$((255 - red))
+  local comp_green=$((255 - green))
+  local comp_blue=$((255 - blue))
+
+  # Convert back to hex and print
+  printf "#%02X%02X%02X\n" $comp_red $comp_green $comp_blue
+}
+
 function man-preview-all() {
     if [[ $# = 0 ]]; then
         echo "No man page specified"
