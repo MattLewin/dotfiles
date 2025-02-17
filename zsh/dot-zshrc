@@ -94,6 +94,14 @@ do
     source "${DOT_ZSH}/${file}"
 done
 
+case "$OS" in
+    darwin)
+        if ! ssh-add -l >/dev/null 2>&1; then
+            ssh-add --apple-load-keychain
+        fi
+        ;;
+esac
+
 #
 # iTerm configuration
 #
