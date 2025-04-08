@@ -26,6 +26,7 @@ done
 prepend_paths=(
     "${HOME}/bin"
     "${HOME}/swift/usr/bin"
+    "${BREW_PREFIX}/opt/ruby/bin"
     "${BREW_PREFIX}/opt/coreutils/libexec/gnubin"
 )
 
@@ -33,6 +34,16 @@ for new_path in "${prepend_paths[@]}"
 do
     test -d "${new_path}" && PATH="${new_path}":${PATH}
 done
+
+# custom bullshit to ensure we have the correct gems/bin path in our PATH
+hb_ruby="${BREW_PREFIX}/opt/ruby/bin/ruby"
+if [[ -x $hb_ruby ]]; then
+    ruby_minor_version=$($hb_ruby -e 'puts "#{RUBY_VERSION[/\d+\.\d+/]}.0"')
+    gem_bin_path="${BREW_PREFIX}/lib/ruby/gems/${ruby_minor_version}/bin"
+    if [[ -d $gem_bin_path ]]; then
+        export PATH="$gem_bin_path:$PATH"
+    fi
+fi
 
 export PATH
 

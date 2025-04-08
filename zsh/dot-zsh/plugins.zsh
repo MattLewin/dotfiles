@@ -37,7 +37,7 @@ binary_plugins=(
     aws
     bower
     brew
-    bundler
+    # bundler
     docker
     docker-compose
     fasd
