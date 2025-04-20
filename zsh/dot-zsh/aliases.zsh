@@ -128,7 +128,15 @@ fi
 [ ${commands[howdoi]} ] && alias howdoi="${commands[howdoi]} -c -n 3"
 [ ${commands[htop]} ] && alias top="${commands[htop]}"
 
-[ ${commands[python3]} ] && alias python="${commands[python3]}"
+# Ensure python points to python3 if available
+if [[ -n ${commands[python3]} ]]; then
+    PYTHON3_PATH="${commands[python3]}"
+    if [[ ! -L "${commands[python]}" || "$(readlink ${commands[python]})" != "$PYTHON3_PATH" ]]; then
+        ln -sf "$PYTHON3_PATH" "${commands[python]:-$HOME/bin/python}"
+    fi
+elif [[ -L "${commands[python]}" ]]; then
+    rm -f "${commands[python]}"
+fi
 
 if [ ${commands[task]} ]; then
     alias tchome='task context home'
