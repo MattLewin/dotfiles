@@ -8,14 +8,15 @@ if [ "${BREW_PREFIX}" != "" ]; then
 fi
 
 append_paths+=(
-    /usr/local/bin
-    /usr/local/sbin
-    /sbin
-    "${HOME}/.go/bin"
+    "/Applications/Docker.app/Contents/Resources/bin"
     "${HOME}/.cargo/bin"
     "${HOME}/.fastlane/bin"
+    "${HOME}/.go/bin"
     "${HOME}/Content Creation/bin"
     "${HOME}/Library/Android/sdk/platform-tools"
+    /sbin
+    /usr/local/bin
+    /usr/local/sbin
 )
 
 for new_path in "${append_paths[@]}"
