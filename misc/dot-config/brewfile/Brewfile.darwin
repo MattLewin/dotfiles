@@ -6,19 +6,10 @@ brew lunchy
 brew macos-term-size
 brew macos-trash
 brew mas
-brew sourcekitten
-brew swiftformat
-brew swiftlint
 brew telnet
 brew terminal-notifier
-brew xcodegen
 
 # Other Cask applications
-cask docker
 cask iterm2
-cask multipass
-cask postman
 cask visual-studio-code
 cask wireshark
-cask wwdc
-cask zenmap
