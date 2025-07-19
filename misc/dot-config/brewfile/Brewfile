@@ -288,6 +288,8 @@ brew tidy-html5
 brew tinyproxy
 brew tldr
 brew tmux
+brew tmuxinator
+brew tmuxinator-completion
 brew tree
 brew ttfautohint
 brew ttyrec
