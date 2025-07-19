@@ -85,4 +85,4 @@
 [pull]
 	rebase = false
 [init]
-	defaultBranch = develop
+	defaultBranch = main
