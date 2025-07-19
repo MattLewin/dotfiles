@@ -3,7 +3,6 @@
 	clean = git media clean %f
 	smudge = git media smudge %f
 [user]
-	name = Matt Lewin
 	useConfigOnly = true
 [credential]
 	helper = osxkeychain
