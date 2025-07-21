@@ -30,7 +30,6 @@ brew cffi
 brew cjson
 brew cmake
 brew cmake-docs
-brew cmocka
 brew coreutils
 brew cscope
 brew curl
