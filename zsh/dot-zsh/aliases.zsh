@@ -378,7 +378,7 @@ esac
 # fi
 
 case "$OS" in
-    mac)
+    mac|darwin)
         test -d "/Applications/SourceTree.app" && alias sourcetree='open -a /Applications/SourceTree.app'
         test -d "/Applications/VLC.app" && alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
         alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; say DNS cache flushed' # For use after editing /etc/hosts
