@@ -19,6 +19,7 @@ brew bash-completion
 brew bdw-gc
 brew berkeley-db
 brew berkeley-db@5
+brew black
 brew boost
 brew brotli
 brew buf
@@ -257,6 +258,7 @@ brew rpl
 brew rtmpdump
 brew rubberband
 brew ruby
+brew ruff
 brew sdl2
 brew sdl2_image
 brew sdl2_mixer
