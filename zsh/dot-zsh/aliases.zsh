@@ -83,12 +83,12 @@ if is-at-least 4.2.0; then
     alias -s tar="tar tf"
 
     # display markdown files
-    if [ ${commands[pandoc]} ]; then
+    if (( $+commands[pandoc] )); then
         PANDOC_BIN="${commands[pandoc]}"
-        if [ ${commands[w3m]} ]; then
+        if (( $+commands[w3m] )); then
             TEXT_BROWSER='w3m -T text/html'
             PANDOC_CMD="${PANDOC_BIN}"
-        elif [ ${commands[lynx]} ]; then
+        elif (( $+commands[lynx] )); then
             TEXT_BROWSER='lynx -stdin'
             PANDOC_CMD="${PANDOC_BIN}"
         elif [[ -n "${PAGER}" ]]; then
@@ -116,7 +116,7 @@ fi
 #
 # If fzf is installed, load all related aliases and functions
 #
-[ ${commands[fzf]} ] && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
+(( $+commands[fzf] )) && test -f "${DOT_ZSH}/fzf.zsh" && source "${DOT_ZSH}/fzf.zsh"
 
 #
 # Conditional aliases
@@ -131,7 +131,7 @@ if (( $+commands[cataclysm] )); then
   }
 fi
 
-if [ ${commands[fd]} ]; then
+if (( $+commands[fd] )); then
     alias find='fd --no-ignore'
     alias find.d='fd --no-ignore --type directory'
     alias find.f='fd --no-ignore --type file'
@@ -140,11 +140,11 @@ else
     alias find.f='find . -type f -name'
 fi
 
-[ ${commands[howdoi]} ] && alias howdoi="${commands[howdoi]} -c -n 3"
-[ ${commands[htop]} ] && alias top="${commands[htop]}"
+(( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
+(( $+commands[htop] )) && alias top="${commands[htop]}"
 
 # Ensure python points to python3 if available
-if [[ -n ${commands[python3]} ]]; then
+if (( $+commands[python3] )); then
     PYTHON3_PATH="${commands[python3]}"
     if [[ ! -L "${commands[python]}" || "$(readlink ${commands[python]})" != "$PYTHON3_PATH" ]]; then
         ln -sf "$PYTHON3_PATH" "${commands[python]:-$HOME/bin/python}"
@@ -153,7 +153,7 @@ elif [[ -L "${commands[python]}" ]]; then
     rm -f "${commands[python]}"
 fi
 
-if [ ${commands[task]} ]; then
+if (( $+commands[task] )); then
     alias tchome='task context home'
     alias tcnone='task context none'
     alias tcwork='task context work'
@@ -163,7 +163,7 @@ fi
 # Functions
 #
 
-if [ ${commands[ag]} ]; then
+if (( $+commands[ag] )); then
     function agsubtitles() {
         ag "$*" --file-search-regex="clean-Subtitle"
     }
@@ -221,8 +221,7 @@ function man-preview-all() {
     fi
 }
 
-if [ ${commands[lazygit]} ]
-then
+if (( $+commands[lazygit] )); then
     function lg()
     {
         export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
@@ -259,8 +258,7 @@ function random() {
 
 # ML: 2018-01-05
 # A few tools to ease gem installation between ruby versions
-if [ ${commands[rvm]} ]
-then
+if (( $+commands[rvm] )); then
     function gemdiff() {
         if [ $# != 2 ]; then
             print -u 2 "gemdiff old_version new_version"
@@ -425,7 +423,7 @@ if [ "${BREW_PREFIX}" != "" ]; then
     alias brewoutdated='print -c $( brew outdated | cut -f1 -d" ")'
     alias brewuses='brew uses --installed --recursive'
 
-    if ( [ ${commands[fortune]} ] && [ ${commands[cowsay]} ] ); then
+    if (( $+commands[fortune] )) && (( $+commands[cowsay] )); then
         COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
 
         function cowrandom() {
@@ -440,10 +438,10 @@ if [ "${BREW_PREFIX}" != "" ]; then
     #
     # 'brew --prefix golang' is very slow, so let's only do it if/when we use go
     #
-    if [ ${commands[go]} ]; then
+    if (( $+commands[go] )); then
         function go() {
             test -d "$HOME/.go" && export GOPATH="$HOME/.go"
-            [ ${commands[brew]} ] && export GOROOT="$(brew --prefix golang)/libexec"
+            (( $+commands[brew] )) && export GOROOT="$(brew --prefix golang)/libexec"
             unfunction go
             ${commands[go]} $*
         }
