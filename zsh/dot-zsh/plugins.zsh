@@ -75,7 +75,7 @@ binary_plugins=(
 
 for binary in "${binary_plugins[@]}"
 do
-    [ ${commands[$binary]} ] && plugins+=("${binary}")
+    (( $+commands[$binary] )) && plugins+=("${binary}")
 done
 
 # ML: 2018-08-21: Include plugins if their corresponding dot-config directories exist
@@ -111,7 +111,7 @@ associated_plugins+=(
 
 for binary plugin in ${(kv)associated_plugins}
 do
-    [ ${commands[$binary]} ] && plugins+=( ${plugin} )
+    (( $+commands[$binary] )) && plugins+=( ${plugin} )
 done
 
 typeset -A macOS_app_plugins
@@ -123,7 +123,7 @@ macOS_app_plugins+=(
 case "$OS" in
     darwin)
         plugins+=(dash iterm2 macos)
-        if ( [ ${commands[swiftenv]} ] && [ "${BREW_PREFIX}" != "" ] )
+        if (( $+commands[swiftenv] )) && [ "${BREW_PREFIX}" != "" ]
         then
             plugins+=(swiftenv)
             declare -xr SWIFTENV_ROOT=${BREW_PREFIX}/var/swiftenv
@@ -131,7 +131,7 @@ case "$OS" in
 
         # ruby-build installs a non-Homebrew OpenSSL for each Ruby version installed and these
         # are never upgraded. Below, we link Rubies to Homebrew's OpenSSL 1.1 (which is upgraded)
-        if ( [ ${commands[ruby-build]} ] && [ -e "${BREW_PREFIX}/opt/openssl@1.1" ] )
+        if (( $+commands[ruby-build] )) && [ -e "${BREW_PREFIX}/opt/openssl@1.1" ]
         then
             export RUBY_CONFIGURE_OPTS="--with-openssl-dir=${BREW_PREFIX}/opt/openssl@1.1"
         fi
@@ -150,7 +150,7 @@ case "$OS" in
         ;;
 
     linux)
-        [ ${commands[systemctl]} ] && plugins+=(systemd)
+        (( $+commands[systemctl] )) && plugins+=(systemd)
 
         case "$DIST" in
             "centos linux")
@@ -170,7 +170,7 @@ case "$OS" in
 esac
 
 # Add 'thefuck' plugin only if we are using better than python3.4
-[ ${commands[thefuck]} ] && [ ${commands[python3]} ] && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
+(( $+commands[thefuck] )) && (( $+commands[python3] )) && test `python3 -c 'import sys; print("%i" % (sys.hexversion>0x03040000))'` -eq 1 && plugins+=(thefuck)
 
 # Include plugins if their corresponding homebrew keg or cask is installed
 homebrew_plugins=(
