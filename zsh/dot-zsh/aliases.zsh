@@ -121,6 +121,16 @@ fi
 #
 # Conditional aliases
 #
+
+# Use $+commands[...] to safely check for command existence without erroring if unset
+
+if (( $+commands[cataclysm] )); then
+  function cataclysm() {
+    command cataclysm "$@" > /dev/null 2>&1 &
+    disown
+  }
+fi
+
 if [ ${commands[fd]} ]; then
     alias find='fd --no-ignore'
     alias find.d='fd --no-ignore --type directory'
