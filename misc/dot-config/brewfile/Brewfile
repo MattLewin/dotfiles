@@ -282,7 +282,6 @@ brew tag
 brew tcptrace
 brew tesseract
 brew texinfo
-brew the_silver_searcher
 brew thefuck
 brew theora
 brew tidy-html5
