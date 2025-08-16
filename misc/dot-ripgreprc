@@ -1,0 +1,73 @@
+# ---------- Core behavior ----------
+--smart-case                 # Case-insensitive if pattern is all lower; otherwise case-sensitive
+--line-number                # Always show line numbers
+--column                     # Column numbers help pinpoint matches
+--color=auto                 # Colorize when stdout is a TTY
+--max-columns=200            # Avoid wrapping super-long lines
+--max-columns-preview        # …but preview truncated lines so you know why they were cut
+--sort=path                  # Stable, deterministic order
+
+# ---------- Scope: search the useful stuff ----------
+--hidden                     # Include dotfiles by default…
+--glob=!.git/**              # …but never dive into VCS metadata
+--glob=!**/.git/**           # (defensive, works in submodules too)
+--glob=!**/.svn/**
+--glob=!**/.hg/**
+
+# Common bulk dirs you almost never want in ad-hoc searches
+--glob=!node_modules/**
+--glob=!target/**
+--glob=!dist/**
+--glob=!build/**
+--glob=!out/**
+--glob=!coverage/**
+--glob=!__pycache__/**
+--glob=!*.egg-info/**
+--glob=!venv/**              # matches "venv" in tree
+--glob=!.venv/**             # matches ".venv" in tree
+
+# Common binary/junk you don’t want
+--glob=!*.min.js
+--glob=!*.min.css
+--glob=!*.lock
+--glob=!*.png
+--glob=!*.jpg
+--glob=!*.jpeg
+--glob=!*.gif
+--glob=!*.webp
+--glob=!*.zip
+--glob=!*.tar
+--glob=!*.gz
+--glob=!*.7z
+--glob=!*.pdf
+--glob=!*.mp4
+--glob=!*.mov
+--glob=!*.mkv
+--glob=!*.wav
+--glob=!*.mp3
+
+# ---------- Quality-of-life ----------
+--no-ignore-parent           # Respect .gitignore in the repo, but don’t inherit from parent dirs above project root
+--follow                     # Follow symlinks (useful in monorepos; remove if you dislike this)
+
+# Make headings compact when multiple files match
+--heading
+--hyperlink=auto             # Clickable file:line links in modern terminals
+
+# ---------- Useful custom types ----------
+# Call with:  rg -t <type> PATTERN  (or  -T <type> to exclude)
+--type-add=env:*.env,*.env.*,*.dotenv
+--type-add=config:*.ini,*.cfg,*.conf,*.toml,*.yaml,*.yml
+--type-add=docs:*.md,*.rst,*.adoc,*.txt
+--type-add=scripts:*.sh,*.bash,*.zsh,*.fish,*.ps1,*.psm1,*.bat,*.cmd
+--type-add=jsonc:*.jsonc
+--type-add=proto:*.proto
+--type-add=shader:*.glsl,*.vert,*.frag,*.hlsl,*.cginc,*.shader
+
+# Game/engine-adjacent text-y bits (skip big binaries like .uasset)
+--type-add=unity:*.cs,*.asmdef,*.unity,*.meta
+--type-add=godot:*.gd,*.tscn,*.tres,project.godot
+
+# ---------- Power flags you can toggle ad hoc ----------
+# PCRE2 (lookarounds/backrefs): enable per-invocation with `-P` to avoid perf hit globally
+# JSON output for tooling: add `-j` when piping to programs
