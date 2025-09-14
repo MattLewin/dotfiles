@@ -1,16 +1,28 @@
 # ---------- Core behavior ----------
---smart-case                 # Case-insensitive if pattern is all lower; otherwise case-sensitive
---line-number                # Always show line numbers
---column                     # Column numbers help pinpoint matches
---color=auto                 # Colorize when stdout is a TTY
---max-columns=200            # Avoid wrapping super-long lines
---max-columns-preview        # …but preview truncated lines so you know why they were cut
---sort=path                  # Stable, deterministic order
+
+# Case-insensitive if pattern is all lower; otherwise case-sensitive
+--smart-case
+# Always show line numbers
+--line-number
+# Column numbers help pinpoint matches
+--column
+# Colorize when stdout is a TTY
+--color=auto
+# Avoid wrapping super-long lines
+--max-columns=200
+# …but preview truncated lines so you know why they were cut
+--max-columns-preview
+# Stable, deterministic order
+--sort=path
 
 # ---------- Scope: search the useful stuff ----------
---hidden                     # Include dotfiles by default…
---glob=!.git/**              # …but never dive into VCS metadata
---glob=!**/.git/**           # (defensive, works in submodules too)
+
+# Include dotfiles by default…
+--hidden
+# …but never dive into VCS metadata
+--glob=!.git/**
+# (defensive, works in submodules too)
+--glob=!**/.git/**
 --glob=!**/.svn/**
 --glob=!**/.hg/**
 
@@ -23,8 +35,10 @@
 --glob=!coverage/**
 --glob=!__pycache__/**
 --glob=!*.egg-info/**
---glob=!venv/**              # matches "venv" in tree
---glob=!.venv/**             # matches ".venv" in tree
+# matches "venv" in tree
+--glob=!venv/**
+# matches ".venv" in tree
+--glob=!.venv/**
 
 # Common binary/junk you don’t want
 --glob=!*.min.js
@@ -47,14 +61,21 @@
 --glob=!*.mp3
 
 # ---------- Quality-of-life ----------
---no-ignore-parent           # Respect .gitignore in the repo, but don’t inherit from parent dirs above project root
---follow                     # Follow symlinks (useful in monorepos; remove if you dislike this)
+
+# Respect .gitignore in the repo, but don’t inherit from parent dirs above project root
+--no-ignore-parent
+
+# Follow symlinks (useful in monorepos; remove if you dislike this)
+--follow
 
 # Make headings compact when multiple files match
 --heading
---hyperlink=auto             # Clickable file:line links in modern terminals
+
+# Clickable file:line links in modern terminals
+--hyperlink-format=default
 
 # ---------- Useful custom types ----------
+
 # Call with:  rg -t <type> PATTERN  (or  -T <type> to exclude)
 --type-add=env:*.env,*.env.*,*.dotenv
 --type-add=config:*.ini,*.cfg,*.conf,*.toml,*.yaml,*.yml
