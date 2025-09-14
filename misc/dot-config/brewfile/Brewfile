@@ -34,6 +34,7 @@ brew cmake-docs
 brew coreutils
 brew cscope
 brew curl
+brew cyrus-sasl
 brew dav1d
 brew dbus
 brew diff-so-fancy
@@ -115,6 +116,7 @@ brew jpeg-xl
 brew jq
 brew json-c
 brew jsoncpp
+brew krb5
 brew lame
 brew leptonica
 brew libaec
@@ -167,6 +169,7 @@ brew libssh2
 brew libtasn1
 brew libtiff
 brew libtool
+brew libudfread
 brew libunibreak
 brew libunistring
 brew libusb
@@ -219,6 +222,7 @@ brew opencore-amr
 brew openexr
 brew openjdk
 brew openjpeg
+brew openjph
 brew openldap
 brew openssl@3
 brew opus
