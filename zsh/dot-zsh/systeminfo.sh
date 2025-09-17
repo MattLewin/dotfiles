@@ -1,9 +1,6 @@
 # Intended to be *sourced*, not executed.
 # Exports: OS KERNEL MACH ARCH DIST REV PSEUDONAME DistroBasedOn OS_STR
 
-# If not sourced, $0 is this file; sourced, $0 is the shell.
-case "$0" in *systeminfo.sh) echo "Source this file, don't execute it." >&2; return 1 2>/dev/null || exit 1;; esac
-
 # Normalize and gather basics
 OS=$(uname -s 2>/dev/null | tr '[:upper:]' '[:lower:]'); : "${OS:=unknown}"
 KERNEL=$(uname -r 2>/dev/null || printf '')
