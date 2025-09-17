@@ -9,9 +9,27 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 [interactive]
-	diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
+[delta]
+	features = side-by-side line-numbers decorations
+	navigate = true
+	syntax-theme = Dracula
+	plus-style = syntax
+	minus-style = syntax
+	file-style = omit
+	hunk-header-style = line-number syntax
+	commit-decoration-style = bold yellow box ul
+	commit-style = raw
+	line-numbers = true
+	side-by-side = true
+
+[merge]
+	conflictstyle = diff3
+
+[diff]
+	colorMoved = default
 [difftool "changed-lines-only"]
 	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' \"$LOCAL\" \"$REMOTE\"
 	trustExitCode = true
