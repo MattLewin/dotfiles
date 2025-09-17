@@ -150,6 +150,8 @@ brew libmng
 brew libmodplug
 brew libmpc
 brew libnghttp2
+brew libnghttp3
+brew libngtcp2
 brew libogg
 brew libomp
 brew libpng
@@ -197,6 +199,7 @@ brew m4
 brew mad
 brew mailutils
 brew make
+brew markdownlint-cli
 brew mbedtls
 brew md4c
 brew metis
@@ -215,6 +218,7 @@ brew nettle
 brew nghttp2
 brew ninja
 brew nmap
+brew node
 brew npth
 brew oniguruma
 brew openblas
@@ -270,6 +274,7 @@ brew sdl2_ttf
 brew shared-mime-info
 brew shellcheck
 brew shfmt
+brew simdjson
 brew six
 brew snappy
 brew sox
@@ -301,6 +306,7 @@ brew unbound
 brew unixodbc
 brew utf8cpp
 brew utf8proc
+brew uvwasi
 brew vim
 brew w3m
 brew watch
