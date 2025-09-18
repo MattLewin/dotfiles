@@ -2,26 +2,21 @@
 # NOTE: .zprofile is run *before* .zshrc on all login shells.
 #
 
-if [[ -n "${HOMEBREW_PREFIX}" ]]; then
-    BREW_PREFIX="${HOMEBREW_PREFIX}"
+# --- Homebrew ---
+if command -v brew >/dev/null 2>&1; then
+  # Preferred: Let brew declare PATH, MANPATH, etc.
+  eval "$(/usr/bin/env brew shellenv)"
 else
-    if command -v brew >/dev/null 2>&1; then
-        BREW_PREFIX="$(brew --prefix)"
-    elif [ -d "/usr/local/Homebrew" ]; then
-        BREW_PREFIX="/usr/local"
-    elif [ -d "/opt/homebrew" ]; then
-        BREW_PREFIX="/opt/homebrew"
-    fi
-fi
-
-if [[ -n "${BREW_PREFIX}" ]]; then
-    eval "$(${BREW_PREFIX}/bin/brew shellenv)"
+  # Fallbacks if brew isn't on PATH yet
+  if [ -d /opt/homebrew ]; then
+    export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+    export MANPATH="/opt/homebrew/share/man:$MANPATH"
+    export INFOPATH="/opt/homebrew/share/info:$INFOPATH"
+  elif [ -d /usr/local/Homebrew ]; then
+    export PATH="/usr/local/bin:/usr/local/sbin:$PATH"
+    export MANPATH="/usr/local/share/man:$MANPATH"
+    export INFOPATH="/usr/local/share/info:$INFOPATH"
+  fi
 fi
 
 export HOMEBREW_BUNDLE_FILE="$HOME/.config/homebrew/Brewfile"
-
-if [[ -n "${HOME}/.pyenv" ]]; then
-    export PYENV_ROOT="${HOME}/.pyenv"
-    export PATH="${PYENV_ROOT}/bin:$PATH"
-    eval "$(pyenv init --path)"
-fi

@@ -25,7 +25,6 @@ do
 done
 
 prepend_paths=(
-    "${HOME}/.pyenv"
     "${HOME}/bin"
     "${HOME}/swift/usr/bin"
     "${BREW_PREFIX}/opt/ruby/bin"

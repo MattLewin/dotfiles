@@ -52,6 +52,7 @@ binary_plugins=(
     jfrog
     juju
     kubectl
+    mise
     multipass
     mosh
     mvn
@@ -61,7 +62,6 @@ binary_plugins=(
     perl
     pip
     pod
-    pyenv
     python
     rbenv
     ruby
