@@ -14,6 +14,7 @@ append_paths+=(
     "${HOME}/.go/bin"
     "${HOME}/Content Creation/bin"
     "${HOME}/Library/Android/sdk/platform-tools"
+    "${HOME}/.local/bin" # pipx path
     /sbin
     /usr/local/bin
     /usr/local/sbin

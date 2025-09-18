@@ -205,9 +205,15 @@ done
 # end of the rc file
 autoload -Uz compinit && compinit
 
+# pipx autocompletion must come after the above compinit. No idea why
+[ ${commands[pipx]} ] && eval "$(register-python-argcomplete pipx)"
+
 # ## BEGIN: Code to profile zsh startup (sibling code exists at the top of this file)
 # unsetopt XTRACE
 # exec 2>&3 3>&-
 # ## END: Code to profile zsh startup
 
 # vim:ft=zsh
+
+# Created by `pipx` on 2025-09-18 00:55:37
+export PATH="$PATH:/Users/matt/.local/bin"
