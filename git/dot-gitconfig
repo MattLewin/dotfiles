@@ -18,7 +18,8 @@
 	syntax-theme = Dracula
 	plus-style = syntax
 	minus-style = syntax
-	file-style = omit
+	file-decoration-style = cyan overline
+	file-style = bold yellow
 	hunk-header-style = line-number syntax
 	commit-decoration-style = bold yellow box ul
 	commit-style = raw
