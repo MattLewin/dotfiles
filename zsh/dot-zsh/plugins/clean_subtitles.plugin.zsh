@@ -1,14 +1,25 @@
-# Autocompletion for my content subtitle cleaning command
-if (( ! $+commands[clean_subtitles] )); then
-  return
+# clean_subtitles.plugin.zsh — activate completion for clean_subtitles
+# Loads only if sourced by .zshrc after compinit.
+
+# Bail if the command is missing
+(( $+commands[clean_subtitles] )) || return 0
+
+# Completion cache location (align with other plugins)
+local _zfunc_dir="$HOME/.zfunc"
+local _cs_comp="$_zfunc_dir/_clean_subtitles"
+
+# Ensure fpath includes our completion dir once
+[[ ${fpath[(Ie)$_zfunc_dir]} -eq 0 ]] && fpath+="$_zfunc_dir"
+
+# (Re)generate completion only if missing
+if [[ ! -s "$_cs_comp" ]]; then
+  mkdir -p "$_zfunc_dir"
+  clean_subtitles completion >| "$_cs_comp" 2>/dev/null || true
 fi
 
-# If the completion file doesn't exist yet, we need to autoload it and
-# bind it to `clean_subtitles`. Otherwise, compinit will have already done that.
-if [[ ! -f "$ZSH_CACHE_DIR/completions/_clean_subtitles" ]]; then
-  typeset -g -A _comps
-  autoload -Uz _clean_subtitles
-  _comps[clean_subtitles]=_clean_subtitles
+# If compinit already ran and _clean_subtitles isn't loaded yet, refresh once
+if ! typeset -f _clean_subtitles >/dev/null; then
+  autoload -Uz compinit && compinit -i
 fi
 
-clean_subtitles completion >| "$ZSH_CACHE_DIR/completions/_clean_subtitles" &|
+unset _zfunc_dir _cs_comp
