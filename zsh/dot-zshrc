@@ -42,7 +42,6 @@ else
     declare -xlr KERNEL MACH OS
 fi
 
-export ZSH=$HOME/.oh-my-zsh
 export EDITOR="vim"
 
 # Display red dots whilst waiting for completion.
@@ -51,9 +50,6 @@ COMPLETION_WAITING_DOTS="true"
 # Set the command execution time stamp shown in the history command output.
 # The optional three formats: "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 HIST_STAMPS="yyyy-mm-dd"
-
-# Would you like to use another custom folder than $ZSH/custom?
-ZSH_CUSTOM="${HOME}/src/dotfiles/oh-my-zsh/custom"
 
 # reduce key timeout to make switching between VI modes more fluid
 KEYTIMEOUT=10
@@ -68,25 +64,20 @@ do
     zmodload "zsh/${module}"
 done
 
-test "${commands[brew]}" && BREW_PREFIX="$(${commands[brew]} --prefix)"
+# Prefer HOMEBREW_PREFIX from `brew shellenv`; fall back to querying brew
+BREW_PREFIX="${HOMEBREW_PREFIX:-$(${commands[brew]} --prefix 2>/dev/null)}"
 
 # Setup theme
 if (( $+commands[starship] )); then
     USE_STARSHIP="true"
-elif [ -e "${ZSH_CUSTOM:-${ZSH}/custom}/themes/spaceship.zsh-theme" ]; then
-    ZSH_THEME="spaceship"  # https://github.com/spaceship-prompt/spaceship-prompt
-    SPACESHIP_DIR_TRUNC_REPO=false
-    SPACESHIP_VI_MODE_COLOR=none   # ensure the vi mode indicator is visible
-    export RPS1="%{$reset_color%}" # suppress '<<<' from vi-mode plugin
 else
-    ZSH_THEME="theunraveler"
     PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
 fi
 
 source_before_omz=(
     # NOTE: order matters here
     paths.zsh
-    plugins.zsh
+    plugins_builder.zsh
 )
 
 for file in "${source_before_omz[@]}"
@@ -109,41 +100,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 
 iterm2_print_user_vars() {
     iterm2_set_user_var shortHostname $(hostname -s)
-    [ ${commands[tmux]} ] && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
+    (( $+commands[tmux] )) && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
 }
-
-# added by travis gem
-[ -f ${HOME}/.travis/travis.sh ] && source ${HOME}/.travis/travis.sh
-
-#
-# Google Cloud SDK configuration
-#
-if [ -d "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/" ]; then
-    source "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-    source "${BREW_PREFIX}/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
-fi
-
-# conda initialize
-if [ -d "${BREW_PREFIX}/anaconda3/" ]; then
-    CONDA_PREFIX="${BREW_PREFIX}/anaconda3"
-    function conda_init() {
-        __conda_setup="$('${CONDA_PREFIX}/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-        if [ $? -eq 0 ]; then
-            eval "$__conda_setup"
-        else
-            if [ -f "${CONDA_PREFIX}/etc/profile.d/conda.sh" ]; then
-                . "${CONDA_PREFIX}/etc/profile.d/conda.sh"
-            elif [ -d "${CONDA_PREFIX}/bin" ]; then
-                export PATH="${CONDA_PREFIX}/bin:$PATH"
-            fi
-        fi
-        unset __conda_setup
-        unfunction conda_init
-    }
-
-    # I was lazy loading conda, but it's annoying with direnv and my shell is slow to load anyway, so...
-    conda_init
-fi
 
 # additional zsh completions installed with brew
 if [ -d "${BREW_PREFIX}/share/zsh-completions" ]
@@ -151,9 +109,21 @@ then
     fpath+=${BREW_PREFIX}/share/zsh-completions
 fi
 
-source $ZSH/oh-my-zsh.sh
+# Initialize completion before sourcing plugins (needed for plugins that call compdef)
+autoload -Uz compinit && compinit -i
 
-######## source oh-my-zsh above here #######
+# Antidote (lightweight plugin manager)
+if [ -r "$HOME/.antidote/antidote.zsh" ]; then
+    source "$HOME/.antidote/antidote.zsh"
+    # If you maintain a plugin list at ~/.zsh_plugins.txt, (re)generate the loader
+    if [ -r "$HOME/.zsh_plugins.txt" ]; then
+        antidote bundle < "$HOME/.zsh_plugins.txt" > "$HOME/.zsh_plugins.sh"
+    fi
+    # Load compiled plugin bundle if present
+    [ -r "$HOME/.zsh_plugins.sh" ] && source "$HOME/.zsh_plugins.sh"
+fi
+
+######## Antidote plugins are sourced above here #######
 #
 # ML: 2019-06-29
 source_after_omz=(
@@ -167,53 +137,45 @@ do
     source "${DOT_ZSH}/${file}"
 done
 
-# ML: 2019-06-29: use homebrew-file
-if ( [ ${commands[brew]} ] ) && [ -f ${BREW_PREFIX}/etc/brew-wrap ];then
-  source ${BREW_PREFIX}/etc/brew-wrap
-fi
+(( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+(( $+commands[ngrok] )) && eval "$(ngrok completion)"
+(( $+commands[rg] )) && typeset -xr RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-[ ${commands[direnv]} ] && eval "$(direnv hook zsh)"
-[ ${commands[ngrok]} ] && eval "$(ngrok completion)"
-[ ${commands[rg]} ] && declare -xr RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+# --- Local plugins ---
+typeset -a _plugins=(
+  aliases
+  clean_subtitles
+  mise
+)
+
+for _p in "${_plugins[@]}"; do
+  [[ -r "${DOT_ZSH}/plugins/${_p}.plugin.zsh" ]] && source "${DOT_ZSH}/plugins/${_p}.plugin.zsh"
+done
+unset _plugins _p
+
+(( $+commands[zoxide] )) && eval "$(zoxide init zsh)" # must come after compinit and after plugins are sourced
+
+# pipx autocompletion must come after the above compinit. No idea why
+(( $+commands[pipx] )) && eval "$(register-python-argcomplete pipx)"
 
 # paths.zsh defines the function below
-[ ${functions[remove_duplicate_paths]} ] && remove_duplicate_paths
+(( $+functions[remove_duplicate_paths] )) && remove_duplicate_paths
 
-if ${USE_STARSHIP}; then
+if [[ -n "${USE_STARSHIP}" ]]; then
     unset USE_STARSHIP
     eval "$(starship init zsh)"
 fi
 
-# include zsh extensions installed as brew packages
-homebrew_extensions=(
-    zsh-autosuggestions
-    zsh-syntax-highlighting # I believe this must be last so that it can properly highlight all completions
-)
-
-for homebrew_extension in "${homebrew_extensions[@]}"
-do
-    if [ -d "${BREW_PREFIX}/share/${homebrew_extension}" ]
-    then
-        source "${BREW_PREFIX}/share/${homebrew_extension}/${homebrew_extension}.zsh"
-    fi
-done
-
 # If zsh-autosuggestions is installed, exclude certain matches
 [[ -n "$ZSH_AUTOSUGGEST_STRATEGY" ]] && ZSH_AUTOSUGGEST_HISTORY_IGNORE="gcmsg*"
 
-# compinit executed by oh-my-zsh doesn't work for some janky plugins, so we do it again at the very
-# end of the rc file
-autoload -Uz compinit && compinit
-
-# pipx autocompletion must come after the above compinit. No idea why
-[ ${commands[pipx]} ] && eval "$(register-python-argcomplete pipx)"
 
 # ## BEGIN: Code to profile zsh startup (sibling code exists at the top of this file)
 # unsetopt XTRACE
 # exec 2>&3 3>&-
 # ## END: Code to profile zsh startup
 
-# vim:ft=zsh
-
 # Created by `pipx` on 2025-09-18 00:55:37
 export PATH="$PATH:/Users/matt/.local/bin"
+
+# vim:ft=zsh

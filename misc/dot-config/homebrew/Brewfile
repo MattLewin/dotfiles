@@ -39,6 +39,7 @@ brew 'tmux'
 brew 'vim'
 brew 'watch'
 brew 'wget'
+brew 'zoxide'
 brew 'zsh'
 
 # ---- macOS casks ----

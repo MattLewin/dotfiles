@@ -1,10 +1,6 @@
 #
 # NOTE: .zlogin is run *after* .zshrc on all login shells.
 #
-if [[ -s "$HOME/.rvm/scripts/rvm" ]]; then
-    source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-fi
-
 if [[ "${TERM_PROGRAM}" = "tmux" ]]; then
     builtin cd "${HOME}"
     builtin dirs -c
