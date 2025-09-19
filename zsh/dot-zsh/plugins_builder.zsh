@@ -14,6 +14,7 @@ _build_plugins() {
     'ohmyzsh/ohmyzsh path:plugins/git'
     'ohmyzsh/ohmyzsh path:plugins/copypath'
     'ohmyzsh/ohmyzsh path:plugins/dotenv'
+    'ohmyzsh/ohmyzsh path:plugins/iterm2'
     'ohmyzsh/ohmyzsh path:plugins/shrink-path'
   )
 
