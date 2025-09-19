@@ -1,4 +1,3 @@
-
 #
 # Normal aliases (i.e., only work as $0)
 #
@@ -18,6 +17,7 @@ alias gitconfig-hoos='gcue-hoos ; gcun-hoos'
 alias gitconfig-matt='gcue-matt ; gcun-matt'
 alias gitignored='git ls-files --others -i --exclude-standard'
 alias hgrep='fc -il 0 | grep'
+alias hrg='fc -il 0 | rg'
 # shellcheck disable=SC2142
 alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0" ] && cols="80"; printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"; done }; _hr' # <HR/> for shells
 alias l="ls -lFh"       # List files as a long list, show size, type, human-readable
@@ -29,7 +29,7 @@ alias lt="ls -ltFh"     # List files as a long list sorted by date, show type, h
 alias nslookup6='nslookup -querytype=AAAA'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
-alias ping6="ping6 -c 5"
+alias ping6='ping -6 -c 5'
 alias stat='zstat -s'
 
 #
@@ -38,7 +38,7 @@ alias stat='zstat -s'
 #  can use them even at the end of the command you’ve typed
 #
 alias -g CA="2>&1 | cat -A"
-alias -g G='| grep'
+alias -g G='| rg'
 (( $+commands[gvim] )) && alias -g GVIM='| gvim -'
 alias -g H='| head'
 alias -g L="| less"
@@ -96,10 +96,11 @@ if is-at-least 4.2.0; then
                 print "$0 <markdown file>"
                 return 1
             fi
-
-            eval "${PANDOC_CMD} '$(pwd)/${1}' | ${TEXT_BROWSER}"
+            local -a pandoc_cmd text_browser
+            pandoc_cmd=(${=PANDOC_CMD})
+            text_browser=(${=TEXT_BROWSER})
+            "${pandoc_cmd[@]}" -- "${PWD}/${1}" | "${text_browser[@]}"
         }
-
         alias -s md="display_markdown_file"
         alias -s MD="display_markdown_file"
     fi
@@ -135,14 +136,9 @@ fi
 (( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
 (( $+commands[htop] )) && alias top="${commands[htop]}"
 
-# Ensure python points to python3 if available
+# Prefer python3; avoid symlinking system python
 if (( $+commands[python3] )); then
-    PYTHON3_PATH="${commands[python3]}"
-    if [[ ! -L "${commands[python]}" || "$(readlink ${commands[python]})" != "$PYTHON3_PATH" ]]; then
-        ln -sf "$PYTHON3_PATH" "${commands[python]:-$HOME/bin/python}"
-    fi
-elif [[ -L "${commands[python]}" ]]; then
-    rm -f "${commands[python]}"
+    alias python=python3
 fi
 
 #
@@ -167,9 +163,9 @@ function complement_color() {
   fi
 
   # Convert hex to decimal RGB
-  local red=$((16#$input_hex[1,2]))
-  local green=$((16#$input_hex[3,4]))
-  local blue=$((16#$input_hex[5,6]))
+  local red=$(( 16#${input_hex[1,2]} ))
+  local green=$(( 16#${input_hex[3,4]} ))
+  local blue=$(( 16#${input_hex[5,6]} ))
 
   # Calculate the complement
   local comp_red=$((255 - red))
@@ -198,14 +194,14 @@ function random() {
 # source: https://github.com/nvogel/dotzsh
 # documentation: https://github.com/blog/985-git-io-github-url-shortener
 #
-function git.io() {
+function gitio() {
     emulate -L zsh
     curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
 }
 
 # clone of the old DOS 'pause' command
 function pause() {
-    read -s -k "?Press any key to continue..."$'\n'
+    read -rs -k1 "?Press any key to continue..."$'\n'
 }
 
 #
@@ -213,7 +209,8 @@ function pause() {
 # A function to display the tmux window number
 function tmux_winidx_circled() {
     if tmux info &> /dev/null; then
-        local winidx=$(tmux display-message -p '#I')
+        local winidx
+        winidx=$(tmux display-message -p '#I')
         if (( winidx > 20 )); then
             echo "($winidx)"
         else
@@ -280,11 +277,13 @@ if [ "${BREW_PREFIX}" != "" ]; then
     alias brewuses='brew uses --installed --recursive'
 
     if (( $+commands[fortune] )) && (( $+commands[cowsay] )); then
-        COWS=($(brew --prefix)/share/cowsay/cows/*.cow)
+        local _brew_prefix="${HOMEBREW_PREFIX:-$BREW_PREFIX}"
+        COWS=($_brew_prefix/share/cowsay/cows/*.cow)
 
         function cowrandom() {
-            count=$( ls $(brew --prefix)/share/cowsay/cows/*.cow | wc -l )
-            RAND_COW=$(( $RANDOM % $count ))
+            local count
+            count=$(ls $_brew_prefix/share/cowsay/cows/*.cow | wc -l)
+            local RAND_COW=$(( RANDOM % count ))
             fortune | cowsay -f ${COWS[$RAND_COW]}
         }
 
@@ -299,7 +298,7 @@ if [ "${BREW_PREFIX}" != "" ]; then
             test -d "$HOME/.go" && export GOPATH="$HOME/.go"
             (( $+commands[brew] )) && export GOROOT="$(brew --prefix golang)/libexec"
             unfunction go
-            ${commands[go]} $*
+            ${commands[go]} "$@"
         }
     fi
 fi
