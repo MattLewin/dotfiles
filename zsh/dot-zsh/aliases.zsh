@@ -23,21 +23,13 @@ alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0
 alias l="ls -lFh"       # List files as a long list, show size, type, human-readable
 alias lS="ls -1FSsh"    # List files showing only size and name sorted by size
 alias la="ls -lAFh"     # List almost all files as a long list show size, type, human-readable
-alias lart="ls -1Fcart" # List all files sorted in reverse of create/modification time (oldest first)
 alias ldot="ls -ld .*"  # List dot files as a long list
 alias ll="ls -l"        # List files as a long list
-alias lr="ls -tRFh"     # List files recursively sorted by date, show type, human-readable
-alias lrt="ls -1Fcrt"   # List files sorted in reverse of create/modification time(oldest first)
 alias lt="ls -ltFh"     # List files as a long list sorted by date, show type, human-readable
-alias mp='man-preview'
-alias mpa='man-preview-all'
 alias nslookup6='nslookup -querytype=AAAA'
-alias passgen='pass generate -nc'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
 alias ping6="ping6 -c 5"
-alias plugins='print -c ${(o)plugins}' # Output alphabetized plugins list
-alias show.external.ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias stat='zstat -s'
 
 #
@@ -153,21 +145,9 @@ elif [[ -L "${commands[python]}" ]]; then
     rm -f "${commands[python]}"
 fi
 
-if (( $+commands[task] )); then
-    alias tchome='task context home'
-    alias tcnone='task context none'
-    alias tcwork='task context work'
-fi
-
 #
 # Functions
 #
-
-if (( $+commands[ag] )); then
-    function agsubtitles() {
-        ag "$*" --file-search-regex="clean-Subtitle"
-    }
-fi
 
 # Calculate the complement of a hex color
 function complement_color() {
@@ -200,53 +180,6 @@ function complement_color() {
   printf "#%02X%02X%02X\n" $comp_red $comp_green $comp_blue
 }
 
-function man-preview-all() {
-    if [[ $# = 0 ]]; then
-        echo "No man page specified"
-        return 1
-    fi
-
-    if [[ -z "${MAN_PDF_PATH}" ]]; then
-        MAN_PDF_PATH="${HOME}/Dropbox/Documents/Matt/Development/Man Pages"
-    fi
-
-    output_file="${MAN_PDF_PATH}/$1"
-
-    man -a -t "$@" > "${output_file}"
-
-    if [[ $? = 1 ]]; then
-        rm "${output_file}"
-    else
-        open -a Preview "${output_file}"
-    fi
-}
-
-if (( $+commands[lazygit] )); then
-    function lg()
-    {
-        export LAZYGIT_NEW_DIR_FILE=~/.lazygit/newdir
-        lazygit "$@"
-        if [ -f $LAZYGIT_NEW_DIR_FILE ]; then
-            cd "$(cat $LAZYGIT_NEW_DIR_FILE)" || return
-            rm -f $LAZYGIT_NEW_DIR_FILE > /dev/null
-        fi
-    }
-fi
-
-function ls-absolute() {
-
-    # Note: This is not a well-written function. It properly handles no arguments and one, file specification, argument.
-    #       It'll barf on switches, extra file specifications, and anything else you throw on the command-line
-    if [[ -z "$1" ]]; then
-        # Show everything
-        /bin/ls -d -1 "${PWD}"/**/*
-    else
-        for fn in "$@"; do
-            /bin/ls -d -1 "${PWD}"/"${fn}"
-        done
-    fi
-}
-
 function random() {
     if [[ $# != 1 ]]; then
         print '"random <max_value>" : print a random integer between 1 and max_value (inclusive)'
@@ -255,45 +188,6 @@ function random() {
 
     print $((1 + $(od -A n -t d -N1 /dev/random) % $1))
 }
-
-# ML: 2018-01-05
-# A few tools to ease gem installation between ruby versions
-if (( $+commands[rvm] )); then
-    function gemdiff() {
-        if [ $# != 2 ]; then
-            print -u 2 "gemdiff old_version new_version"
-            return 1
-        fi
-
-        function install_all_gems() {
-            local next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-            while [ -n "$next_gem" ]
-            do
-                print "Installing ${next_gem}"
-                local install_cmd="gem install ${next_gem} --document rdoc"
-                eval ${install_cmd}
-                next_gem=$((gem list | cut -f 1 -d ' ') | comm -23 ${old_gemlist} - | head -1)
-            done
-        }
-
-        local old=$1
-        local old_gemlist="$HOME/src/tmp/gems-${old}.txt"
-        local new=$2
-    #    local new_gemlist="$HOME/src/tmp/gems-${new}.txt"
-
-        rvm use ${old} || (print -u 2 "Unable to switch to ruby version ${old}"; return 1)
-        gem list | cut -f 1 -d ' ' > ${old_gemlist}
-
-        if [ ! -f ${old_gemlist} ]; then
-            print -u 2 "Unable to generate ${old_gemlist}"
-            return 3
-        fi
-
-        rvm use ${new} || (print -u 2 "Unable to switch to ruby version ${new}"; return 1)
-        print "Installing gems from ${old} to ${new}"
-        install_all_gems
-    }
-fi
 
 #
 # ML: 2019-02-14
@@ -367,48 +261,10 @@ EOF
         ;;
 esac
 
-# ML: 2017-05-17
-# replace 'man' with 'pinfo' and 'top' with 'htop'
-#if [ -x /usr/local/bin/pinfo ]; then
-#   alias man='/usr/local/bin/pinfo -m'
-#fi
-
-
-# Add aliases for all existing JetBrains apps
-# ML: 2018-06-20: commented out because JetBrains Toolbox creates its own launch scripts for each app
-# if [ -e "$HOME/Applications/JetBrains Toolbox/" ]; then
-#     for JBAPP in $HOME/Applications/JetBrains\ Toolbox/*.app; do
-#       local JBAPP_NAME=${JBAPP:t:r}
-#       local JBAPP_ALIAS=${${JBAPP:t:r:l}[(w)1]}
-#       alias $JBAPP_ALIAS="open -a ${JBAPP_NAME:q}"
-#     done
-#     unset JBAPP
-# fi
-
 case "$OS" in
     mac|darwin)
-        test -d "/Applications/SourceTree.app" && alias sourcetree='open -a /Applications/SourceTree.app'
         test -d "/Applications/VLC.app" && alias vlc='/Applications/VLC.app/Contents/MacOS/VLC -I rc'
         alias flushdns='sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder; say DNS cache flushed' # For use after editing /etc/hosts
-
-        # allow easily switching between Java versions
-        JAVA_VERSIONS=({5..20})
-        for ver in $JAVA_VERSIONS; do
-            if ((${ver} < 9)) ; then
-                ver_str="1.${ver}"
-            else
-                ver_str=$ver
-            fi
-            cmd="/usr/libexec/java_home -v$ver_str"
-            if eval $cmd NUL; then
-                export JAVA_${ver}_HOME="$(eval "${cmd}")"
-                alias java${ver}="export JAVA_HOME=\$JAVA_${ver}_HOME"
-            fi
-        done
-        unset JAVA_VERSIONS
-        # default to java8 if it exists
-        # shellcheck disable=SC2153
-        test -n "$JAVA_8_HOME" && export JAVA_HOME=$JAVA_8_HOME
         ;;
 
     linux)
@@ -452,24 +308,3 @@ fi
 # Remove aliases I don't want to use
 #
 unalias gl NUL # Unalias 'git pull' from git plugin
-
-#
-# TrueMotion Aliases
-#
-if [ "$(hostname)" = "bos159" ]; then
-
-    unset JAVA_HOME
-
-    alias gitemailunsetglobal='git config --global --unset user.email'
-
-    function gitemailset() {
-        git config "$1" user.email 'matt.lewin@gotruemotion.com'
-    }
-
-    function tmo_repo_install() {
-        [ -e 'Gemfile' ] && bundle install
-        [ -e '.gitmodules' ] && git submodule update --init --recursive
-        [ -e 'project.yml' ] && bundle exec fastlane updateProject # xcodegen projects
-        [ -e 'Podfile' ] && bundle exec pod install "$@"
-    }
-fi
