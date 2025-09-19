@@ -1,7 +1,8 @@
 #
 # Normal aliases (i.e., only work as $0)
 #
-alias dirs='builtin dirs -v'
+alias d='builtin dirs -v'
+alias d-='popd -q'
 alias dirsc='builtin dirs -c'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffplay='ffplay -hide_banner'

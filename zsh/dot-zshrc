@@ -145,6 +145,7 @@ done
 typeset -a _plugins=(
   aliases
   clean_subtitles
+  dirstack
   iterm_title
   mise
 )
