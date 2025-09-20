@@ -141,20 +141,15 @@ done
 (( $+commands[ngrok] )) && eval "$(ngrok completion)"
 (( $+commands[rg] )) && typeset -xr RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-# --- Local plugins ---
-typeset -a _plugins=(
-  aliases
-  clean_subtitles
-  dirstack
-  fzf
-  iterm_title
-  mise
-)
-
-for _p in "${_plugins[@]}"; do
-  [[ -r "${DOT_ZSH}/plugins/${_p}.plugin.zsh" ]] && source "${DOT_ZSH}/plugins/${_p}.plugin.zsh"
+# --- Local plugins: auto-load every *.zsh in ${DOT_ZSH}/plugins ---
+# Disable errors if no files match; only source readable files.
+# Disable individual plugins by changing the extension from .zsh
+setopt null_glob
+for _plug in "${DOT_ZSH}"/plugins/*.zsh; do
+  [[ -r "$_plug" ]] && source "$_plug"
 done
-unset _plugins _p
+unsetopt null_glob
+unset _plug
 
 (( $+commands[zoxide] )) && eval "$(zoxide init zsh)" # must come after compinit and after plugins are sourced
 
