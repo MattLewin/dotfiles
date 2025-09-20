@@ -1,4 +1,0 @@
-ssl_verify: true
-channels:
-  - defaults
-changeps1: false
