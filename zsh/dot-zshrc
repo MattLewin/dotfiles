@@ -74,13 +74,13 @@ else
     PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
 fi
 
-source_before_omz=(
+source_before_antidote=(
     # NOTE: order matters here
     paths.zsh
     plugins_builder.zsh
 )
 
-for file in "${source_before_omz[@]}"
+for file in "${source_before_antidote[@]}"
 do
     source "${DOT_ZSH}/${file}"
 done
@@ -128,13 +128,13 @@ fi
 ######## Antidote plugins are sourced above here #######
 #
 # ML: 2019-06-29
-source_after_omz=(
+source_after_antidote=(
     # NOTE: order matters here
     aliases.zsh
     variables.zsh
 )
 
-for file in "${source_after_omz[@]}"
+for file in "${source_after_antidote[@]}"
 do
     source "${DOT_ZSH}/${file}"
 done
