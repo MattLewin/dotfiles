@@ -115,9 +115,11 @@ autoload -Uz compinit && compinit -i
 # Antidote (lightweight plugin manager)
 if [ -r "$HOME/.antidote/antidote.zsh" ]; then
     source "$HOME/.antidote/antidote.zsh"
-    # If you maintain a plugin list at ~/.zsh_plugins.txt, (re)generate the loader
+    # Only (re)bundle if the list exists and is newer than the bundle (or bundle missing)
     if [ -r "$HOME/.zsh_plugins.txt" ]; then
-        antidote bundle < "$HOME/.zsh_plugins.txt" > "$HOME/.zsh_plugins.sh"
+        if [ ! -r "$HOME/.zsh_plugins.sh" ] || [ "$HOME/.zsh_plugins.txt" -nt "$HOME/.zsh_plugins.sh" ]; then
+            antidote bundle < "$HOME/.zsh_plugins.txt" > "$HOME/.zsh_plugins.sh"
+        fi
     fi
     # Load compiled plugin bundle if present
     [ -r "$HOME/.zsh_plugins.sh" ] && source "$HOME/.zsh_plugins.sh"
