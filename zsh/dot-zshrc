@@ -112,6 +112,9 @@ fi
 # Initialize completion before sourcing plugins (needed for plugins that call compdef)
 autoload -Uz compinit && compinit -i
 
+# Make completion case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 # Antidote (lightweight plugin manager)
 if [ -r "$HOME/.antidote/antidote.zsh" ]; then
     source "$HOME/.antidote/antidote.zsh"
@@ -153,7 +156,7 @@ done
 unsetopt null_glob
 unset _plug
 
-(( $+commands[zoxide] )) && eval "$(zoxide init zsh)" # must come after compinit and after plugins are sourced
+(( $+commands[zoxide] )) && eval "$(zoxide init --cmd z zsh)" # must come after compinit and after plugins are sourced
 
 # pipx autocompletion must come after the above compinit. No idea why
 (( $+commands[pipx] )) && eval "$(register-python-argcomplete pipx)"
