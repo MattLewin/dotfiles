@@ -44,6 +44,7 @@ brew 'zsh'
 
 # ---- macOS casks ----
 if OS.mac?
+  cask 'git-credential-manager'
   cask 'font-fira-code'
   cask 'font-fira-code-nerd-font'
   cask 'font-hack-nerd-font'

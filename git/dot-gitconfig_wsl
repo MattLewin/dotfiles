@@ -1,6 +1,10 @@
 # --- Core & UI ---
 [user]
     useConfigOnly = true
+[credential]
+    # Note the next line is intentionally clearing helper, even though we set it again
+    helper =
+    helper = manager
 [core]
     excludesfile = ~/.gitignore_global
     autocrlf = input
