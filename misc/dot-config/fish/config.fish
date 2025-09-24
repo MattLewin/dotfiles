@@ -1,4 +1,5 @@
 if status is-interactive
+    eval (direnv hook fish)
     starship init fish | source
     zoxide init fish | source
 
