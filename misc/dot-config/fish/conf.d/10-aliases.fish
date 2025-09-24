@@ -1,9 +1,9 @@
 
 # git
-alias gcue-hoos='git config user.email mail@hoosfoosmccave.com'
-alias gcue-matt='git config user.email matt@mogroups.com'
-alias gcun-hoos='git config user.name "Hoosfoos McCave"'
-alias gcun-matt='git config user.name "Matt Lewin"'
+alias gcue-hoos='git config set user.email mail@hoosfoosmccave.com'
+alias gcue-matt='git config set user.email matt@mogroups.com'
+alias gcun-hoos='git config set user.name "Hoosfoos McCave"'
+alias gcun-matt='git config set user.name "Matt Lewin"'
 alias gitchanged='git fetch --all && git diff ...origin'
 alias gitconfig-hoos='gcue-hoos ; gcun-hoos'
 alias gitconfig-matt='gcue-matt ; gcun-matt'    
