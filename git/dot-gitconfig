@@ -1,7 +1,4 @@
-[filter "media"]
-	required = true
-	clean = git media clean %f
-	smudge = git media smudge %f
+# --- Core & UI ---
 [user]
 	useConfigOnly = true
 [credential]
@@ -23,46 +20,18 @@
 	hunk-header-style = line-number syntax
 	commit-decoration-style = bold yellow box ul
 	commit-style = raw
-	line-numbers = true
-	side-by-side = true
 
-[merge]
-	conflictstyle = diff3
-
+# --- Diff / Merge ---
 [diff]
 	colorMoved = default
-[difftool "changed-lines-only"]
-	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' \"$LOCAL\" \"$REMOTE\"
-	trustExitCode = true
-[push]
-	default = current
-	followTags = true
-[commit]
-	template = ~/.stCommitMsg
-[diff]
 	renameLimit = 15000
-[alias]
-	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
-    #clone-branches2 = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | $xargs -L1 -I{} git branch -t $( echo {} | sed 's:^remotes/[^/]*/:: ) {}"
-    patch = !git --no-pager diff --no-color --no-prefix $@
-	lazy = !lazygit
-[remote]
-	pushdefault = origin
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-[gitflow "branch"]
-	master = master
-	develop = develop
-[gitflow "prefix"]
-	feature = feature/
-	release = release/
-	bugfix = bugfix/
-	hotfix = hotfix/
-	support = support/
-	versiontag =
+[difftool "changed-lines-only"]
+	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
+	trustExitCode = true
+[merge]
+	conflictstyle = zdiff3
+
+# --- Colors ---
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -78,30 +47,39 @@
 	new = green bold
 	whitespace = red reverse
 	func = 146 bold
-[branch]
-	autoSetupMerge = always
+
+# --- Workflow Defaults ---
+[push]
+	default = current
+	followTags = true
+[remote]
+	pushdefault = origin
+[pull]
+	rebase = true
+	ff = only
 [fetch]
 	prune = true
+[commit]
+	template = ~/.stCommitMsg
 [stash]
 	showPatch = true
+[init]
+	defaultBranch = develop
+[branch]
+	autoSetupMerge = always
+
+# --- Aliases ---
+[alias]
+	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
+	patch = !git --no-pager diff --no-color --no-prefix $@
+
+# --- Filters ---
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+# Additional includes
 [include]
 	path = ~/.git/included.gitconfig
-# rewrites of repo paths
-[url "git@github.com:"]
-  pushInsteadOf = "github:"
-  pushInsteadOf = "git://github.com/"
-
-[url "git://github.com/"]
-  insteadOf = "github:"
-
-[url "git@gist.github.com:"]
-  pushInsteadOf = "gist:"
-  pushInsteadOf = "git://gist.github.com/"
-
-[url "git://gist.github.com/"]
-  insteadOf = "gist:"
-
-[pull]
-	rebase = false
-[init]
-	defaultBranch = main
