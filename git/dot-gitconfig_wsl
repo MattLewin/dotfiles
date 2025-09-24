@@ -2,9 +2,7 @@
 [user]
 	useConfigOnly = true
 [credential]
-	# Note the next line is intentionally clearing helper, even though we set it again
-	helper =
-	helper = "/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe"
+	helper = !\"/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe\"
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
