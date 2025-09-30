@@ -55,7 +55,7 @@
 [remote]
 	pushdefault = origin
 [pull]
-	rebase = true
+	rebase = merges
 	ff = only
 [fetch]
 	prune = true
