@@ -32,7 +32,7 @@ alias pbc='clipcopy'
 alias ping="ping -c 5"
 alias ping6='ping -6 -c 5'
 alias stat='zstat -s'
-alias update-all='antidote update && mise upgrade && brew upgrade'
+alias update-all='antidote update && hr && mise upgrade && hr && brew upgrade'
 #
 # Global aliases
 #  These aliases are expanded in any position in the command line, meaning you
