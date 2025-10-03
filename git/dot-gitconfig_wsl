@@ -6,6 +6,7 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
+	editor = nvim
 	pager = less -+FX   # fast, no paging on short output; safe default
 	filemode = false    # WSL-friendly: ignore chmod noise
 [color]
@@ -47,8 +48,6 @@
 	ff = only
 [fetch]
 	prune = true
-[commit]
-	template = ~/.stCommitMsg
 [stash]
 	showPatch = true
 [init]
