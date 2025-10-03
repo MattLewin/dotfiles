@@ -61,7 +61,7 @@
 [fetch]
 	prune = true
 [commit]
-	template = ~/.stCommitMsg
+	verbose = true
 [stash]
 	showPatch = true
 [init]

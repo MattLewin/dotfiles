@@ -48,6 +48,8 @@
 	ff = only
 [fetch]
 	prune = true
+[commit]
+	verbose = true
 [stash]
 	showPatch = true
 [init]
