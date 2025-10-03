@@ -21,12 +21,6 @@ alias hgrep='fc -il 0 | grep'
 alias hrg='fc -il 0 | rg'
 # shellcheck disable=SC2142
 alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0" ] && cols="80"; printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"; done }; _hr' # <HR/> for shells
-alias l="ls -lFh"       # List files as a long list, show size, type, human-readable
-alias lS="ls -1FSsh"    # List files showing only size and name sorted by size
-alias la="ls -lAFh"     # List almost all files as a long list show size, type, human-readable
-alias ldot="ls -ld .*"  # List dot files as a long list
-alias ll="ls -l"        # List files as a long list
-alias lt="ls -ltFh"     # List files as a long list sorted by date, show type, human-readable
 alias nslookup6='nslookup -querytype=AAAA'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
