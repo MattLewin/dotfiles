@@ -21,7 +21,6 @@ _build_plugins() {
   typeset -A WANT=(
     [aws]=aws
     [docker]=docker
-    [grc]=grc
   )
 
   # Associated mappings
