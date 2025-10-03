@@ -1,4 +1,0 @@
-# Ignore everything but the plugins.vim file
-*
-!.gitignore
-!plugins.vim

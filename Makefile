@@ -1,4 +1,4 @@
-STOW_PACKAGES=bash git misc tmux vim zsh
+STOW_PACKAGES=bash git misc tmux zsh
 INSTALL_SCRIPTS_DIR=install_scripts
 ALL=antidote dotfiles launch-agents
 

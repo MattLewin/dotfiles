@@ -131,6 +131,11 @@ fi
 (( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
 (( $+commands[htop] )) && alias top="${commands[htop]}"
 
+if (( $+commands[nvim] )); then
+    alias vi=nvim
+    alias vim=nvim
+fi
+
 # Prefer python3; avoid symlinking system python
 if (( $+commands[python3] )); then
     alias python=python3
