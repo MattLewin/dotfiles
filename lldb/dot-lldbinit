@@ -1,6 +1,0 @@
-command script import /usr/local/opt/chisel/libexec/fblldb.py
-command script import /opt/homebrew/opt/chisel/libexec/fblldb.py
-command script import ~/src/dotfiles/lldb/LLDB/lldb_commands/dslldb.py
-
-settings set target.x86-disassembly-flavor intel
-settings set target.skip-prologue false
