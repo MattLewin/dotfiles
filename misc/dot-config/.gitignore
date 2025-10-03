@@ -1,0 +1,18 @@
+# Default: ignore everything under ~/.config
+*
+
+# Always keep this file
+!.gitignore
+
+# Allowlisted subtrees (must unignore the dir AND its contents)
+!fish/
+!fish/**
+
+!homebrew/
+!homebrew/**
+
+!mise/
+!mise/**
+
+!nvim/
+!nvim/**
