@@ -109,6 +109,12 @@ then
     fpath+=${BREW_PREFIX}/share/zsh-completions
 fi
 
+# Docker Desktop completions
+if [ -d "${HOME}/.docker/completions" ]
+then
+    fpath+=${HOME}/.docker/completions
+fi
+
 # Initialize completion before sourcing plugins (needed for plugins that call compdef)
 autoload -Uz compinit && compinit -i
 
@@ -177,8 +183,5 @@ fi
 # unsetopt XTRACE
 # exec 2>&3 3>&-
 # ## END: Code to profile zsh startup
-
-# Created by `pipx` on 2025-09-18 00:55:37
-export PATH="$PATH:/Users/matt/.local/bin"
 
 # vim:ft=zsh
