@@ -52,6 +52,7 @@
 # --- Workflow Defaults ---
 [push]
 	default = current
+	autoSetupRemote = true
 	followTags = true
 [remote]
 	pushdefault = origin
