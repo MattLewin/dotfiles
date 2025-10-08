@@ -20,7 +20,6 @@ _build_plugins() {
   # Binary-gated plugins
   typeset -A WANT=(
     [aws]=aws
-    [docker]=docker
   )
 
   # Associated mappings
