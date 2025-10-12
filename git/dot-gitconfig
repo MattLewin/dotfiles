@@ -61,14 +61,13 @@
 	ff = only
 [fetch]
 	prune = true
+	pruneTags = true
 [commit]
 	verbose = true
 [stash]
 	showPatch = true
 [init]
 	defaultBranch = develop
-[branch]
-	autoSetupMerge = always
 
 # --- Aliases ---
 [alias]
@@ -87,3 +86,14 @@
 	path = ~/.git/included.gitconfig
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+
+
+[rebase]
+	autosquash = true
+	updateRefs = true
+
+[tag]
+	sort = version:refname
+
+[branch]
+	sort = -committerdate
