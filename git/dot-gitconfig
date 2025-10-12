@@ -8,10 +8,12 @@
 	autocrlf = input
 	pager = delta
 	editor = nvim
+# --- Diff / Merge ---
 [interactive]
 	diffFilter = delta --color-only
+
 [delta]
-	features = side-by-side line-numbers decorations
+	features = line-numbers decorations
 	navigate = true
 	syntax-theme = Dracula
 	plus-style = syntax
@@ -21,14 +23,17 @@
 	hunk-header-style = line-number syntax
 	commit-decoration-style = bold yellow box ul
 	commit-style = raw
+[delta "line-numbers"]
+    line-numbers-minus-style = bold brightred
+    line-numbers-zero-style = syntax normal
 
-# --- Diff / Merge ---
 [diff]
 	colorMoved = default
-	renameLimit = 15000
+
 [difftool "changed-lines-only"]
 	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
 	trustExitCode = true
+
 [merge]
 	conflictstyle = zdiff3
 
@@ -71,7 +76,6 @@
 
 # --- Aliases ---
 [alias]
-	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
 	patch = !git --no-pager diff --no-color --no-prefix $@
 
 # --- Filters ---
