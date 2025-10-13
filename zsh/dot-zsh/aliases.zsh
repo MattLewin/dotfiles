@@ -1,22 +1,12 @@
 #
 # Normal aliases (i.e., only work as $0)
 #
-alias d='builtin dirs -v'
 alias d-='popd -q'
+alias d='builtin dirs -v'
 alias dirsc='builtin dirs -c'
 alias ffmpeg='ffmpeg -hide_banner'
 alias ffplay='ffplay -hide_banner'
 alias ffprobe='ffprobe -hide_banner'
-alias gcue-hoos='git config set user.email mail@hoosfoosmccave.com'
-alias gcue-matt='git config set user.email matt@mogroups.com'
-alias gcun-hoos='git config set user.name "Hoosfoos McCave"'
-alias gcun-matt='git config set user.name "Matt Lewin"'
-alias gdgui='git difftool --no-prompt'
-alias gfi='git flow init --global --defaults'
-alias gitchanged='git fetch --all && git diff ...origin'
-alias gitconfig-hoos='gcue-hoos ; gcun-hoos'
-alias gitconfig-matt='gcue-matt ; gcun-matt'
-alias gitignored='git ls-files --others -i --exclude-standard'
 alias hgrep='fc -il 0 | grep'
 alias hrg='fc -il 0 | rg'
 # shellcheck disable=SC2142
@@ -185,20 +175,6 @@ function random() {
     print $((1 + $(od -A n -t d -N1 /dev/random) % $1))
 }
 
-#
-# ML: 2019-02-14
-# git.io "GitHub URL"
-#
-# Shorten GitHub url, example:
-#   https://github.com/nvogel/dotzsh    >   https://git.io/8nU25w
-# source: https://github.com/nvogel/dotzsh
-# documentation: https://github.com/blog/985-git-io-github-url-shortener
-#
-function gitio() {
-    emulate -L zsh
-    curl -i -s https://git.io -F "url=$1" | grep "Location" | cut -f 2 -d " "
-}
-
 # clone of the old DOS 'pause' command
 function pause() {
     read -rs -k1 "?Press any key to continue..."$'\n'
@@ -302,8 +278,3 @@ if [ "${BREW_PREFIX}" != "" ]; then
         }
     fi
 fi
-
-#
-# Remove aliases I don't want to use
-#
-unalias gl NUL # Unalias 'git pull' from git plugin
