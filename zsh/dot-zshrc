@@ -115,6 +115,11 @@ then
     fpath+=${HOME}/.docker/completions
 fi
 
+# history-aware completion
+zstyle ':completion:*' completer _history _complete _ignored _match
+zstyle ':completion:*:history-words' sort false
+zstyle ':completion:*:history-words' stop yes
+
 # Initialize completion before sourcing plugins (needed for plugins that call compdef)
 autoload -Uz compinit && compinit -i
 
