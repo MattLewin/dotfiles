@@ -40,11 +40,13 @@
 	algorithm = histogram
 	colorMoved = default
 	compactionHeuristic = true
+	mnemonicPrefix = true
 [difftool "changed-lines-only"]
 	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
 	trustExitCode = true
 [merge]
 	conflictstyle = zdiff3
+	directoryRenames = true
 
 # --- Workflow Defaults ---
 [push]
@@ -71,6 +73,7 @@
 	autosquash = true
 	updateRefs = true
 	autoStash = true
+	backend = merge
 [init]
 	defaultBranch = develop
 
@@ -84,6 +87,9 @@
 	submoduleSummary = true
 [gc]
 	writeCommitGraph = true
+[maintenance]
+	auto = true
+	strategy = incremental
 
 # --- Additional Includes ---
 [include]
