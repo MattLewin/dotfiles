@@ -7,68 +7,84 @@
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	editor = nvim
-	pager = less -+FX   # fast, no paging on short output; safe default
+	pager = delta
 	filemode = false    # WSL-friendly: ignore chmod noise
-[color]
-	ui = true
+	untrackedCache = true
+[tag]
+	sort = version:refname
+[branch]
+	sort = -committerdate
+[log]
+	abbrevCommit = true
 
-# --- Diff / Merge ---
+# --- Diff / Merge / Colors ---
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	features = line-numbers decorations
+	navigate = true
+	wrap-lines = true
+	syntax-theme = Dracula
+	plus-style = syntax
+	minus-style = syntax
+	file-decoration-style = cyan overline
+	file-style = bold yellow
+	hunk-header-style = line-number syntax
+	commit-decoration-style = bold yellow box ul
+	commit-style = raw
+[delta "line-numbers"]
+	line-numbers-minus-style = bold brightred
+	line-numbers-plus-style  = bold brightgreen
+	line-numbers-zero-style  = syntax
 [diff]
+	algorithm = histogram
 	colorMoved = default
-	renameLimit = 15000
+	compactionHeuristic = true
 [difftool "changed-lines-only"]
 	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
 	trustExitCode = true
 [merge]
 	conflictstyle = zdiff3
 
-# --- Colors (works with built-in diff; harmless w/out diff-highlight) ---
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-	func = 146 bold
-
 # --- Workflow Defaults ---
 [push]
 	default = current
 	followTags = true
+	autoSetupRemote = true
+	recurseSubmodules = on-demand
 [remote]
 	pushdefault = origin
 [pull]
-	rebase = true
-	ff = only
+	rebase = merges
 [fetch]
 	prune = true
+	pruneTags = true
+	negotiationAlgorithm = skipping
+	writeCommitGraph = true
 [commit]
 	verbose = true
 [stash]
 	showPatch = true
+[rerere]
+	enabled = true
+[rebase]
+	autosquash = true
+	updateRefs = true
+	autoStash = true
 [init]
 	defaultBranch = develop
-[branch]
-	autoSetupMerge = always
 
 # --- Aliases ---
 [alias]
-	clone-branches = "! git branch -a | sed -n \"/\\/HEAD /d; /\\/master$/d; /remotes/p;\" | xargs -L1 git checkout -t"
 	patch = !git --no-pager diff --no-color --no-prefix $@
+	ffmain = "!git diff --quiet || { echo 'Uncommitted changes - aborting'; exit 1; }; git switch main && git fetch origin && git merge --ff-only origin/develop && git push"
 
-# --- Filters ---
-[filter "lfs"]
-   clean = git-lfs clean -- %f
-   smudge = git-lfs smudge -- %f
-   process = git-lfs filter-process
-   required = true
+# --- Performance & Maintenance ---
+[status]
+	submoduleSummary = true
+[gc]
+	writeCommitGraph = true
 
-# Additional includes
+# --- Additional Includes ---
 [include]
 	path = ~/.git/included.gitconfig
