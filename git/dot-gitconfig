@@ -3,15 +3,23 @@
 	useConfigOnly = true
 [credential]
 	helper = manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
 	pager = delta
 	editor = nvim
-# --- Diff / Merge ---
+[tag]
+	sort = version:refname
+[branch]
+	sort = -committerdate
+
+# --- Diff / Merge / Colors ---
+[log]
+	abbrevCommit = true
 [interactive]
 	diffFilter = delta --color-only
-
 [delta]
 	features = line-numbers decorations
 	navigate = true
@@ -24,20 +32,17 @@
 	commit-decoration-style = bold yellow box ul
 	commit-style = raw
 [delta "line-numbers"]
-    line-numbers-minus-style = bold brightred
-    line-numbers-zero-style = syntax normal
-
+	line-numbers-minus-style = bold brightred
+	line-numbers-plus-style  = bold brightgreen
+	line-numbers-zero-style  = syntax
 [diff]
+	algorithm = histogram
 	colorMoved = default
-
 [difftool "changed-lines-only"]
 	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
 	trustExitCode = true
-
 [merge]
 	conflictstyle = zdiff3
-
-# --- Colors ---
 [color]
 	ui = true
 [color "diff-highlight"]
@@ -59,11 +64,11 @@
 	default = current
 	autoSetupRemote = true
 	followTags = true
+	recurseSubmodules = on-demand
 [remote]
 	pushdefault = origin
 [pull]
 	rebase = merges
-	ff = only
 [fetch]
 	prune = true
 	pruneTags = true
@@ -71,12 +76,18 @@
 	verbose = true
 [stash]
 	showPatch = true
+[rerere]
+	enabled = true
+[rebase]
+	autosquash = true
+	updateRefs = true
+	autoStash = true
 [init]
 	defaultBranch = develop
 
 # --- Aliases ---
 [alias]
-	patch = !git --no-pager diff --no-color --no-prefix $@
+	patch  = !git --no-pager diff --no-color --no-prefix $@
 	ffmain = "!git diff --quiet || { echo 'Uncommitted changes — aborting'; exit 1; }; git switch main && git fetch origin && git merge --ff-only origin/develop && git push"
 
 # --- Filters ---
@@ -86,19 +97,12 @@
 	process = git-lfs filter-process
 	required = true
 
-# Additional includes
+# --- Performance & Maintenance ---
+[status]
+	submoduleSummary = true
+[gc]
+	writeCommitGraph = true
+
+# --- Additional includes ---
 [include]
 	path = ~/.git/included.gitconfig
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-
-
-[rebase]
-	autosquash = true
-	updateRefs = true
-
-[tag]
-	sort = version:refname
-
-[branch]
-	sort = -committerdate
