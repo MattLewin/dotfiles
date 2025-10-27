@@ -10,6 +10,7 @@
 	autocrlf = input
 	pager = delta
 	editor = nvim
+	untrackedCache = true
 [tag]
 	sort = version:refname
 [branch]
@@ -22,6 +23,7 @@
 	diffFilter = delta --color-only
 [delta]
 	features = line-numbers decorations
+	wrap-lines = true
 	navigate = true
 	syntax-theme = Dracula
 	plus-style = syntax
@@ -38,26 +40,11 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
-[difftool "changed-lines-only"]
-	cmd = /usr/bin/diff --unchanged-line-format= --old-line-format= --new-line-format='%L' "$LOCAL" "$REMOTE"
-	trustExitCode = true
+	compactionHeuristic = true
+	mnemonicPrefix = true
 [merge]
 	conflictstyle = zdiff3
-[color]
-	ui = true
-[color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
-[color "diff"]
-	meta = 11
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
-	func = 146 bold
+	directoryRenames = true
 
 # --- Workflow Defaults ---
 [push]
@@ -72,6 +59,8 @@
 [fetch]
 	prune = true
 	pruneTags = true
+	negotiationAlgorithm = skipping
+	writeCommitGraph = true
 [commit]
 	verbose = true
 [stash]
@@ -82,6 +71,7 @@
 	autosquash = true
 	updateRefs = true
 	autoStash = true
+	backend = merge
 [init]
 	defaultBranch = develop
 
@@ -102,6 +92,9 @@
 	submoduleSummary = true
 [gc]
 	writeCommitGraph = true
+[maintenance]
+	auto = true
+	strategy = incremental
 
 # --- Additional includes ---
 [include]
