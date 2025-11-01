@@ -41,6 +41,7 @@ brew 'thefuck'
 brew 'tmux'
 brew 'watch'
 brew 'wget'
+brew 'yt-dlp'
 brew 'zoxide'
 brew 'zsh'
 
