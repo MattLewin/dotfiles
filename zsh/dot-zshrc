@@ -115,16 +115,27 @@ then
     fpath+=${HOME}/.docker/completions
 fi
 
-# history-aware completion
-zstyle ':completion:*' completer _history _complete _ignored _match
-zstyle ':completion:*:history-words' sort false
-zstyle ':completion:*:history-words' stop yes
+# Make normal completion run first; keep history as a *fallback*
+zstyle ':completion:*' completer _complete _ignored _match _history
+
+# For cd, never offer history words—only directories
+zstyle ':completion:*:cd:*' completer _complete
+
+# Nice directory-focused behavior for cd
+zstyle ':completion:*:cd:*' tag-order 'local-directories' 'directory-stack' 'path-directories'
+zstyle ':completion:*:cd:*' ignore-parents parent pwd
+
+# (Optional) quality-of-life
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*:descriptions' format '%F{yellow}%d%f'
+zstyle ':completion:*' menu select
+
+# Make completion case-insensitive
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Initialize completion before sourcing plugins (needed for plugins that call compdef)
 autoload -Uz compinit && compinit -i
 
-# Make completion case-insensitive
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Antidote (lightweight plugin manager)
 if [ -r "$HOME/.antidote/antidote.zsh" ]; then
