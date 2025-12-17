@@ -180,9 +180,6 @@ unset _plug
 
 (( $+commands[zoxide] )) && eval "$(zoxide init --cmd z zsh)" # must come after compinit and after plugins are sourced
 
-# pipx autocompletion must come after the above compinit. No idea why
-(( $+commands[pipx] )) && eval "$(register-python-argcomplete pipx)"
-
 # paths.zsh defines the function below
 (( $+functions[remove_duplicate_paths] )) && remove_duplicate_paths
 
