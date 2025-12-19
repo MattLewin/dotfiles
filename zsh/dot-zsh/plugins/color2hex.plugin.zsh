@@ -14,7 +14,7 @@ local _cs_comp="$_zfunc_dir/_color2hex"
 # (Re)generate completion only if missing
 if [[ ! -s "$_cs_comp" ]]; then
   mkdir -p "$_zfunc_dir"
-  color2hex completion >| "$_cs_comp" 2>/dev/null || true
+  color2hex completion zsh >| "$_cs_comp" 2>/dev/null || true
 fi
 
 # If compinit already ran and _color2hex isn't loaded yet, refresh once
