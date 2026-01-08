@@ -166,6 +166,48 @@ function complement_color() {
   printf "#%02X%02X%02X\n" $comp_red $comp_green $comp_blue
 }
 
+# Apply effects to audio -- intended for dialogue
+function lofi() {
+  local do_radio=false
+  local do_wt=false
+  local input=""
+
+  while [[ $# -gt 0 ]]; do
+    case "$1" in
+      -radio) do_radio=true; shift ;;
+      -wt)    do_wt=true; shift ;;
+      *)      input="$1"; shift ;;
+    esac
+  done
+
+  if [[ "$do_radio" = false && "$do_wt" = false ]] || [[ -z "$input" ]]; then
+    echo "Usage: lofi [-radio] [-wt] <file>"
+    return 1
+  fi
+
+  local base="${input%.*}"
+  local ext="${input##*.}"
+  
+  # Standardize loudness and crush the dynamics
+  local norm="loudnorm=I=-16:TP=-1.5:LRA=11"
+  local comp="compand=0.3|0.3:6|6:-70/-60|-20/-14"
+
+  if [[ "$do_radio" = true ]]; then
+    # We add -7dB of padding to account for the +6dB EQ bump and keep peaks safe
+    ffmpeg -i "$input" -af \
+    "${norm},${comp},firequalizer=gain='if(between(f,400,3500),0,-60)+if(between(f,1000,2000),6,0)',aresample=48000,volume=-7dB" \
+    -c:a pcm_s24le "${base}-radio.${ext}"
+  fi
+
+  if [[ "$do_wt" = true ]]; then
+    # WT doesn't have a 6dB bump, but the narrow bandpass can still increase peak energy. 
+    # -3dB is a safe pad here.
+    ffmpeg -i "$input" -af \
+    "${norm},${comp},firequalizer=gain='if(between(f,600,2500),0,-70)',aresample=48000,volume=-3dB" \
+    -c:a pcm_s24le "${base}-wt.${ext}"
+  fi
+}
+
 function random() {
     if [[ $# != 1 ]]; then
         print '"random <max_value>" : print a random integer between 1 and max_value (inclusive)'
