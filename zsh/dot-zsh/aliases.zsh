@@ -136,7 +136,7 @@ fi
 #
 
 # Calculate the complement of a hex color
-function complement_color() {
+complement_color() {
   if [[ -z "$1" ]]; then
     echo "Usage: complement_color <hex_color_code>"
     echo "Example: complement_color 33A1C9"
@@ -167,7 +167,7 @@ function complement_color() {
 }
 
 # Apply effects to audio -- intended for dialogue
-function lofi() {
+lofi() {
   local do_radio=false
   local do_wt=false
   local input=""
@@ -208,7 +208,7 @@ function lofi() {
   fi
 }
 
-function random() {
+random() {
     if [[ $# != 1 ]]; then
         print '"random <max_value>" : print a random integer between 1 and max_value (inclusive)'
         return 1
@@ -218,14 +218,14 @@ function random() {
 }
 
 # clone of the old DOS 'pause' command
-function pause() {
+pause() {
     read -rs -k1 "?Press any key to continue..."$'\n'
 }
 
 #
 # ML: 2019-07-15
 # A function to display the tmux window number
-function tmux_winidx_circled() {
+tmux_winidx_circled() {
     if tmux info &> /dev/null; then
         local winidx
         winidx=$(tmux display-message -p '#I')
