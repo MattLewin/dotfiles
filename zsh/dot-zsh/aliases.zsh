@@ -191,19 +191,23 @@ lofi() {
   # Standardize loudness and crush the dynamics
   local norm="loudnorm=I=-16:TP=-1.5:LRA=11"
   local comp="compand=0.3|0.3:6|6:-70/-60|-20/-14"
+  
+  # Target set dBFS for output by adjusting value of "limit" below
+  # -1dBFS: 0.89
+  # -3dBFS: 0.707
+  # -6dBFS: 0.5
+  # -10dBFS: 0.316
+  local peak_cap="alimiter=limit=0.316:level=0"
 
   if [[ "$do_radio" = true ]]; then
-    # We add -7dB of padding to account for the +6dB EQ bump and keep peaks safe
     ffmpeg -i "$input" -af \
-    "${norm},${comp},firequalizer=gain='if(between(f,400,3500),0,-60)+if(between(f,1000,2000),6,0)',aresample=48000,volume=-7dB" \
+    "${norm},${comp},firequalizer=gain='if(between(f,400,3500),0,-60)+if(between(f,1000,2000),6,0)',aresample=48000,${peak_cap}" \
     -c:a pcm_s24le "${base}-radio.${ext}"
   fi
 
   if [[ "$do_wt" = true ]]; then
-    # WT doesn't have a 6dB bump, but the narrow bandpass can still increase peak energy. 
-    # -3dB is a safe pad here.
     ffmpeg -i "$input" -af \
-    "${norm},${comp},firequalizer=gain='if(between(f,600,2500),0,-70)',aresample=48000,volume=-3dB" \
+    "${norm},${comp},firequalizer=gain='if(between(f,600,2500),0,-70)',aresample=48000,${peak_cap}" \
     -c:a pcm_s24le "${base}-wt.${ext}"
   fi
 }
