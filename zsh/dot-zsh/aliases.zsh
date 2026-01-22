@@ -212,6 +212,11 @@ lofi() {
   fi
 }
 
+# clone of the old DOS 'pause' command
+pause() {
+    read -rs -k1 "?Press any key to continue..."$'\n'
+}
+
 random() {
     if [[ $# != 1 ]]; then
         print '"random <max_value>" : print a random integer between 1 and max_value (inclusive)'
@@ -219,11 +224,6 @@ random() {
     fi
 
     print $((1 + $(od -A n -t u -N4 /dev/random) % $1))
-}
-
-# clone of the old DOS 'pause' command
-pause() {
-    read -rs -k1 "?Press any key to continue..."$'\n'
 }
 
 #
