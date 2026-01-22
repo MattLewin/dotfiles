@@ -218,7 +218,7 @@ random() {
         return 1
     fi
 
-    print $((1 + $(od -A n -t d -N1 /dev/random) % $1))
+    print $((1 + $(od -A n -t u -N4 /dev/random) % $1))
 }
 
 # clone of the old DOS 'pause' command
