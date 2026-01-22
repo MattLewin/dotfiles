@@ -61,5 +61,4 @@ if OS.mac?
   cask 'iterm2'
   cask 'ngrok'
   cask 'visual-studio-code'
-  cask 'vlc'
 end
