@@ -4,9 +4,6 @@
 alias d-='popd -q'
 alias d='builtin dirs -v'
 alias dirsc='builtin dirs -c'
-alias ffmpeg='ffmpeg -hide_banner'
-alias ffplay='ffplay -hide_banner'
-alias ffprobe='ffprobe -hide_banner'
 alias hgrep='fc -il 0 | grep'
 alias hrg='fc -il 0 | rg'
 # shellcheck disable=SC2142
