@@ -17,46 +17,24 @@ __ffav1_first_input_after_i() {
 }
 
 # Find first non-option argument (ffplay positional input).
-# Stops option parsing at "--" and returns the first positional after it.
-# Skips values consumed by common options that take an argument.
+# Heuristic: returns the first argument that exists as a file or looks like a URL.
 __ffav1_first_positional() {
-  local -a args; args=("$@")
-  local i=1
-  local a
-
-  while (( i <= ${#args[@]} )); do
-    a="${args[i]}"
-
-    # End of options; next token (if any) is positional input
-    if [[ "$a" == "--" ]]; then
-      (( i++ ))
-      [[ $i -le ${#args[@]} ]] && { print -r -- "${args[i]}"; return 0; }
-      return 1
-    fi
-
-    # If it doesn't start with '-', it's positional input
-    if [[ "$a" != -* ]]; then
-      print -r -- "$a"
+  local arg
+  local end_opts=0
+  for arg in "$@"; do
+    if [[ $end_opts -eq 1 ]]; then
+      print -r -- "$arg"
       return 0
     fi
-
-    # Option takes a following argument (skip it)
-    case "$a" in
-      # common across ffmpeg/ffplay
-      -i|-ss|-t|-to|-itsoffset|-vf|-af|-filter_complex|-s|-r|-aspect|-vn|-an|-sn|-dn|-sync|-pix_fmt|-f|-c|-codec|-vcodec|-acodec|-scodec|-map|-lavfi|-protocol_whitelist|-hwaccel|-hwaccel_device|-hwaccel_output_format|-threads|-framerate|-video_size|-pixel_format|-sample_rate|-channels|-audio_buffer_size|-seek_interval|-window_title|-x|-y|-left|-top|-loop)
-        (( i+=2 ))
-        continue
-        ;;
-      # options in the form -vf=... or -x=...
-      -*=*)
-        (( i++ ))
-        continue
-        ;;
-      *)
-        (( i++ ))
-        continue
-        ;;
-    esac
+    if [[ "$arg" == "--" ]]; then
+      end_opts=1
+      continue
+    fi
+    [[ "$arg" == -* ]] && continue
+    if [[ -f "$arg" ]] || [[ "$arg" =~ ^[a-zA-Z]+:// ]]; then
+      print -r -- "$arg"
+      return 0
+    fi
   done
   return 1
 }
