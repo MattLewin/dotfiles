@@ -3,8 +3,8 @@
 	useConfigOnly = true
 [credential]
 	helper = manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
+	helper = 
+	helper = /usr/local/share/gcm-core/git-credential-manager
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
@@ -99,3 +99,7 @@
 # --- Additional includes ---
 [include]
 	path = ~/.git/included.gitconfig
+
+# --- Site-specific overrides ---
+[credential "https://dev.azure.com"]
+	useHttpPath = true
