@@ -11,7 +11,7 @@ alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0
 alias nslookup6='nslookup -querytype=AAAA'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
-alias ping6='ping -6 -c 5'
+alias ping6='ping6 -c 5'
 alias stat='zstat -s'
 
 #
