@@ -1,12 +1,12 @@
 STOW_PACKAGES=bash git misc tmux zsh
 INSTALL_SCRIPTS_DIR=install_scripts
-ALL=antidote dotfiles launch-agents
+ALL=homebrew antidote dotfiles launch-agents
 BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside repo on default `make`
 
 STOW := $(or $(shell command -v stow), stow)
 UNAME := $(shell uname)
 
-.PHONY: $(ALL) $(BOOTSTRAP) stow
+.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew
 
 all: $(ALL)
 
@@ -32,9 +32,16 @@ antidote:
 		git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$(HOME)}/.antidote"; \
 	fi
 
+homebrew:
+	@echo --- Installing Homebrew if missing ---
+	@${INSTALL_SCRIPTS_DIR}/install-homebrew.sh
+
 stow:
 	@echo --- Installing stow ---
 ifeq ($(UNAME), Darwin)
+	@if ! command -v brew >/dev/null 2>&1; then \
+		${INSTALL_SCRIPTS_DIR}/install-homebrew.sh; \
+	fi
 	brew install stow
 else ifeq ($(UNAME), Linux)
 	sudo apt-get install stow

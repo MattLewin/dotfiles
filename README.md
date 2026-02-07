@@ -13,6 +13,8 @@ This will install [Antidote](https://getantidote.github.io/), [Homebrew](https:/
 
 **CAUTION**: You probably *never* want to type `make`. This entire set up is heavily customized for my usage. I've made it available so others can copy, modify, and *then* deploy it for themselves.
 
+`make` now installs Homebrew if it is missing (macOS or Linux), then proceeds with Antidote, stow, and dotfiles. On Linux/WSL, launch agents are skipped. On Linux, Homebrew prerequisites are installed via `apt-get`.
+
 ## Homebrew bundles
 Split by OS for portability:
 
