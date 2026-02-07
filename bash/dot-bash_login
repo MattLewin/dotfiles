@@ -40,34 +40,6 @@ LSOPTIONS="-F -G"
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}\007"'
 export PS1='[\!:\w] '
 
-# set up ssh for peak hosts
-ssh_peak()
-{
-	local phost
-	phost=$1
-
-	if [ -z "$phost" ]; then
-		echo "Usage:"
-		echo "	sshpeak <hostname>"
-		return 1
-	fi
-
-	if ! command -v ssh-add >/dev/null 2>&1; then
-		echo "ssh-add not found; please install openssh-client"
-		return 1
-	fi
-
-	ssh-add -l >/dev/null 2>/dev/null
-	if [ "$?" = "2" ]; then
-		echo "It seems like your agent isn't loaded."
-		echo "Perhaps you want to try saying 'sshagent' before you go any further"
-		return 1
-	fi
-
-	/usr/bin/ssh ${1}.peakwebhosting.com
-}
-alias sshpeak='ssh_peak'
-
 #if [ "`uname`" = "Darwin" ]; then
 #	# Allow common applications to be launched from the command-line
 #	OPEN=/usr/bin/open
