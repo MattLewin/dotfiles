@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+set -eu
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+missing=""
+optional_missing=""
+
+req() {
+  if ! have "$1"; then
+    missing="${missing} $1"
+  fi
+}
+
+opt() {
+  if ! have "$1"; then
+    optional_missing="${optional_missing} $1"
+  fi
+}
+
+req git
+req zsh
+req stow
+
+opt fish
+opt rg
+opt fzf
+opt bat
+opt eza
+opt direnv
+opt starship
+opt zoxide
+opt mise
+
+if [ -n "$missing" ]; then
+  printf 'Missing required tools:%s\n' "$missing"
+else
+  printf 'Required tools: OK\n'
+fi
+
+if [ -n "$optional_missing" ]; then
+  printf 'Missing optional tools:%s\n' "$optional_missing"
+else
+  printf 'Optional tools: OK\n'
+fi

@@ -20,5 +20,20 @@ To keep this portable across machines/users, put user-specific settings in local
 - `~/.config/dotfiles/local.fish` (fish overrides)
 - `~/.gitconfig.local` (git identity, per-user settings)
 
+Create the local files from templates:
+
+`install_scripts/bootstrap-local.sh`
+
+Templates live at:
+
+- `misc/dot-config/dotfiles/local.zsh.example`
+- `misc/dot-config/dotfiles/local.fish.example`
+- `git/dot-gitconfig.local.example`
+
+## Health check
+Quick check for required/optional tools:
+
+`misc/scripts/dotfiles-healthcheck`
+
 ---
 Copyright (c) Nobody, No rights reserved.

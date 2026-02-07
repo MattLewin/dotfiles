@@ -1,11 +1,12 @@
 STOW_PACKAGES=bash git misc tmux zsh
 INSTALL_SCRIPTS_DIR=install_scripts
 ALL=antidote dotfiles launch-agents
+BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside repo on default `make`
 
 STOW := $(or $(shell command -v stow), stow)
 UNAME := $(shell uname)
 
-.PHONY: $(ALL) stow
+.PHONY: $(ALL) $(BOOTSTRAP) stow
 
 all: $(ALL)
 
@@ -36,3 +37,7 @@ else ifeq ($(UNAME), Linux)
 else
 	$(error Can't install stow, because WTF O.S. are you on?)
 endif
+
+bootstrap-local:
+	@echo --- Creating local override files ---
+	@${INSTALL_SCRIPTS_DIR}/bootstrap-local.sh

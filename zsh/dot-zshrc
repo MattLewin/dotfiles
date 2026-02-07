@@ -88,13 +88,11 @@ do
     source "${DOT_ZSH}/${file}"
 done
 
-case "$OS" in
-    darwin)
-        if ! ssh-add -l >/dev/null 2>&1; then
-            ssh-add --apple-load-keychain
-        fi
-        ;;
-esac
+if [[ -d "${DOT_ZSH}/config.d" ]]; then
+    if [[ -r "${DOT_ZSH}/config.d/${OS}.zsh" ]]; then
+        source "${DOT_ZSH}/config.d/${OS}.zsh"
+    fi
+fi
 
 #
 # iTerm configuration
