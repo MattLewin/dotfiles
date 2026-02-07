@@ -1,7 +1,8 @@
 # Idle git fetch for zsh.
 #
 # Runs a quiet `git fetch` periodically when the shell is idle and the current working
-# directory is inside a git worktree.
+# directory is inside a git worktree. Fetches run in the background and are
+# de-duplicated per repo to avoid stacking work.
 #
 # Configuration:
 #   - BG_GIT_FETCH_PERIOD: interval in seconds (default: 300)
@@ -13,11 +14,17 @@
 
 # Allow user config before plugin loads.
 : "${BG_GIT_FETCH_PERIOD:=300}"
-export PERIOD="$BG_GIT_FETCH_PERIOD"
+# Respect an existing PERIOD so we don't slow down other periodic hooks.
+if [[ -z ${PERIOD-} || $PERIOD -gt $BG_GIT_FETCH_PERIOD ]]; then
+  export PERIOD="$BG_GIT_FETCH_PERIOD"
+fi
 
 # Track last-fetch time per repo top-level to avoid repeated fetches when cd'ing.
 typeset -gA __bgfetch_last
 __bgfetch_last=()
+# Track in-flight background fetches per repo so we don't stack them.
+typeset -gA __bgfetch_pid
+__bgfetch_pid=()
 
 __bgfetch_top() {
   command git rev-parse --show-toplevel 2>/dev/null
@@ -49,9 +56,21 @@ periodic() {
   # Must have at least one remote.
   command git remote >/dev/null 2>&1 || return 0
 
+  # If a background fetch is already running for this repo, don't start another.
+  if [[ -n ${__bgfetch_pid[$top]} ]]; then
+    if kill -0 ${__bgfetch_pid[$top]} 2>/dev/null; then
+      return 0
+    else
+      unset "__bgfetch_pid[$top]"
+    fi
+  fi
+
   __bgfetch_last[$top]=$now
 
-  GIT_TERMINAL_PROMPT=0 \
-  GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=5' \
-  command git fetch --quiet --prune >/dev/null 2>&1
+  (
+    GIT_TERMINAL_PROMPT=0 \
+    GIT_SSH_COMMAND='ssh -o BatchMode=yes -o ConnectTimeout=5' \
+    command git fetch --quiet --prune >/dev/null 2>&1
+  ) &!
+  __bgfetch_pid[$top]=$!
 }
