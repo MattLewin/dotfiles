@@ -13,6 +13,39 @@ This will install [Antidote](https://getantidote.github.io/), [Homebrew](https:/
 
 **CAUTION**: You probably *never* want to type `make`. This entire set up is heavily customized for my usage. I've made it available so others can copy, modify, and *then* deploy it for themselves.
 
+## Homebrew bundles
+Split by OS for portability:
+
+- `misc/dot-config/homebrew/Brewfile.common`
+- `misc/dot-config/homebrew/Brewfile.mac`
+- `misc/dot-config/homebrew/Brewfile.linux`
+- `misc/dot-config/homebrew/Brewfile` (shim)
+
+Recommended: set `HOMEBREW_BUNDLE_FILE` so `brew bundle` works anywhere (already wired in shells).
+
+Example:
+
+`brew bundle`
+
+Auto-selects OS via shim at:
+
+`~/.config/homebrew/Brewfile`
+
+Manual:
+
+`brew bundle --file misc/dot-config/homebrew/Brewfile.common`
+`brew bundle --file misc/dot-config/homebrew/Brewfile.mac`
+`brew bundle --file misc/dot-config/homebrew/Brewfile.linux`
+
+Example (auto-selects OS when run in that directory):
+
+`cd misc/dot-config/homebrew && brew bundle`
+
+
+For system packages on Ubuntu/WSL, see:
+
+`misc/dot-config/homebrew/apt.txt`
+
 ## Local overrides (portable setup)
 To keep this portable across machines/users, put user-specific settings in local files that are not tracked:
 

@@ -1,0 +1,13 @@
+brew 'mas'
+brew 'terminal-notifier'
+
+cask 'git-credential-manager'
+cask 'font-fira-code'
+cask 'font-fira-code-nerd-font'
+cask 'font-hack-nerd-font'
+cask 'font-monoid-nerd-font'
+cask 'font-mononoki-nerd-font'
+cask 'font-powerline-symbols'
+cask 'iterm2'
+cask 'ngrok'
+cask 'visual-studio-code'

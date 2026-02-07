@@ -49,6 +49,7 @@ fi
 # ML: 2019-06-29
 # Prevent homebrew-file from doing anything with App Store apps
 export HOMEBREW_BREWFILE_APPSTORE=0
+export HOMEBREW_BUNDLE_FILE="${HOME}/.config/homebrew/Brewfile"
 
 # ML: 2019-07-15
 # Circled numbers for pretty displays

@@ -1,0 +1,13 @@
+# System-level packages to install via apt (Ubuntu/WSL)
+# Example usage:
+#   xargs -a misc/dot-config/homebrew/apt.txt sudo apt-get install -y
+
+build-essential
+ca-certificates
+curl
+git
+make
+pkg-config
+openssl
+readline
+sqlite3
