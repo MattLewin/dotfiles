@@ -16,8 +16,12 @@ dotfiles: | $(STOW)
 
 
 launch-agents:
+ifeq ($(UNAME), Darwin)
 	@echo --- Installing custom launch agents ---
 	@${INSTALL_SCRIPTS_DIR}/install-launch-agents.sh
+else
+	@echo --- Skipping launch agents (macOS only) ---
+endif
 
 
 antidote:
