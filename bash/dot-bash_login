@@ -52,8 +52,12 @@ ssh_peak()
 		return 1
 	fi
 
-	SSH_ADD_PATH=`type -p ssh-add`
-	`${SSH_ADD_PATH} -l >/dev/null 2>/dev/null`
+	if ! command -v ssh-add >/dev/null 2>&1; then
+		echo "ssh-add not found; please install openssh-client"
+		return 1
+	fi
+
+	ssh-add -l >/dev/null 2>/dev/null
 	if [ "$?" = "2" ]; then
 		echo "It seems like your agent isn't loaded."
 		echo "Perhaps you want to try saying 'sshagent' before you go any further"

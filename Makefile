@@ -11,7 +11,7 @@ all: $(ALL)
 
 dotfiles: | $(STOW)
 	@echo --- Creating dot files ---
-	stow --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
+	stow --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$' $(STOW_PACKAGES)
 
 
 launch-agents:
