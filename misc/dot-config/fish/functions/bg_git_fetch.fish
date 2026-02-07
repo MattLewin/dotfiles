@@ -16,6 +16,7 @@ function bg_git_fetch --description "Idle-ish background git fetch, throttled pe
     mkdir -p $state_dir
 
     set -l stamp "$state_dir/$key.stamp"
+    set -l pidfile "$state_dir/$key.pid"
     set -l now (date +%s)
 
     set -l last 0
@@ -31,11 +32,27 @@ function bg_git_fetch --description "Idle-ish background git fetch, throttled pe
     # Must have a remote
     command git remote >/dev/null 2>&1; or return
 
+    # If a background fetch is already running for this repo, don't start another
+    if test -f $pidfile
+        set -l pid (cat $pidfile 2>/dev/null)
+        if test -n "$pid"; and command kill -0 $pid >/dev/null 2>&1
+            return
+        end
+        rm -f $pidfile
+    end
+
     # Update stamp before fetch to avoid refiring if fetch is slow
     echo $now > $stamp
 
     # Quiet, non-blocking fetch (uses your ssh-agent)
-    env GIT_TERMINAL_PROMPT=0 \
-        GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=5" \
-        command git fetch --quiet --prune >/dev/null 2>&1
+    begin
+        env GIT_TERMINAL_PROMPT=0 \
+            GIT_SSH_COMMAND="ssh -o BatchMode=yes -o ConnectTimeout=5" \
+            command git fetch --quiet --prune >/dev/null 2>&1
+    end &
+    set -l pid $last_pid
+    if test -n "$pid"
+        echo $pid > $pidfile
+        disown $pid 2>/dev/null
+    end
 end
