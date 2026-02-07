@@ -5,6 +5,7 @@ BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside re
 
 STOW := $(or $(shell command -v stow), stow)
 UNAME := $(shell uname)
+SHELL := /bin/sh
 
 .PHONY: $(ALL) $(BOOTSTRAP) stow homebrew
 
