@@ -1,8 +1,8 @@
 if status is-interactive
-    eval (direnv hook fish)
-    starship init fish | source
-    zoxide init fish | source
-    mise activate fish | source
+    type -q direnv; and eval (direnv hook fish)
+    type -q starship; and starship init fish | source
+    type -q zoxide; and zoxide init fish | source
+    type -q mise; and mise activate fish | source
 
     # Make zoxide case-insensitive
     set -x _ZO_CASE 0

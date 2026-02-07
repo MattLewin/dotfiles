@@ -12,7 +12,7 @@ end
 
 # If neither bat nor batcat is available, stop here.
 if test -z "$BAT"
-    exit
+    return
 end
 
 # --- Core replacements -------------------------------------------------------

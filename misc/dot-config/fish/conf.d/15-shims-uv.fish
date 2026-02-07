@@ -1,10 +1,10 @@
 # Route pip/pipx to uv/uvx (interactive shells only)
 # Fish version: shims + completions cache + version-stamp refresh.
 
-status is-interactive; or exit
+status is-interactive; or return
 
 # If uv isn't installed, do nothing.
-type -q uv; or exit
+type -q uv; or return
 
 # --- uv/uvx completions ---
 set -l uv_completion_dir (set -q XDG_CACHE_HOME; and echo "$XDG_CACHE_HOME"; or echo "$HOME/.cache")/fish/completions
