@@ -29,7 +29,7 @@ function gemlist() {
     fzf --ansi --reverse
 }
 
-unalias path NUL
+unalias path >/dev/null 2>&1
 function path() {
     local list=$(print -rl -- ${(s/:/)PATH} | rg --color=always '[/]')
 

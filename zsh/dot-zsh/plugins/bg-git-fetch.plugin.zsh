@@ -49,7 +49,7 @@ periodic() {
   last=${__bgfetch_last[$top]:-0}
 
   # Throttle per repo.
-  (( now - last >= PERIOD )) || return 0
+  (( now - last >= BG_GIT_FETCH_PERIOD )) || return 0
 
   __bgfetch_inrepo || return 0
 

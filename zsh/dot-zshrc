@@ -18,7 +18,7 @@ else
     echo "*** good luck making the rest of this .zshrc work ***" 1>&2
 fi
 
-if [ -n "${DOT_ZSH}/systeminfo.sh" ]; then
+if [ -r "${DOT_ZSH}/systeminfo.sh" ]; then
     # Set OS, DIST, DistroBasedOn, PSEUDONAME, REV, KERNEL, MACH where available
     source ${DOT_ZSH}/systeminfo.sh
 else
@@ -65,7 +65,10 @@ do
 done
 
 # Prefer HOMEBREW_PREFIX from `brew shellenv`; fall back to querying brew
-BREW_PREFIX="${HOMEBREW_PREFIX:-$(${commands[brew]} --prefix 2>/dev/null)}"
+BREW_PREFIX="${HOMEBREW_PREFIX:-}"
+if [[ -z "$BREW_PREFIX" ]] && (( $+commands[brew] )); then
+    BREW_PREFIX="$(${commands[brew]} --prefix 2>/dev/null)"
+fi
 
 # Setup theme
 if (( $+commands[starship] )); then

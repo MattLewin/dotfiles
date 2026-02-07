@@ -28,7 +28,7 @@ else # Fallback if eza isn’t installed
   alias la="ls -A"        # almost all files
   alias ldot="ls -d .*"   # dot files as a long list
   alias ll="ls -l"        # long list
-  alias lla="ls -la".     # all files, long
+  alias lla="ls -la"      # all files, long
   alias lldot="ls -ld .*" # dot files as a long list
   alias lt="ls -ltFh"     # long list sorted by date, show type, human-readable
 

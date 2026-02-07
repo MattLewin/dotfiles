@@ -1,5 +1,8 @@
 # bat.plugin.zsh 
 
+# Bail if bat isn't installed
+(( $+commands[bat] )) || return 0
+
 # --- Core replacements -------------------------------------------------------
 # Make `cat` behave like cat with syntax highlighting
 alias cat='bat --paging=never --style=plain'
