@@ -13,5 +13,12 @@ This will install [Antidote](https://getantidote.github.io/), [Homebrew](https:/
 
 **CAUTION**: You probably *never* want to type `make`. This entire set up is heavily customized for my usage. I've made it available so others can copy, modify, and *then* deploy it for themselves.
 
+## Local overrides (portable setup)
+To keep this portable across machines/users, put user-specific settings in local files that are not tracked:
+
+- `~/.config/dotfiles/local.zsh` (zsh overrides)
+- `~/.config/dotfiles/local.fish` (fish overrides)
+- `~/.gitconfig.local` (git identity, per-user settings)
+
 ---
 Copyright (c) Nobody, No rights reserved.

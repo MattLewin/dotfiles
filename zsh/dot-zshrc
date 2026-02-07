@@ -167,6 +167,11 @@ do
     source "${DOT_ZSH}/${file}"
 done
 
+# Local, user-specific overrides (not tracked)
+local _dotfiles_local="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/local.zsh"
+[[ -r "$_dotfiles_local" ]] && source "$_dotfiles_local"
+unset _dotfiles_local
+
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 (( $+commands[ngrok] )) && eval "$(ngrok completion)"
 (( $+commands[rg] )) && typeset -xr RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"

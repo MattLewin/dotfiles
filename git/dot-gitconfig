@@ -98,6 +98,7 @@
 # --- Additional includes ---
 [include]
 	path = ~/.git/included.gitconfig
+	path = ~/.gitconfig.local
 
 # --- Site-specific overrides ---
 [credential "https://dev.azure.com"]

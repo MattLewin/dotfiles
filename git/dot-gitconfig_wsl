@@ -94,3 +94,4 @@
 # --- Additional Includes ---
 [include]
 	path = ~/.git/included.gitconfig
+	path = ~/.gitconfig.local

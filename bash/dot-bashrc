@@ -1,6 +1,6 @@
 
 # added by travis gem
-[ -f /Users/Matt/.travis/travis.sh ] && source /Users/Matt/.travis/travis.sh
+[ -f "$HOME/.travis/travis.sh" ] && source "$HOME/.travis/travis.sh"
 
 if type starship >/dev/null 2>&1; then
     eval "$(starship init bash)"
