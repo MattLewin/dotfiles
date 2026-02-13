@@ -44,6 +44,9 @@ fi
 
 export EDITOR="vim"
 
+# ensure that $PATH, $MANPATH, and $INFOPATH are unique and exported
+typeset -U path PATH MANPATH INFOPATH infopath
+
 # Display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
@@ -185,9 +188,6 @@ unsetopt null_glob
 unset _plug
 
 (( $+commands[zoxide] )) && eval "$(zoxide init --cmd z zsh)" # must come after compinit and after plugins are sourced
-
-# paths.zsh defines the function below
-(( $+functions[remove_duplicate_paths] )) && remove_duplicate_paths
 
 if [[ -n "${USE_STARSHIP}" ]]; then
     unset USE_STARSHIP
