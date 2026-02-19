@@ -85,9 +85,6 @@ function pip3list() {
 # Overwrite env with colorized output
 alias env="noglob env | sort --unique | rg --color=always '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
 
-# Display all zsh variables with colorized output
-alias vars='set | sort --unique | rg --color=always "^[^=]+" | fzf --ansi --reverse --cycle --height=90%'
-
 # Interactive history
 function ih() {
   local fc_command='fc -ln -1000'
@@ -151,4 +148,31 @@ funcs() {
   } always {
     rm -f -- "$idx"
   }
+}
+
+# Display all zsh variables with colorized output
+vars() {
+  local k typ
+  local -a arr
+
+  for k in ${(k)parameters}; do
+    [[ $k == _* ]] && continue
+
+    # Skip stuff that tends to be huge/noisy or literally your current input
+    case $k in
+      BUFFER|LBUFFER|RBUFFER|PREBUFFER|history|HISTCMD) continue ;;
+    esac
+
+    typ=$parameters[$k]
+    [[ $typ == *association* ]] && continue
+
+    if [[ $typ == *array* ]]; then
+      # copy array, escape newlines per element, then join
+      arr=( "${(@)${(P)k}}" )
+      arr=( "${(@)arr//$'\n'/\\n}" )
+      print -r -- "$k=(${(j: :)arr})"
+    else
+      print -r -- "$k=${${(P)k}//$'\n'/\\n}"
+    fi
+  done | sort -u | FZF_DEFAULT_OPTS= fzf --reverse --cycle --height=90% --preview-window=hidden
 }
