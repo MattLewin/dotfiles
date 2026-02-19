@@ -103,6 +103,7 @@ function ih() {
 
 # Display all zsh functions (excluding _*) and select one to view its definition
 # Preview is implemented by snapshotting all definitions into a single temp file (fzf previews run under /bin/sh).
+# OMFG, thank you ChatGPT
 funcs() {
   local f def idx
   local -a names
