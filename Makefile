@@ -27,10 +27,11 @@ endif
 
 antidote:
 	@echo --- Installing Antidote ---
-	@if [ -d "${ZDOTDIR:-$(HOME)}/.antidote" ]; then \
-		echo "Antidote already installed at ${ZDOTDIR:-$(HOME)}/.antidote"; \
+	@ANTIDOTE_HOME="$$( [ -n "$${ZDOTDIR:-}" ] && [ "$${ZDOTDIR}" != "/" ] && printf '%s' "$${ZDOTDIR}" || printf '%s' "$(HOME)" )"; \
+	if [ -d "$${ANTIDOTE_HOME}/.antidote" ]; then \
+		echo "Antidote already installed at $${ANTIDOTE_HOME}/.antidote"; \
 	else \
-		git clone --depth=1 https://github.com/mattmc3/antidote.git "${ZDOTDIR:-$(HOME)}/.antidote"; \
+		git clone --depth=1 https://github.com/mattmc3/antidote.git "$${ANTIDOTE_HOME}/.antidote"; \
 	fi
 
 homebrew:
