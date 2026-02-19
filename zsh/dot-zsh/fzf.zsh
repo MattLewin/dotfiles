@@ -101,24 +101,53 @@ function ih() {
   eval "${fc_command}" | sort -u | rg --color=always '^[^ ]+' | fzf --reverse --cycle --height=90% --ansi
 }
 
-# Display all zsh functions and select one to view its definition with colorized output
+# Display all zsh functions (excluding _*) and select one to view its definition
+# Preview is implemented by snapshotting all definitions into a single temp file (fzf previews run under /bin/sh).
 funcs() {
-  local f def
+  local f def idx
+  local -a names
 
-  f=$(
-    print -rl -- ${(k)functions} \
-    | grep -v '^_' \
-    | sort -u \
-    | fzf --prompt='function> ' \
-          --height=90% --reverse --cycle \
-          --preview 'functions -- {} | sed -n "1,120p"'
-  ) || return
+  names=(${(k)functions})
+  idx=$(mktemp -t zsh-funcs-index.XXXXXX) || return
 
-  def=$(functions -- "$f") || return
+  {
+    # Build an indexed file of function definitions:
+    #   __FUNC__ <name>
+    #   <definition...>
+    #   __END__
+    : >| "$idx"
+    for f in $names; do
+      [[ $f == _* ]] && continue
+      print -r -- "__FUNC__ $f" >>| "$idx"
+      functions -- "$f" 2>/dev/null >>| "$idx" || true
+      print -r -- "__END__" >>| "$idx"
+    done
 
-  if (( $+commands[bat] )); then
-    print -r -- "$def" | bat --language=zsh --paging=always
-  else
-    print -r -- "$def" | ${PAGER:-less} -R
-  fi
+    f=$(
+      print -rl -- $names \
+        | grep -v '^_' \
+        | sort -u \
+        | fzf --prompt='function> ' \
+              --height=90% --reverse --cycle --ansi \
+              --preview="awk -v fn='{1}' '
+                BEGIN {show=0}
+                \$0 == \"__FUNC__ \" fn {show=1; next}
+                show && \$0 == \"__END__\" {exit}
+                show {print}
+              ' \"$idx\" \
+              | sed -n '1,200p' \
+              | (command -v bat >/dev/null 2>&1 && bat --language=zsh --style=plain --color=always --paging=never || cat)" \
+              --preview-window=right:75%
+    ) || return
+
+    def=$(functions -- "$f") || return
+
+    if (( $+commands[bat] )); then
+      print -r -- "$def" | bat --language=zsh --paging=always
+    else
+      print -r -- "$def" | ${PAGER:-less} -R
+    fi
+  } always {
+    rm -f -- "$idx"
+  }
 }
