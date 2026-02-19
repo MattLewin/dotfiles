@@ -68,6 +68,9 @@ function pip3list() {
 # Overwrite env with colorized output
 alias env="noglob env | sort --unique | rg --color=always '^[^=]+' | fzf --ansi --reverse --cycle --height=90%"
 
+# Display all zsh variables with colorized output
+alias vars='set | sort --unique | rg --color=always "^[^=]+" | fzf --ansi --reverse --cycle --height=90%'
+
 # Interactive history
 function ih() {
   local fc_command='fc -ln -1000'
@@ -79,4 +82,26 @@ function ih() {
   fi
 
   eval "${fc_command}" | sort -u | rg --color=always '^[^ ]+' | fzf --reverse --cycle --height=90% --ansi
+}
+
+# Display all zsh functions and select one to view its definition with colorized output
+funcs() {
+  local f def
+
+  f=$(
+    print -rl -- ${(k)functions} \
+    | grep -v '^_' \
+    | sort -u \
+    | fzf --prompt='function> ' \
+          --height=90% --reverse --cycle \
+          --preview 'functions -- {} | sed -n "1,120p"'
+  ) || return
+
+  def=$(functions -- "$f") || return
+
+  if (( $+commands[bat] )); then
+    print -r -- "$def" | bat --language=zsh --paging=always
+  else
+    print -r -- "$def" | ${PAGER:-less} -R
+  fi
 }
