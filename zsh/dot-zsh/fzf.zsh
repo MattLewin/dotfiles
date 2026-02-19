@@ -1,12 +1,29 @@
 # Examples: https://github.com/junegunn/fzf/wiki/examples
 
-# fuzzy list all commands with manual
+# fuzzy list commands/aliases/functions with safe preview
 function cmd() {
-    compgen -ca |
-        sort --unique |
-        grep --invert-match '^_' | # Remove all hidden commands that start with '_'
-        fzf --ansi --reverse --cycle --height=90% --preview='man {}' --preview-window=right:75%
-    # Only use `man {}` for preview since using `{} -h` may result in invoking the command
+  local sel
+
+  sel=$(
+    {
+      # external commands on $PATH
+      print -rl -- ${(k)commands}
+      # zsh builtins
+      print -rl -- ${(k)builtins}
+      # aliases
+      print -rl -- ${(k)aliases}
+      # functions (optional, but useful when browsing)
+      print -rl -- ${(k)functions}
+    } 2>/dev/null \
+      | sort -u \
+      | grep -v '^_' \
+      | fzf --ansi --reverse --cycle --height=90% \
+          --preview='(man {1} 2>/dev/null || whence -v {1} 2>/dev/null || echo "(no help for {1})") | sed -n "1,160p"' \
+          --preview-window=right:75%
+  ) || return
+
+  # Put the selection into your command line buffer for easy execution/editing
+  print -z -- "$sel"
 }
 
 if (( $+commands[rg] )) && [[ -n "${BREW_PREFIX}" ]]
