@@ -6,8 +6,6 @@ alias d='builtin dirs -v'
 alias dirsc='builtin dirs -c'
 alias hgrep='fc -il 0 | grep'
 alias hrg='fc -il 0 | rg'
-# shellcheck disable=SC2142
-alias hr='_hr() { for c in "${@:--}"; do cols="$(tput cols)"; [ "${cols}" -le "0" ] && cols="80"; printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"; done }; _hr' # <HR/> for shells
 alias nslookup6='nslookup -querytype=AAAA'
 alias pbc='clipcopy'
 alias ping="ping -c 5"
@@ -161,6 +159,15 @@ complement_color() {
 
   # Convert back to hex and print
   printf "#%02X%02X%02X\n" $comp_red $comp_green $comp_blue
+}
+
+# <hr/> for shells
+hr() {
+  for c in "${@:--}"; do
+    cols="$(tput cols)"
+    [ "${cols}" -le "0" ] && cols="80"
+    printf "%*s" "${cols}" "" | tr " " "$(printf "%c" "${c}")"
+  done
 }
 
 # Apply effects to audio -- intended for dialogue
