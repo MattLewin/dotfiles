@@ -1,6 +1,7 @@
 brew 'mas'
 brew 'terminal-notifier'
 
+cask 'claude-code'
 cask 'git-credential-manager'
 cask 'font-fira-code'
 cask 'font-fira-code-nerd-font'
