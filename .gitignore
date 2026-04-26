@@ -40,6 +40,8 @@ tags
 
 com.googlecode.iterm2.plist
 
+zsh/dot-zsh/completions/
+
 # certs and keys
 *.pem
 id_*
