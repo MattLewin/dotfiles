@@ -10,7 +10,6 @@
 # setopt XTRACE
 # ## END: Code to profile zsh startup
 
-# ML: 2018-09-07; 2019-06-29: move to ~/.zsh
 if [ -d ${HOME}/.zsh ]; then
     DOT_ZSH=${HOME}/.zsh
 else
@@ -39,7 +38,7 @@ else
             ;;
     esac
 
-    declare -xlr KERNEL MACH OS
+    declare -xlr KERNEL MACH OS  # -x: export, -l: lowercase, -r: read-only
 fi
 
 export EDITOR="${commands[nvim]:-${commands[vim]:-vim}}"
@@ -74,7 +73,7 @@ if [[ -z "$BREW_PREFIX" ]] && (( $+commands[brew] )); then
     BREW_PREFIX="$(${commands[brew]} --prefix 2>/dev/null)"
 fi
 
-# Setup theme
+# Set flag now; init starship at the end of .zshrc (must come after compinit and plugins)
 if (( $+commands[starship] )); then
     USE_STARSHIP="true"
 else
@@ -143,7 +142,6 @@ zstyle ':completion:*:cd:*' completer _complete
 zstyle ':completion:*:cd:*' tag-order 'local-directories' 'directory-stack' 'path-directories'
 zstyle ':completion:*:cd:*' ignore-parents parent pwd
 
-# (Optional) quality-of-life
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*:descriptions' format '%F{yellow}%d%f'
 zstyle ':completion:*' menu select
@@ -169,8 +167,7 @@ if [ -r "$HOME/.antidote/antidote.zsh" ]; then
 fi
 
 ######## Antidote plugins are sourced above here #######
-#
-# ML: 2019-06-29
+
 source_after_antidote=(
     # NOTE: order matters here
     aliases.zsh

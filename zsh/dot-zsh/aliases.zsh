@@ -1,5 +1,5 @@
 #
-# Normal aliases (i.e., only work as $0)
+# Normal aliases (only expand in command position, unlike global aliases below)
 #
 alias d-='popd -q'
 alias d='builtin dirs -v'
@@ -50,7 +50,7 @@ if is-at-least 4.2.0; then
         for ft in $_image_fts; do alias -s $ft=$XIVIEWER; done
     fi
 
-    #list whats inside packed file
+    # List contents of packed file
     alias -s zip="unzip -l"
     alias -s tar="tar tf"
 
@@ -127,7 +127,6 @@ fi
 # Functions
 #
 
-# Calculate the complement of a hex color
 complement_color() {
   if [[ -z "$1" ]]; then
     echo "Usage: complement_color <hex_color_code>"
@@ -135,26 +134,21 @@ complement_color() {
     return 1
   fi
 
-  # Get the input color and strip '#' if present
   local input_hex=${1#"#"}
 
-  # Ensure it's a valid hex code
   if [[ ! "$input_hex" =~ ^[0-9a-fA-F]{6}$ ]]; then
     echo "Error: Invalid hex color code. Must be in the form #RRGGBB or RRGGBB."
     return 1
   fi
 
-  # Convert hex to decimal RGB
   local red=$(( 16#${input_hex[1,2]} ))
   local green=$(( 16#${input_hex[3,4]} ))
   local blue=$(( 16#${input_hex[5,6]} ))
 
-  # Calculate the complement
   local comp_red=$((255 - red))
   local comp_green=$((255 - green))
   local comp_blue=$((255 - blue))
 
-  # Convert back to hex and print
   printf "#%02X%02X%02X\n" $comp_red $comp_green $comp_blue
 }
 
@@ -224,12 +218,10 @@ random() {
         return 1
     fi
 
+    # od: read 4 bytes from /dev/random as an unsigned int
     print $((1 + $(od -A n -t u -N4 /dev/random) % $1))
 }
 
-#
-# ML: 2019-07-15
-# A function to display the tmux window number
 tmux_winidx_circled() {
     if tmux info &> /dev/null; then
         local winidx
@@ -257,8 +249,6 @@ update-all() {
     hr
 }
 
-# ML: 2017-05-01
-# ML: 2018-02-08 (updated for iTerm)
 # open man pages in a new window
 case "$TERM_PROGRAM" in
     iTerm.app)
@@ -306,7 +296,7 @@ case "$OS" in
         test -d "/usr/lib/jvm/default-java" && export JAVA_HOME=/usr/lib/jvm/default-java
         ;;
 
-    *) # No idea what platorm we are on
+    *) # No idea what platform we are on
 esac
 
 if [ "${BREW_PREFIX}" != "" ]; then

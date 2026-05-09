@@ -9,17 +9,15 @@ test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
 
 export BLOCKSIZE=1024 # Set 'ls' to display size in KB rather than 512-byte blocks
 
-# ML: 2017-05-31
 test -d "${BREW_PREFIX}/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:${BREW_PREFIX}/opt/erlang/lib/erlang/man
 
 test -d "${HOME}/Library/Android/sdk" && export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 
-# ML: 2018-02-26
-# local environment variables I want passed to remote shells
+# Propagate terminal identity to remote shells via SSH.
+# LC_ prefix is used because most SSH configs pass LC_* through by default.
 test -n "$TERM_PROGRAM" && export LC_TERM_PROGRAM=$TERM_PROGRAM
 test -n "$ITERM_SESSION_ID" && export LC_ITERM_SESSION_ID=$ITERM_SESSION_ID
 
-# ML: 2018-02-26
 # Configure terminal program specific environment for both local and remote terminals
 case "$LC_TERM_PROGRAM" in
     Apple_Terminal)
@@ -31,12 +29,10 @@ case "$LC_TERM_PROGRAM" in
         ;;
 esac
 
-# ML: 2019-06-29
 # Prevent homebrew-file from doing anything with App Store apps
 export HOMEBREW_BREWFILE_APPSTORE=0
 export HOMEBREW_BUNDLE_FILE="${HOME}/.config/homebrew/Brewfile"
 
-# ML: 2019-07-15
 # Circled numbers for pretty displays
 circled_digits=$(printf %s \${$'\xEA',\`,{a..s}} | iconv -f UTF-16BE)
 # circled_digits='⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳'
