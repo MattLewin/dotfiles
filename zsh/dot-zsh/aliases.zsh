@@ -117,6 +117,13 @@ fi
 
 (( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
 (( $+commands[htop] )) && alias top="${commands[htop]}"
+if (( $+commands[thefuck] )); then
+    fuck() {
+        unfunction fuck
+        eval "$(thefuck --alias)"
+        fuck "$@"
+    }
+fi
 
 if (( $+commands[nvim] )); then
     alias vi=nvim
