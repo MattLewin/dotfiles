@@ -57,10 +57,7 @@ if is-at-least 4.2.0; then
     # display markdown files
     if (( $+commands[pandoc] )); then
         PANDOC_BIN="${commands[pandoc]}"
-        if (( $+commands[w3m] )); then
-            TEXT_BROWSER='w3m -T text/html'
-            PANDOC_CMD="${PANDOC_BIN}"
-        elif (( $+commands[lynx] )); then
+        if (( $+commands[lynx] )); then
             TEXT_BROWSER='lynx -stdin'
             PANDOC_CMD="${PANDOC_BIN}"
         elif [[ -n "${PAGER}" ]]; then
