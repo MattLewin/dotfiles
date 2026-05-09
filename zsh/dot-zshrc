@@ -42,7 +42,7 @@ else
     declare -xlr KERNEL MACH OS
 fi
 
-export EDITOR="vim"
+export EDITOR="${commands[nvim]:-${commands[vim]:-vim}}"
 
 # ensure that $PATH, $MANPATH, and $INFOPATH are unique and exported
 typeset -U path PATH MANPATH INFOPATH infopath
@@ -60,6 +60,7 @@ KEYTIMEOUT=10
 # Load additional zsh modules
 zsh_modules=(
     system
+    stat
 )
 
 for module in $zsh_modules
@@ -108,10 +109,22 @@ iterm2_print_user_vars() {
     (( $+commands[tmux] )) && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
 }
 
-# additional zsh completions installed with brew
-if [ -d "${BREW_PREFIX}/share/zsh-completions" ]
+# completions for all Homebrew-installed formulas (includes _rg, _gh, etc.)
+if [ -d "${BREW_PREFIX}/share/zsh/site-functions" ]
 then
-    fpath+=${BREW_PREFIX}/share/zsh-completions
+    fpath+=${BREW_PREFIX}/share/zsh/site-functions
+fi
+
+# zsh-users/zsh-completions is managed by Antidote but must be in fpath before compinit
+if [ -d "${HOME}/.antidote/zsh-users/zsh-completions" ]
+then
+    fpath+=${HOME}/.antidote/zsh-users/zsh-completions
+fi
+
+# custom completions (e.g. _gen-yt-subtitles)
+if [ -d "${HOME}/.zsh/completions" ]
+then
+    fpath+=${HOME}/.zsh/completions
 fi
 
 # Docker Desktop completions

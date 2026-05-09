@@ -41,6 +41,7 @@ tags
 com.googlecode.iterm2.plist
 
 zsh/dot-zsh/completions/
+.claude/settings.local.json
 
 # certs and keys
 *.pem

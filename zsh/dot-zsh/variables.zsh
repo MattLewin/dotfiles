@@ -14,10 +14,6 @@ test -d "${BREW_PREFIX}/opt/erlang/lib/erlang/man" && export MANPATH=$MANPATH:${
 
 test -d "${HOME}/Library/Android/sdk" && export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 
-# ML: 2018-02-07
-# Use for local heroku apps (at least)
-export DATABASE_URL=postgres://$(whoami)
-
 # ML: 2018-02-26
 # local environment variables I want passed to remote shells
 test -n "$TERM_PROGRAM" && export LC_TERM_PROGRAM=$TERM_PROGRAM
@@ -34,17 +30,6 @@ case "$LC_TERM_PROGRAM" in
         export ITERM_SESSION_ID=$LC_ITERM_SESSION_ID
         ;;
 esac
-
-# ML: 2018-11-20
-# Configuration for bitrise at TrueMotion
-if [ -e "$HOME/.truemotion" ]; then
-    export DEMO_APP_API_TOKEN=invalid_token
-
-    if [ -e "$HOME/.netrc" ]; then
-        export ARTIFACTORY_USERNAME=$(grep login ~/.netrc | cut -d ' ' -f2)
-        export ARTIFACTORY_PASSWORD=$(grep password ~/.netrc | cut -d ' ' -f2)
-    fi
-fi
 
 # ML: 2019-06-29
 # Prevent homebrew-file from doing anything with App Store apps

@@ -13,40 +13,15 @@ This will install [Antidote](https://getantidote.github.io/), [Homebrew](https:/
 
 **CAUTION**: You probably *never* want to type `make`. This entire set up is heavily customized for my usage. I've made it available so others can copy, modify, and *then* deploy it for themselves.
 
-`make` now installs Homebrew if it is missing (macOS or Linux), then proceeds with Antidote, stow, and dotfiles. On Linux/WSL, launch agents are skipped. On Linux, Homebrew prerequisites are installed via `apt-get`.
+`make` installs Homebrew if missing, then Antidote, stow, and dotfiles.
 
-## Homebrew bundles
-Split by OS for portability:
+## Homebrew bundle
 
-- `misc/dot-config/homebrew/Brewfile.common`
-- `misc/dot-config/homebrew/Brewfile.mac`
-- `misc/dot-config/homebrew/Brewfile.linux`
-- `misc/dot-config/homebrew/Brewfile` (shim)
+`misc/dot-config/homebrew/Brewfile`
 
-Recommended: set `HOMEBREW_BUNDLE_FILE` so `brew bundle` works anywhere (already wired in shells).
-
-Example:
+Run with:
 
 `brew bundle`
-
-Auto-selects OS via shim at:
-
-`~/.config/homebrew/Brewfile`
-
-Manual:
-
-`brew bundle --file misc/dot-config/homebrew/Brewfile.common`
-`brew bundle --file misc/dot-config/homebrew/Brewfile.mac`
-`brew bundle --file misc/dot-config/homebrew/Brewfile.linux`
-
-Example (auto-selects OS when run in that directory):
-
-`cd misc/dot-config/homebrew && brew bundle`
-
-
-For system packages on Ubuntu/WSL, see:
-
-`misc/dot-config/homebrew/apt.txt`
 
 ## Local overrides (portable setup)
 To keep this portable across machines/users, put user-specific settings in local files that are not tracked:
@@ -64,6 +39,60 @@ Templates live at:
 - `misc/dot-config/dotfiles/local.zsh.example`
 - `misc/dot-config/dotfiles/local.fish.example`
 - `git/dot-gitconfig.local.example`
+
+## Zsh plugins (Antidote)
+
+[Antidote](https://getantidote.github.io/) replaces Oh My Zsh. It's a lightweight plugin manager that clones repos and compiles them into a single sourceable file.
+
+### How it works
+
+Every shell startup, `plugins_builder.zsh` runs and writes `~/.zsh_plugins.txt` — a list of plugins to load (only if the list has changed). Then `.zshrc` checks whether `~/.zsh_plugins.txt` is newer than `~/.zsh_plugins.sh`; if so, Antidote recompiles the bundle:
+
+```
+antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+```
+
+`~/.zsh_plugins.sh` is then sourced. This means plugin updates only take effect after the bundle is recompiled — which happens automatically the next time you open a shell after the plugin list changes.
+
+Completions (`compinit`) run before plugins are sourced. `zsh-users/zsh-completions` adds extra completions on top of that. The compiled completion cache lives at `~/.zcompdump`.
+
+### Adding a plugin
+
+Edit `zsh/dot-zsh/plugins_builder.zsh`. There are two cases:
+
+**Always load it** — add to the `ALWAYS_ON` array:
+```zsh
+local -a ALWAYS_ON=(
+  ...
+  owner/repo                                    # non-OMZ plugin
+  'ohmyzsh/ohmyzsh path:plugins/plugin-name'   # OMZ plugin
+)
+```
+
+**Load only when a binary is present** — add to the `WANT` map:
+```zsh
+typeset -A WANT=(
+  [plugin-name]=binary-to-check-for
+)
+```
+
+After editing, open a new shell. The plugin list will be rebuilt and Antidote will recompile the bundle automatically.
+
+### Updating plugins
+
+```bash
+antidote update
+```
+
+Then open a new shell (or `source ~/.zsh_plugins.sh`) to pick up the changes.
+
+### Local/custom plugins
+
+Drop any `.zsh` file into `~/.zsh/plugins/`. It will be sourced automatically at startup — no Antidote involvement needed. Rename the extension to disable it.
+
+### Syntax highlighting
+
+`zsh-users/zsh-syntax-highlighting` is always forced to load last by `plugins_builder.zsh`. Don't move it.
 
 ## Health check
 Quick check for required/optional tools:

@@ -35,8 +35,12 @@ antidote:
 	fi
 
 homebrew:
+ifeq ($(UNAME), Darwin)
 	@echo --- Installing Homebrew if missing ---
 	@${INSTALL_SCRIPTS_DIR}/install-homebrew.sh
+else
+	@echo --- Skipping Homebrew (macOS only) ---
+endif
 
 stow:
 	@echo --- Installing stow ---
