@@ -7,7 +7,8 @@
 set -o errexit
 set -o nounset
 
-AGENTS_DIR="$(pwd)/launch_agents"
+SCRIPT_DIR="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+AGENTS_DIR="${SCRIPT_DIR}/../launch_agents"
 LIBRARY_LAUNCHAGENTS="${HOME}/Library/LaunchAgents"
 
 for fq_agent in ${AGENTS_DIR}/*.plist(N.)
