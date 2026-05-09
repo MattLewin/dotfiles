@@ -21,8 +21,13 @@ alias -g CA="2>&1 | cat -A"
 alias -g G='| rg'
 (( $+commands[gvim] )) && alias -g GVIM='| gvim -'
 alias -g H='| head'
-alias -g L="| less"
-alias -g LL="2>&1 | less"
+if (( $+commands[bat] )); then
+  alias -g L="| command bat --paging=always --style=plain -n"
+  alias -g LL="2>&1 | command bat --paging=always --style=plain -n"
+else
+  alias -g L="| less"
+  alias -g LL="2>&1 | less"
+fi
 alias -g NE="2> /dev/null"
 alias -g NUL="> /dev/null 2>&1"
 alias -g T='| tail'
