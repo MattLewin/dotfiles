@@ -59,32 +59,10 @@ if is-at-least 4.2.0; then
     alias -s zip="unzip -l"
     alias -s tar="tar tf"
 
-    # display markdown files
-    if (( $+commands[pandoc] )); then
-        PANDOC_BIN="${commands[pandoc]}"
-        if (( $+commands[lynx] )); then
-            TEXT_BROWSER='lynx -stdin'
-            PANDOC_CMD="${PANDOC_BIN}"
-        elif [[ -n "${PAGER}" ]]; then
-            TEXT_BROWSER=${PAGER}
-            PANDOC_CMD="${PANDOC_BIN} -t plain"
-        else
-            TEXT_BROWSER='less'
-            PANDOC_CMD="${PANDOC_BIN} -t plain"
-        fi
-
-        function display_markdown_file() {
-            if [[ $# != 1 ]]; then
-                print "$0 <markdown file>"
-                return 1
-            fi
-            local -a pandoc_cmd text_browser
-            pandoc_cmd=(${=PANDOC_CMD})
-            text_browser=(${=TEXT_BROWSER})
-            "${pandoc_cmd[@]}" -- "${PWD}/${1}" | "${text_browser[@]}"
-        }
-        alias -s md="display_markdown_file"
-        alias -s MD="display_markdown_file"
+    if (( $+commands[glow] )); then
+        _glow() { command glow -p --width="${COLUMNS:-80}" "$@"; }
+        alias -s md='_glow'
+        alias -s MD='_glow'
     fi
 fi
 
