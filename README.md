@@ -5,15 +5,15 @@ macOS and UNIX configuration files
 Instead of cloning the repo, use this one as a template by clicking [here](https://github.com/MattLewin/dotfiles/generate), and then customize to your needs.
 
 ## Installation
-clone the repo and all submodules
+Clone the repo, then:
 
 `make`
 
-This will install [Antidote](https://getantidote.github.io/), [Homebrew](https://brew.sh), and [GNU stow](https://www.gnu.org/software/stow/). It will then use `stow` to link all your dot files into your home directory.
+This will install [Homebrew](https://brew.sh) (macOS only), [Antidote](https://getantidote.github.io/), and [GNU stow](https://www.gnu.org/software/stow/), then use `stow` to link all dot files into your home directory.
 
 **CAUTION**: You probably *never* want to type `make`. This entire set up is heavily customized for my usage. I've made it available so others can copy, modify, and *then* deploy it for themselves.
 
-`make` installs Homebrew if missing, then Antidote, stow, and dotfiles.
+After installing, run `direnv allow` in the repo root to activate the local ripgrep config.
 
 ## Homebrew bundle
 
