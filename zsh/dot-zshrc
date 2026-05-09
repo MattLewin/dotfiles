@@ -189,7 +189,7 @@ unset _dotfiles_local
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 (( $+commands[ngrok] )) && eval "$(ngrok completion)"
-(( $+commands[rg] )) && typeset -xr RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+(( $+commands[rg] )) && export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # --- Local plugins: auto-load every *.zsh in ${DOT_ZSH}/plugins ---
 # Disable errors if no files match; only source readable files.

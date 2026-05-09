@@ -1,0 +1,16 @@
+# Search everything, including gitignored files (e.g. local.zsh)
+--no-ignore
+
+# Core behavior (mirrors global ~/.ripgreprc)
+--smart-case
+--line-number
+--column
+--color=auto
+--max-columns=200
+--max-columns-preview
+--sort=path
+--hidden
+--glob=!.git/**
+--follow
+--heading
+--hyperlink-format=default
