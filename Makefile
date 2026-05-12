@@ -1,10 +1,13 @@
+UNAME := $(shell uname)
 STOW_PACKAGES=bash git misc tmux zsh
+ifeq ($(UNAME), Darwin)
+STOW_PACKAGES += macOS
+endif
 INSTALL_SCRIPTS_DIR=install_scripts
 ALL=homebrew antidote dotfiles launch-agents
 BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside repo on default `make`
 
 STOW := $(or $(shell command -v stow), stow)
-UNAME := $(shell uname)
 SHELL := /bin/sh
 
 .PHONY: $(ALL) $(BOOTSTRAP) stow homebrew

@@ -3,7 +3,6 @@
 	useConfigOnly = true
 [credential]
 	helper =
-	helper = manager
 [core]
 	excludesfile = ~/.gitignore_global
 	autocrlf = input
@@ -97,6 +96,7 @@
 # --- Additional includes ---
 [include]
 	path = ~/.git/included.gitconfig
+	path = ~/.gitconfig.mac
 	path = ~/.gitconfig.local
 
 # --- Site-specific overrides ---
