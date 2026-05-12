@@ -100,5 +100,3 @@
 	path = ~/.gitconfig.local
 
 # --- Site-specific overrides ---
-[credential "https://dev.azure.com"]
-	useHttpPath = true
