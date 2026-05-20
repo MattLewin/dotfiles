@@ -235,7 +235,7 @@ update-all() {
     hr; hr
     print "UPGRADING BREW"
     hr
-    brew bundle upgrade --cleanup || { print "*** 'brew bundle upgrade --cleanup' failed!"; return 1; }
+    brew bundle install --upgrade --cleanup || { print "*** 'brew bundle install --upgrade --cleanup' failed!"; return 1; }
     hr
 }
 
