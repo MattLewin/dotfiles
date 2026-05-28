@@ -8,6 +8,7 @@ alias hgrep='fc -il 0 | grep'
 alias hrg='fc -il 0 | rg'
 alias nslookup6='nslookup -querytype=AAAA'
 alias pbc='clipcopy'
+alias pdftotext='pdftotext -layout'
 alias ping="ping -c 5"
 alias ping6='ping6 -c 5'
 alias stat='zstat -s'
