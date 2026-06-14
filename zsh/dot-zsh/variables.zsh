@@ -31,6 +31,8 @@ esac
 
 # Prevent homebrew-file from doing anything with App Store apps
 export HOMEBREW_BREWFILE_APPSTORE=0
+# Prevent homebrew from confirming upgrade
+export HOMEBREW_NO_ASK=1
 export HOMEBREW_BUNDLE_FILE="${HOME}/.config/homebrew/Brewfile"
 
 # Circled numbers for pretty displays
