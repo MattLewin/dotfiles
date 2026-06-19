@@ -292,8 +292,6 @@ esac
 
 if [ "${BREW_PREFIX}" != "" ]; then
 
-    alias brewoutdated='print -c $( brew outdated | cut -f1 -d" ")'
-    alias brewuses='brew uses --installed --recursive'
 
     if (( $+commands[fortune] )) && (( $+commands[cowsay] )); then
         local _brew_prefix="${HOMEBREW_PREFIX:-$BREW_PREFIX}"
