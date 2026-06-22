@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "plugins": {
+    "frontend-design@claude-plugins-official": [
+      {
+        "scope": "user",
+        "installPath": "/Users/matt/.claude/plugins/cache/claude-plugins-official/frontend-design/unknown",
+        "version": "unknown",
+        "installedAt": "2026-05-11T03:52:33.561Z",
+        "lastUpdated": "2026-06-20T21:03:05.287Z"
+      }
+    ],
+    "caveman@caveman": [
+      {
+        "scope": "user",
+        "installPath": "/Users/matt/.claude/plugins/cache/caveman/caveman/25d22f864ad6",
+        "version": "25d22f864ad6",
+        "installedAt": "2026-06-22T18:18:09.339Z",
+        "lastUpdated": "2026-06-22T18:18:09.339Z",
+        "gitCommitSha": "25d22f864ad68cc447a4cb93aefde918aa4aec9f"
+      }
+    ]
+  }
+}

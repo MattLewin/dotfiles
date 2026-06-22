@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 -c ' *)",
+      "Bash(grep -v \"^$\")",
+      "Bash(pre-commit install *)",
+      "Bash(pre-commit migrate-config *)",
+      "Bash(pre-commit run *)",
+      "Bash(awk '{print NR\": \"length\\($0\\)\": \"$0}')"
+    ]
+  },
+  "enabledPlugins": {
+    "frontend-design@claude-plugins-official": true,
+    "caveman@caveman": true
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "bash \"/Users/matt/.claude/statusline.sh\""
+  },
+  "extraKnownMarketplaces": {
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    }
+  }
+}
