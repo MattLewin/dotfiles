@@ -1,4 +1,5 @@
 [tools]
 node = "lts"
+npm = "latest"
 python = "3.13"
 uv = "latest"
