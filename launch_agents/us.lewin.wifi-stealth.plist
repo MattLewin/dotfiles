@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>us.lewin.wifi-stealth</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/local/libexec/wifi-stealth.zsh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StartInterval</key>
+    <integer>60</integer>
+    <key>WatchPaths</key>
+    <array>
+        <string>/var/run/resolv.conf</string>
+        <string>/Library/Preferences/SystemConfiguration/NetworkInterfaces.plist</string>
+        <string>/Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist</string>
+    </array>
+    <key>StandardErrorPath</key>
+    <string>/var/log/wifi-stealth.err</string>
+</dict>
+</plist>
