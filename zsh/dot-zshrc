@@ -185,6 +185,7 @@ local _dotfiles_local="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/local.zsh"
 unset _dotfiles_local
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
+(( $+commands[mole] )) && eval "$(mole completion zsh)"
 (( $+commands[ngrok] )) && eval "$(ngrok completion)"
 (( $+commands[rg] )) && export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
