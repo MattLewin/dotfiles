@@ -46,3 +46,6 @@ zsh/dot-zsh/completions/
 # certs and keys
 *.pem
 id_*
+
+# never ignore .gitkeep, anywhere in tree
+!**/.gitkeep
