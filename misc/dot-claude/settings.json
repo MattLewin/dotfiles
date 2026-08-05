@@ -6,7 +6,126 @@
       "Bash(pre-commit install *)",
       "Bash(pre-commit migrate-config *)",
       "Bash(pre-commit run *)",
-      "Bash(awk '{print NR\": \"length\\($0\\)\": \"$0}')"
+      "Bash(awk '{print NR\": \"length\\($0\\)\": \"$0}')",
+
+      "Bash(mise settings *)",
+      "Bash(mise config *)",
+      "WebFetch(domain:docs.claude.com)",
+      "WebFetch(domain:docs.nightbot.tv)",
+      "WebFetch(domain:caniuse.com)",
+
+      "Bash(code --list-extensions)",
+
+      "Bash(grep *)",
+      "Bash(rg *)",
+      "Bash(sip *)",
+      "Bash(git status)",
+      "Bash(git status *)",
+      "Bash(sed *)",
+      "Bash(ls)",
+      "Bash(ls *)",
+      "Bash(eza *)",
+      "Bash(find *)",
+      "Bash(fd *)",
+
+      "Bash(git diff *)",
+      "Bash(git diff)",
+      "Bash(git log *)",
+      "Bash(git log)",
+      "Bash(git show *)",
+      "Bash(git branch *)",
+      "Bash(git branch)",
+      "Bash(git remote -v)",
+      "Bash(git blame *)",
+
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(diff *)",
+      "Bash(file *)",
+      "Bash(stat *)",
+      "Bash(bat *)",
+
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(type *)",
+      "Bash(du *)",
+      "Bash(df *)",
+      "Bash(tree *)",
+
+      "Bash(jq *)",
+
+      "Bash(node -v)",
+      "Bash(npm -v)",
+      "Bash(python3 -V)",
+      "Bash(mise -v)",
+      "Bash(brew -v)",
+      "Bash(uname -a)",
+      "Bash(sw_vers)",
+      "Bash(hostname)",
+
+      "Bash(brew list *)",
+      "Bash(brew info *)",
+      "Bash(npm ls *)",
+      "Bash(npm outdated *)",
+      "Bash(mise ls *)",
+      "Bash(mise list *)",
+
+      "Bash(git config --get *)",
+      "Bash(git log --oneline *)",
+      "Bash(git rev-parse *)",
+      "Bash(git show-ref *)",
+      "Bash(git ls-files *)",
+      "Bash(git stash list)",
+
+      "Bash(stow -n *)",
+
+      "Bash(defaults read *)",
+
+      "Bash(ps *)",
+      "Bash(ps)",
+      "Bash(id)",
+      "Bash(whoami)",
+      "Bash(date)",
+      "Bash(date *)",
+
+      "Bash(shasum *)",
+      "Bash(md5 *)",
+      "Bash(openssl dgst *)",
+
+      "Bash(git tag)",
+      "Bash(git tag -l)",
+      "Bash(git tag --list)",
+      "Bash(git show-branch *)",
+
+      "Bash(man *)",
+
+      "Bash(npm view *)",
+      "Bash(npm info *)",
+
+      "Bash(lsof *)",
+
+      "Read(~/.claude/**)",
+      "Read(/Users/matt/.claude/**)",
+      "Read(/Users/matt/src/dotfiles/misc/dot-claude/**)",
+      "Read(/private/tmp/claude-501/**)",
+      "Write(/private/tmp/claude-501/**)",
+      "Edit(/private/tmp/claude-501/**)",
+      "Bash(mkdir -p /private/tmp/claude-501/*)",
+      "Bash(touch /private/tmp/claude-501/*)",
+      "Bash(rm -rf /private/tmp/claude-501/*)",
+      "Bash(rm /private/tmp/claude-501/*)",
+      "Bash(rmdir /private/tmp/claude-501/*)",
+      "Bash(mv /private/tmp/claude-501/*)",
+      "Bash(cp /private/tmp/claude-501/*)"
+    ],
+    "ask": [
+      "Bash(sed -i*)",
+      "Bash(sed --in-place*)"
+    ],
+    "additionalDirectories": [
+      "/Users/matt/.claude"
     ]
   },
   "statusLine": {
