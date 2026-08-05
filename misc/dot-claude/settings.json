@@ -118,7 +118,18 @@
       "Bash(rm /private/tmp/claude-501/*)",
       "Bash(rmdir /private/tmp/claude-501/*)",
       "Bash(mv /private/tmp/claude-501/*)",
-      "Bash(cp /private/tmp/claude-501/*)"
+      "Bash(cp /private/tmp/claude-501/*)",
+
+      "Read(/Users/matt/tmp/**)",
+      "Write(/Users/matt/tmp/**)",
+      "Edit(/Users/matt/tmp/**)",
+      "Bash(mkdir -p /Users/matt/tmp/*)",
+      "Bash(touch /Users/matt/tmp/*)",
+      "Bash(rm -rf /Users/matt/tmp/*)",
+      "Bash(rm /Users/matt/tmp/*)",
+      "Bash(rmdir /Users/matt/tmp/*)",
+      "Bash(mv /Users/matt/tmp/*)",
+      "Bash(cp /Users/matt/tmp/*)"
     ],
     "ask": [
       "Bash(sed -i*)",
