@@ -104,13 +104,15 @@ fi
 #
 # iTerm configuration
 #
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
+    test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-iterm2_print_user_vars() {
-    # iterm2_set_user_var shortHostname $(hostname -s)
-    iterm2_set_user_var shortHostname "Matt's Air"
-    (( $+commands[tmux] )) && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
-}
+    iterm2_print_user_vars() {
+        # iterm2_set_user_var shortHostname $(hostname -s)
+        iterm2_set_user_var shortHostname "Matt's Air"
+        (( $+commands[tmux] )) && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
+    }
+fi
 
 # completions for all Homebrew-installed formulas (includes _rg, _gh, etc.)
 if [ -d "${BREW_PREFIX}/share/zsh/site-functions" ]
