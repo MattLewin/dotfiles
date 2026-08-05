@@ -10,6 +10,10 @@
 # setopt XTRACE
 # ## END: Code to profile zsh startup
 
+if [[ -z "${XDG_CONFIG_HOME}" ]]; then
+    export XDG_CONFIG_HOME="${HOME}/.config"
+fi
+
 if [ -d ${HOME}/.zsh ]; then
     DOT_ZSH=${HOME}/.zsh
 else
