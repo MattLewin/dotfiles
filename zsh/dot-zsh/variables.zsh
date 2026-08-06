@@ -1,4 +1,6 @@
 
+export DOTNET_CLI_TELEMETRY_OPTOUT=1 # Set to 1 to disable .NET CLI telemetry, which is enabled by default.
+
 export LESS="--tabs=4 -RFX" # tab breaks of size 4, output ANSI codes, don't clear screen
 
 # To tell 'xmllint' where to find AsciiDoc's catalog files, I (apparently) have to do the following...
