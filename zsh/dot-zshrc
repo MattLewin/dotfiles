@@ -156,7 +156,15 @@ zstyle ':completion:*' menu select
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
 
 # Initialize completion before sourcing plugins (needed for plugins that call compdef)
-autoload -Uz compinit && compinit -i
+# Only run the full audit (which rebuilds .zcompdump) once per day; otherwise
+# load the cached dump with -C to skip compaudit's fpath scan.
+autoload -Uz compinit
+setopt local_options extendedglob
+if [[ -n ${ZDOTDIR:-$HOME}/.zcompdump(#qN.mh+24) ]]; then
+    compinit -i
+else
+    compinit -C -i
+fi
 
 
 # Antidote (lightweight plugin manager)
