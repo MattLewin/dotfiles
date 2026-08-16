@@ -201,6 +201,7 @@ unset _dotfiles_local
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
 (( $+commands[mole] )) && eval "$(mole completion zsh)"
 (( $+commands[ngrok] )) && eval "$(ngrok completion)"
+(( $+commands[op] )) && { eval "$(op completion zsh)"; compdef _op op }
 (( $+commands[rg] )) && export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # --- Local plugins: auto-load every *.zsh in ${DOT_ZSH}/plugins ---
