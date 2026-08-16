@@ -54,6 +54,7 @@ brew 'zsh'
 
 cask 'audacity'
 cask 'bettercmdtab'
+cask 'caskhub'
 cask 'claude-code'
 cask 'font-fira-code'
 cask 'font-fira-code-nerd-font'
