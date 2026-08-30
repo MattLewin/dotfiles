@@ -7,15 +7,12 @@
       "Bash(pre-commit migrate-config *)",
       "Bash(pre-commit run *)",
       "Bash(awk '{print NR\": \"length\\($0\\)\": \"$0}')",
-
       "Bash(mise settings *)",
       "Bash(mise config *)",
       "WebFetch(domain:docs.claude.com)",
       "WebFetch(domain:docs.nightbot.tv)",
       "WebFetch(domain:caniuse.com)",
-
       "Bash(code --list-extensions)",
-
       "Bash(grep *)",
       "Bash(rg *)",
       "Bash(sip *)",
@@ -27,7 +24,6 @@
       "Bash(eza *)",
       "Bash(find *)",
       "Bash(fd *)",
-
       "Bash(git diff *)",
       "Bash(git diff)",
       "Bash(git log *)",
@@ -37,7 +33,6 @@
       "Bash(git branch)",
       "Bash(git remote -v)",
       "Bash(git blame *)",
-
       "Bash(cat *)",
       "Bash(head *)",
       "Bash(tail *)",
@@ -46,16 +41,13 @@
       "Bash(file *)",
       "Bash(stat *)",
       "Bash(bat *)",
-
       "Bash(pwd)",
       "Bash(which *)",
       "Bash(type *)",
       "Bash(du *)",
       "Bash(df *)",
       "Bash(tree *)",
-
       "Bash(jq *)",
-
       "Bash(node -v)",
       "Bash(npm -v)",
       "Bash(python3 -V)",
@@ -64,51 +56,39 @@
       "Bash(uname -a)",
       "Bash(sw_vers)",
       "Bash(hostname)",
-
       "Bash(brew list *)",
       "Bash(brew info *)",
       "Bash(npm ls *)",
       "Bash(npm outdated *)",
       "Bash(mise ls *)",
       "Bash(mise list *)",
-
       "Bash(git config --get *)",
       "Bash(git log --oneline *)",
       "Bash(git rev-parse *)",
       "Bash(git show-ref *)",
       "Bash(git ls-files *)",
       "Bash(git stash list)",
-
       "Bash(stow -n *)",
-
       "Bash(defaults read *)",
-
       "Bash(ps *)",
       "Bash(ps)",
       "Bash(id)",
       "Bash(whoami)",
       "Bash(date)",
       "Bash(date *)",
-
       "Bash(shasum *)",
       "Bash(md5 *)",
       "Bash(openssl dgst *)",
-
       "Bash(git tag)",
       "Bash(git tag -l)",
       "Bash(git tag --list)",
       "Bash(git show-branch *)",
-
       "Bash(man *)",
-
       "Bash(npm view *)",
       "Bash(npm info *)",
-
       "Bash(lsof *)",
-
       "Bash(soxi *)",
       "Bash(ffprobe *)",
-
       "Read(~/.claude/**)",
       "Read(/Users/matt/.claude/**)",
       "Read(/Users/matt/src/dotfiles/misc/dot-claude/**)",
@@ -138,7 +118,6 @@
       "Bash(wget -O /private/tmp/claude-501/* *)",
       "Bash(chmod * /private/tmp/claude-501/*)",
       "Bash(ln * /private/tmp/claude-501/*)",
-
       "Read(/Users/matt/tmp/**)",
       "Edit(/Users/matt/tmp/**)",
       "Bash(mkdir -p /Users/matt/tmp/*)",
@@ -190,5 +169,7 @@
       }
     }
   },
-  "tui": "fullscreen"
+  "tui": "fullscreen",
+  "agentPushNotifEnabled": true,
+  "inputNeededNotifEnabled": true
 }
