@@ -1,0 +1,6 @@
+#!/bin/sh
+# Run repo linters before every commit. Bypass with `git commit --no-verify`.
+set -eu
+
+repo_root=$(git rev-parse --show-toplevel)
+exec make -C "$repo_root" --no-print-directory lint

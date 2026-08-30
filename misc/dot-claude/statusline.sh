@@ -37,9 +37,9 @@ except:
 CAVEMAN=$(bash "/Users/matt/.claude/plugins/cache/caveman/caveman/25d22f864ad6/src/hooks/caveman-statusline.sh")
 
 if [ -n "$CAVEMAN" ] && [ -n "$STATS" ]; then
-    printf '%s  %s' "$CAVEMAN" "$STATS"
+  printf '%s  %s' "$CAVEMAN" "$STATS"
 elif [ -n "$CAVEMAN" ]; then
-    printf '%s' "$CAVEMAN"
+  printf '%s' "$CAVEMAN"
 elif [ -n "$STATS" ]; then
-    printf '%s' "$STATS"
+  printf '%s' "$STATS"
 fi

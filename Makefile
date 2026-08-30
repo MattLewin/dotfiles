@@ -4,15 +4,42 @@ ifeq ($(UNAME), Darwin)
 STOW_PACKAGES += macOS
 endif
 INSTALL_SCRIPTS_DIR=install_scripts
-ALL=homebrew antidote dotfiles launch-agents
+ALL=homebrew antidote dotfiles launch-agents githooks
 BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside repo on default `make`
 
 STOW := $(or $(shell command -v stow), stow)
 SHELL := /bin/sh
 
-.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew
+.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint
 
 all: $(ALL)
+
+# sh/bash scripts. install-launch-agents.sh + dnd_enabled are zsh, systeminfo.sh is sourced zsh -- all linted by zsh -n below
+SH_SCRIPTS=$(INSTALL_SCRIPTS_DIR)/install-homebrew.sh $(INSTALL_SCRIPTS_DIR)/bootstrap-local.sh \
+	misc/scripts/dotfiles-healthcheck misc/dot-claude/statusline.sh
+BASH_SCRIPTS=bash/dot-bashrc bash/dot-bash_profile
+ZSH_FILES=zsh/dot-zshrc zsh/dot-zprofile zsh/dot-zlogin zsh/dot-zsh/systeminfo.sh \
+	$(INSTALL_SCRIPTS_DIR)/install-launch-agents.sh misc/scripts/dnd_enabled
+
+lint:
+	@echo --- shellcheck ---
+	@shellcheck -e SC1091 $(SH_SCRIPTS)
+	@shellcheck -e SC1091 -s bash $(BASH_SCRIPTS)
+	@echo --- shfmt ---
+	@shfmt -d -i 2 -ci $(SH_SCRIPTS)
+	@shfmt -d -ln bash -i 2 -ci $(BASH_SCRIPTS)
+	@echo --- zsh -n ---
+	@fail=0; \
+	for f in $$(find . -name '*.zsh' ! -name 'api_tokens.zsh') $(ZSH_FILES); do \
+		zsh -n "$$f" || fail=1; \
+	done; \
+	exit $$fail
+	@echo --- jq \(json validity\) ---
+	@for f in $$(git ls-files '*.json'); do jq -e . "$$f" >/dev/null || exit 1; done
+ifeq ($(UNAME), Darwin)
+	@echo --- plutil \(plist validity\) ---
+	@for f in $$(git ls-files '*.plist'); do plutil -lint "$$f" >/dev/null || exit 1; done
+endif
 
 dotfiles: | $(STOW)
 	@echo --- Creating dot files ---
@@ -61,3 +88,7 @@ endif
 bootstrap-local:
 	@echo --- Creating local override files ---
 	@${INSTALL_SCRIPTS_DIR}/bootstrap-local.sh
+
+githooks:
+	@echo --- Wiring git hooks ---
+	@git config core.hooksPath githooks
