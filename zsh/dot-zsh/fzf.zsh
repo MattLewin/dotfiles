@@ -1,5 +1,9 @@
 # Examples: https://github.com/junegunn/fzf/wiki/examples
 
+# Skip entirely without a real tty: a captured -i subshell (e.g. env-extraction
+# probes) has no stdin, so any fzf call here would block forever.
+[[ -t 0 ]] || return 0
+
 # fuzzy list commands/aliases/functions with safe preview
 function cmd() {
   local sel

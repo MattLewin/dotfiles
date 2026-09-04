@@ -86,7 +86,9 @@ if (( $+commands[cataclysm] )); then
 fi
 
 if (( $+commands[fd] )); then
-    alias find='fd --no-ignore'
+    # Only shadow `find` itself with a real tty attached — a non-interactive
+    # caller (script, captured -i subshell) expects real find's flags/output.
+    [[ -t 0 ]] && alias find='fd --no-ignore'
     alias find.d='fd --no-ignore --type directory'
     alias find.f='fd --no-ignore --type file'
 else
@@ -95,7 +97,7 @@ else
 fi
 
 (( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
-(( $+commands[htop] )) && alias top="${commands[htop]}"
+(( $+commands[htop] )) && [[ -t 0 ]] && alias top="${commands[htop]}"
 if (( $+commands[thefuck] )); then
     fuck() {
         unfunction fuck
@@ -104,7 +106,7 @@ if (( $+commands[thefuck] )); then
     }
 fi
 
-if (( $+commands[nvim] )); then
+if (( $+commands[nvim] )) && [[ -t 0 ]]; then
     alias vi=nvim
     alias vim=nvim
 fi

@@ -4,8 +4,9 @@
 (( $+commands[bat] )) || return 0
 
 # --- Core replacements -------------------------------------------------------
-# Make `cat` behave like cat with syntax highlighting
-alias cat='bat --paging=never --style=plain'
+# Make `cat` behave like cat with syntax highlighting (tty only — a
+# non-interactive caller expects real cat's output)
+[[ -t 0 ]] && alias cat='bat --paging=never --style=plain'
 
 # Pretty cat: header + grid borders, page if long
 alias catp='bat --style=header,grid --paging=auto'
@@ -53,5 +54,5 @@ gfile() {
 }
 
 # --- Extras ------------------------------------------------------------------
-# Make `less` pretty-print source files
-alias less='bat --paging=always --decorations=always'
+# Make `less` pretty-print source files (tty only, same reasoning as `cat` above)
+[[ -t 0 ]] && alias less='bat --paging=always --decorations=always'

@@ -4,7 +4,8 @@ if command -v eza >/dev/null 2>&1; then
   # Defaults: color, icons (Terminal.app/iTerm2), git info, dirs first
   _EZA_BASE=(--color=auto --icons --group-directories-first)
 
-  alias ls='eza "${_EZA_BASE[@]}"'
+  # Shadow `ls` only with a real tty — a non-interactive caller expects real ls
+  [[ -t 0 ]] && alias ls='eza "${_EZA_BASE[@]}"'
 
   alias l='eza -lh --git "${_EZA_BASE[@]}"'               # long + sizes + git
   alias ll='l'                                            # convenience alias
