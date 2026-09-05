@@ -23,11 +23,11 @@ Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`
 All files managed by stow are prefixed with `dot-` (stow's `.stowrc` maps these to `.`-prefixed files in `$HOME`). The top-level directory name becomes the stow package name.
 
 ### Directory Layout
-- `zsh/dot-zsh/` — Modular zsh config loaded by `.zshrc`
+- `zsh/dot-zsh/` — Modular zsh config loaded by `.zshrc`. See `zsh/README.md` for full load order, the plugin system, and the Oh My Zsh → Antidote migration map.
   - `plugins_builder.zsh` — Dynamically builds Antidote plugin list based on installed commands
   - `config.d/darwin.zsh` / `config.d/linux.zsh` — OS-specific settings
   - `aliases.zsh`, `paths.zsh`, `variables.zsh`, `fzf.zsh` — Functional modules
-  - `api_tokens.zsh` — API credentials (git-ignored via `.gitignore`)
+  - `api_tokens.zsh` — API credentials (git-ignored; template at `api_tokens.zsh.example`)
 - `misc/dot-config/homebrew/Brewfile` — Single Brewfile (formulas + casks)
 - `misc/dot-config/nvim/init.lua` — Neovim config (lazy.nvim plugin manager)
 - `install_scripts/` — Bootstrap scripts called by Makefile targets
