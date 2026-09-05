@@ -5,13 +5,6 @@
 # If uv isn't installed, do nothing.
 (( $+commands[uv] )) || return
 
-# --- uv/uvx completions ---
-# Generate completion functions into a cache dir and ensure that dir is on $fpath.
-# If compinit already ran before this plugin loaded, we re-run compinit only when needed.
-UV_ZSH_COMPLETION_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
-mkdir -p "$UV_ZSH_COMPLETION_DIR"
-fpath=("$UV_ZSH_COMPLETION_DIR" $fpath)
-
 # --- shims ---
 # Provide a friendlier `--version` for muscle-memory commands.
 _pip_shim_version() {
@@ -57,29 +50,29 @@ pipx() {
   fi
 }
 
-# Generate completion files if missing OR if uv/uvx changed.
-# We version-stamp the cache so completions auto-refresh on upgrade.
-UV_COMPLETION_STAMP="$UV_ZSH_COMPLETION_DIR/.uv-completion-version"
-UVX_COMPLETION_STAMP="$UV_ZSH_COMPLETION_DIR/.uvx-completion-version"
+# --- uv/uvx completions ---
+# Cache the generated completion files; regenerate only when the binary changes.
+# Same cache dir as op.plugin.zsh / completions.plugin.zsh.
+_uv_comp_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
+_uv_comp="${_uv_comp_dir}/_uv"
 
-_uv_version="$(uv --version 2>/dev/null)"
-_uv_cached=""
-[[ -f "$UV_COMPLETION_STAMP" ]] && _uv_cached="$(<"$UV_COMPLETION_STAMP")"
-
-if [[ ! -f "$UV_ZSH_COMPLETION_DIR/_uv" || "$_uv_version" != "$_uv_cached" ]]; then
-  uv generate-shell-completion zsh >| "$UV_ZSH_COMPLETION_DIR/_uv" 2>/dev/null
-  print -r -- "$_uv_version" >| "$UV_COMPLETION_STAMP" 2>/dev/null
+if [[ ! -s "$_uv_comp" || "${commands[uv]}" -nt "$_uv_comp" ]]; then
+  mkdir -p "$_uv_comp_dir"
+  uv generate-shell-completion zsh >| "$_uv_comp" 2>/dev/null
 fi
 
 if (( $+commands[uvx] )); then
-  _uvx_version="$(uvx --version 2>/dev/null)"
-  _uvx_cached=""
-  [[ -f "$UVX_COMPLETION_STAMP" ]] && _uvx_cached="$(<"$UVX_COMPLETION_STAMP")"
-
-  if [[ ! -f "$UV_ZSH_COMPLETION_DIR/_uvx" || "$_uvx_version" != "$_uvx_cached" ]]; then
-    uvx --generate-shell-completion zsh >| "$UV_ZSH_COMPLETION_DIR/_uvx" 2>/dev/null
-    print -r -- "$_uvx_version" >| "$UVX_COMPLETION_STAMP" 2>/dev/null
+  _uvx_comp="${_uv_comp_dir}/_uvx"
+  if [[ ! -s "$_uvx_comp" || "${commands[uvx]}" -nt "$_uvx_comp" ]]; then
+    mkdir -p "$_uv_comp_dir"
+    uvx --generate-shell-completion zsh >| "$_uvx_comp" 2>/dev/null
   fi
 fi
 
-unset _uv_version _uv_cached _uvx_version _uvx_cached UV_COMPLETION_STAMP UVX_COMPLETION_STAMP UV_ZSH_COMPLETION_DIR _pip_shim_version _pipx_shim_version
+# compinit already ran (see .zshrc) before local plugins load, so register the
+# functions explicitly to get completion in this shell, not just the next one.
+fpath=("$_uv_comp_dir" $fpath)
+autoload -Uz _uv && compdef _uv uv
+(( $+commands[uvx] )) && { autoload -Uz _uvx && compdef _uvx uvx; }
+
+unset _uv_comp _uvx_comp _uv_comp_dir _pip_shim_version _pipx_shim_version

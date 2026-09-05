@@ -63,7 +63,7 @@ The orchestrator. In order:
 12. **Antidote**: source `antidote.zsh`; if `~/.zsh_plugins.txt` is newer than `~/.zsh_plugins.sh` (or the `.sh` is missing), re-bundle; then source `~/.zsh_plugins.sh`.
 13. **After Antidote**, source in order: `aliases.zsh`, `variables.zsh`.
 14. Source `~/.config/dotfiles/local.zsh` (untracked machine overrides).
-15. Tool hooks: `direnv`, `mole`, `ngrok`, `op`, `RIPGREP_CONFIG_PATH`.
+15. Tool hooks: `direnv`, `RIPGREP_CONFIG_PATH` (`mole`/`ngrok`/`op` completions are cached by local plugins — step 16).
 16. **Local plugins**: source every `~/.zsh/plugins/*.zsh` (glob; `null_glob`, readable only).
 17. `zoxide init` (must be after compinit + plugins).
 18. `starship init` (if `USE_STARSHIP`).
@@ -145,8 +145,7 @@ they're inert when the tool isn't installed.
 | `bat.plugin.zsh` | `cat`→`bat` (tty only); `catp` / `catn` / `catc` variants |
 | `bg-git-fetch.plugin.zsh` | Quiet `git fetch` on the zsh `periodic()` hook when idle inside a repo; `BG_GIT_FETCH_PERIOD` (default 300s) |
 | `brew.plugin.zsh` | `brew` wrapper: `brew uses` → `--installed --recursive`; bare `brew outdated` → completion-friendly name list |
-| `clean_subtitles.plugin.zsh` | Generates/caches `_clean_subtitles` completion in `~/.zfunc` |
-| `color2hex.plugin.zsh` | Generates/caches `_color2hex` completion in `~/.zfunc` |
+| `completions.plugin.zsh` | Data-driven cache of generated zsh completions (`clean_subtitles`, `color2hex`, `mole`, `ngrok`, `ruff`, `ttl`) in `$XDG_CACHE_HOME/zsh/completions`; regenerate per binary. Add a tool = one spec line |
 | `dirstack.plugin.zsh` | `AUTO_PUSHD` + friends; `dstk` fzf dir-stack picker |
 | `eza.plugin.zsh` | `ls`→`eza` (tty only); `l` `ll` `la` `lt` `ltree` `ltr` `lS` `ldot` … |
 | `ffxxx.plugin.zsh` | Wrap `ffmpeg`/`ffplay`/`ffprobe`: always `-hide_banner`; auto `libdav1d` for AV1 input |
@@ -154,7 +153,8 @@ they're inert when the tool isn't installed.
 | `git.plugin.zsh` | Plain git aliases: `ga` `gc` `gc!` `gcmsg` `gco` `gd` `gds` `gst` `gsw` `gswc` `glg` … |
 | `iterm_title.plugin.zsh` | Set tab (`%~`) and window (`%n@%m:%~`) titles on each prompt; no OMZ dependency |
 | `mise.plugin.zsh` | `eval "$(mise activate zsh)"` + cache `_mise` completion (regenerate on version change) |
-| `uv.plugin.zsh` | Route `pip`/`pipx` → `uv`/`uvx` (interactive only) + uv/uvx completions |
+| `op.plugin.zsh` | Generates/caches `_op` (1Password CLI) completion in `$XDG_CACHE_HOME/zsh/completions` (regenerate when binary changes; avoids a TCC prompt every startup) |
+| `uv.plugin.zsh` | Route `pip`/`pipx` → `uv`/`uvx` (interactive only); caches `_uv`/`_uvx` completion in `$XDG_CACHE_HOME/zsh/completions` (regenerate when binary changes) |
 
 ---
 
@@ -193,7 +193,7 @@ just `exec zsh`. After adding a **new** file: `make dotfiles`, then `exec zsh`.
 ## Troubleshooting
 
 - **Plugin change didn't take** — `rm ~/.zsh_plugins.txt ~/.zsh_plugins.sh && exec zsh`.
-- **Stale completions** — `rm -f ~/.zcompdump ~/.zfunc/_* && exec zsh`.
+- **Stale completions** — `rm -f ~/.zcompdump ~/.zfunc/_* ~/.cache/zsh/completions/_* && exec zsh`.
 - **Profile startup** — uncomment the two `XTRACE` blocks at the top and bottom of
   `dot-zshrc`; it logs per-line timings to a `zsh_profile.*` tempfile.
 - **Update everything** — `update-all` (antidote + mise + brew), defined in `aliases.zsh`.

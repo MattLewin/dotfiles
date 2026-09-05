@@ -199,22 +199,7 @@ local _dotfiles_local="${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/local.zsh"
 unset _dotfiles_local
 
 (( $+commands[direnv] )) && eval "$(direnv hook zsh)"
-(( $+commands[mole] )) && eval "$(mole completion zsh)"
-(( $+commands[ngrok] )) && eval "$(ngrok completion)"
 (( $+commands[rg] )) && export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
-
-# 1Password CLI completion, cached. Running `op` on every shell start trips a
-# Sequoia TCC prompt in the terminal; regenerate only when the binary changes.
-if (( $+commands[op] )); then
-    _op_comp="${HOME}/.zfunc/_op"
-    if [[ ! -s "$_op_comp" || "${commands[op]}" -nt "$_op_comp" ]]; then
-        mkdir -p "${HOME}/.zfunc"
-        op completion zsh >| "$_op_comp" 2>/dev/null
-    fi
-    fpath=("${HOME}/.zfunc" $fpath)
-    autoload -Uz _op && compdef _op op
-    unset _op_comp
-fi
 
 # --- Local plugins: auto-load every *.zsh in ${DOT_ZSH}/plugins ---
 # Disable errors if no files match; only source readable files.
