@@ -1,1 +1,3 @@
-api_tokens*
+api_tokens.zsh
+api_tokens.zsh-*
+!api_tokens.zsh.example

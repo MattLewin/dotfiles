@@ -1,0 +1,17 @@
+# api_tokens.zsh — sourced by variables.zsh on every shell start.
+#
+# The real file (api_tokens.zsh) is git-ignored. Copy this template:
+#   cp api_tokens.zsh.example api_tokens.zsh && chmod 600 api_tokens.zsh
+# then fill in real values and uncomment what you need.
+
+# Public-access-only GitHub token so Homebrew isn't rate-limited on GitHub API
+# calls. Generate at https://github.com/settings/tokens with NO scopes selected —
+# it grants nothing beyond anonymous access, just a higher rate limit.
+export HOMEBREW_GITHUB_API_TOKEN="ghp_REPLACE_ME"
+
+# Legacy classic GitHub token, only if some tool still expects this variable name.
+# export GITHUB_ACCESS_TOKEN="REPLACE_ME"
+
+# AWS credentials for personal S3 use.
+# export S3_ACCESS_KEY="AKIA_REPLACE_ME"
+# export S3_SECRET_ACCESS_KEY="REPLACE_ME"
