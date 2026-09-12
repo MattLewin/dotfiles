@@ -3,6 +3,11 @@
 
 JSON=$(cat)
 
+STARSHIP=""
+if command -v starship >/dev/null 2>&1; then
+  STARSHIP=$(printf '%s' "$JSON" | starship statusline claude-code --profile claude-code 2>/dev/null)
+fi
+
 STATS=$(printf '%s' "$JSON" | python3 -c '
 import json, sys
 try:
@@ -36,10 +41,19 @@ except:
 
 CAVEMAN=$(bash "/Users/matt/.claude/plugins/cache/caveman/caveman/25d22f864ad6/src/hooks/caveman-statusline.sh")
 
+LINE2=""
 if [ -n "$CAVEMAN" ] && [ -n "$STATS" ]; then
-  printf '%s  %s' "$CAVEMAN" "$STATS"
+  LINE2=$(printf '%s  %s' "$CAVEMAN" "$STATS")
 elif [ -n "$CAVEMAN" ]; then
-  printf '%s' "$CAVEMAN"
+  LINE2="$CAVEMAN"
 elif [ -n "$STATS" ]; then
-  printf '%s' "$STATS"
+  LINE2="$STATS"
+fi
+
+if [ -n "$STARSHIP" ] && [ -n "$LINE2" ]; then
+  printf '%s\n%s' "$STARSHIP" "$LINE2"
+elif [ -n "$STARSHIP" ]; then
+  printf '%s' "$STARSHIP"
+else
+  printf '%s' "$LINE2"
 fi
