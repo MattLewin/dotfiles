@@ -81,7 +81,9 @@ fi
 if (( $+commands[starship] )); then
     USE_STARSHIP="true"
 else
-    PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}$(shrink_path -f)] %{$reset_color%}'
+    # %2~ = last two path components, with $HOME as ~. A prompt escape, so it
+    # needs neither PROMPT_SUBST nor a path-shortening plugin.
+    PROMPT='%{$fg[magenta]%}[%{$fg[cyan]%}%m:%{$fg[magenta]%}%2~] %{$reset_color%}'
 fi
 
 source_before_antidote=(

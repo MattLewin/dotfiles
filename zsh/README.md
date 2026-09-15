@@ -25,7 +25,7 @@ block in `~/.zshrc` or a small module file under `~/.zsh/`.
 | Third-party plugin from GitHub | Add `owner/repo` to the `ALWAYS_ON` array in `plugins_builder.zsh` |
 | Custom plugin in `$ZSH_CUSTOM/plugins/foo/foo.plugin.zsh` | Drop `foo.plugin.zsh` into `dot-zsh/plugins/` — auto-sourced by glob |
 | Disable a custom plugin | Rename its extension (`foo.plugin.zsh` → `foo.plugin.zsh.off`) |
-| `ZSH_THEME=…` | [Starship](https://starship.rs) (`starship init` at the end of `.zshrc`); falls back to an OMZ `shrink-path` prompt if starship isn't installed |
+| `ZSH_THEME=…` | [Starship](https://starship.rs) (`starship init` at the end of `.zshrc`); falls back to a plain `%2~` prompt if starship isn't installed |
 | OMZ `lib/` (completion styles, history opts, key bindings) | Hand-rolled: `zstyle` block in `.zshrc`, options in `.zshrc` + module files |
 | `compinit` runs automatically | Explicit in `.zshrc`, with a once-a-day security audit (otherwise loads the cached dump with `-C`) |
 | `omz update` | `antidote update` — or the `update-all` function (antidote + mise + brew) |
@@ -100,7 +100,7 @@ stack (keeps new tmux panes from inheriting a stale `dirs` list).
 overwrites the file when the content changes, so a normal shell start does **not**
 trigger an Antidote re-bundle.
 
-Four sources feed the list:
+Three sources feed the list:
 
 ```zsh
 ALWAYS_ON=(          # loaded every shell
@@ -108,13 +108,12 @@ ALWAYS_ON=(          # loaded every shell
   zsh-users/zsh-autosuggestions
   zsh-users/zsh-completions
   'ohmyzsh/ohmyzsh path:plugins/git'
-  'ohmyzsh/ohmyzsh path:plugins/copypath'
-  'ohmyzsh/ohmyzsh path:plugins/shrink-path'
 )
 
-WANT=( [aws]=aws )              # add OMZ plugin `aws` iff `aws` is on PATH
-
-MAP=( [terminal-notifier]=bgnotify )   # binary name ≠ plugin name
+IF_INSTALLED=(   # [binary]=spec — added iff the binary is on PATH
+  [aws]='ohmyzsh/ohmyzsh path:plugins/aws'
+  [terminal-notifier]='t413/zsh-background-notify'
+)
 
 # terminal-gated: adds OMZ `iterm2` when TERM_PROGRAM == iTerm.app
 ```
@@ -123,8 +122,8 @@ MAP=( [terminal-notifier]=bgnotify )   # binary name ≠ plugin name
 
 **To add a plugin:**
 - Unconditional → add `owner/repo` (or `owner/repo path:subdir`) to `ALWAYS_ON`.
-- Only when a command exists → add `[plugin-name]=binary` to `WANT`, or
-  `[binary]=plugin-name` to `MAP` if they differ.
+- Only when a command exists → add `[binary]='owner/repo'` to `IF_INSTALLED` (OMZ plugins
+  use the full `'ohmyzsh/ohmyzsh path:plugins/NAME'` spec, same as `ALWAYS_ON`).
 - Then `exec zsh`. The list regenerates, Antidote re-bundles, done.
 
 **Force a full rebuild:**
