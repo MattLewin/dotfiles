@@ -1,5 +1,6 @@
 brew 'bash'
 brew 'bash-completion'
+brew 'bashka'
 brew 'bat'
 brew 'clippy'
 brew 'coreutils'
