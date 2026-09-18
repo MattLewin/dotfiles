@@ -39,7 +39,18 @@ except:
     pass
 ')
 
-CAVEMAN=$(bash "/Users/matt/.claude/plugins/cache/caveman/caveman/25d22f864ad6/src/hooks/caveman-statusline.sh")
+# The caveman plugin's statusline hook lives under a content-hashed directory
+# that changes whenever the plugin updates, and more than one version can be
+# cached at once. Resolve it at runtime, newest first, and skip it if absent.
+CAVEMAN=""
+caveman_hook=$(
+  find "${HOME}/.claude/plugins/cache/caveman/caveman" \
+    -name caveman-statusline.sh -type f -print0 2>/dev/null |
+    xargs -0 ls -t 2>/dev/null | head -1
+)
+if [ -n "$caveman_hook" ] && [ -r "$caveman_hook" ]; then
+  CAVEMAN=$(bash "$caveman_hook" 2>/dev/null)
+fi
 
 LINE2=""
 if [ -n "$CAVEMAN" ] && [ -n "$STATS" ]; then
