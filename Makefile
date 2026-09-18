@@ -41,9 +41,13 @@ ifeq ($(UNAME), Darwin)
 	@for f in $$(git ls-files '*.plist'); do plutil -lint "$$f" >/dev/null || exit 1; done
 endif
 
+# --ignore is repeatable. First pattern: only stow dot-* files. Second: never
+# stow *.example templates -- bootstrap-local.sh copies those into place instead.
+STOW_IGNORE=--ignore='^(?!dot).*$$' --ignore='\.example$$'
+
 dotfiles: | $(STOW)
 	@echo --- Creating dot files ---
-	stow --verbose=1 --dotfiles --target "${HOME}/" --ignore='^(?!dot).*$\' $(STOW_PACKAGES)
+	stow --verbose=1 --restow --dotfiles --target "${HOME}/" $(STOW_IGNORE) $(STOW_PACKAGES)
 
 
 launch-agents:
