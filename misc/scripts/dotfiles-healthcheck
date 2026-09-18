@@ -65,6 +65,14 @@ problems=$(mktemp)
 checked=$(mktemp)
 trap 'rm -f "$problems" "$checked"' EXIT
 
+# Print the fully resolved physical path of $1, or fail.
+physical() {
+  _p=$1
+  _d=$(dirname "$_p")
+  _b=$(basename "$_p")
+  (CDPATH='' cd -P -- "$_d" 2>/dev/null && printf '%s/%s\n' "$(pwd)" "$_b")
+}
+
 # Verify one expected link: $1 = source in repo, $2 = path in $HOME
 check_one() {
   _src=$1
@@ -80,14 +88,28 @@ check_one() {
   fi
 
   _link=$(readlink "$_target")
-  case "$_link" in
-    /*) _abs=$_link ;;
-    *) _abs="${HOME}/${_link}" ;;
-  esac
 
   if [ ! -e "$_target" ]; then
     printf '  broken link:   %s -> %s\n' "$_target" "$_link" >>"$problems"
-  elif [ "$_abs" != "$_src" ]; then
+    return
+  fi
+
+  # A relative link resolves against the directory holding it, not $HOME --
+  # stow writes ../../src/... for files nested inside a folded package. Compare
+  # physical paths so ".." components and intermediate symlinks are resolved.
+  case "$_link" in
+    /*) _abs=$_link ;;
+    *) _abs="$(dirname "$_target")/${_link}" ;;
+  esac
+
+  if ! _resolved=$(physical "$_abs"); then
+    printf '  unresolvable:  %s -> %s\n' "$_target" "$_link" >>"$problems"
+    return
+  fi
+
+  _expected=$(physical "$_src") || return
+
+  if [ "$_resolved" != "$_expected" ]; then
     printf '  points elsewhere: %s -> %s\n' "$_target" "$_link" >>"$problems"
   fi
 }
