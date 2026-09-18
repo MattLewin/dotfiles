@@ -4,3 +4,7 @@
 # Example:
 # export EDITOR="nvim"
 # alias gst='git status'
+#
+# Friendly name shown in the iTerm2 status bar instead of the real short
+# hostname (see the iterm2_print_user_vars block in .zshrc):
+# export DOTFILES_SHORT_HOSTNAME="Work Laptop"

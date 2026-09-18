@@ -110,8 +110,9 @@ if [[ "$TERM_PROGRAM" == "iTerm.app" ]]; then
     test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
     iterm2_print_user_vars() {
-        # iterm2_set_user_var shortHostname $(hostname -s)
-        iterm2_set_user_var shortHostname "Matt's Air"
+        # Override DOTFILES_SHORT_HOSTNAME in ~/.config/dotfiles/local.zsh to
+        # show a friendly name instead of the real short hostname.
+        iterm2_set_user_var shortHostname "${DOTFILES_SHORT_HOSTNAME:-$(hostname -s)}"
         (( $+commands[tmux] )) && iterm2_set_user_var tmuxWinIDX $(tmux_winidx_circled)
     }
 fi

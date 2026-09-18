@@ -1,0 +1,15 @@
+# Trusted gateways for wifi-stealth.zsh (not tracked)
+# Install to: /usr/local/etc/wifi-stealth.conf  (root:wheel, 0644)
+#
+# One "ipv4|mac" pair per line. Blank lines and # comments are ignored.
+# When this file is absent or empty, no gateway is trusted and stealth
+# mode stays on, which is the safe default.
+#
+# macOS `arp` strips leading zeros from each octet, so a MAC that pfSense
+# shows as 08:00:27:0a:1b:2c must be written here as 8:0:27:a:1b:2c.
+# Get the current gateway's MAC in the right format with:
+#
+#   gw=$(route -n get default | awk '/gateway:/ {print $2}'); arp -n "$gw"
+#
+# Example:
+# 192.168.1.1|8:0:27:a:1b:2c
