@@ -49,3 +49,6 @@ id_*
 
 # never ignore .gitkeep, anywhere in tree
 !**/.gitkeep
+
+# editor/LSP scaffolding
+.ruby-lsp/

@@ -98,13 +98,6 @@ fi
 
 (( $+commands[howdoi] )) && alias howdoi="${commands[howdoi]} -c -n 3"
 (( $+commands[htop] )) && [[ -t 0 ]] && alias top="${commands[htop]}"
-if (( $+commands[thefuck] )); then
-    fuck() {
-        unfunction fuck
-        eval "$(thefuck --alias)"
-        fuck "$@"
-    }
-fi
 
 if (( $+commands[nvim] )) && [[ -t 0 ]]; then
     alias vi=nvim
@@ -293,21 +286,6 @@ case "$OS" in
 esac
 
 if [ "${BREW_PREFIX}" != "" ]; then
-
-
-    if (( $+commands[fortune] )) && (( $+commands[cowsay] )); then
-        local _brew_prefix="${HOMEBREW_PREFIX:-$BREW_PREFIX}"
-        COWS=($_brew_prefix/share/cowsay/cows/*.cow)
-
-        function cowrandom() {
-            local count
-            count=$(ls $_brew_prefix/share/cowsay/cows/*.cow | wc -l)
-            local RAND_COW=$(( RANDOM % count ))
-            fortune | cowsay -f ${COWS[$RAND_COW]}
-        }
-
-        cowrandom
-    fi
 
     #
     # 'brew --prefix golang' is very slow, so let's only do it if/when we use go

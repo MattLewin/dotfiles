@@ -13,7 +13,6 @@
 _load_cached_completions() {
   local dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
   local -a specs=(
-    'clean_subtitles:clean_subtitles completion'
     'color2hex:color2hex completion zsh'
     'mole:mole completion zsh'
     'ngrok:ngrok completion'
