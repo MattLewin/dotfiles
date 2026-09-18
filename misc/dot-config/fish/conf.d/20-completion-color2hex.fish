@@ -4,6 +4,6 @@ if type -q color2hex
 
     if not test -e $compfile; or test $cmd -nt $compfile
         mkdir -p (dirname $compfile)
-        color2hex completion fish > $compfile ^/dev/null
+        color2hex completion fish >$compfile 2>/dev/null
     end
 end
