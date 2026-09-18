@@ -5,6 +5,11 @@
 !.gitignore
 
 # Allowlisted subtrees (must unignore the dir AND its contents)
+# Local-override templates only. The live local.zsh / local.fish that
+# bootstrap-local.sh creates from them stay ignored.
+!dotfiles/
+!dotfiles/*.example
+
 !fish/
 !fish/**
 

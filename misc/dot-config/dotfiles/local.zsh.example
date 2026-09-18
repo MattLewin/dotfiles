@@ -1,0 +1,6 @@
+# Local zsh overrides (not tracked)
+# Copy to: ~/.config/dotfiles/local.zsh
+#
+# Example:
+# export EDITOR="nvim"
+# alias gst='git status'

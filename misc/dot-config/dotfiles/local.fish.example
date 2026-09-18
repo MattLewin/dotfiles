@@ -1,0 +1,6 @@
+# Local fish overrides (not tracked)
+# Copy to: ~/.config/dotfiles/local.fish
+#
+# Example:
+# set -x EDITOR nvim
+# alias gst 'git status'
