@@ -1,3 +1,9 @@
+# Git identity for this machine. ~/.gitconfig sets `user.useConfigOnly = true`,
+# so git refuses to guess an identity -- uncomment and fill these in, or set
+# user.name/user.email per repository.
+#
+# Leave them commented and git will error on commit rather than author one
+# under a placeholder name.
 [user]
-    name = Your Name
-    email = you@example.com
+#	name = Your Name
+#	email = you@example.com
