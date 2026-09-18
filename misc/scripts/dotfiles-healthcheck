@@ -32,6 +32,8 @@ opt direnv
 opt starship
 opt zoxide
 opt mise
+opt gitleaks
+opt markdownlint-cli2
 
 if [ -n "$missing" ]; then
   printf 'Missing required tools:%s\n' "$missing"
@@ -43,4 +45,87 @@ if [ -n "$optional_missing" ]; then
   printf 'Missing optional tools:%s\n' "$optional_missing"
 else
   printf 'Optional tools: OK\n'
+fi
+
+# --- stow symlink integrity ---------------------------------------------
+# Checking that tools are on PATH says nothing about whether the config is
+# actually linked. ~/.claude/settings.json sat unlinked and stale for months
+# without anything noticing, so verify every dot-* source has a $HOME
+# counterpart that is a symlink pointing back into this repo.
+
+script_dir=$(CDPATH='' cd -- "$(dirname -- "$0")" && pwd)
+repo_root=$(CDPATH='' cd -- "${script_dir}/../.." && pwd)
+
+packages="bash git misc tmux zsh"
+if [ "$(uname)" = "Darwin" ]; then
+  packages="${packages} macOS"
+fi
+
+problems=$(mktemp)
+checked=$(mktemp)
+trap 'rm -f "$problems" "$checked"' EXIT
+
+# Verify one expected link: $1 = source in repo, $2 = path in $HOME
+check_one() {
+  _src=$1
+  _target=$2
+
+  if [ ! -L "$_target" ]; then
+    if [ -e "$_target" ]; then
+      printf '  not a symlink: %s\n' "$_target" >>"$problems"
+    else
+      printf '  missing:       %s\n' "$_target" >>"$problems"
+    fi
+    return
+  fi
+
+  _link=$(readlink "$_target")
+  case "$_link" in
+    /*) _abs=$_link ;;
+    *) _abs="${HOME}/${_link}" ;;
+  esac
+
+  if [ ! -e "$_target" ]; then
+    printf '  broken link:   %s -> %s\n' "$_target" "$_link" >>"$problems"
+  elif [ "$_abs" != "$_src" ]; then
+    printf '  points elsewhere: %s -> %s\n' "$_target" "$_link" >>"$problems"
+  fi
+}
+
+for pkg in $packages; do
+  for src in "${repo_root}/${pkg}"/dot-*; do
+    [ -e "$src" ] || continue
+
+    base=$(basename "$src")
+    case "$base" in
+      *.example) continue ;;
+    esac
+
+    target="${HOME}/.${base#dot-}"
+
+    if [ -d "$src" ] && [ -d "$target" ] && [ ! -L "$target" ]; then
+      # stow "folded" this package: the target directory already existed, so
+      # stow linked its children individually rather than the directory. Check
+      # each file beneath instead of the directory itself.
+      find "$src" \( -type f -o -type l \) 2>/dev/null | while IFS= read -r f; do
+        rel=${f#"${src}/"}
+        printf 'x\n' >>"$checked"
+        check_one "$f" "${target}/${rel}"
+      done
+    else
+      printf 'x\n' >>"$checked"
+      check_one "$src" "$target"
+    fi
+  done
+done
+
+link_problems=$(wc -l <"$problems" | tr -d ' ')
+link_checked=$(wc -l <"$checked" | tr -d ' ')
+
+if [ "$link_problems" -eq 0 ]; then
+  printf 'Stow links: OK (%s checked)\n' "$link_checked"
+else
+  printf 'Stow links: %s of %s have problems -- run: make dotfiles\n' \
+    "$link_problems" "$link_checked"
+  cat "$problems"
 fi

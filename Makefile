@@ -10,7 +10,7 @@ BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside re
 STOW := $(or $(shell command -v stow), stow)
 SHELL := /bin/sh
 
-.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint
+.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint healthcheck
 
 all: $(ALL)
 
@@ -110,6 +110,9 @@ endif
 bootstrap-local:
 	@echo --- Creating local override files ---
 	@${INSTALL_SCRIPTS_DIR}/bootstrap-local.sh
+
+healthcheck:
+	@misc/scripts/dotfiles-healthcheck
 
 githooks:
 	@echo --- Wiring git hooks ---
