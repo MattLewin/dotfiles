@@ -73,6 +73,17 @@ physical() {
   (CDPATH='' cd -P -- "$_d" 2>/dev/null && printf '%s/%s\n' "$(pwd)" "$_b")
 }
 
+# Mirror what stow itself skips, so files it was never going to link are not
+# reported as missing: STOW_IGNORE in the Makefile, plus the entries of stow's
+# built-in default ignore list that appear in this repo. Like stow's --ignore,
+# these match a basename at every level of a package, not just its root.
+stow_ignored() {
+  case $1 in
+    *.example | .DS_Store | .gitignore | scripts) return 0 ;;
+  esac
+  return 1
+}
+
 # Verify one expected link: $1 = source in repo, $2 = path in $HOME
 check_one() {
   _src=$1
@@ -119,9 +130,7 @@ for pkg in $packages; do
     [ -e "$src" ] || continue
 
     base=$(basename "$src")
-    case "$base" in
-      *.example) continue ;;
-    esac
+    if stow_ignored "$base"; then continue; fi
 
     target="${HOME}/.${base#dot-}"
 
@@ -131,6 +140,7 @@ for pkg in $packages; do
       # each file beneath instead of the directory itself.
       find "$src" \( -type f -o -type l \) 2>/dev/null | while IFS= read -r f; do
         rel=${f#"${src}/"}
+        if stow_ignored "$(basename "$f")"; then continue; fi
         printf 'x\n' >>"$checked"
         check_one "$f" "${target}/${rel}"
       done
