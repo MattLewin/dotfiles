@@ -52,3 +52,7 @@ id_*
 
 # editor/LSP scaffolding
 .ruby-lsp/
+
+# Claude Code runtime state: commit SHAs, absolute install paths and
+# timestamps that change on every plugin update. Not configuration.
+misc/dot-claude/plugins/

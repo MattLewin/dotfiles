@@ -62,6 +62,24 @@ Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynami
    one Brewfile, holding both formulas and casks; there is no per-OS split.
 4. Machine-specific settings belong in `~/.config/dotfiles/local.zsh`, not in the repo
 
+## Claude Code Config (`misc/dot-claude/`)
+
+Stowed to `~/.claude`. What is tracked and what deliberately is not:
+
+| Path | Tracked | Notes |
+|------|---------|-------|
+| `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes | |
+| `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes four of them |
+| `settings.json` | yes | Portable settings only — permissions, plugins, model, tui |
+| `~/.claude/settings.local.json` | **no** | Machine-local. Holds the `hooks` block |
+| `plugins/installed_plugins.json` | **no** | Runtime state: commit SHAs, absolute paths, timestamps |
+
+The hooks live in `settings.local.json` rather than the tracked
+`settings.json` because all ten of them invoke `~/.config/iterm2/cc-status`,
+a compiled binary that is not in this repo. User-level `settings.json` and
+`settings.local.json` merge, so splitting them this way keeps the tracked
+file portable without changing behavior on this machine.
+
 ## Linting and Commit Hooks
 
 `githooks/pre-commit` (wired by `make githooks`) runs two things before every

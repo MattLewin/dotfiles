@@ -153,13 +153,14 @@
       "/Users/matt/.claude"
     ]
   },
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash \"/Users/matt/.claude/statusline.sh\""
   },
   "enabledPlugins": {
-    "frontend-design@claude-plugins-official": false,
-    "caveman@caveman": true
+    "caveman@caveman": true,
+    "frontend-design@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -170,6 +171,6 @@
     }
   },
   "tui": "fullscreen",
-  "agentPushNotifEnabled": true,
-  "inputNeededNotifEnabled": true
+  "inputNeededNotifEnabled": true,
+  "agentPushNotifEnabled": true
 }

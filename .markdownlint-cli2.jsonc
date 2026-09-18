@@ -5,7 +5,11 @@
   "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint-cli2/main/schema/markdownlint-cli2-config-schema.json",
   "ignores": [
     // CLAUDE.md is authored for an agent, not a human reader (see f65b333).
-    "**/CLAUDE.md"
+    "**/CLAUDE.md",
+    // Agent memory files: YAML frontmatter plus a fragment, read by the
+    // memory system rather than by people. MD041 (first line must be an H1)
+    // is structurally wrong for them, and their format is not ours to change.
+    "misc/dot-claude/memory/**"
   ],
   "config": {
     // Prose and tables in these docs are deliberately wider than 80 columns.
