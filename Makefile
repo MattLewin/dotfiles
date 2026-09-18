@@ -59,9 +59,12 @@ endif
 	@echo --- stow dry-run ---
 	@stow -n --dotfiles --target "${HOME}/" $(STOW_IGNORE) $(STOW_PACKAGES)
 
-# --ignore is repeatable. First pattern: only stow dot-* files. Second: never
-# stow *.example templates -- bootstrap-local.sh copies those into place instead.
-STOW_IGNORE=--ignore='^(?!dot).*$$' --ignore='\.example$$'
+# stow's --ignore matches basenames at EVERY level of a package, not just its
+# root. A broad "^(?!dot).*$" pattern therefore ignores every file nested
+# inside a dot-* directory too, which silently made misc/dot-claude/* unstowable.
+# Target the two actual non-dot entries instead; stow's built-in defaults
+# already skip README.*, LICENSE.*, editor backups and VCS directories.
+STOW_IGNORE=--ignore='^scripts$$' --ignore='\.DS_Store$$' --ignore='\.example$$'
 
 dotfiles: | $(STOW)
 	@echo --- Creating dot files ---
