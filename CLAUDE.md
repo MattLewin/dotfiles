@@ -44,6 +44,20 @@ Machine-specific settings live outside the repo to keep it portable:
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
 
+### `~/.config` and Directory Folding
+
+`~/.config` is a real directory. Stow links each tracked file into it
+individually, so untracked files there — `gh/hosts.yml`, `op/config`,
+`creds/wdplay`, `1Password/` — live outside this working tree.
+
+Stow folds a package directory into a single symlink when the target directory
+does not already exist. A folded directory points at the repo, so anything a
+tool writes into it lands in the working tree. `~/.zsh` is folded today, which
+is why `zsh/dot-zsh/completions/` needs a `.gitignore` entry. Every directory
+under `~/.config` is unfolded, and stays that way because each one already
+exists. To unfold a folded directory: create it, move the package's files back
+under it, and re-run `make dotfiles`.
+
 ### Platform Detection
 - Makefile branches on `$(UNAME)` (Darwin vs Linux)
 - Zsh branches via `zsh/dot-zsh/config.d/` directory — drop a `darwin.zsh` or `linux.zsh` file there
@@ -83,15 +97,11 @@ file portable without changing behavior on this machine.
 `githooks/pre-commit` (wired by `make githooks`) runs two things before every
 commit, and `git commit --no-verify` bypasses both:
 
-1. `gitleaks git --staged` — a secret scan. This matters here because
-   `~/.config` is a symlink to `misc/dot-config`, so live credentials
-   (`gh/hosts.yml`, `op/config`, 1Password) physically sit inside this working
-   tree, kept out of git only by the allowlist in `misc/dot-config/.gitignore`.
-   Never `git add -A` from inside `misc/dot-config/`. Reviewed, non-actionable
-   findings go in `.gitleaksignore`.
+1. `gitleaks git --staged` — a secret scan. Reviewed, non-actionable findings
+   go in `.gitleaksignore`.
 2. `make lint` — each check skips cleanly if its tool is missing, so the target
    passes on a machine that lacks fish or markdownlint-cli2.
 
-**`git clean -fdx` is destructive in this repo.** It deletes every untracked
-file under `misc/dot-config/`, which is all of `~/.config` that is not on the
-five-entry allowlist. None of it is recoverable from git.
+**`git clean -fdx` deletes `zsh/dot-zsh/api_tokens.zsh`**, which holds live API
+credentials and is not recoverable from git. It also deletes
+`zsh/dot-zsh/completions/`, which zsh regenerates.

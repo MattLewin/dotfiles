@@ -1,30 +1,24 @@
-# Default: ignore everything under ~/.config
-*
+# `~/.config` is a real directory, not a symlink to this package, so live
+# credentials no longer sit in this working tree. Adding a new config here is
+# therefore an ordinary `git add` -- there is no allowlist to extend.
+#
+# What remains is a backstop. Each of these lived here before the restructure,
+# and a folded package directory on a fresh install could route a tool's writes
+# back into the repo. If one reappears, it is a mistake, not a commit.
 
-# Always keep this file
-!.gitignore
+# Credentials
+1Password/
+gh/config.yml
+gh/hosts.yml
+op/
+creds/*
+!creds/README.md
 
-# Allowlisted subtrees (must unignore the dir AND its contents)
-# Local-override templates only. The live local.zsh / local.fish that
-# bootstrap-local.sh creates from them stay ignored.
-!dotfiles/
-!dotfiles/*.example
+# Machine-local overrides (templates are the tracked `.example` files)
+dotfiles/local.zsh
+dotfiles/local.fish
 
-!fish/
-!fish/**
-
-!ghostty/
-!ghostty/**
-
-!homebrew/
-!homebrew/**
+# Tool-written state
 homebrew/trust.json.lock
-
-!mise/
-!mise/**
-
-!nvim/
-!nvim/**
-
-!starship.toml
-
+nvim/lazy-lock.json
+*.sock
