@@ -1,0 +1,16 @@
+// Repo-local markdownlint config. The global one lives at
+// misc/dot-markdownlint-cli2.jsonc (stowed to ~/.markdownlint-cli2.jsonc);
+// this file governs linting of this repo's own docs via `make lint`.
+{
+  "$schema": "https://raw.githubusercontent.com/DavidAnson/markdownlint-cli2/main/schema/markdownlint-cli2-config-schema.json",
+  "ignores": [
+    // CLAUDE.md is authored for an agent, not a human reader (see f65b333).
+    "**/CLAUDE.md"
+  ],
+  "config": {
+    // Prose and tables in these docs are deliberately wider than 80 columns.
+    "MD013": false,
+    // Table pipe padding is cosmetic and inconsistent across existing docs.
+    "MD060": false
+  }
+}

@@ -1,10 +1,13 @@
 # dotfiles
+
 macOS and UNIX configuration files
 
 ## Usage
-Instead of cloning the repo, use this one as a template by clicking [here](https://github.com/MattLewin/dotfiles/generate), and then customize to your needs.
+
+Instead of cloning the repo, use this one as a template by [generating your own copy of this repo](https://github.com/MattLewin/dotfiles/generate), and then customize to your needs.
 
 ## Installation
+
 Clone the repo, then:
 
 `make`
@@ -24,6 +27,7 @@ Run with:
 `brew bundle`
 
 ## Local overrides (portable setup)
+
 To keep this portable across machines/users, put user-specific settings in local files that are not tracked:
 
 - `~/.config/dotfiles/local.zsh` (zsh overrides)
@@ -48,7 +52,7 @@ Templates live at:
 
 Every shell startup, `plugins_builder.zsh` runs and writes `~/.zsh_plugins.txt` — a list of plugins to load (only if the list has changed). Then `.zshrc` checks whether `~/.zsh_plugins.txt` is newer than `~/.zsh_plugins.sh`; if so, Antidote recompiles the bundle:
 
-```
+```sh
 antidote bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
 ```
 
@@ -61,6 +65,7 @@ Completions (`compinit`) run before plugins are sourced. `zsh-users/zsh-completi
 Edit `zsh/dot-zsh/plugins_builder.zsh`. There are two cases:
 
 **Always load it** — add to the `ALWAYS_ON` array:
+
 ```zsh
 local -a ALWAYS_ON=(
   ...
@@ -70,6 +75,7 @@ local -a ALWAYS_ON=(
 ```
 
 **Load only when a binary is present** — add to the `WANT` map:
+
 ```zsh
 typeset -A WANT=(
   [plugin-name]=binary-to-check-for
@@ -95,6 +101,7 @@ Drop any `.zsh` file into `~/.zsh/plugins/`. It will be sourced automatically at
 `zsh-users/zsh-syntax-highlighting` is always forced to load last by `plugins_builder.zsh`. Don't move it.
 
 ## Health check
+
 Quick check for required/optional tools:
 
 `misc/scripts/dotfiles-healthcheck`

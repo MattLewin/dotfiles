@@ -42,11 +42,13 @@ recompiles `~/.zsh_plugins.sh` from it only when the list actually changes.
 Login shells source `.zprofile` → `.zshrc` → `.zlogin`.
 
 ### `dot-zprofile`
+
 Runs once, before `.zshrc`. Only job: `eval "$(brew shellenv)"` so Homebrew's
 `PATH`/`MANPATH`/`INFOPATH` are set before anything else. Has hard-coded fallbacks
 for `/opt/homebrew` and `/usr/local` if `brew` isn't on `PATH` yet.
 
 ### `dot-zshrc`
+
 The orchestrator. In order:
 
 1. `XDG_CONFIG_HOME`, `DOT_ZSH=~/.zsh`.
@@ -70,6 +72,7 @@ The orchestrator. In order:
 19. `zsh-autosuggestions` ignore rule for `gcmsg*`.
 
 ### `dot-zlogin`
+
 Runs after `.zshrc`. Only when `TERM_PROGRAM == tmux`: `cd ~` and clear the dir
 stack (keeps new tmux panes from inheriting a stale `dirs` list).
 
@@ -121,12 +124,14 @@ IF_INSTALLED=(   # [binary]=spec — added iff the binary is on PATH
 `zsh-users/zsh-syntax-highlighting` is always appended **last** (it must be).
 
 **To add a plugin:**
+
 - Unconditional → add `owner/repo` (or `owner/repo path:subdir`) to `ALWAYS_ON`.
 - Only when a command exists → add `[binary]='owner/repo'` to `IF_INSTALLED` (OMZ plugins
   use the full `'ohmyzsh/ohmyzsh path:plugins/NAME'` spec, same as `ALWAYS_ON`).
 - Then `exec zsh`. The list regenerates, Antidote re-bundles, done.
 
 **Force a full rebuild:**
+
 ```zsh
 rm ~/.zsh_plugins.txt ~/.zsh_plugins.sh && exec zsh
 ```
