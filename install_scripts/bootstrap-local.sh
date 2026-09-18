@@ -23,5 +23,4 @@ copy_if_missing() {
 
 copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/local.zsh.example" "$DOTFILES_DIR/local.zsh"
 copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/local.fish.example" "$DOTFILES_DIR/local.fish"
-copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/ssh_keys.fish.example" "$DOTFILES_DIR/ssh_keys.fish"
 copy_if_missing "$REPO_ROOT/git/dot-gitconfig.local.example" "$HOME/.gitconfig.local"

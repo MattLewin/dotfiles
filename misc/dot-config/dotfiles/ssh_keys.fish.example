@@ -1,9 +1,0 @@
-# SSH keys for fish to load via keychain (not tracked)
-# Copy to: ~/.config/dotfiles/ssh_keys.fish
-#
-# Read by fish/conf.d/00-ssh_keys.fish. Kept separate from local.fish
-# because conf.d snippets run before config.fish, where local.fish is
-# sourced last so it can override things.
-#
-# Example:
-# set -g dotfiles_ssh_keys ~/.ssh/id_ed25519 ~/.ssh/id_github

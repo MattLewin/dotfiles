@@ -1,19 +1,19 @@
 # Load SSH keys into a keychain-managed ssh-agent.
 #
-# The key list is machine-specific, so it lives outside this repo in
-# ~/.config/dotfiles/ssh_keys.fish, which should contain one line:
-#
-#     set -g dotfiles_ssh_keys ~/.ssh/id_ed25519 ~/.ssh/id_github
-#
-# That file is separate from local.fish on purpose: conf.d snippets run
-# *before* config.fish, and local.fish is sourced last so it can override
-# things. Machine facts that conf.d needs cannot live there.
+# Keys are listed inline rather than pulled from a machine-local file: the
+# cost of an extra setup step, and of silently loading nothing when it is
+# missing, outweighs keeping a few key filenames out of this repo. Missing
+# keys are skipped, so this is harmless on a machine that has none of them.
 
-set -l keyfile (set -q XDG_CONFIG_HOME; and echo "$XDG_CONFIG_HOME"; or echo "$HOME/.config")/dotfiles/ssh_keys.fish
-test -r "$keyfile"; and source "$keyfile"
-
-set -q dotfiles_ssh_keys; or return
 type -q keychain; or return
 
-keychain --quiet --agents ssh $dotfiles_ssh_keys
-keychain --quiet --eval --agents ssh $dotfiles_ssh_keys | source
+set -l keys ~/.ssh/id_ed25519-hoos ~/.ssh/id_github ~/.ssh/id_rsa
+
+set -l present
+for k in $keys
+    test -r $k; and set -a present $k
+end
+set -q present[1]; or return
+
+keychain --quiet --agents ssh $present
+keychain --quiet --eval --agents ssh $present | source

@@ -41,7 +41,6 @@ Machine-specific settings live outside the repo to keep it portable:
 |------|---------|
 | `~/.config/dotfiles/local.zsh` | Zsh overrides, sourced last in `.zshrc` |
 | `~/.gitconfig.local` | Git user identity (name/email) |
-| `~/.config/dotfiles/ssh_keys.fish` | SSH keys for fish to load via keychain |
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
 
