@@ -17,3 +17,21 @@ Example format:
 > ```
 > git add path/to/file && git commit -m "Your message here"
 > ```
+
+## Message content
+
+Keep the message succinct: the minimum needed to say what changed. No rationale, no
+background, no verification notes, no mention of files checked and left unmodified.
+
+Corrected 2026-09-18: "Your commit messages are far too chatty... Include just the
+minimum to explain what changed. No rationale. No documentation. That stuff all belongs
+in a README or other actual documentation."
+
+**Why:** A commit message is a fixed record of one change. Rationale buried there is
+unfindable and goes stale, and length buries the change itself in `git log`. Explanation
+belongs in documentation that stays current.
+
+**How to apply:** A subject line, using whatever convention the repo already follows. A
+body only when the subject cannot carry what changed on its own, and then as a terse list
+of changes rather than prose. If rationale is worth preserving, put it in the README or
+CLAUDE.md as part of the same commit, and say it to the user in chat.
