@@ -40,6 +40,24 @@ ifeq ($(UNAME), Darwin)
 	@echo --- plutil \(plist validity\) ---
 	@for f in $$(git ls-files '*.plist'); do plutil -lint "$$f" >/dev/null || exit 1; done
 endif
+	@echo --- fish -n ---
+	@if command -v fish >/dev/null 2>&1; then \
+		fail=0; \
+		for f in $$(git ls-files '*.fish'); do \
+			fish -n "$$f" || fail=1; \
+		done; \
+		exit $$fail; \
+	else \
+		echo "(skipped: fish not installed)"; \
+	fi
+	@echo --- markdownlint ---
+	@if command -v markdownlint-cli2 >/dev/null 2>&1; then \
+		markdownlint-cli2 $$(git ls-files '*.md'); \
+	else \
+		echo "(skipped: markdownlint-cli2 not installed)"; \
+	fi
+	@echo --- stow dry-run ---
+	@stow -n --dotfiles --target "${HOME}/" $(STOW_IGNORE) $(STOW_PACKAGES)
 
 # --ignore is repeatable. First pattern: only stow dot-* files. Second: never
 # stow *.example templates -- bootstrap-local.sh copies those into place instead.
