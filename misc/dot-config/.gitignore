@@ -17,6 +17,7 @@ creds/*
 # Machine-local overrides (templates are the tracked `.example` files)
 dotfiles/local.zsh
 dotfiles/local.fish
+dotfiles/api_tokens.zsh
 
 # Tool-written state
 homebrew/trust.json.lock

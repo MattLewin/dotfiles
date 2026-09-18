@@ -86,11 +86,10 @@ stack (keeps new tmux panes from inheriting a stale `dirs` list).
 | `paths.zsh` | before Antidote | Builds `PATH`. `append_paths` / `prepend_paths` arrays, each entry added only if the dir exists. Also derives the Homebrew Ruby gem `bin` dir. |
 | `plugins_builder.zsh` | before Antidote | Generates `~/.zsh_plugins.txt` (see [Plugins](#plugins)). |
 | `aliases.zsh` | after Antidote | Normal / global / suffix aliases, shell functions, conditional command shadowing (`vi`→nvim, `python`→python3, `top`→htop, `find`→fd). Sources `fzf.zsh` when `fzf` exists. |
-| `variables.zsh` | after Antidote | Environment: `LESS`, `HOMEBREW_*`, `DOTNET_CLI_TELEMETRY_OPTOUT`, `FZF_DEFAULT_OPTS`, `LC_TERM_PROGRAM` propagation, `circled_digits`. Sources `api_tokens.zsh`. |
+| `variables.zsh` | after Antidote | Environment: `LESS`, `HOMEBREW_*`, `DOTNET_CLI_TELEMETRY_OPTOUT`, `FZF_DEFAULT_OPTS`, `LC_TERM_PROGRAM` propagation, `circled_digits`. Sources `~/.config/dotfiles/api_tokens.zsh`. |
 | `fzf.zsh` | via `aliases.zsh` | fzf-powered functions: `cmd` (browse commands/aliases/functions with `man` preview), `brewlist`, etc. Bails without a tty. |
 | `config.d/darwin.zsh` | step 7 | macOS-only: load SSH keys from Keychain; wrap `tmux` to use iTerm2's `-CC` integration for `new`/`attach`. |
 | `config.d/linux.zsh` | step 7 | *(create this file for Linux-only settings)* |
-| `api_tokens.zsh` | via `variables.zsh` | **Git-ignored** (`.gitignore` = `api_tokens*`). Secrets like `HOMEBREW_GITHUB_API_TOKEN`. Never committed. |
 | `completions/` | on `fpath` | Custom completion functions (e.g. `_gen-yt-subtitles`). |
 
 ---
@@ -174,7 +173,8 @@ they're inert when the tool isn't installed.
 | macOS-only tweak | `dot-zsh/config.d/darwin.zsh` |
 | Linux-only tweak | create `dot-zsh/config.d/linux.zsh` |
 | Completion tuning | `zstyle` block in `dot-zshrc` |
-| Machine-specific / secret settings | `~/.config/dotfiles/local.zsh` (untracked; template at `misc/dot-config/dotfiles/local.zsh.example`) |
+| Machine-specific settings | `~/.config/dotfiles/local.zsh` (untracked; template at `misc/dot-config/dotfiles/local.zsh.example`) |
+| Secrets / API tokens | `~/.config/dotfiles/api_tokens.zsh` (untracked; template at `misc/dot-config/dotfiles/api_tokens.zsh.example`) |
 
 After editing an **existing** tracked file: nothing to re-stow (it's a symlink) —
 just `exec zsh`. After adding a **new** file: `make dotfiles`, then `exec zsh`.
@@ -191,6 +191,7 @@ just `exec zsh`. After adding a **new** file: `make dotfiles`, then `exec zsh`.
 | `~/.zcompdump` | `compinit` | Completion dump (rebuilt ≤ once/day) |
 | `~/.zfunc/`, `~/.cache/zsh/completions/` | local plugins | Cached generated completions |
 | `~/.config/dotfiles/local.zsh` | you | Untracked overrides, sourced last |
+| `~/.config/dotfiles/api_tokens.zsh` | you | Untracked secrets, mode 600, sourced by `variables.zsh` |
 
 ---
 

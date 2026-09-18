@@ -32,6 +32,7 @@ To keep this portable across machines/users, put user-specific settings in local
 
 - `~/.config/dotfiles/local.zsh` (zsh overrides)
 - `~/.config/dotfiles/local.fish` (fish overrides)
+- `~/.config/dotfiles/api_tokens.zsh` (API credentials, mode 600)
 - `~/.gitconfig.local` (git identity, per-user settings)
 
 Create the local files from templates:
@@ -42,6 +43,7 @@ Templates live at:
 
 - `misc/dot-config/dotfiles/local.zsh.example`
 - `misc/dot-config/dotfiles/local.fish.example`
+- `misc/dot-config/dotfiles/api_tokens.zsh.example`
 - `git/dot-gitconfig.local.example`
 
 ## Zsh plugins (Antidote)

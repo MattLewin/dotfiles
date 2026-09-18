@@ -29,7 +29,6 @@ All files managed by stow are prefixed with `dot-` (stow's `.stowrc` maps these 
   - `config.d/darwin.zsh` — OS-specific settings, sourced by `$OS` name.
     Only `darwin.zsh` exists today; the Linux machines run fish, not zsh.
   - `aliases.zsh`, `paths.zsh`, `variables.zsh`, `fzf.zsh` — Functional modules
-  - `api_tokens.zsh` — API credentials (git-ignored; template at `api_tokens.zsh.example`)
 - `misc/dot-config/homebrew/Brewfile` — Single Brewfile (formulas + casks)
 - `misc/dot-config/nvim/init.lua` — Neovim config (lazy.nvim plugin manager)
 - `install_scripts/` — Bootstrap scripts called by Makefile targets
@@ -40,6 +39,7 @@ Machine-specific settings live outside the repo to keep it portable:
 | File | Purpose |
 |------|---------|
 | `~/.config/dotfiles/local.zsh` | Zsh overrides, sourced last in `.zshrc` |
+| `~/.config/dotfiles/api_tokens.zsh` | API credentials, sourced by `variables.zsh` (mode 600) |
 | `~/.gitconfig.local` | Git user identity (name/email) |
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
@@ -102,6 +102,6 @@ commit, and `git commit --no-verify` bypasses both:
 2. `make lint` — each check skips cleanly if its tool is missing, so the target
    passes on a machine that lacks fish or markdownlint-cli2.
 
-**`git clean -fdx` deletes `zsh/dot-zsh/api_tokens.zsh`**, which holds live API
-credentials and is not recoverable from git. It also deletes
-`zsh/dot-zsh/completions/`, which zsh regenerates.
+No credentials live in this working tree any more, so `git clean -fdx` is no
+longer destructive here. It still deletes `.claude/settings.local.json` and
+`zsh/dot-zsh/completions/`; both are reconstructible.

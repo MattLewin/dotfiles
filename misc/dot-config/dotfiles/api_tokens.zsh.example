@@ -1,13 +1,13 @@
-# api_tokens.zsh — sourced by variables.zsh on every shell start.
+# api_tokens.zsh — sourced by zsh/dot-zsh/variables.zsh on every shell start.
 #
-# The real file (api_tokens.zsh) is git-ignored. Copy this template:
-#   cp api_tokens.zsh.example api_tokens.zsh && chmod 600 api_tokens.zsh
-# then fill in real values and uncomment what you need.
+# The real file lives at ~/.config/dotfiles/api_tokens.zsh, outside this repo,
+# so it cannot be committed by accident. `make bootstrap-local` creates it from
+# this template at mode 600. Fill in real values and uncomment what you need.
 
 # Public-access-only GitHub token so Homebrew isn't rate-limited on GitHub API
 # calls. Generate at https://github.com/settings/tokens with NO scopes selected —
 # it grants nothing beyond anonymous access, just a higher rate limit.
-export HOMEBREW_GITHUB_API_TOKEN="ghp_REPLACE_ME"
+# export HOMEBREW_GITHUB_API_TOKEN="ghp_REPLACE_ME"
 
 # Legacy classic GitHub token, only if some tool still expects this variable name.
 # export GITHUB_ACCESS_TOKEN="REPLACE_ME"

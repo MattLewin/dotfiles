@@ -23,4 +23,6 @@ copy_if_missing() {
 
 copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/local.zsh.example" "$DOTFILES_DIR/local.zsh"
 copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/local.fish.example" "$DOTFILES_DIR/local.fish"
+copy_if_missing "$REPO_ROOT/misc/dot-config/dotfiles/api_tokens.zsh.example" "$DOTFILES_DIR/api_tokens.zsh"
+chmod 600 "$DOTFILES_DIR/api_tokens.zsh"
 copy_if_missing "$REPO_ROOT/git/dot-gitconfig.local.example" "$HOME/.gitconfig.local"

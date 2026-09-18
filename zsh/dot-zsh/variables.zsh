@@ -6,8 +6,11 @@ export LESS="--tabs=4 -RFX" # tab breaks of size 4, output ANSI codes, don't cle
 # To tell 'xmllint' where to find AsciiDoc's catalog files, I (apparently) have to do the following...
 test -d "${BREW_PREFIX}/etc/xml/catalog" && export XML_CATALOG_FILES="${BREW_PREFIX}/etc/xml/catalog"
 
-# Use a token to authenticate against GitHub when using Homebrew to avoid rate limiting
-test -e "${DOT_ZSH}/api_tokens.zsh" && source "${DOT_ZSH}/api_tokens.zsh"
+# Use a token to authenticate against GitHub when using Homebrew to avoid rate
+# limiting. Lives outside the repo so it cannot be committed by accident;
+# template at misc/dot-config/dotfiles/api_tokens.zsh.example.
+test -e "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/api_tokens.zsh" &&
+  source "${XDG_CONFIG_HOME:-$HOME/.config}/dotfiles/api_tokens.zsh"
 
 export BLOCKSIZE=1024 # Set 'ls' to display size in KB rather than 512-byte blocks
 
