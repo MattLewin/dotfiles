@@ -1,6 +1,22 @@
 #!/bin/sh
-# Run repo linters before every commit. Bypass with `git commit --no-verify`.
+# Run a secret scan and the repo linters before every commit.
+# Bypass with `git commit --no-verify`.
 set -eu
 
 repo_root=$(git rev-parse --show-toplevel)
+
+# Scan staged content for credentials first. This is the last checkpoint
+# before a secret enters history, and it matters more here than in most
+# repos: ~/.config is a symlink to misc/dot-config, so live credentials
+# (gh, op, 1Password) physically sit inside this working tree and are kept
+# out of git only by the allowlist in misc/dot-config/.gitignore.
+#
+# Known, reviewed findings are listed in .gitleaksignore.
+if command -v gitleaks >/dev/null 2>&1; then
+	gitleaks git --staged --no-banner --redact "$repo_root"
+else
+	echo "pre-commit: gitleaks not installed; skipping secret scan" >&2
+	echo "pre-commit: install it with \`brew bundle\`" >&2
+fi
+
 exec make -C "$repo_root" --no-print-directory lint

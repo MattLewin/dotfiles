@@ -1,0 +1,9 @@
+# Known findings that are reviewed and intentionally not actionable.
+# Format: one gitleaks fingerprint per line.
+
+# HOMEBREW_GITHUB_API_TOKEN committed to zsh/dot-zsh/variables.zsh in 2019
+# (commit af7080b), before api_tokens.zsh and its gitignore rule existed.
+# Verified 2026-09-18: the token is revoked -- GitHub /user returns 401.
+# Left in history deliberately: purging it would rewrite a public repo's
+# history and break every clone, to remove a credential that is already dead.
+af7080b:zsh/dot-zsh/variables.zsh:generic-api-key:7
