@@ -18,9 +18,6 @@ set -u
 #
 # 1. Copy this script to /usr/local/libexec/wifi-stealth.zsh
 # 2. Copy <dotfiles>/launch_agents/us.lewin.wifi-stealth.plist to /Library/LaunchDaemons/us.lewin.wifi-stealth.plist
-# 2a. Copy <dotfiles>/misc/scripts/wifi-stealth.conf.example to
-#     /usr/local/etc/wifi-stealth.conf and list your trusted gateways in it.
-#     Without it, no gateway is trusted and stealth mode stays on.
 # 3. Run the following commands to set the correct ownership and permissions:
 #
 # sudo chown root:wheel /usr/local/libexec/wifi-stealth.zsh
@@ -34,19 +31,12 @@ set -u
 FW=/usr/libexec/ApplicationFirewall/socketfilterfw
 LOG=/var/log/wifi-stealth.log
 
-# Trusted gateways are site-specific, so they live outside this repo in
-# CONF (see wifi-stealth.conf.example for the format). If CONF is absent or
-# empty, no gateway is trusted and stealth mode stays on -- the safe default.
-CONF=/usr/local/etc/wifi-stealth.conf
-
-TRUSTED_GATEWAYS=()
-if [[ -r "$CONF" ]]; then
-  while IFS= read -r line; do
-    line="${line%%#*}"                 # strip comments
-    line="${line//[[:space:]]/}"       # strip whitespace
-    [[ -n "$line" ]] && TRUSTED_GATEWAYS+=("$line")
-  done < "$CONF"
-fi
+# Note that this currently does nothing until/unless I create a guest network that is
+# untrusted. For now, the only gateways that are trusted are the two VLANs on my Netgate 6100.
+TRUSTED_GATEWAYS=(
+  "172.21.21.1|90:ec:77:95:20:3a"   # Netgate 6100 VLAN 10 — trusted clients
+  "172.22.22.1|90:ec:77:95:20:3a"   # Netgate 6100 VLAN 20 — trusted clients
+)
 
 trusted=0
 gw=$(route -n get default 2>/dev/null | awk '/gateway:/ {print $2}')
