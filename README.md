@@ -74,11 +74,13 @@ local -a ALWAYS_ON=(
 )
 ```
 
-**Load only when a binary is present** — add to the `WANT` map:
+**Load only when a binary is present** — add to the `IF_INSTALLED` map,
+keyed by the binary to test for:
 
 ```zsh
-typeset -A WANT=(
-  [plugin-name]=binary-to-check-for
+typeset -A IF_INSTALLED=(
+  [binary-to-check-for]='owner/repo'
+  [aws]='ohmyzsh/ohmyzsh path:plugins/aws'
 )
 ```
 

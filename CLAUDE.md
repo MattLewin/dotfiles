@@ -12,10 +12,11 @@ This is a personal dotfiles repository managed with **GNU Stow** (symlink manage
 make              # Full install: Homebrew, Antidote, stow, launch agents
 make dotfiles     # Re-stow all dotfiles (safe to re-run)
 make bootstrap-local  # Create local override files (not in default `make`)
-brew bundle       # Install Homebrew packages (auto-selects OS Brewfile)
+brew bundle       # Install Homebrew packages (single Brewfile)
+make lint         # shellcheck, shfmt, zsh -n, fish -n, jq, plutil, markdownlint, stow -n
 ```
 
-Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`
+Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`, plus `macOS` on Darwin
 
 ## Architecture
 
@@ -25,13 +26,13 @@ All files managed by stow are prefixed with `dot-` (stow's `.stowrc` maps these 
 ### Directory Layout
 - `zsh/dot-zsh/` — Modular zsh config loaded by `.zshrc`. See `zsh/README.md` for full load order, the plugin system, and the Oh My Zsh → Antidote migration map.
   - `plugins_builder.zsh` — Dynamically builds Antidote plugin list based on installed commands
-  - `config.d/darwin.zsh` / `config.d/linux.zsh` — OS-specific settings
+  - `config.d/darwin.zsh` — OS-specific settings, sourced by `$OS` name.
+    Only `darwin.zsh` exists today; the Linux machines run fish, not zsh.
   - `aliases.zsh`, `paths.zsh`, `variables.zsh`, `fzf.zsh` — Functional modules
   - `api_tokens.zsh` — API credentials (git-ignored; template at `api_tokens.zsh.example`)
 - `misc/dot-config/homebrew/Brewfile` — Single Brewfile (formulas + casks)
 - `misc/dot-config/nvim/init.lua` — Neovim config (lazy.nvim plugin manager)
 - `install_scripts/` — Bootstrap scripts called by Makefile targets
-- `unstowed/` — Configs intentionally not symlinked by stow
 
 ### Local Overrides (Not Tracked)
 Machine-specific settings live outside the repo to keep it portable:
@@ -40,6 +41,8 @@ Machine-specific settings live outside the repo to keep it portable:
 |------|---------|
 | `~/.config/dotfiles/local.zsh` | Zsh overrides, sourced last in `.zshrc` |
 | `~/.gitconfig.local` | Git user identity (name/email) |
+| `~/.config/dotfiles/ssh_keys.fish` | SSH keys for fish to load via keychain |
+| `/usr/local/etc/wifi-stealth.conf` | Trusted gateways for the wifi-stealth daemon |
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
 
@@ -55,5 +58,24 @@ Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynami
 
 1. Place files in the appropriate stow package directory with a `dot-` prefix
 2. Run `make dotfiles` to re-stow
-3. For new tools that should be cross-platform, add to `Brewfile.common`; macOS-only goes in `Brewfile.mac`
+3. Add new Homebrew packages to `misc/dot-config/homebrew/Brewfile`. There is
+   one Brewfile, holding both formulas and casks; there is no per-OS split.
 4. Machine-specific settings belong in `~/.config/dotfiles/local.zsh`, not in the repo
+
+## Linting and Commit Hooks
+
+`githooks/pre-commit` (wired by `make githooks`) runs two things before every
+commit, and `git commit --no-verify` bypasses both:
+
+1. `gitleaks git --staged` — a secret scan. This matters here because
+   `~/.config` is a symlink to `misc/dot-config`, so live credentials
+   (`gh/hosts.yml`, `op/config`, 1Password) physically sit inside this working
+   tree, kept out of git only by the allowlist in `misc/dot-config/.gitignore`.
+   Never `git add -A` from inside `misc/dot-config/`. Reviewed, non-actionable
+   findings go in `.gitleaksignore`.
+2. `make lint` — each check skips cleanly if its tool is missing, so the target
+   passes on a machine that lacks fish or markdownlint-cli2.
+
+**`git clean -fdx` is destructive in this repo.** It deletes every untracked
+file under `misc/dot-config/`, which is all of `~/.config` that is not on the
+five-entry allowlist. None of it is recoverable from git.
