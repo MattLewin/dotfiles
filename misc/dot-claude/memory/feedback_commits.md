@@ -35,3 +35,13 @@ belongs in documentation that stays current.
 body only when the subject cannot carry what changed on its own, and then as a terse list
 of changes rather than prose. If rationale is worth preserving, put it in the README or
 CLAUDE.md as part of the same commit, and say it to the user in chat.
+
+## Attribution
+
+Add the `Co-Authored-By` trailer only when the message itself is at least two lines (subject plus body). A subject-only commit gets no trailer.
+
+Corrected 2026-09-22: user had a one-line commit amended to drop the trailer, then clarified the trailer is fine on multi-line messages.
+
+**Why:** On a one-line commit the trailer outweighs the message itself.
+
+**How to apply:** Count only the message's own lines, not the trailer. When amending to remove a trailer, touch only the commit the user names.
