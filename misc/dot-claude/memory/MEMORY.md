@@ -7,3 +7,5 @@
 - [Test coverage required](feedback_test_coverage.md) — code changes must ship with tests in the same turn, not as a follow-up
 - [Markdown formatting](feedback_markdown_formatting.md) — run `markdownlint-cli2 --fix` on edited .md files instead of hand-aligning tables
 - [CLAUDE.md ownership](feedback_claude_md_ownership.md) — CLAUDE.md and similar Claude-facing files are Claude's to maintain; fix defects directly, don't flag and wait
+- [Use uv, not pip/pipx](feedback_uv.md) — never bare pip/pipx; `uv pip`, `uv tool`, `uvx` OK; hook-enforced
+- [Use /usr/bin/find](feedback_find_command.md) — zsh aliases `find`; hook-enforced

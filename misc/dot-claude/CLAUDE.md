@@ -4,3 +4,5 @@
 @~/.claude/memory/feedback_response_style.md
 @~/.claude/memory/feedback_commits.md
 @~/.claude/memory/feedback_subagent_usage.md
+@~/.claude/memory/feedback_uv.md
+@~/.claude/memory/feedback_find_command.md
