@@ -21,7 +21,7 @@ Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`, plus `macOS` on Darwin
 ## Architecture
 
 ### Naming Convention
-All files managed by stow are prefixed with `dot-` (stow's `.stowrc` maps these to `.`-prefixed files in `$HOME`). The top-level directory name becomes the stow package name.
+All files managed by stow are prefixed with `dot-` (the Makefile's `dotfiles` target passes `--dotfiles`, which maps these to `.`-prefixed files in `$HOME`; there is no `.stowrc`). The top-level directory name becomes the stow package name.
 
 ### Directory Layout
 - `zsh/dot-zsh/` — Modular zsh config loaded by `.zshrc`. See `zsh/README.md` for full load order, the plugin system, and the Oh My Zsh → Antidote migration map.
@@ -91,6 +91,26 @@ The hooks live in `settings.local.json` rather than the tracked
 a compiled binary that is not in this repo. User-level `settings.json` and
 `settings.local.json` merge, so splitting them this way keeps the tracked
 file portable without changing behavior on this machine.
+
+### Project Automations (`.claude/`)
+
+These apply only to sessions opened in this repo.
+
+| Path | Purpose |
+|------|---------|
+| `.claude/settings.json` | Runs the lint hook after every Edit/Write. Allows `make lint`, `shellcheck`, `shfmt -d` |
+| `.claude/hooks/lint-edited.sh` | Runs the `make lint` check for the edited file. Exit 2 returns errors to Claude |
+| `.claude/hookify.block-no-verify.local.md` | Blocks git commands that skip `githooks/pre-commit` |
+| `.claude/skills/brew-sync/` | `/brew-sync`: add installed but untracked packages to the Brewfile |
+| `.claude/skills/adopt-dotfile/` | `/adopt-dotfile <path>`: move a `$HOME` file into a stow package |
+
+- The zsh and bash file lists in `lint-edited.sh` mirror `ZSH_FILES` and
+  `BASH_SCRIPTS` in the Makefile. Update both together.
+- Hookify requires the `.local.md` suffix. The rule is tracked all the same;
+  only `.claude/*.local.json` is ignored.
+- The hookify rule matches the whole command string. A command that only
+  mentions `--no-verify`, such as a grep or a test, is blocked too. Put such
+  strings in a script file and run the file.
 
 ## Linting and Commit Hooks
 
