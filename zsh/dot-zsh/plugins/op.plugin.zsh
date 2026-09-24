@@ -3,7 +3,6 @@
 # terminal, so generate the completion file only when the binary changes.
 # Same cache dir as completions.plugin.zsh / uv.plugin.zsh.
 
-[[ -o interactive ]] || return
 (( $+commands[op] )) || return
 
 _op_comp_dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"

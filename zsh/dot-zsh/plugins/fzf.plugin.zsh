@@ -1,7 +1,6 @@
 # fzf.plugin.zsh — load fzf completion/bindings only if needed (Homebrew install)
 
-# Only in interactive shells, and only if fzf exists
-[[ -o interactive ]] || return 0
+# Only if fzf exists
 (( $+commands[fzf] )) || return 0
 
 # Find Homebrew fzf base dir quickly

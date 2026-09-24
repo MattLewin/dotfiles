@@ -1,6 +1,4 @@
-# Route pip/pipx to uv/uvx (interactive shells only)
-
-[[ -o interactive ]] || return
+# Route pip/pipx to uv/uvx
 
 # If uv isn't installed, do nothing.
 (( $+commands[uv] )) || return

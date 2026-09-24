@@ -8,8 +8,6 @@
 #
 # Add a tool: append "<cmd>:<command that prints a zsh completion script>".
 
-[[ -o interactive ]] || return
-
 _load_cached_completions() {
   local dir="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/completions"
   local -a specs=(
