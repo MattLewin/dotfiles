@@ -72,6 +72,9 @@ Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynami
 2. Run `make dotfiles` to re-stow
 3. Add new Homebrew packages to `misc/dot-config/homebrew/Brewfile`. There is
    one Brewfile, holding both formulas and casks; there is no per-OS split.
+   CLIs that are npm or Python packages (`pyright`, `markdownlint-cli2`) go in
+   `misc/dot-config/mise/config.toml` instead, so Homebrew does not pull in a
+   second Node or Python alongside mise's.
 4. Machine-specific settings belong in `~/.config/dotfiles/local.zsh`, not in the repo
 
 ## Claude Code Config (`misc/dot-claude/`)
@@ -121,6 +124,9 @@ commit, and `git commit --no-verify` bypasses both:
    go in `.gitleaksignore`.
 2. `make lint` — each check skips cleanly if its tool is missing, so the target
    passes on a machine that lacks fish or markdownlint-cli2.
+   `markdownlint-cli2` comes from mise. Non-interactive shells reach it through
+   the shims dir that `zsh/dot-zshenv` puts on `PATH`; without that, the check
+   skips silently instead of failing.
 
 No credentials live in this working tree any more, so `git clean -fdx` is no
 longer destructive here. It still deletes `.claude/settings.local.json` and

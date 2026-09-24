@@ -23,7 +23,7 @@ cd "$root" || exit 0
 
 # Keep the zsh and bash lists in step with ZSH_FILES and BASH_SCRIPTS in the Makefile.
 case "$rel" in
-  zsh/dot-zshrc | zsh/dot-zprofile | zsh/dot-zlogin | zsh/dot-zsh/systeminfo.sh | \
+  zsh/dot-zshenv | zsh/dot-zshrc | zsh/dot-zprofile | zsh/dot-zlogin | zsh/dot-zsh/systeminfo.sh | \
     install_scripts/install-launch-agents.sh | misc/scripts/dnd_enabled | *.zsh)
     out=$(zsh -n "$rel" 2>&1) || fail "$out"
     ;;

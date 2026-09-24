@@ -19,7 +19,7 @@ SH_SCRIPTS=$(INSTALL_SCRIPTS_DIR)/install-homebrew.sh $(INSTALL_SCRIPTS_DIR)/boo
 	misc/scripts/dotfiles-healthcheck misc/dot-claude/statusline.sh \
 	.claude/hooks/lint-edited.sh
 BASH_SCRIPTS=bash/dot-bashrc bash/dot-bash_profile
-ZSH_FILES=zsh/dot-zshrc zsh/dot-zprofile zsh/dot-zlogin zsh/dot-zsh/systeminfo.sh \
+ZSH_FILES=zsh/dot-zshenv zsh/dot-zshrc zsh/dot-zprofile zsh/dot-zlogin zsh/dot-zsh/systeminfo.sh \
 	$(INSTALL_SCRIPTS_DIR)/install-launch-agents.sh misc/scripts/dnd_enabled
 
 lint:

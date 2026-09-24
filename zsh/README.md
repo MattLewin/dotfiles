@@ -4,6 +4,7 @@ This is the `zsh` stow package. Stow maps every `dot-*` name into `$HOME`:
 
 | Repo path | Symlinked to |
 |-----------|--------------|
+| `zsh/dot-zshenv` | `~/.zshenv` |
 | `zsh/dot-zprofile` | `~/.zprofile` |
 | `zsh/dot-zshrc` | `~/.zshrc` |
 | `zsh/dot-zlogin` | `~/.zlogin` |
@@ -39,7 +40,15 @@ recompiles `~/.zsh_plugins.sh` from it only when the list actually changes.
 
 ## Load order
 
-Login shells source `.zprofile` → `.zshrc` → `.zlogin`.
+Login shells source `.zshenv` → `.zprofile` → `.zshrc` → `.zlogin`.
+Non-interactive shells (`zsh -c`, scripts) source only `.zshenv`.
+
+### `dot-zshenv`
+
+Runs in every zsh. Only job: put the mise shims dir on `PATH`, so
+non-interactive shells find mise-managed tools such as `markdownlint-cli2` and
+`pyright`. Interactive shells get the full `mise activate` from `.zshrc`, which
+puts the real install dirs ahead of the shims.
 
 ### `dot-zprofile`
 

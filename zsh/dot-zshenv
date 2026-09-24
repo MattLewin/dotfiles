@@ -1,0 +1,12 @@
+#
+# NOTE: .zshenv is run by every zsh, including non-interactive `zsh -c` and scripts.
+#
+
+# --- mise shims ---
+# Interactive shells run `mise activate` from .zshrc. Non-interactive shells never
+# read .zshrc, so put the shims dir on PATH here to reach mise-managed tools.
+_mise_shims="${MISE_DATA_DIR:-${XDG_DATA_HOME:-$HOME/.local/share}/mise}/shims"
+if [[ -d $_mise_shims ]] && (( ! ${path[(Ie)$_mise_shims]} )); then
+  path=("$_mise_shims" $path)
+fi
+unset _mise_shims
