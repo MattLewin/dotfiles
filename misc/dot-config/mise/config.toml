@@ -1,7 +1,11 @@
 [tools]
+# Runtimes and standalone tools
 node = "lts"
 npm = "latest"
 python = "3.14"
 uv = "latest"
+zig = "latest"
+
+# Packages installed through another tool above
 "npm:markdownlint-cli2" = "latest"
 "npm:pyright" = "latest"
