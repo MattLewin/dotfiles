@@ -156,7 +156,7 @@ they're inert when the tool isn't installed.
 | `aliases.plugin.zsh` | `aliases` — fuzzy-pick an alias name with `rg` + `fzf-tmux` |
 | `bat.plugin.zsh` | `cat`→`bat` (tty only); `catp` / `catn` / `catc` variants |
 | `bg-git-fetch.plugin.zsh` | Quiet `git fetch` on the zsh `periodic()` hook when idle inside a repo; `BG_GIT_FETCH_PERIOD` (default 300s) |
-| `brew.plugin.zsh` | `brew` wrapper: `brew uses` → `--installed --recursive`; bare `brew outdated` → completion-friendly name list |
+| `brew.plugin.zsh` | `brew` wrapper: `brew uses` → `--installed --recursive`; `brew requested` → formulae installed on request plus casks, in columns; bare `brew outdated` → completion-friendly name list |
 | `completions.plugin.zsh` | Data-driven cache of generated zsh completions (`clean_subtitles`, `color2hex`, `mole`, `ngrok`, `ruff`, `ttl`) in `$XDG_CACHE_HOME/zsh/completions`; regenerate per binary. Add a tool = one spec line |
 | `dirstack.plugin.zsh` | `AUTO_PUSHD` + friends; `dstk` fzf dir-stack picker |
 | `eza.plugin.zsh` | `ls`→`eza` (tty only); `l` `ll` `la` `lt` `ltree` `ltr` `lS` `ldot` … |
