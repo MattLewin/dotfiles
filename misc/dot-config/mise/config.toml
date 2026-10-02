@@ -2,7 +2,7 @@
 # Runtimes and standalone tools
 node = "lts"
 npm = "latest"
-python = "3.14"
+python = { version = "3.14", postinstall = 'rm -rf "${HOME:?}/Library/Caches/virtualenv/py_info"' }
 uv = "latest"
 zig = "latest"
 
