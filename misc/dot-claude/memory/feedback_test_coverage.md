@@ -7,7 +7,7 @@ metadata:
 
 Every code change I make must be covered by test cases, added in the same turn as the change, not left for later or offered as optional.
 
-**Why:** Stated explicitly by the user after I added `dedupe_cue_boundary_words` to gen-yt-subtitles and only added tests when separately asked — they want test coverage treated as part of finishing the change, not a follow-up.
+**Why:** The user treats test coverage as part of finishing a change, not a follow-up to offer afterwards.
 
 **How to apply:**
 - When editing or adding a function/module in a real codebase, write or extend tests in the same response, following the repo's existing test conventions (file location, fixture/helper style, naming).
