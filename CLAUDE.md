@@ -86,13 +86,13 @@ Stowed to `~/.claude`. What is tracked and what deliberately is not:
 | `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes | |
 | `hooks/block-bash.sh` | yes | Global PreToolUse hook that blocks bare `pip`/`pipx`. `~/.claude/hooks` is folded into the repo |
 | `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md` |
-| `settings.json` | yes | Portable settings only — permissions, plugins, model, tui |
-| `~/.claude/settings.local.json` | **no** | Machine-local. Holds the `hooks` block |
+| `settings.json` | yes | Portable settings only — permissions, plugins, status line, tui, notifications, and the `block-bash.sh` hook |
+| `~/.claude/settings.local.json` | **no** | Machine-local. Holds the hooks that call `cc-status` |
 | `plugins/installed_plugins.json` | **no** | Runtime state: commit SHAs, absolute paths, timestamps |
 
-The hooks live in `settings.local.json` rather than the tracked
-`settings.json` because all ten of them invoke `~/.config/iterm2/cc-status`,
-a compiled binary that is not in this repo. User-level `settings.json` and
+The `cc-status` hooks live in `settings.local.json` rather than the tracked
+`settings.json` because they invoke `~/.config/iterm2/cc-status`, a compiled
+binary that is not in this repo. User-level `settings.json` and
 `settings.local.json` merge, so splitting them this way keeps the tracked
 file portable without changing behavior on this machine.
 
