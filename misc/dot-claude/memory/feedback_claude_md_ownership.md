@@ -16,3 +16,4 @@ CLAUDE.md (and other Claude-facing guidance/instruction files) belong to Claude,
 - Found a bug/staleness/ambiguity in CLAUDE.md or similar → just fix it, mention the fix briefly.
 - Only surface it for a decision when the fix genuinely requires user input (a factual answer Claude can't verify, a judgment call about intent).
 - Applies across all projects, not just the one where it came up.
+- This is standing approval: for these files it takes precedence over general "explain before acting" or "propose, don't apply" guidance.

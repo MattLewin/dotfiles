@@ -5,3 +5,6 @@
 @~/.claude/memory/feedback_commits.md
 @~/.claude/memory/feedback_subagent_usage.md
 @~/.claude/memory/feedback_uv.md
+@~/.claude/memory/feedback_test_coverage.md
+@~/.claude/memory/feedback_markdown_formatting.md
+@~/.claude/memory/feedback_claude_md_ownership.md
