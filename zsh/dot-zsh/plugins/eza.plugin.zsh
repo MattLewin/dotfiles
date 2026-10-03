@@ -2,7 +2,7 @@
 
 if command -v eza >/dev/null 2>&1; then
   # Defaults: color, icons (Terminal.app/iTerm2), git info, dirs first
-  _EZA_BASE=(--color=auto --icons --group-directories-first)
+  _EZA_BASE=(--color=auto --icons=auto --group-directories-first)
 
   # Shadow `ls` only with a real tty — a non-interactive caller expects real ls
   [[ -t 0 ]] && alias ls='eza "${_EZA_BASE[@]}"'
@@ -14,11 +14,11 @@ if command -v eza >/dev/null 2>&1; then
   alias ldot='eza -d .* "${_EZA_BASE[@]}"'                # dotfiles only
   alias lla='eza -lah --git "${_EZA_BASE[@]}"'            # long + all + git
   alias lldot='eza -ld .* "${_EZA_BASE[@]}"'              # dotfiles only
-  alias lt='eza -l -s modified --reverse --time-style=relative --classify "${_EZA_BASE[@]}"'  # long, newest first (like ls -lt)
+  alias lt='eza -l -s modified --reverse --time-style=relative --classify "${_EZA_BASE[@]:#--group-directories-first}"'  # long, newest first (like ls -lt), dirs mixed in
   alias ltree='eza -alhT --git-ignore --level=${EZA_LVL:-2} "${_EZA_BASE[@]}"'               # tree (default depth 2)
   alias ltr='EZA_LVL=3 ltree'                                                                # quick deeper tree
   alias lS='eza -1 -s size -lh --classify --total-size "${_EZA_BASE[@]}"'                   # one per line, sort by size, human
-  alias ltmod='eza -l -s modified --reverse --time-style=relative "${_EZA_BASE[@]}"'        # recent first
+  alias ltmod='eza -l -s modified --reverse --time-style=relative "${_EZA_BASE[@]:#--group-directories-first}"'        # recent first, dirs mixed in
   alias lperm='eza -l --octal-permissions "${_EZA_BASE[@]}"'                 # show 0755 etc.
   alias ltype='eza -l --classify "${_EZA_BASE[@]}"'       # file type markers
 
