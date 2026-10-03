@@ -153,12 +153,25 @@
       "/Users/matt/.claude"
     ]
   },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$HOME/.claude/hooks/block-bash.sh\""
+          }
+        ]
+      }
+    ]
+  },
   "statusLine": {
     "type": "command",
     "command": "bash \"/Users/matt/.claude/statusline.sh\""
   },
   "enabledPlugins": {
-    "caveman@caveman": true,
+    "caveman@caveman": false,
     "frontend-design@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
@@ -177,18 +190,5 @@
   },
   "tui": "fullscreen",
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "hooks": {
-    "PreToolUse": [
-      {
-        "matcher": "Bash",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "bash \"$HOME/.claude/hooks/block-bash.sh\""
-          }
-        ]
-      }
-    ]
-  }
+  "agentPushNotifEnabled": true
 }
