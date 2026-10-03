@@ -84,7 +84,8 @@ Stowed to `~/.claude`. What is tracked and what deliberately is not:
 | Path | Tracked | Notes |
 |------|---------|-------|
 | `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes | |
-| `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes four of them |
+| `hooks/block-bash.sh` | yes | Global PreToolUse hook that blocks bare `pip`/`pipx`. `~/.claude/hooks` is folded into the repo |
+| `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md` |
 | `settings.json` | yes | Portable settings only — permissions, plugins, model, tui |
 | `~/.claude/settings.local.json` | **no** | Machine-local. Holds the `hooks` block |
 | `plugins/installed_plugins.json` | **no** | Runtime state: commit SHAs, absolute paths, timestamps |
@@ -128,6 +129,6 @@ commit, and `git commit --no-verify` bypasses both:
    the shims dir that `zsh/dot-zshenv` puts on `PATH`; without that, the check
    skips silently instead of failing.
 
-No credentials live in this working tree any more, so `git clean -fdx` is no
-longer destructive here. It still deletes `.claude/settings.local.json` and
-`zsh/dot-zsh/completions/`; both are reconstructible.
+No credentials live in this working tree, so `git clean -fdx` is safe here. It
+deletes `.claude/settings.local.json` and `zsh/dot-zsh/completions/`; both are
+reconstructible.

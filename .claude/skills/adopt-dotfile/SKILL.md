@@ -58,7 +58,8 @@ into the repo.
 ## 5. Lint coverage
 
 - A new sh, bash or zsh script without a `.zsh` extension must be added to
-  `SH_SCRIPTS`, `BASH_SCRIPTS` or `ZSH_FILES` in the Makefile. Add a zsh one to
-  the matching list in `.claude/hooks/lint-edited.sh` too.
+  `SH_SCRIPTS`, `BASH_SCRIPTS` or `ZSH_FILES` in the Makefile. Add it to the
+  matching case in `.claude/hooks/lint-edited.sh` too, unless that hook already
+  matches it by extension (`*.sh`).
 - If the adopted directory will receive runtime files, add them to `.gitignore`.
 - Run `make lint`, then show `git status --short`.
