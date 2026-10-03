@@ -5,7 +5,7 @@ metadata:
   type: feedback
 ---
 
-Never run standalone `pip`, `pip3`, `python -m pip`, or `pipx`. Use the uv equivalent: `uv add` / `uv sync` / `uv pip` for pip, `uv tool install` / `uvx` for pipx. Run project tools with `uv run <cmd>`.
+Never run standalone `pip`, `pip3`, `python -m pip`, or `pipx`. Use the uv equivalent: `uv add` / `uv sync` / `uv pip` for pip, `uv tool install` / `uvx` for pipx. In uv-managed projects (those with a `uv.lock`), run project tools with `uv run <cmd>`. Where a project activates its own virtualenv (e.g. direnv `layout python3`), run tools the way the project documents, and use `uv pip` in place of `pip` there.
 
 **Why:** The user has replaced pip and pipx with uv throughout their toolchain.
 
