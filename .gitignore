@@ -56,3 +56,6 @@ id_*
 # Claude Code runtime state: commit SHAs, absolute install paths and
 # timestamps that change on every plugin update. Not configuration.
 misc/dot-claude/plugins/
+
+# Type declarations Claude Code writes into each local plugin at load time
+misc/dot-claude/mods/*/.claude-plugin/types/

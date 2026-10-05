@@ -85,6 +85,7 @@ Stowed to `~/.claude`. What is tracked and what deliberately is not:
 |------|---------|-------|
 | `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes | |
 | `hooks/block-bash.sh` | yes | Global PreToolUse hook that blocks bare `pip`/`pipx`. `~/.claude/hooks` is folded into the repo |
+| `mods/<name>/` | yes | Local hook plugins, loaded by `CLAUDE_CODE_PLUGIN_DIRS` in `settings.json` `env` (one path per mod, `:`-separated). `~/.claude/mods` is folded into the repo; the engine-written `.claude-plugin/types/` is gitignored |
 | `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md` |
 | `settings.json` | yes | Portable settings only — permissions, plugins, status line, tui, notifications, and the `block-bash.sh` hook |
 | `~/.claude/settings.local.json` | **no** | Machine-local. Holds the hooks that call `cc-status` |
