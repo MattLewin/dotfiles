@@ -222,6 +222,10 @@ tmux_winidx_circled() {
 
 update-all() {
     hr
+    print "UPDATING CLAUDE"
+    hr
+    claude update || { print "*** 'claude update' failed!"; return 1; }
+    hr; hr
     print "UPDATING ANTIDOTE"
     hr
     antidote update || { print "*** 'antidote update' failed!"; return 1; }
