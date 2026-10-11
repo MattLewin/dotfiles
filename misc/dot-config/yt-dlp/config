@@ -1,0 +1,11 @@
+-S vcodec:vp9
+-o "%(channel)s - %(title)s.%(ext)s"
+-P '/Users/matt/Downloads/No Backup/YouTube'
+--download-archive '/Users/matt/Downloads/No Backup/YouTube/archive.txt'
+--merge-output-format mkv
+--embed-chapters
+--embed-metadata
+--embed-subs
+--sub-langs en.*
+--sponsorblock-mark all
+--no-mtime
