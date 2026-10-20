@@ -59,3 +59,6 @@ misc/dot-claude/plugins/
 
 # Type declarations Claude Code writes into each local plugin at load time
 misc/dot-claude/mods/*/.claude-plugin/types/
+
+# Claudoscope's notification script, which is generated at runtime
+misc/dot-claude/hooks/claudoscope-notify.sh
