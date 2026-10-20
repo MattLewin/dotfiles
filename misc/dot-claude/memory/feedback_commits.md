@@ -23,6 +23,9 @@ Example format:
 Keep the message succinct: the minimum needed to say what changed. No rationale, no
 background, no verification notes, no mention of files checked and left unmodified.
 
+Never mention documentation updates (README, CLAUDE.md, docstrings) in the message; they
+are assumed to accompany the change. Still stage those files.
+
 **Why:** A commit message is a fixed record of one change. Rationale buried there is
 unfindable and goes stale, and length buries the change itself in `git log`. Explanation
 belongs in documentation that stays current.
