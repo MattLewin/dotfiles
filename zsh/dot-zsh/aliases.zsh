@@ -211,7 +211,13 @@ random() {
 # Sort review-marker CSVs by timestamp in place, keeping the header row first
 sortmarks() {
   for f in "$@"; do
-    { head -n 1 "$f"; tail -n +2 "$f" | LC_ALL=C sort; } > "$f.tmp" && mv "$f.tmp" "$f"
+    { head -n 1 "$f"; tail -n +2 "$f" | LC_ALL=C sort; } > "$f.tmp" || continue
+    # Leave already-sorted files (and their mtimes) untouched
+    if cmp -s "$f" "$f.tmp"; then
+      rm "$f.tmp"
+    else
+      mv "$f.tmp" "$f"
+    fi
   done
 }
 
