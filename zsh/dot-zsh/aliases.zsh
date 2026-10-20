@@ -208,6 +208,13 @@ random() {
     print $((1 + $(od -A n -t u -N4 /dev/random) % $1))
 }
 
+# Sort review-marker CSVs by timestamp in place, keeping the header row first
+sortmarks() {
+  for f in "$@"; do
+    { head -n 1 "$f"; tail -n +2 "$f" | LC_ALL=C sort; } > "$f.tmp" && mv "$f.tmp" "$f"
+  done
+}
+
 tmux_winidx_circled() {
     if tmux info &> /dev/null; then
         local winidx
