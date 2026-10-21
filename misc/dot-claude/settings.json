@@ -4,7 +4,12 @@
     "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1"
   },
   "sandbox": {
-    "enabled": true
+    "enabled": true,
+    "filesystem": {
+      "allowWrite": [
+        "~/.cache/uv"
+      ]
+    }
   },
   "permissions": {
     "allow": [
