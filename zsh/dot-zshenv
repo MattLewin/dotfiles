@@ -2,6 +2,13 @@
 # NOTE: .zshenv is run by every zsh, including non-interactive `zsh -c` and scripts.
 #
 
+# --- ~/.local/bin ---
+# uv tools and uv-managed python live here. paths.zsh puts it ahead of Homebrew for
+# interactive shells; do the same here so `zsh -c` and scripts get uv's python3.
+if [[ -d $HOME/.local/bin ]] && (( ! ${path[(Ie)$HOME/.local/bin]} )); then
+  path=("$HOME/.local/bin" $path)
+fi
+
 # --- mise shims ---
 # Interactive shells run `mise activate` from .zshrc. Non-interactive shells never
 # read .zshrc, so put the shims dir on PATH here to reach mise-managed tools.

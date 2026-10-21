@@ -18,3 +18,10 @@ else
     export INFOPATH="/usr/local/share/info:$INFOPATH"
   fi
 fi
+
+# --- ~/.local/bin ---
+# Homebrew (and /etc/zprofile's path_helper) just pushed ahead of the .zshenv entry.
+# Move it back to the front so uv's python3 beats Homebrew's in `zsh -l -c`.
+if [[ -d $HOME/.local/bin ]]; then
+  path=("$HOME/.local/bin" ${path:#$HOME/.local/bin})
+fi

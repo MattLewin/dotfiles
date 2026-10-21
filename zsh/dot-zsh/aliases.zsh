@@ -104,11 +104,6 @@ if (( $+commands[nvim] )) && [[ -t 0 ]]; then
     alias vim=nvim
 fi
 
-# Prefer python3; avoid symlinking system python
-if (( $+commands[python3] )); then
-    alias python=python3
-fi
-
 #
 # Functions
 #

@@ -94,7 +94,7 @@ stack (keeps new tmux panes from inheriting a stale `dirs` list).
 | `systeminfo.sh` | top of `.zshrc` | OS / distro detection; exports `OS`, `DIST`, `OS_STR`, … |
 | `paths.zsh` | before Antidote | Builds `PATH`. `append_paths` / `prepend_paths` arrays, each entry added only if the dir exists. Also derives the Homebrew Ruby gem `bin` dir. |
 | `plugins_builder.zsh` | before Antidote | Generates `~/.zsh_plugins.txt` (see [Plugins](#plugins)). |
-| `aliases.zsh` | after Antidote | Normal / global / suffix aliases, shell functions, conditional command shadowing (`vi`→nvim, `python`→python3, `top`→htop, `find`→fd). Sources `fzf.zsh` when `fzf` exists. |
+| `aliases.zsh` | after Antidote | Normal / global / suffix aliases, shell functions, conditional command shadowing (`vi`→nvim, `top`→htop, `find`→fd). Sources `fzf.zsh` when `fzf` exists. |
 | `variables.zsh` | after Antidote | Environment: `LESS`, `HOMEBREW_*`, `DOTNET_CLI_TELEMETRY_OPTOUT`, `FZF_DEFAULT_OPTS`, `LC_TERM_PROGRAM` propagation, `circled_digits`. Sources `~/.config/dotfiles/api_tokens.zsh`. |
 | `fzf.zsh` | via `aliases.zsh` | fzf-powered functions: `cmd` (browse commands/aliases/functions with `man` preview), `brewlist`, etc. Bails without a tty. |
 | `config.d/darwin.zsh` | step 7 | macOS-only: load SSH keys from Keychain; wrap `tmux` to use iTerm2's `-CC` integration for `new`/`attach`. |

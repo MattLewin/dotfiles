@@ -72,9 +72,13 @@ Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynami
 2. Run `make dotfiles` to re-stow
 3. Add new Homebrew packages to `misc/dot-config/homebrew/Brewfile`. There is
    one Brewfile, holding both formulas and casks; there is no per-OS split.
-   CLIs that are npm or Python packages (`pyright`, `markdownlint-cli2`) go in
+   CLIs that are npm packages (`pyright`, `markdownlint-cli2`) go in
    `misc/dot-config/mise/config.toml` instead, so Homebrew does not pull in a
-   second Node or Python alongside mise's.
+   second Node alongside mise's. Python is uv-managed, not mise-managed:
+   `uv python install --default` puts `python`/`python3` in `~/.local/bin`, and
+   Python CLIs come from `uv tool install`. Homebrew's Python stays installed
+   only as a dependency of other formulas; `paths.zsh` puts `~/.local/bin`
+   ahead of Homebrew so uv's `python3` wins.
 4. Machine-specific settings belong in `~/.config/dotfiles/local.zsh`, not in the repo
 
 ## Claude Code Config (`misc/dot-claude/`)

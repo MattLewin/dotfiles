@@ -14,7 +14,6 @@ append_paths+=(
     "${HOME}/.go/bin"
     "${HOME}/Content Creation/bin"
     "${HOME}/Library/Android/sdk/platform-tools"
-    "${HOME}/.local/bin" # pipx path
     /sbin
     /usr/local/bin
     /usr/local/sbin
@@ -26,6 +25,7 @@ do
 done
 
 prepend_paths=(
+    "${HOME}/.local/bin" # uv tools and uv-managed python; must beat Homebrew python3
     "${HOME}/bin"
     "${HOME}/swift/usr/bin"
     "${BREW_PREFIX}/opt/ruby/bin"
