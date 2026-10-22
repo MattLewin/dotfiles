@@ -29,7 +29,7 @@ block in `~/.zshrc` or a small module file under `~/.zsh/`.
 | `ZSH_THEME=…` | [Starship](https://starship.rs) (`starship init` at the end of `.zshrc`); falls back to a plain `%2~` prompt if starship isn't installed |
 | OMZ `lib/` (completion styles, history opts, key bindings) | Hand-rolled: `zstyle` block in `.zshrc`, options in `.zshrc` + module files |
 | `compinit` runs automatically | Explicit in `.zshrc`, with a once-a-day security audit (otherwise loads the cached dump with `-C`) |
-| `omz update` | `antidote update` — or the `update-all` function (antidote + mise + brew) |
+| `omz update` | `antidote update` — or the `update-all` function (antidote + mise + uv Pythons + brew) |
 | Reload config | Same: `exec zsh` |
 
 Key point: **to add a plugin you edit `plugins_builder.zsh`, not `.zshrc`.**
@@ -210,4 +210,4 @@ just `exec zsh`. After adding a **new** file: `make dotfiles`, then `exec zsh`.
 - **Stale completions** — `rm -f ~/.zcompdump ~/.zfunc/_* ~/.cache/zsh/completions/_* && exec zsh`.
 - **Profile startup** — uncomment the two `XTRACE` blocks at the top and bottom of
   `dot-zshrc`; it logs per-line timings to a `zsh_profile.*` tempfile.
-- **Update everything** — `update-all` (antidote + mise + brew), defined in `aliases.zsh`.
+- **Update everything** — `update-all` (antidote + mise + uv Pythons + brew), defined in `aliases.zsh`.

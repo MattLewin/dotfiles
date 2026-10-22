@@ -241,6 +241,10 @@ update-all() {
     print "UPGRADING MISE"
     mise upgrade || { print "*** 'mise upgrade' failed!"; return 1; }
     hr; hr
+    print "UPGRADING UV PYTHONS"
+    hr
+    uv python upgrade || { print "*** 'uv python upgrade' failed!"; return 1; }
+    hr; hr
     print "UPGRADING BREW"
     hr
     brew upgrade || { print "*** 'brew upgrade' failed!"; return 1; }
