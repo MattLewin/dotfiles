@@ -43,9 +43,10 @@ stub_all() {
 stub_all
 out=$(update-all); rc=$?
 check "update-all returns 0 when every step succeeds" test $rc -eq 0
-for step in claude antidote mise uv-python uv-tool brew nvim; do
+for step in claude antidote mise uv-python uv-tool brew; do
     check "update-all runs $step" test "${out#*RAN-$step}" != "$out"
 done
+check "update-all leaves nvim plugins to nvim itself" test "${out#*RAN-nvim}" = "$out"
 check "update-all reports completion" test "${out#*All updates complete.}" != "$out"
 
 stub_all

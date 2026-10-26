@@ -243,7 +243,6 @@ update-all() {
     _update_step "UPGRADING UV PYTHONS" uv python upgrade || return 1
     _update_step "UPGRADING UV TOOLS" uv tool upgrade --all || return 1
     _update_step "UPGRADING BREW" brew upgrade || return 1
-    _update_step "UPDATING NEOVIM PLUGINS" nvim --headless "+Lazy! update" +qa || return 1
     print -P "%F{8}$(hr)%f"
     print -P "%B%F{green}All updates complete.%f%b"
 }
