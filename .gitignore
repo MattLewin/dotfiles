@@ -37,6 +37,7 @@ Sessionx.vim
 *~
 tags
 [._]*.un~
+nvim.log
 
 com.googlecode.iterm2.plist
 
