@@ -120,6 +120,18 @@ require("lazy").setup({
 
 })
 
+-- Update plugins in the background at most once a day; updates apply on the next launch
+local update_stamp = vim.fn.stdpath("state") .. "/lazy-last-update"
+vim.api.nvim_create_autocmd("User", {
+    pattern = "VeryLazy",
+    callback = function()
+        local stat = vim.loop.fs_stat(update_stamp)
+        if stat and os.time() - stat.mtime.sec < 24 * 60 * 60 then return end
+        vim.fn.writefile({}, update_stamp)
+        require("lazy").update({ show = false })
+    end,
+})
+
 -- 3) Keymaps (mirror your habits)
 local map = vim.keymap.set
 -- ';' to open file finder (like your :Files)

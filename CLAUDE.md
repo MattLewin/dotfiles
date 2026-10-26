@@ -31,7 +31,9 @@ All files managed by stow are prefixed with `dot-` (the Makefile's `dotfiles` ta
     Only `darwin.zsh` exists today; the Linux machines run fish, not zsh.
   - `aliases.zsh`, `paths.zsh`, `variables.zsh`, `fzf.zsh` — Functional modules
 - `misc/dot-config/homebrew/Brewfile` — Single Brewfile (formulas + casks)
-- `misc/dot-config/nvim/init.lua` — Neovim config (lazy.nvim plugin manager)
+- `misc/dot-config/nvim/init.lua` — Neovim config (lazy.nvim plugin manager).
+  Plugins update themselves on launch, at most once a day, so `update-all`
+  leaves them alone.
 - `install_scripts/` — Bootstrap scripts called by Makefile targets
 
 ### Local Overrides (Not Tracked)
