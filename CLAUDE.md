@@ -14,6 +14,7 @@ make dotfiles     # Re-stow all dotfiles (safe to re-run)
 make bootstrap-local  # Create local override files (not in default `make`)
 brew bundle       # Install Homebrew packages (single Brewfile)
 make lint         # shellcheck, shfmt, zsh -n, fish -n, jq, plutil, markdownlint, stow -n
+make test         # Run tests/*_test.zsh (stubbed; nothing is installed or upgraded)
 ```
 
 Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`, plus `macOS` on Darwin

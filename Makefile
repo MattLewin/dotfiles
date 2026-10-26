@@ -10,7 +10,7 @@ BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside re
 STOW := $(or $(shell command -v stow), stow)
 SHELL := /bin/sh
 
-.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint healthcheck
+.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint test healthcheck
 
 all: $(ALL)
 
@@ -59,6 +59,9 @@ endif
 	fi
 	@echo --- stow dry-run ---
 	@stow -n --dotfiles --target "${HOME}/" $(STOW_IGNORE) $(STOW_PACKAGES)
+
+test:
+	@for f in tests/*_test.zsh; do echo "--- $$f ---"; zsh -f "$$f" || exit 1; done
 
 # stow's --ignore matches basenames at EVERY level of a package, not just its
 # root. A broad "^(?!dot).*$" pattern therefore ignores every file nested

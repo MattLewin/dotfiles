@@ -228,36 +228,24 @@ tmux_winidx_circled() {
     fi
 }
 
+_update_step() {
+    local title=$1; shift
+    print -P "%F{8}$(hr)%f"
+    print -P "%B%F{cyan}${title}%f%b"
+    print -P "%F{8}$(hr)%f"
+    "$@" || { print -P "%B%F{red}*** '$*' failed!%f%b"; return 1; }
+}
+
 update-all() {
-    hr
-    print "UPDATING CLAUDE"
-    hr
-    claude update || { print "*** 'claude update' failed!"; return 1; }
-    hr; hr
-    print "UPDATING ANTIDOTE"
-    hr
-    antidote update || { print "*** 'antidote update' failed!"; return 1; }
-    hr; hr
-    print "UPGRADING MISE"
-    hr
-    mise upgrade || { print "*** 'mise upgrade' failed!"; return 1; }
-    hr; hr
-    print "UPGRADING UV PYTHONS"
-    hr
-    uv python upgrade || { print "*** 'uv python upgrade' failed!"; return 1; }
-    hr; hr
-    print "UPGRADING UV TOOLS"
-    hr
-    uv tool upgrade --all || { print "*** 'uv tool upgrade' failed!"; return 1; }
-    hr; hr
-    print "UPGRADING BREW"
-    hr
-    brew upgrade || { print "*** 'brew upgrade' failed!"; return 1; }
-    hr; hr
-    print "UPDATING NEOVIM PLUGINS"
-    hr
-    nvim --headless "+Lazy! update" +qa || { print "*** 'nvim Lazy update' failed!"; return 1; }
-    hr
+    _update_step "UPDATING CLAUDE" claude update || return 1
+    _update_step "UPDATING ANTIDOTE" antidote update || return 1
+    _update_step "UPGRADING MISE" mise upgrade || return 1
+    _update_step "UPGRADING UV PYTHONS" uv python upgrade || return 1
+    _update_step "UPGRADING UV TOOLS" uv tool upgrade --all || return 1
+    _update_step "UPGRADING BREW" brew upgrade || return 1
+    _update_step "UPDATING NEOVIM PLUGINS" nvim --headless "+Lazy! update" +qa || return 1
+    print -P "%F{8}$(hr)%f"
+    print -P "%B%F{green}All updates complete.%f%b"
 }
 
 # open man pages in a new window
