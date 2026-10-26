@@ -1,7 +1,7 @@
 # eza.plugin.zsh
 
 if command -v eza >/dev/null 2>&1; then
-  # Defaults: color, icons (Terminal.app/iTerm2), git info, dirs first
+  # Defaults: color, icons, git info, dirs first
   _EZA_BASE=(--color=auto --icons=auto --group-directories-first)
 
   # Shadow `ls` only with a real tty — a non-interactive caller expects real ls

@@ -67,18 +67,17 @@ The orchestrator. In order:
 5. Resolve `BREW_PREFIX`; set `USE_STARSHIP` flag (or install the fallback `PROMPT`).
 6. **Before Antidote**, source in order: `paths.zsh`, `plugins_builder.zsh`.
 7. Source `config.d/${OS}.zsh` if present (`darwin.zsh` / `linux.zsh`).
-8. iTerm2 shell integration (if `TERM_PROGRAM == iTerm.app`).
-9. Extend `fpath`: Homebrew `site-functions`, `zsh-completions`, `~/.zsh/completions`, Docker completions.
-10. Completion `zstyle` block (case-insensitive matching, `menu select`, `cd` tuned to prefer dirs, history as fallback completer).
-11. `compinit` — full audit + rebuild `.zcompdump` at most once per 24h, else `compinit -C -i`.
-12. **Antidote**: source `antidote.zsh`; if `~/.zsh_plugins.txt` is newer than `~/.zsh_plugins.sh` (or the `.sh` is missing), re-bundle; then source `~/.zsh_plugins.sh`.
-13. **After Antidote**, source in order: `aliases.zsh`, `variables.zsh`.
-14. Source `~/.config/dotfiles/local.zsh` (untracked machine overrides).
-15. Tool hooks: `direnv`, `RIPGREP_CONFIG_PATH` (`mole`/`ngrok`/`op` completions are cached by local plugins — step 16).
-16. **Local plugins**: source every `~/.zsh/plugins/*.zsh` (glob; `null_glob`, readable only).
-17. `zoxide init` (must be after compinit + plugins).
-18. `starship init` (if `USE_STARSHIP`).
-19. `zsh-autosuggestions` ignore rule for `gcmsg*`.
+8. Extend `fpath`: Homebrew `site-functions`, `zsh-completions`, `~/.zsh/completions`, Docker completions.
+9. Completion `zstyle` block (case-insensitive matching, `menu select`, `cd` tuned to prefer dirs, history as fallback completer).
+10. `compinit` — full audit + rebuild `.zcompdump` at most once per 24h, else `compinit -C -i`.
+11. **Antidote**: source `antidote.zsh`; if `~/.zsh_plugins.txt` is newer than `~/.zsh_plugins.sh` (or the `.sh` is missing), re-bundle; then source `~/.zsh_plugins.sh`.
+12. **After Antidote**, source in order: `aliases.zsh`, `variables.zsh`.
+13. Source `~/.config/dotfiles/local.zsh` (untracked machine overrides).
+14. Tool hooks: `direnv`, `RIPGREP_CONFIG_PATH` (`mole`/`ngrok`/`op` completions are cached by local plugins — step 15).
+15. **Local plugins**: source every `~/.zsh/plugins/*.zsh` (glob; `null_glob`, readable only).
+16. `zoxide init` (must be after compinit + plugins).
+17. `starship init` (if `USE_STARSHIP`).
+18. `zsh-autosuggestions` ignore rule for `gcmsg*`.
 
 ### `dot-zlogin`
 
@@ -95,9 +94,9 @@ stack (keeps new tmux panes from inheriting a stale `dirs` list).
 | `paths.zsh` | before Antidote | Builds `PATH`. `append_paths` / `prepend_paths` arrays, each entry added only if the dir exists. Also derives the Homebrew Ruby gem `bin` dir. |
 | `plugins_builder.zsh` | before Antidote | Generates `~/.zsh_plugins.txt` (see [Plugins](#plugins)). |
 | `aliases.zsh` | after Antidote | Normal / global / suffix aliases, shell functions, conditional command shadowing (`vi`→nvim, `top`→htop, `find`→fd). Sources `fzf.zsh` when `fzf` exists. |
-| `variables.zsh` | after Antidote | Environment: `LESS`, `HOMEBREW_*`, `DOTNET_CLI_TELEMETRY_OPTOUT`, `FZF_DEFAULT_OPTS`, `LC_TERM_PROGRAM` propagation, `circled_digits`. Sources `~/.config/dotfiles/api_tokens.zsh`. |
+| `variables.zsh` | after Antidote | Environment: `LESS`, `HOMEBREW_*`, `DOTNET_CLI_TELEMETRY_OPTOUT`, `FZF_DEFAULT_OPTS`. Sources `~/.config/dotfiles/api_tokens.zsh`. |
 | `fzf.zsh` | via `aliases.zsh` | fzf-powered functions: `cmd` (browse commands/aliases/functions with `man` preview), `brewlist`, etc. Bails without a tty. |
-| `config.d/darwin.zsh` | step 7 | macOS-only: load SSH keys from Keychain; wrap `tmux` to use iTerm2's `-CC` integration for `new`/`attach`. |
+| `config.d/darwin.zsh` | step 7 | macOS-only: load SSH keys from Keychain. |
 | `config.d/linux.zsh` | step 7 | *(create this file for Linux-only settings)* |
 | `completions/` | on `fpath` | Custom completion functions (e.g. `_gen-yt-subtitles`). |
 
@@ -111,7 +110,7 @@ stack (keeps new tmux panes from inheriting a stale `dirs` list).
 overwrites the file when the content changes, so a normal shell start does **not**
 trigger an Antidote re-bundle.
 
-Three sources feed the list:
+Two sources feed the list:
 
 ```zsh
 ALWAYS_ON=(          # loaded every shell
@@ -125,8 +124,6 @@ IF_INSTALLED=(   # [binary]=spec — added iff the binary is on PATH
   [aws]='ohmyzsh/ohmyzsh path:plugins/aws'
   [terminal-notifier]='t413/zsh-background-notify'
 )
-
-# terminal-gated: adds OMZ `iterm2` when TERM_PROGRAM == iTerm.app
 ```
 
 `zsh-users/zsh-syntax-highlighting` is always appended **last** (it must be).
@@ -163,7 +160,6 @@ they're inert when the tool isn't installed.
 | `ffxxx.plugin.zsh` | Wrap `ffmpeg`/`ffplay`/`ffprobe`: always `-hide_banner`; auto `libdav1d` for AV1 input |
 | `fzf.plugin.zsh` | Source Homebrew fzf's `completion.zsh` + `key-bindings.zsh` (only if not already loaded) |
 | `git.plugin.zsh` | Plain git aliases: `ga` `gc` `gc!` `gcmsg` `gco` `gd` `gds` `gst` `gsw` `gswc` `glg` … |
-| `iterm_title.plugin.zsh` | Set tab (`%~`) and window (`%n@%m:%~`) titles on each prompt; no OMZ dependency |
 | `mise.plugin.zsh` | `eval "$(mise activate zsh)"` + cache `_mise` completion (regenerate on version change) |
 | `op.plugin.zsh` | Generates/caches `_op` (1Password CLI) completion in `$XDG_CACHE_HOME/zsh/completions` (regenerate when binary changes; avoids a TCC prompt every startup) |
 | `uv.plugin.zsh` | Route `pip`/`pipx` → `uv`/`uvx` (interactive only); caches `_uv`/`_uvx` completion in `$XDG_CACHE_HOME/zsh/completions` (regenerate when binary changes) |

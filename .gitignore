@@ -39,8 +39,6 @@ tags
 [._]*.un~
 nvim.log
 
-com.googlecode.iterm2.plist
-
 zsh/dot-zsh/completions/
 .claude/*.local.json
 

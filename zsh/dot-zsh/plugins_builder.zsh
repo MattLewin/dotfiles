@@ -34,10 +34,6 @@ _build_plugins() {
     (( $+commands[$cmd] )) && print -r -- "$spec" >> "$tmp"
   done
 
-  # Terminal-gated plugins
-  [[ "$TERM_PROGRAM" == "iTerm.app" ]] && \
-    print -r -- "ohmyzsh/ohmyzsh path:plugins/iterm2" >> "$tmp"
-
   # Ensure syntax highlighting is sourced last
   print -r -- "$HIGHLIGHT_LAST" >> "$tmp"
 

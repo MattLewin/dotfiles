@@ -95,14 +95,8 @@ Stowed to `~/.claude`. What is tracked and what deliberately is not:
 | `mods/<name>/` | yes | Local hook plugins, loaded by `CLAUDE_CODE_PLUGIN_DIRS` in `settings.json` `env` (one path per mod, `:`-separated). `~/.claude/mods` is folded into the repo; the engine-written `.claude-plugin/types/` is gitignored |
 | `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md` |
 | `settings.json` | yes | Portable settings only — permissions, plugins, status line, tui, notifications, and the `block-bash.sh` hook |
-| `~/.claude/settings.local.json` | **no** | Machine-local. Holds the hooks that call `cc-status` |
+| `~/.claude/settings.local.json` | **no** | Machine-local permissions and model settings |
 | `plugins/installed_plugins.json` | **no** | Runtime state: commit SHAs, absolute paths, timestamps |
-
-The `cc-status` hooks live in `settings.local.json` rather than the tracked
-`settings.json` because they invoke `~/.config/iterm2/cc-status`, a compiled
-binary that is not in this repo. User-level `settings.json` and
-`settings.local.json` merge, so splitting them this way keeps the tracked
-file portable without changing behavior on this machine.
 
 ### Project Automations (`.claude/`)
 

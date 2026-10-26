@@ -216,18 +216,6 @@ sortmarks() {
   done
 }
 
-tmux_winidx_circled() {
-    if tmux info &> /dev/null; then
-        local winidx
-        winidx=$(tmux display-message -p '#I')
-        if (( winidx > 20 )); then
-            echo "($winidx)"
-        else
-            echo "${circled_digits:$winidx:1}"
-        fi
-    fi
-}
-
 _update_step() {
     local title=$1; shift
     print -P "%F{8}$(hr)%f"
@@ -249,24 +237,6 @@ update-all() {
 
 # open man pages in a new window
 case "$TERM_PROGRAM" in
-    iTerm.app)
-        function mant () {
-            osascript - "$@" <<EOF
-                on run argv
-                    tell application "iTerm"
-                        activate
-                        create window with profile "man" command "man " & item 1 of argv
-                        tell current window
-                            tell current session
-                                set name to "man " & item 1 of argv
-                            end tell
-                        end tell
-                    end tell
-                end run
-EOF
-        }
-        ;;
-
     Apple_Terminal)
         function mant() {
             if [ $# -eq 1 ]
