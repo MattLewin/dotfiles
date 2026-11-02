@@ -7,4 +7,5 @@ zig = "latest"
 
 # Packages installed through another tool above
 "npm:markdownlint-cli2" = "latest"
+"npm:prettier" = "latest"
 "npm:pyright" = "latest"

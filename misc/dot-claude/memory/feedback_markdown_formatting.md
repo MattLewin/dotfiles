@@ -1,11 +1,14 @@
 ---
 name: feedback-markdown-formatting
-description: In repos with no Markdown formatter of their own, use markdownlint-cli2 --fix on edited .md files instead of hand-formatting tables/markdown
+description: In repos with no Markdown formatter of their own, format edited .md files with prettier --write and check them with markdownlint-cli2, instead of hand-formatting
 type: feedback
 ---
 
-After editing a Markdown file in a repo that has no Markdown formatter of its own, run `markdownlint-cli2 --fix <file>` via Bash to apply formatting (table column alignment, etc.) instead of manually aligning tables or other MD formatting by hand. Where the repo already formats Markdown (e.g. Prettier or markdownlint in pre-commit, or a formatter config file), leave formatting to that tool.
+After editing a Markdown file in a repo that has no Markdown formatter of its own, run `prettier --write <file>` via Bash to format it (table column alignment, list and emphasis markers, blank lines, escaping) instead of aligning tables or fixing Markdown formatting by hand. Then run `markdownlint-cli2 <file>` (no `--fix`) to check for problems Prettier doesn't handle, and fix real structural ones by hand. Where the repo already formats Markdown (e.g. Prettier or markdownlint in pre-commit, or a formatter config file), leave formatting to that tool.
 
-**Why:** User's VSCode has a markdownlint extension that auto-formats on save (table alignment etc.), and expects that same aligned-column result everywhere — all sessions, all platforms. Hand-formatting tables burns tokens for no reason when a CLI tool does it deterministically. `markdownlint-cli2` is the CLI engine behind that extension, so running it gives identical output to what the extension would produce. A second formatter in a repo that already has one would fight it.
+**Why:** Prettier rewrites the whole file into one consistent style. `markdownlint-cli2 --fix` only fixes violations of its auto-fixable rules, and with the default MD060 `style: any` it never aligns tables, so it is a checker, not a formatter. Hand-formatting burns tokens on something a tool does deterministically. A second formatter in a repo that already has one would fight it.
 
-**How to apply:** Any time editing/writing a `.md` file with tables in such a repo, after the Edit/Write run `markdownlint-cli2 --fix <path>` then Read the file to confirm result — don't manually align table pipes/columns or fuss over MD formatting by hand. If `markdownlint-cli2` is missing, say so instead of installing it.
+**How to apply:**
+- After any Edit/Write to a `.md` file in such a repo: `prettier --write <path>`, then `markdownlint-cli2 <path>`.
+- Ignore MD013 (line length): Prettier preserves prose line breaks, so long prose lines are expected.
+- If `prettier` or `markdownlint-cli2` is not on PATH, say so instead of installing it or falling back to `npx`. The user installs tools with mise (`mise use -g npm:prettier`).
