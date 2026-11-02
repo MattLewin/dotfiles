@@ -6,9 +6,9 @@
   "ignores": [
     // CLAUDE.md is authored for an agent, not a human reader (see f65b333).
     "**/CLAUDE.md",
-    // Agent memory files: YAML frontmatter plus a fragment, read by the
-    // memory system rather than by people. MD041 (first line must be an H1)
-    // is structurally wrong for them, and their format is not ours to change.
+    // Agent memory files: headingless fragments @-included into
+    // misc/dot-claude/CLAUDE.md and read by Claude, not people. MD041 (first
+    // line must be an H1) is structurally wrong for them.
     "misc/dot-claude/memory/**"
   ],
   "config": {
