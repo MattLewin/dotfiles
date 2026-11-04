@@ -5,6 +5,12 @@
   },
   "sandbox": {
     "enabled": true,
+    "excludedCommands": [
+      "mise *"
+    ],
+    "network": {
+      "allowLocalBinding": true
+    },
     "filesystem": {
       "allowWrite": [
         "~/.cache/uv"
