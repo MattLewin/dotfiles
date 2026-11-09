@@ -4,13 +4,13 @@ ifeq ($(UNAME), Darwin)
 STOW_PACKAGES += macOS
 endif
 INSTALL_SCRIPTS_DIR=install_scripts
-ALL=homebrew antidote dotfiles launch-agents githooks
+ALL=homebrew antidote dotfiles mise launch-agents githooks
 BOOTSTRAP=bootstrap-local # excluded from ALL to avoid creating files outside repo on default `make`
 
 STOW := $(or $(shell command -v stow), stow)
 SHELL := /bin/sh
 
-.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew lint test healthcheck
+.PHONY: $(ALL) $(BOOTSTRAP) stow homebrew mise lint test healthcheck
 
 all: $(ALL)
 
@@ -74,6 +74,11 @@ dotfiles: | $(STOW)
 	@echo --- Creating dot files ---
 	stow --verbose=1 --restow --dotfiles --target "${HOME}/" $(STOW_IGNORE) $(STOW_PACKAGES)
 
+# Needs the stowed ~/.config/mise/config.toml, so it runs after `dotfiles`
+mise: dotfiles
+	@echo --- Installing mise tools ---
+	@MISE="$$(command -v mise || ls /opt/homebrew/bin/mise /usr/local/bin/mise 2>/dev/null | head -n 1)"; \
+	if [ -n "$$MISE" ]; then "$$MISE" install; else echo "(skipped: mise not installed)"; fi
 
 launch-agents:
 ifeq ($(UNAME), Darwin)

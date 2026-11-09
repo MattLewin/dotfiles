@@ -4,8 +4,15 @@ node = "lts"
 npm = "latest"
 uv = "latest"
 zig = "latest"
+deno = "latest" # JS runtime yt-dlp uses for YouTube
+
+# Shell tools (prebuilt binaries from the aqua registry)
+fzf = "latest"
+starship = "latest"
+zoxide = "latest"
 
 # Packages installed through another tool above
 "npm:markdownlint-cli2" = "latest"
 "npm:prettier" = "latest"
 "npm:pyright" = "latest"
+"pypi:yt-dlp" = { version = "latest", extras = "default" } # installed by uv

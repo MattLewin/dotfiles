@@ -9,7 +9,7 @@ This is a personal dotfiles repository managed with **GNU Stow** (symlink manage
 ## Key Commands
 
 ```bash
-make              # Full install: Homebrew, Antidote, stow, launch agents
+make              # Full install: Homebrew, Antidote, stow, mise tools, launch agents
 make dotfiles     # Re-stow all dotfiles (safe to re-run)
 make bootstrap-local  # Create local override files (not in default `make`)
 brew bundle       # Install Homebrew packages (single Brewfile)
@@ -22,9 +22,11 @@ Stow packages: `bash`, `git`, `misc`, `tmux`, `zsh`, plus `macOS` on Darwin
 ## Architecture
 
 ### Naming Convention
+
 All files managed by stow are prefixed with `dot-` (the Makefile's `dotfiles` target passes `--dotfiles`, which maps these to `.`-prefixed files in `$HOME`; there is no `.stowrc`). The top-level directory name becomes the stow package name.
 
 ### Directory Layout
+
 - `zsh/dot-zsh/` — Modular zsh config loaded by `.zshrc`. See `zsh/README.md` for full load order, the plugin system, and the Oh My Zsh → Antidote migration map.
   - `plugins_builder.zsh` — Dynamically builds Antidote plugin list based on installed commands
   - `config.d/darwin.zsh` — OS-specific settings, sourced by `$OS` name.
@@ -37,13 +39,14 @@ All files managed by stow are prefixed with `dot-` (the Makefile's `dotfiles` ta
 - `install_scripts/` — Bootstrap scripts called by Makefile targets
 
 ### Local Overrides (Not Tracked)
+
 Machine-specific settings live outside the repo to keep it portable:
 
-| File | Purpose |
-|------|---------|
-| `~/.config/dotfiles/local.zsh` | Zsh overrides, sourced last in `.zshrc` |
+| File                                | Purpose                                                |
+| ----------------------------------- | ------------------------------------------------------ |
+| `~/.config/dotfiles/local.zsh`      | Zsh overrides, sourced last in `.zshrc`                |
 | `~/.config/dotfiles/api_tokens.zsh` | API credentials, sourced by `variables.zsh` (mode 600) |
-| `~/.gitconfig.local` | Git user identity (name/email) |
+| `~/.gitconfig.local`                | Git user identity (name/email)                         |
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
 
@@ -62,11 +65,13 @@ exists. To unfold a folded directory: create it, move the package's files back
 under it, and re-run `make dotfiles`.
 
 ### Platform Detection
+
 - Makefile branches on `$(UNAME)` (Darwin vs Linux)
 - Zsh branches via `zsh/dot-zsh/config.d/` directory — drop a `darwin.zsh` or `linux.zsh` file there
 - macOS-only: launch agents in `launch_agents/` for SSH key management
 
 ### Zsh Plugin Management
+
 Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynamically by `plugins_builder.zsh` — it checks for installed commands and only loads relevant plugins (e.g., aws plugin only if `aws` is in PATH). Syntax highlighting always loads last.
 
 ## Adding New Configs
@@ -75,40 +80,50 @@ Antidote is the plugin manager (`~/.antidote/`). The plugin list is built dynami
 2. Run `make dotfiles` to re-stow
 3. Add new Homebrew packages to `misc/dot-config/homebrew/Brewfile`. There is
    one Brewfile, holding both formulas and casks; there is no per-OS split.
-   CLIs that are npm packages (`pyright`, `markdownlint-cli2`) go in
-   `misc/dot-config/mise/config.toml` instead, so Homebrew does not pull in a
-   second Node alongside mise's. Python is uv-managed, not mise-managed:
+   Some CLIs go in `misc/dot-config/mise/config.toml` instead:
+   - npm packages (`pyright`, `markdownlint-cli2`), so Homebrew does not pull
+     in a second Node alongside mise's.
+   - Shell tools shared with the Linux and Windows machines (`fzf`,
+     `starship`, `zoxide`), so every machine gets them the same way. Shell
+     init must run `mise activate` (or have the shims on `PATH`) before it
+     checks for them; `.bashrc` and `config.fish` activate mise first for
+     this reason.
+   - `yt-dlp`, through the `pypi:` backend, which installs it with uv.
+     Listing it there keeps it tracked and lets `mise upgrade` update it.
+
+   Python is uv-managed, not mise-managed:
    `uv python install --default` puts `python`/`python3` in `~/.local/bin`, and
-   Python CLIs come from `uv tool install`. Homebrew's Python stays installed
+   other Python CLIs come from `uv tool install` (untracked). Homebrew's Python stays installed
    only as a dependency of other formulas; `paths.zsh` puts `~/.local/bin`
    ahead of Homebrew so uv's `python3` wins.
+
 4. Machine-specific settings belong in `~/.config/dotfiles/local.zsh`, not in the repo
 
 ## Claude Code Config (`misc/dot-claude/`)
 
 Stowed to `~/.claude`. What is tracked and what deliberately is not:
 
-| Path | Tracked | Notes |
-|------|---------|-------|
-| `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes | |
-| `hooks/block-bash.sh` | yes | Global PreToolUse hook that blocks bare `pip`/`pipx`. `~/.claude/hooks` is folded into the repo |
-| `mods/<name>/` | yes | Local hook plugins, loaded by `CLAUDE_CODE_PLUGIN_DIRS` in `settings.json` `env` (one path per mod, `:`-separated). `~/.claude/mods` is folded into the repo; the engine-written `.claude-plugin/types/` is gitignored |
-| `memory/*.md` | yes | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md` |
-| `settings.json` | yes | Portable settings only — permissions, plugins, status line, tui, notifications, and the `block-bash.sh` hook |
-| `~/.claude/settings.local.json` | **no** | Machine-local permissions and model settings |
-| `plugins/installed_plugins.json` | **no** | Runtime state: commit SHAs, absolute paths, timestamps |
+| Path                                             | Tracked | Notes                                                                                                                                                                                                                  |
+| ------------------------------------------------ | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CLAUDE.md`, `keybindings.json`, `statusline.sh` | yes     |                                                                                                                                                                                                                        |
+| `hooks/block-bash.sh`                            | yes     | Global PreToolUse hook that blocks bare `pip`/`pipx`. `~/.claude/hooks` is folded into the repo                                                                                                                        |
+| `mods/<name>/`                                   | yes     | Local hook plugins, loaded by `CLAUDE_CODE_PLUGIN_DIRS` in `settings.json` `env` (one path per mod, `:`-separated). `~/.claude/mods` is folded into the repo; the engine-written `.claude-plugin/types/` is gitignored |
+| `memory/*.md`                                    | yes     | Working preferences; `CLAUDE.md` `@`-includes all but `MEMORY.md`                                                                                                                                                      |
+| `settings.json`                                  | yes     | Portable settings only — permissions, plugins, status line, tui, notifications, and the `block-bash.sh` hook                                                                                                           |
+| `~/.claude/settings.local.json`                  | **no**  | Machine-local permissions and model settings                                                                                                                                                                           |
+| `plugins/installed_plugins.json`                 | **no**  | Runtime state: commit SHAs, absolute paths, timestamps                                                                                                                                                                 |
 
 ### Project Automations (`.claude/`)
 
 These apply only to sessions opened in this repo.
 
-| Path | Purpose |
-|------|---------|
-| `.claude/settings.json` | Runs the lint hook after every Edit/Write. Allows `make lint`, `shellcheck`, `shfmt -d` |
-| `.claude/hooks/lint-edited.sh` | Runs the `make lint` check for the edited file. Exit 2 returns errors to Claude |
-| `.claude/hookify.block-no-verify.local.md` | Blocks git commands that skip `githooks/pre-commit` |
-| `.claude/skills/brew-sync/` | `/brew-sync`: add installed but untracked packages to the Brewfile |
-| `.claude/skills/adopt-dotfile/` | `/adopt-dotfile <path>`: move a `$HOME` file into a stow package |
+| Path                                       | Purpose                                                                                 |
+| ------------------------------------------ | --------------------------------------------------------------------------------------- |
+| `.claude/settings.json`                    | Runs the lint hook after every Edit/Write. Allows `make lint`, `shellcheck`, `shfmt -d` |
+| `.claude/hooks/lint-edited.sh`             | Runs the `make lint` check for the edited file. Exit 2 returns errors to Claude         |
+| `.claude/hookify.block-no-verify.local.md` | Blocks git commands that skip `githooks/pre-commit`                                     |
+| `.claude/skills/brew-sync/`                | `/brew-sync`: add installed but untracked packages to the Brewfile                      |
+| `.claude/skills/adopt-dotfile/`            | `/adopt-dotfile <path>`: move a `$HOME` file into a stow package                        |
 
 - The zsh and bash file lists in `lint-edited.sh` mirror `ZSH_FILES` and
   `BASH_SCRIPTS` in the Makefile. Update both together.
