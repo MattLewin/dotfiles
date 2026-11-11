@@ -16,3 +16,8 @@ zoxide = "latest"
 "npm:prettier" = "latest"
 "npm:pyright" = "latest"
 "pypi:yt-dlp" = { version = "latest", extras = "default" } # installed by uv
+
+[settings]
+minimum_release_age = "7d"
+
+
