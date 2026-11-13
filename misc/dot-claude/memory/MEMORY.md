@@ -8,3 +8,4 @@
 - [Markdown formatting](feedback_markdown_formatting.md) — run `prettier --write` then `markdownlint-cli2` (no `--fix`) on edited .md files unless the repo has its own formatter
 - [CLAUDE.md ownership](feedback_claude_md_ownership.md) — Claude-facing files are Claude's to maintain; fix defects directly
 - [Use uv, not pip/pipx](feedback_uv.md) — never bare pip/pipx; `uv pip`, `uv tool`, `uvx` instead; hook-enforced
+- [Machines and architectures](user_machines.md) — Mac M2 Air (arm64), Unraid (x86_64), Windows PC (x86_64)
