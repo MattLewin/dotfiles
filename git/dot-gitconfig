@@ -75,6 +75,26 @@
 # --- Aliases ---
 [alias]
 	patch  = !git --no-pager diff --no-color --no-prefix $@
+	# Untracked files hidden by ignore rules, then tracked files that match them.
+	# A wholly ignored directory is one line; empty ones are skipped. (ls-files
+	# --directory misreports directories that merely contain ignored files.)
+	# Header color: color.ignored (falls back to color.ui) and color.ignored.header
+	ignored = "!f() { \
+		git status --porcelain -z --ignored=matching --untracked-files=normal \
+			| tr '\\0' '\\n' | sed -n 's/^!! //p' \
+			| while IFS= read -r p; do \
+				case $p in */) [ -n \"$(find \"$p\" ! -type d -print -quit)\" ] || continue ;; esac; \
+				printf '%s\\n' \"$p\"; \
+			done; \
+		t=$(git ls-files --cached --ignored --exclude-standard); \
+		[ -n \"$t\" ] || return 0; \
+		if [ -t 1 ]; then tty=true; else tty=false; fi; \
+		if [ \"$(git config --get-colorbool color.ignored $tty)\" = true ]; then \
+			c=$(git config --get-color color.ignored.header 'bold yellow'); \
+			r=$(git config --get-color '' reset); \
+		fi; \
+		printf '\\n%sTracked, but matching ignore rules:%s\\n%s\\n' \"$c\" \"$r\" \"$t\"; \
+	}; f"
 	ffmain = "!git diff --quiet || { echo 'Uncommitted changes — aborting'; exit 1; }; git switch main && git fetch origin && git merge --ff-only origin/develop && git push"
 
 # --- Filters ---
