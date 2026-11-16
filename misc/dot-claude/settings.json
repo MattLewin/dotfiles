@@ -119,6 +119,14 @@
       "Bash(sed -i*)",
       "Bash(sed --in-place*)"
     ],
+    "deny": [
+      "Read(~/.ssh/**/id_*)",
+      "Read(~/.ssh/**/*.pem)",
+      "Read(~/.ssh/**/*.key)",
+      "Read(~/.ssh/**/*.p12)",
+      "Read(~/.ssh/retired/**)",
+      "Read(~/.ssh/nasty-old/**)"
+    ],
     "additionalDirectories": [
       "/Users/matt/.claude"
     ]
