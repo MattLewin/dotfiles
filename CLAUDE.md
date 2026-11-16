@@ -42,11 +42,11 @@ All files managed by stow are prefixed with `dot-` (the Makefile's `dotfiles` ta
 
 Machine-specific settings live outside the repo to keep it portable:
 
-| File                                | Purpose                                                |
-| ----------------------------------- | ------------------------------------------------------ |
-| `~/.config/dotfiles/local.zsh`      | Zsh overrides, sourced last in `.zshrc`                |
-| `~/.config/dotfiles/api_tokens.zsh` | API credentials, sourced by `variables.zsh` (mode 600) |
-| `~/.gitconfig.local`                | Git user identity (name/email)                         |
+| File                                | Purpose                                                                                                                        |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `~/.config/dotfiles/local.zsh`      | Zsh overrides, sourced last in `.zshrc`                                                                                        |
+| `~/.config/dotfiles/api_tokens.zsh` | API credentials, sourced by `variables.zsh` (mode 600)                                                                         |
+| `~/.gitconfig.local`                | Optional machine-wide git settings. Identity (name/email) is normally set per repo, since `user.useConfigOnly` blocks guessing |
 
 Templates exist at `misc/dot-config/dotfiles/local.zsh.example` and `git/dot-gitconfig.local.example`.
 
