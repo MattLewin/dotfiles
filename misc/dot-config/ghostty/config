@@ -1,3 +1,6 @@
 bell-features = no-title
 copy-on-select = clipboard
+tab-inherit-working-directory = false
 theme = Dark Pastel
+window-inherit-working-directory = false
+working-directory = home
