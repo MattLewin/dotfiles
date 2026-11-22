@@ -9,11 +9,17 @@
       "mise *"
     ],
     "network": {
-      "allowLocalBinding": true
+      "allowLocalBinding": true,
+      "allowedDomains": [
+        "docs.claude.com",
+        "files.pythonhosted.org",
+        "pypi.org"
+      ]
     },
     "filesystem": {
       "allowWrite": [
-        "~/.cache/uv"
+        "~/.cache/uv",
+        "~/.local/share/uv"
       ]
     }
   },
