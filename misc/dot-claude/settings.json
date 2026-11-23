@@ -3,28 +3,7 @@
     "CLAUDE_CODE_PLUGIN_DIRS": "~/.claude/mods/context-bar",
     "CLAUDE_CODE_SUBPROCESS_ENV_SCRUB": "1"
   },
-  "sandbox": {
-    "enabled": true,
-    "excludedCommands": [
-      "mise *"
-    ],
-    "network": {
-      "allowLocalBinding": true,
-      "allowedDomains": [
-        "docs.claude.com",
-        "files.pythonhosted.org",
-        "pypi.org"
-      ]
-    },
-    "filesystem": {
-      "allowWrite": [
-        "~/.cache/uv",
-        "~/.local/share/uv"
-      ]
-    }
-  },
   "permissions": {
-    "defaultMode": "auto",
     "allow": [
       "Bash(python3 -c ' *)",
       "Bash(grep -v \"^$\")",
@@ -122,10 +101,6 @@
       "Read(~/tmp/**)",
       "Edit(~/tmp/**)"
     ],
-    "ask": [
-      "Bash(sed -i*)",
-      "Bash(sed --in-place*)"
-    ],
     "deny": [
       "Read(~/.ssh/**/id_*)",
       "Read(~/.ssh/**/*.pem)",
@@ -134,10 +109,16 @@
       "Read(~/.ssh/retired/**)",
       "Read(~/.ssh/nasty-old/**)"
     ],
+    "ask": [
+      "Bash(sed -i*)",
+      "Bash(sed --in-place*)"
+    ],
+    "defaultMode": "auto",
     "additionalDirectories": [
       "/Users/matt/.claude"
     ]
   },
+  "model": "opus",
   "hooks": {
     "PreToolUse": [
       {
@@ -159,10 +140,10 @@
     "caveman@caveman": false,
     "frontend-design@claude-plugins-official": false,
     "pyright-lsp@claude-plugins-official": true,
-    "claude-md-management@claude-plugins-official": true,
-    "session-report@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": false,
+    "session-report@claude-plugins-official": false,
     "hookify@claude-plugins-official": true,
-    "claude-code-setup@claude-plugins-official": true
+    "claude-code-setup@claude-plugins-official": false
   },
   "extraKnownMarketplaces": {
     "caveman": {
@@ -173,8 +154,27 @@
       "autoUpdate": true
     }
   },
+  "sandbox": {
+    "enabled": true,
+    "network": {
+      "allowedDomains": [
+        "docs.claude.com",
+        "files.pythonhosted.org",
+        "pypi.org"
+      ],
+      "allowLocalBinding": true
+    },
+    "filesystem": {
+      "allowWrite": [
+        "~/.cache/uv",
+        "~/.local/share/uv"
+      ]
+    },
+    "excludedCommands": [
+      "mise *"
+    ]
+  },
   "tui": "fullscreen",
   "inputNeededNotifEnabled": true,
-  "agentPushNotifEnabled": true,
-  "model": "opus"
+  "agentPushNotifEnabled": true
 }
