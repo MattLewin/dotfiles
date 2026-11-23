@@ -24,6 +24,7 @@
     }
   },
   "permissions": {
+    "defaultMode": "auto",
     "allow": [
       "Bash(python3 -c ' *)",
       "Bash(grep -v \"^$\")",
