@@ -1,5 +1,5 @@
 #!/bin/bash
-# ~/.claude/statusline.sh — caveman badge + model + context % + cost
+# ~/.claude/statusline.sh — caveman badge + model + output style + context % + cost
 
 JSON=$(cat)
 
@@ -27,9 +27,13 @@ try:
         cc = "\033[38;5;71m"
     reset = "\033[0m"
     dim = "\033[38;5;244m"
+    style = d.get("output_style", {}).get("name", "")
     parts = []
     if model:
         parts.append(dim + model + reset)
+    if style:
+        sc = dim if style.lower() == "default" else "\033[38;5;44m"
+        parts.append(sc + "style:" + style + reset)
     if total > 0:
         parts.append(cc + "ctx:" + str(pct) + "%" + reset)
     if cost > 0:
