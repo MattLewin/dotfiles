@@ -43,17 +43,47 @@ except:
     pass
 ')
 
+CFG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+
+# Disabling the caveman plugin leaves its cache and mode flag behind, so the
+# hook would still render a badge. Run it only while the plugin is enabled,
+# reading settings in Claude Code's order: a later file overrides an earlier one.
+CAVEMAN_ENABLED=$(printf '%s' "$JSON" | CFG="$CFG" python3 -c '
+import json, os, sys
+try:
+    proj = json.load(sys.stdin).get("workspace", {}).get("project_dir", "")
+except Exception:
+    proj = ""
+cfg = os.environ["CFG"]
+paths = [os.path.join(cfg, "settings.json"), os.path.join(cfg, "settings.local.json")]
+if proj:
+    paths += [os.path.join(proj, ".claude", f) for f in ("settings.json", "settings.local.json")]
+on = False
+for p in paths:
+    try:
+        with open(p) as fh:
+            v = json.load(fh).get("enabledPlugins", {}).get("caveman@caveman")
+    except Exception:
+        continue
+    if isinstance(v, bool):
+        on = v
+print("1" if on else "", end="")
+')
+
 # The caveman plugin's statusline hook lives under a content-hashed directory
 # that changes whenever the plugin updates, and more than one version can be
 # cached at once. Resolve it at runtime, newest first, and skip it if absent.
+# It reads session_id from the session JSON to pick this window's mode.
 CAVEMAN=""
-caveman_hook=$(
-  find "${HOME}/.claude/plugins/cache/caveman/caveman" \
-    -name caveman-statusline.sh -type f -print0 2>/dev/null |
-    xargs -0 ls -t 2>/dev/null | head -1
-)
-if [ -n "$caveman_hook" ] && [ -r "$caveman_hook" ]; then
-  CAVEMAN=$(bash "$caveman_hook" 2>/dev/null)
+if [ -n "$CAVEMAN_ENABLED" ]; then
+  caveman_hook=$(
+    find "${CFG}/plugins/cache/caveman/caveman" \
+      -name caveman-statusline.sh -type f -print0 2>/dev/null |
+      xargs -0 ls -t 2>/dev/null | head -1
+  )
+  if [ -n "$caveman_hook" ] && [ -r "$caveman_hook" ]; then
+    CAVEMAN=$(printf '%s' "$JSON" | bash "$caveman_hook" 2>/dev/null)
+  fi
 fi
 
 LINE2=""
